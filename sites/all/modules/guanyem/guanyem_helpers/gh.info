@@ -1,0 +1,4 @@
+name = Guanyem Helpers
+description = Helper functions used in the Guanyem modules and themes
+core = 7.x
+package = Guanyem

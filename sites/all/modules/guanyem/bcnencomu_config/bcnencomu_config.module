@@ -1,0 +1,118 @@
+<?php
+/**
+ * Implements hook_permission().
+ */
+function bcnencomu_config_permission(){
+  return array(
+    'administer bcnencomu settings' => array(
+      'title' => t("Administer bcnencomu site settings"),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function bcnencomu_config_menu() {
+  $items = array();
+
+  $items['admin/config/services/config'] = array(
+    'title' => 'Site configuration',
+    'description' => 'Change parameters for this site.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('bcnencomu_config_settings'),
+    'access arguments' => array('administer bcnencomu settings'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Page callback: Current posts settings
+ *
+ * @see bcnencomu_config_menu()
+ */
+function bcnencomu_config_settings($form, &$form_state) {
+  $form = array();
+
+  // SOCIAL NETWORKS
+  $form['social'] = array(
+    '#type' => 'fieldset',
+    '#title' => t("Social networks"),
+    '#description' => t("Defines all social networks in the site"),
+    '#collapsible' => FALSE,
+    '#collapsed' => FALSE,
+  );
+  $social_types = bcnencomu_config_get_social_types();
+  foreach ($social_types as $social_machine => $social_name) {
+    $field = 'social_' . $social_machine;
+    $form['social'][$field] = array(
+      '#type' => 'textfield',
+      '#title' => $social_name,
+      '#default_value' => variable_get('bcnencomu_config_' . $field, ''),
+      '#size' => 64,
+    );
+  }
+
+  $form['#submit'][] = 'bcnencomu_config_settings_form_submit';
+
+  return system_settings_form($form);
+}
+
+/**
+ * Implements validation from the Form API.
+ *
+ * @param $form
+ *   A structured array containing the elements and properties of the form.
+ * @param $form_state
+ *   An array that stores information about the form's current state
+ *   during processing.
+ */
+function bcnencomu_config_settings_validate($form, &$form_state){
+  // SOCIAL NETWORKS
+  $social_types = bcnencomu_config_get_social_types();
+  foreach ($social_types as $social_machine => $social_name) {
+    $field = 'social_' . $social_machine;
+    $value = $form_state['values'][$field];
+    if ($value != '' && !valid_url($value, true)) {
+      form_set_error($field, t("Invalid url format"));
+    }
+  }
+}
+
+/**
+ * Implements submission from the Form API.
+ *
+ * @param $form
+ *   A structured array containing the elements and properties of the form.
+ * @param $form_state
+ *   An array that stores information about the form's current state
+ *   during processing.
+ */
+function bcnencomu_config_settings_form_submit($form, &$form_state) {
+  // Attention! use ['value'] at the end for 'text_format' fields
+
+  // SOCIAL NETWORKS
+  $social_types = bcnencomu_config_get_social_types();
+  foreach ($social_types as $social_machine => $social_name) {
+    $field = 'social_' . $social_machine;
+    variable_set('bcnencomu_config_' . $field, $form_state['values'][$field]);
+  }
+}
+
+/**
+ * Social types array
+ *
+ * @return array
+ */
+function bcnencomu_config_get_social_types() {
+  return array(
+    'facebook' => 'Facebook',
+    'twitter' => 'Twitter',
+    'youtube' => 'Youtube',
+    'tumblr' => 'Tumblr',
+    'flickr' => 'Flickr',
+    'instagram' => 'Instagram',
+  );
+}

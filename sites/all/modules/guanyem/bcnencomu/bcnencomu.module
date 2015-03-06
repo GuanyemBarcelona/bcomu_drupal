@@ -1,0 +1,414 @@
+<?php
+define('SITE_ID', 'bcnencomu');
+define('BCNENCOMU_TWITTER_USER', 'Guanyem');
+
+/**
+ * Implements hook_menu().
+ */
+function bcnencomu_menu() {
+  $items = array();
+
+  $items['async/test/%'] = array(
+    'page callback' => 'bcnencomu_test',
+    'type' => MENU_CALLBACK,
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+  );
+
+  return $items;
+}
+
+/**
+ *  Implementation of hook_page_alter().
+ */
+function bcnencomu_page_alter(&$page) {
+
+}
+
+/**
+ *  Implementation of hook_form_validate().
+ */
+function bcnencomu_form_validate($form, &$form_state) {
+
+}
+
+/**
+ *  Implementation of hook_form_alter().
+ */
+function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
+  switch ($form_id) {
+    case 'comment_node_post_form':
+      $form['comment_body']['#after_build'][] = '_remove_format';
+      //$form['#action'] = base_path() . drupal_get_path_alias('node/' . $form['#node']->nid);
+      //unset($form['author']['_author']);
+      break;
+    case 'contact_site_form';
+      $form['cid']['#weight'] = -1;
+      break;
+    case 'candidacy_head_node_form';
+    case 'candidacy_council_node_form';
+      if ($form_id == 'candidacy_head_node_form'){
+        drupal_set_title(t("Candidacy head form title"));
+        $candidates_form = $form['field_candidacy_list'][LANGUAGE_NONE];
+        //$candidates_form['add_more']['#value'] = t("Add another candidate"); // does not work
+        $form['lead'] = array(
+          '#markup' => '<p>' . t("Candidacy head intro") . '</p>',
+        );
+      }else{
+        drupal_set_title(t("Candidacy council form title"));
+        $form['lead'] = array(
+          '#markup' => '<p>' . t("Candidacy council intro") . '</p>',
+        );
+        $form['field_candidate'][LANGUAGE_NONE][0]['#title'] = '';
+      }
+      $form['#validate'][] = 'bcnencomu_candidacy_form_validate';
+      break;
+  }
+}
+
+/**
+ * Implements validation from the Form API.
+ *
+ * @param $form
+ *   A structured array containing the elements and properties of the form.
+ * @param $form_state
+ *   An array that stores information about the form's current state
+ *   during processing.
+ */
+function bcnencomu_candidacy_form_validate($form, &$form_state){
+  //kpr($form);
+  // contact email confirmation
+  $contact_email = $form_state['values']['field_candidacy_email'][LANGUAGE_NONE][0]['value'];
+  if (!filter_var($contact_email, FILTER_VALIDATE_EMAIL)) {
+    form_set_error('field_candidacy_email', t("The e-mail address you specified is not valid."));
+  }
+  // candidate email confirmation
+  if ($form['#form_id'] == 'candidacy_head_node_form'){
+    $values = $form_state['values']['field_candidacy_list'][LANGUAGE_NONE][0];
+    $candidate_email = $values['field_candidate_email'][LANGUAGE_NONE][0]['value'];
+    if (!filter_var($candidate_email, FILTER_VALIDATE_EMAIL)) {
+      form_set_error('field_candidate_email', t("The e-mail address you specified is not valid."));
+    }
+  }
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function bcnencomu_node_view($node, $view_mode) {
+  // Just make a blog menu item active during viewing blog post detailed page.
+  $menu_name = 'main-menu';
+  if ($view_mode == 'full' && !empty($node->type)){
+    switch ($node->type){
+      case 'post':
+        $path = 'node/5';
+        $menu_name = 'menu-secondary-menu';
+        break;
+      case 'press':
+        $path = 'node/59';
+        $menu_name = 'menu-secondary-menu';
+        break;  
+    }
+    if (isset($path)) menu_tree_set_path($menu_name, $path);
+  }
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function bcnencomu_block_info() {
+  $blocks['contact_form'] = array(
+    'info'=> SITE_ID . ': Contact form',
+    'cache' => DRUPAL_CACHE_PER_ROLE, //Default
+  );
+  $blocks['social_networks_links'] = array(
+    'info'=> SITE_ID . ': Social Networks links',
+    'cache' => DRUPAL_CACHE_PER_ROLE, //Default
+  );
+  $blocks['creativecommons'] = array(
+    'info'=> SITE_ID . ': Creative Commons',
+    'cache' => DRUPAL_CACHE_PER_ROLE, //Default
+  );
+  $blocks['twitter_timeline'] = array(
+    'info'=> SITE_ID . ': Twitter timeline',
+    'cache' => DRUPAL_CACHE_PER_ROLE, //Default
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ *
+ * Prepares the contents of the block.
+ */
+function bcnencomu_block_view($delta = '') {
+  $block = array();
+  switch($delta){
+    case 'contact_form':
+      $block['subject'] = '';
+      $block['content'] = bcnencomu_render_contact_form();
+      break;
+    case 'social_networks_links':
+      $block['subject'] = '';
+      $block['content'] = bcnencomu_render_social_network_links();
+      break;
+    case 'creativecommons':
+      $block['content'] = bcnencomu_render_creativecommons();
+      break;
+    case 'twitter_timeline':
+      $block['content'] = bcnencomu_render_twitter_timeline();
+      break;
+  }
+  return $block;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function bcnencomu_theme($existing, $type, $theme, $path) {
+  return array(
+    'social_network_links' => array(
+      'path' => drupal_get_path('module', 'bcnencomu'),
+      'variables' => array('list' => array()),
+      'template' => 'theme/social_network_links',
+    ),
+    'share_links' => array(
+      'path' => drupal_get_path('module', 'bcnencomu'),
+      'variables' => array('list' => array(), 'current_url' => ''),
+      'template' => 'theme/share_links',
+    ),
+    'creativecommons' => array(
+      'path' => drupal_get_path('module', 'bcnencomu'),
+      'variables' => array('site_name' => ''),
+      'template' => 'theme/creativecommons',
+    ),
+    'image_gallery' => array(
+      'path' => drupal_get_path('module', 'bcnencomu'),
+      'variables' => array('images' => array(), 'thumbs' => FALSE),
+      'template' => 'theme/image_gallery',
+    ),
+    'twitter_timeline' => array(
+      'path' => drupal_get_path('module', 'bcnencomu'),
+      'variables' => array('app_user' => ''),
+      'template' => 'theme/twitter_timeline',
+    ),
+    'node_nav' => array(
+      'path' => drupal_get_path('module', 'bcnencomu'),
+      'variables' => array('links' => array()),
+      'template' => 'theme/node_nav',
+    ),
+  );
+}
+
+/**
+ *  Implements hook_menu_local_tasks_alter().
+ */
+function bcnencomu_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  /*$my_profile_link = array(
+  	'href' => 'user',
+    'title' => t("My profile"),
+    'localized_options' => array('attributes' => array('data-action' => 'my-profile')),
+  );
+
+  switch ($root_path) {
+    case 'messages':
+      $data['actions']['output'][0]['#link']['localized_options'] = array('attributes' => array('data-action' => 'add-message'));
+      // my profile link
+      $data['actions']['output'][] = array(
+        '#theme' => 'menu_local_action',
+        '#link' => $my_profile_link,
+      );
+      // all messages link
+      array_unshift($data['actions']['output'], array( // we use array_unshift and not push, in order to put this link at the beggining
+        '#theme' => 'menu_local_action',
+        '#link' => $all_messages_link,
+      ));
+      break;
+  }*/
+}
+
+/*
+* Simple Test functions
+*/
+function bcnencomu_test($type){
+  $response = 'No test selected, or test invalid';
+  switch ($type){
+    case 'SOME_TEST':
+      $response = array(
+        //'SOME_RESPONSE' => SOME_METHOD_THAT_RETURNS_SOMETHING(),
+      );
+      break;
+  }
+  drupal_json_output($response);
+  drupal_exit();
+}
+
+/**
+ * Returns the contact form
+ */
+function bcnencomu_render_contact_form() {
+  module_load_include('inc', 'contact', 'contact.pages');
+  $contact_form = drupal_get_form('contact_site_form');
+  $contact_form['#prefix'] = theme('status_messages');
+  return render($contact_form);
+}
+
+/*
+* Renders the creative commons
+*/
+function bcnencomu_render_creativecommons() {
+  return theme('creativecommons');
+}
+
+/*
+* Renders the Twitter timeline
+*/
+function bcnencomu_render_twitter_timeline() {
+  $variables = array(
+    'app_user' => BCNENCOMU_TWITTER_USER,
+  );
+  return theme('twitter_timeline', $variables);
+}
+
+/*
+* Renders a node navigation links
+*/
+function bcnencomu_render_node_navigation($nid) {
+  if (module_exists('prev_next')) {
+    $types = array('prev', 'next');
+    $node_nav = array();
+    foreach ($types as $key => $type) {
+      $pn_nid = prev_next_nid($nid, $type);
+      if ($pn_nid != 0){
+        $pn_node = node_load($pn_nid);
+        $pn_title = field_get_items('node', $pn_node, 'title_field');
+        if (isset($pn_title[0]['safe_value'])){
+          $pn_title = $pn_title[0]['safe_value'];
+        }
+        $node_nav[$type] = l($pn_title, 'node/' . $pn_nid, array('html' => TRUE));
+      }
+    }
+    if (count($node_nav) > 0){
+      return theme('node_nav', array('links' => $node_nav));
+    }
+  }
+  return FALSE;
+}
+
+/**
+ * Renders social networks links
+ */
+function bcnencomu_render_social_network_links() {
+  $final_list = array();
+  $social_types = bcnencomu_config_get_social_types();
+  foreach ($social_types as $social_machine => $social_name) {
+    $field = 'social_' . $social_machine;
+    $social_url = variable_get('bcnencomu_config_' . $field, '');
+    if ($social_url != ''){
+      $fa_name = 'fa-' . $social_machine; // font awesome class name: http://fortawesome.github.io/Font-Awesome/icons/
+      $final_list[] = array(
+        'machine_name' => $social_machine,
+        'name' => $social_name,
+        'fa_name' => $fa_name,
+        'url' => $social_url,
+      );
+    }
+  }
+  $variables = array(
+    'list' => $final_list,
+  );
+  return theme('social_network_links', $variables);
+}
+
+/**
+ * Renders social networks share links
+ */
+function bcnencomu_render_share_links($nid) {
+  $current_url = gh_get_absolute_path() . gh_get_node_path_alias($nid);
+  $final_list = array();
+  $social_links = array(
+    'twitter' => array(
+      'name' => 'Twitter',
+      'share_url' => 'https://twitter.com/intent/tweet?url=',
+      'label' => t("Tweet"),
+      'description' => t("Tweet"),
+    ),
+    'facebook' => array(
+      'name' => 'Facebook',
+      'share_url' => 'https://www.facebook.com/sharer/sharer.php?u=',
+      'label' => t("Share", array(), array('context' => 'Facebook share')),
+      'description' => t("Share on Facebook"),
+    ),
+  );
+  foreach ($social_links as $social_machine => $item) {
+    $new_item = $item;
+    $fa_name = 'fa-' . $social_machine; // font awesome class name: http://fortawesome.github.io/Font-Awesome/icons/
+    $new_item['machine_name'] = $social_machine;
+    $new_item['fa_name'] = $fa_name;
+    $final_list[] = $new_item;
+  }
+  $variables = array(
+    'list' => $final_list,
+    'current_url' => $current_url,
+  );
+  return theme('share_links', $variables);
+}
+
+/**
+* Renders an image gallery list with full image and caption or a list of thumbnails
+* @param 
+*   string $images_field: the field to get the image object from
+*   string $style_name: the style of the full image (the thumbnail style must exist and be named $style_name . '_thumb')
+*   boolean $show_thumbnails: if TRUE, instead of a list of full images with a caption, will show a list of thumbnails which will have info of the url and caption of the full image
+*   boolean $zoomable: if TRUE, the full image may link to a still bigger image, which will be of the style 'full_width'
+* @return string html of the gallery
+*/
+function bcnencomu_render_image_gallery($images_field, $style_name, $show_thumbnails = FALSE, $zoomable = FALSE){
+  $images = array();
+  if (isset($images_field[0]['uri'])){
+    $zoom_style = 'full_width';
+    foreach ($images_field as $key => $image) {
+      $new_image = array();
+      $caption_field = 'field_file_caption_' . $GLOBALS['language']->language;
+      if (isset($image[$caption_field][LANGUAGE_NONE][0])){
+        $caption_text = $image[$caption_field][LANGUAGE_NONE][0]['value'];
+      }
+      if ($show_thumbnails){
+        $attributes = array();
+        $thumb_style = $style_name . '_thumb';
+        $attributes['data-full'] = image_style_url($style_name, $image['uri']);
+        if ($zoomable) $attributes['data-zoom'] = image_style_url($zoom_style, $image['uri']);
+        if (isset($caption_text)) $new_image['caption'] = $caption_text;
+        $new_image['thumb_html'] = theme('image_style', array('path' => $image['uri'], 'style_name' => $thumb_style, 'attributes' => $attributes));
+      }else{
+        $new_image['full_html'] = theme('image_style', array('path' => $image['uri'], 'style_name' => $style_name));
+        if ($zoomable) $new_image['full_html'] = l($new_image['full_html'], image_style_url($zoom_style, $image['uri']), array('html' => TRUE));
+        if (isset($caption_text)) $new_image['caption'] = $caption_text;
+      }
+      $images[] = $new_image;
+    }
+    if (count($images) > 0) return theme('image_gallery', array('images' => $images, 'thumbs' => $show_thumbnails));
+  }
+  return FALSE;
+}
+
+/**
+ * Implements hook_wysiwyg_editor_settings_alter().
+ */
+/*function bcnencomu_wysiwyg_editor_settings_alter(&$settings, $context) {
+  if ($context['profile']->editor == 'ckeditor') {
+    // Using ckeditor, set custom config file.
+    $settings['customConfig'] = base_path() . drupal_get_path('module', 'ada') . '/js/bcnencomu_ckeditor_config.js';
+  }
+}
+*/
+
+/**
+* Removes format options for a form
+*/
+function _remove_format(&$form){
+  unset($form[LANGUAGE_NONE][0]['format']['format']);
+  unset($form[LANGUAGE_NONE][0]['format']['guidelines']);
+  unset($form[LANGUAGE_NONE][0]['format']['help']);
+  return $form;
+}

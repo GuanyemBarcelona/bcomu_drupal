@@ -1,0 +1,428 @@
+<?php
+/**
+* Oh, the Helpers,
+* finally
+*/
+
+/**
+ * Implements hook_theme().
+ */
+function gh_theme($existing, $type, $theme, $path) {
+  return array(
+    'gh_section' => array(
+      'variables' => array('title' => '', 'content' => '', 'class' => '', 'block_id' => ''),
+      'template' => 'theme/section',
+    ),
+  );
+}
+
+/*
+* Log function
+*/
+function gh_log($what, $label = '', $hidden = FALSE){
+  if ($hidden) print '<!-- ';
+  if (!empty($label)) print '<h3>'.$label.'</h3>';
+  if (!$hidden) print '<pre>';
+  print_r($what); //be carefull, this may eat too much RAM for big nodes (!!)
+  if (!$hidden) print '</pre>';
+  if ($hidden) print ' -->';
+}
+
+/*
+* user is admin?
+*/
+function gh_is_admin(){
+  global $user;
+  return ($user->uid == 1);
+}
+
+/*
+ * Returns all parents of a given taxonomy term (from parent [0] to term)
+ */
+function gh_get_taxonomy_tree($tid, $history = array()){
+  $term = taxonomy_term_load($tid);
+  $vid = $term->vid;
+  array_push($history, array('tid' => $tid, 'name' => $term->name) );
+  $parent = taxonomy_get_parents($tid);
+  if(empty($parent)){
+    return array_reverse($history);
+  }else{
+    $parent = array_pop($parent);
+    return gh_get_taxonomy_tree($parent->tid, $history);
+  }
+}
+
+/*
+* Create a link
+* @Params
+*   $text: String text, in english. Will be translated
+*   $url: String path
+*   $classes: String: html classes, separated with spaces
+*   $is_external: Boolean, if must open in new tab/window, will put a rel="external" if TRUE
+* @Returns
+*   String (html)
+*/
+function gh_link($text, $url, $classes = '', $is_external = FALSE, $title = ''){
+  $options = array('attributes' => array());
+  if ($classes != '') $options['attributes']['class'] = array($classes);
+  if ($is_external) $options['attributes']['rel'] = 'external';
+  if ($title != '') $options['attributes']['title'] = $title;
+  return l(t($text), file_create_url($url), $options);
+}
+
+/*
+* Render a block
+* @Params
+*   $module: String Block's Module name
+*   $delta: String Block delta
+* @Returns
+*   String (html)
+*/
+function gh_render_block($module, $delta){
+  $block = block_load($module, $delta);
+  $block = _block_get_renderable_array(_block_render_blocks(array($block)));
+  return drupal_render($block);
+}
+
+/****************
+* DATE FUNCTIONS
+*****************/
+/*
+* Converts drupal datetime into proper date array
+* @params
+*   String $datetime: drupal datetime like '2014-05-04 07:30:00'
+*   String $human_format: drupal date format slug for the human date value
+*   Boolean $is_timestamp: if $datetime is already a timestamp
+* @returns
+*   Array date array with machine and human values
+*/
+function gh_get_date_array($datetime, $human_format = 'short', $is_timestamp = FALSE){
+  if ($is_timestamp) $timestamp = $datetime;
+  else $timestamp = strtotime($datetime);
+  $date = array(
+    'machine' => $timestamp,
+    'human' => format_date($timestamp, $human_format),
+    'year' => date('Y', $timestamp),
+    'month' => date('M', $timestamp),
+    'day' => date('d', $timestamp),
+  );
+  return $date;
+}
+
+/*
+* Checks if two days are equal
+* @Params
+*   $date1: Timestamp of date 1
+*   $date2: Timestamp of date 2
+* @Returns
+*   Boolean
+*/
+function gh_equal_days($date1, $date2){
+  return (date('j',$date1) == date('j',$date2) && date('n',$date1) == date('n',$date2) && date('Y',$date1) == date('Y',$date2));
+}
+
+/*
+* Returns phrase about how much time ago a date happened
+* @Params
+*   $date: any english formatted date
+*   $granularity: how many periods to cite, defaults 2
+*   $date2: any english formatted date, defaults NULL. If NULL, comparison will be done with today's date
+* @Returns
+*   String
+*/
+function gh_time_ago($date, $granularity = 2, $date2 = NULL) {
+  $date = strtotime($date);
+  $date2 = ($date2 === NULL)? time() : strtotime($date2);
+  $difference = $date2 - $date;
+  $periods = array(
+    'decade' => 315360000,
+    'year' => 31536000,
+    'month' => 2628000,
+    'week' => 604800,
+    'day' => 86400,
+    'hour' => 3600,
+    'minute' => 60,
+    'second' => 1
+  );
+  $retval = '';
+  foreach ($periods as $key => $value) {
+    if ($difference >= $value) {
+      $time = floor($difference / $value);
+      $difference %= $value;
+      $retval .= ($retval? ' ' : '') . $time . ' ';
+      $retval .= (($time > 1)? t($key . 's') : t($key));
+      $granularity--;
+    }
+    if ($granularity == '0') { break; }
+  }
+  return $retval;
+}
+/*************
+* ------------
+**************/
+
+function gh_index_in_array($needle, $haystack){
+  foreach($haystack as $key => $hay){
+    if($hay === $needle){
+      return $key;
+    }
+  }
+  return -1;
+}
+
+function gh_thankyou(){
+  print "you're welcome";
+}
+
+function gh_shit(){
+  global $conf;
+
+  error_reporting(1);
+  $conf['error_level'] = 3;
+  ini_set('display_errors', TRUE);
+  ini_set('display_startup_errors', TRUE);
+};
+
+/***************
+* PATH FUNCTIONS
+****************/
+/*
+* Get current path alias as an array
+*/
+function gh_get_current_alias(){
+  $currentpath = drupal_get_path_alias();
+  return explode('/', $currentpath);
+}
+
+/*
+* Get relative path alias of node nid, including language
+*/
+function gh_get_node_path_alias($nid){
+  return gh_get_base_and_lang_path() . drupal_get_path_alias('node/' . $nid);
+}
+
+function gh_get_lang_path(){
+  return gh_get_lang_code() . '/';
+}
+
+function gh_get_base_and_lang_path(){
+  return base_path() . gh_get_lang_path();
+}
+
+function gh_get_lang_code(){
+  global $language;
+  return $language->language;
+}
+
+/**
+* Return absolute uri
+*/
+function gh_get_absolute_path(){
+  return 'http://' . $_SERVER['SERVER_NAME'];
+}
+
+/*************
+* ------------
+**************/
+
+function gh_truncate($text, $max_length = 160, $allowed_tags = array(), $wordsafe = TRUE, $add_ellipsis = TRUE){
+  return truncate_utf8(filter_xss($text, $allowed_tags), $max_length, $wordsafe, $add_ellipsis);
+}
+
+function gh_is_simple_auth_user($uid = null) {
+
+  if (is_null($uid)) {
+    global $user;
+  } else {
+    $user = user_load($uid);
+  }
+
+  if ($user->uid == 0 || !count($user->roles)) {
+    // not authenticated
+    return false;
+  }
+
+  foreach ($user->roles as $role) {
+    if ($role != 'authenticated user') {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function gh_get_node_slug($nid) {
+  return base_path().drupal_get_path_alias("node/$nid");
+}
+
+function gh_is_external_url($url) {
+  global $base_root;
+  return (false === strrpos($url, $base_root));
+}
+
+function gh_is_ajax_request() {
+  return (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
+}
+
+function gh_get_taxonomy_name($tid) {
+  if (0 === intval($tid)) {
+    return '';
+  }
+
+  $taxonomy = taxonomy_term_load($tid);
+  if (module_exists('i18n_taxonomy')) {
+    $taxonomy = i18n_taxonomy_localize_terms($taxonomy);
+  }
+
+  return $taxonomy->name;
+}
+
+/**
+ * Returns machine name text (lowercase, transliterated, no spaces)
+ */
+function gh_get_machine_name($text) {
+  // lower case everything
+  $string = strtolower($text);
+  // transliterate
+  $string = gh_transliterate($string);
+  // make alphanumeric (removes all other characters)
+  //$string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
+  // clean up multiple dashes or whitespaces
+  $string = preg_replace("/[\s-]+/", " ", $string);
+  // convert whitespaces and underscore to dash
+  $string = preg_replace("/[\s_]/", "-", $string);
+  return $string;
+}
+
+/**
+ * Returns transliterated text (ucase and english)
+ */
+function gh_transliterate($text) {
+  return strtolower(transliteration_get($text, '?', 'en'));
+}
+
+/**
+ * Gets current user's comment count
+ */
+function gh_get_user_comments_count($uid = NULL) {
+  $uid = isset($uid) ? $uid : $GLOBALS['user']->uid;
+  $query = db_select('comment', 'c');
+  $query->condition('uid', $uid, '=');
+  $query->addExpression('COUNT(cid)', 'comments_count');
+  $result = $query->execute();
+  if ($record = $result->fetchAssoc()) return intval($record['comments_count']);
+  return 0;
+}
+
+/**
+ * is current page a form
+ */
+function gh_is_node_form_page(){
+  return ((arg(0) == 'node' && (arg(1) == 'add' || arg(2) == 'edit')) || (arg(0) == 'imce'));
+}
+
+/**
+ * Gets taxonomy term's root parent
+ */
+function gh_get_taxonomy_root_parent($tid) {
+  $parentsArr = taxonomy_get_parents_all($tid);
+  if (!count($parentsArr)) {
+    return null;
+  }
+
+  return $parentsArr[count($parentsArr) - 1];
+}
+
+/**
+* Curl helper function
+*/
+function gh_curl_get($url) {
+  $curl = curl_init($url);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+  curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE);
+  curl_setopt($curl, CURLOPT_TIMEOUT, 20);
+  $return = curl_exec($curl);
+  curl_close($curl);
+  return $return;
+}
+
+/***************
+* EMBED FUNCTIONS
+****************/
+/**
+ * oEmbed api
+ * http://www.oembed.com/
+ * @param
+ *   String $url: the url to embed
+ *   String $source: 'vimeo' (default), 'youtube', 'issuu',...
+ * @return
+ *   Object oEmbed video data or FALSE if not found
+ */
+function gh_get_oembed_data($url, $source = 'vimeo'){
+  switch ($source){
+    case 'vimeo':
+      $json_url = 'http://vimeo.com/api/oembed.json?url=';
+      break;
+    case 'youtube':
+      $json_url = 'http://www.youtube.com/oembed?format=json&url=';
+      break;
+    case 'issuu':
+      $json_url = 'http://issuu.com/oembed?format=json&url=';
+      break;  
+  }
+  if (isset($json_url)){
+    $json_url .= rawurlencode($url);
+    $oembed = json_decode(gh_curl_get($json_url));
+    return $oembed;
+  }
+  return FALSE;
+}
+
+/***************
+* VIDEO FUNCTIONS
+****************/
+/**
+ * oEmbed video data
+ * http://www.oembed.com/
+ * @param
+ *   String $video_url: the url of the video
+ *   String $video_source: 'vimeo' (default), 'youtube'...
+ * @return
+ *   Object oEmbed video data or FALSE if not found
+ */
+function gh_get_oembed_video_data($video_url, $video_source = 'vimeo'){
+  switch ($video_source){
+    case 'vimeo':
+      $oembed_endpoint = 'http://vimeo.com/api/oembed';
+      $json_url = $oembed_endpoint . '.json?';
+      break;
+    case 'youtube':
+      $oembed_endpoint = 'http://www.youtube.com/oembed';
+      $json_url = $oembed_endpoint . '?format=json&';
+      break;  
+  }
+  if (isset($json_url)){
+    $json_url .= 'url=' . rawurlencode($video_url);
+    $oembed = json_decode(gh_curl_get($json_url));
+    return $oembed;
+  }
+  return FALSE;
+}
+
+/**
+ * Gets youtube video id.
+ */
+function gh_video_url_id($video_url) {
+  $parsed_url = parse_url($video_url);
+  $page_url = $parsed_url['path'];
+  $video_id = substr($page_url , 1 , strlen($page_url) - 1);
+  return $video_id;
+}
+
+/**
+ * Gets thumbnail image for video.
+ */
+function gh_video_url_thumbnail($video_url) {
+  $video_thumbnail = 'http://img.youtube.com/vi/' . omitsis_SITEID_video_url_id($video_url) . '/0.jpg';
+  return $video_thumbnail;
+}
