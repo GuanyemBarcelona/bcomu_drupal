@@ -22,9 +22,13 @@
   <a href="<?php print $list_uri; ?>" data-action="go-back"><i class="fa fa-chevron-circle-left"></i> <?php print t("Back to the candidacy list"); ?></a>
   <?php } ?>
   <div class="content">
+    <?php if (isset($youtube_uri) || isset($video_html)) { ?>
     <div class="video" id="video-<?php print $node->nid; ?>">
-      
+      <?php if (isset($video_html)) { ?>
+      <?php print $video_html; ?>
+      <?php } ?>
     </div>
+    <?php } ?>
     
     <?php 
       // We hide the comments and links now so that we can render them later.

@@ -37,11 +37,13 @@
   <?php } elseif ($view_mode == 'full') { ?>
   <?php /* ----------------- FULL DISPLAY ----------------- */ ?>
   <div class="content">
+    <?php if (isset($youtube_uri) || isset($video_html)) { ?>
     <div class="video" id="video-<?php print $node->nid; ?>">
       <?php if (isset($video_html)) { ?>
       <?php print $video_html; ?>
       <?php } ?>
     </div>
+    <?php } ?>
 
     <div class="body">
       <?php if (isset($node_body_html)) { ?>
