@@ -45,50 +45,6 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
     case 'contact_site_form';
       $form['cid']['#weight'] = -1;
       break;
-    case 'candidacy_head_node_form';
-    case 'candidacy_council_node_form';
-      if ($form_id == 'candidacy_head_node_form'){
-        drupal_set_title(t("Candidacy head form title"));
-        $candidates_form = $form['field_candidacy_list'][LANGUAGE_NONE];
-        //$candidates_form['add_more']['#value'] = t("Add another candidate"); // does not work
-        $form['lead'] = array(
-          '#markup' => '<p>' . t("Candidacy head intro") . '</p>',
-        );
-      }else{
-        drupal_set_title(t("Candidacy council form title"));
-        $form['lead'] = array(
-          '#markup' => '<p>' . t("Candidacy council intro") . '</p>',
-        );
-        $form['field_candidate'][LANGUAGE_NONE][0]['#title'] = '';
-      }
-      $form['#validate'][] = 'bcnencomu_candidacy_form_validate';
-      break;
-  }
-}
-
-/**
- * Implements validation from the Form API.
- *
- * @param $form
- *   A structured array containing the elements and properties of the form.
- * @param $form_state
- *   An array that stores information about the form's current state
- *   during processing.
- */
-function bcnencomu_candidacy_form_validate($form, &$form_state){
-  //kpr($form);
-  // contact email confirmation
-  $contact_email = $form_state['values']['field_candidacy_email'][LANGUAGE_NONE][0]['value'];
-  if (!filter_var($contact_email, FILTER_VALIDATE_EMAIL)) {
-    form_set_error('field_candidacy_email', t("The e-mail address you specified is not valid."));
-  }
-  // candidate email confirmation
-  if ($form['#form_id'] == 'candidacy_head_node_form'){
-    $values = $form_state['values']['field_candidacy_list'][LANGUAGE_NONE][0];
-    $candidate_email = $values['field_candidate_email'][LANGUAGE_NONE][0]['value'];
-    if (!filter_var($candidate_email, FILTER_VALIDATE_EMAIL)) {
-      form_set_error('field_candidate_email', t("The e-mail address you specified is not valid."));
-    }
   }
 }
 
