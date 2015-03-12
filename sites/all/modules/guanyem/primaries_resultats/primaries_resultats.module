@@ -98,7 +98,6 @@ function primaries_resultats_main($type){
             )
           );
         }
-        
         $voting['total_votes'] = $total_votes;
         return theme('results_council', array('voting' => $voting));
       }
@@ -107,7 +106,27 @@ function primaries_resultats_main($type){
     case 'medidas':
       $data_measures = file_get_contents($data_path . '/102000.results.json');
       if ($data_measures !== FALSE){
-        
+        $data_measures = json_decode($data_measures, TRUE);
+        $total_votes = $data_measures['total_votes'];
+        $all_blank_votes = array(
+          'total_count' => 0,
+        );
+        foreach ($data_measures['questions'] as $key => $question) {
+          $blank_votes = $question['totals']['blank_votes'];
+          $all_blank_votes['total_count'] += $blank_votes;
+        }
+        $all_blank_votes['percent'] = _get_percentage($all_blank_votes['total_count'], $total_votes);
+        $answers = $question['answers'];
+        foreach ($answers as $key => $answer) {
+          $total_count = $answer['total_count'];
+          $answers[$key]['percent'] = _get_percentage($total_count, $total_votes);
+        }
+        //---
+        $voting['blank_votes'] = $all_blank_votes;
+        kpr($voting['blank_votes']);
+        $voting['answers'] = $answers;
+        $voting['total_votes'] = $total_votes;
+        return theme('results_measures', array('voting' => $voting));
       }
       break;  
   }
