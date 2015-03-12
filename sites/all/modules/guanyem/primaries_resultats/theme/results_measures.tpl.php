@@ -17,11 +17,11 @@
         <tbody>
           <?php foreach ($voting['answers'] as $key2 => $option) { ?>
           <?php //kpr($option); ?>
-          <tr>
-            <td><?php print($key2 + 1); ?></td>
-            <td><h2><?php print $option['text']; ?></h2></td>
-            <td><?php print $option['total_count']; ?></td>
-            <td><?php print $option['percent']; ?></td>
+          <tr<?php if (($key2+1) > $voting['max']){ ?> class="disabled"<?php } ?>>
+            <td class="position"><?php print($key2 + 1); ?></td>
+            <td class="title"><h2><?php print $option['text']; ?></h2></td>
+            <td class="count"><?php print $option['total_count']; ?></td>
+            <td class="percent"><?php print $option['percent']; ?></td>
           </tr>
           <?php } ?>
         </tbody>
@@ -29,16 +29,13 @@
     </section>
     <section class="blank-option">
       <div class="voting-option">
-        <div class="image">
-          
-        </div>
         <div class="content">
           <h2><?php print t("Blank vote", array(), array('context' => 'Primaries: resultats')); ?></h2>
         </div>
         <dl class="results">
           <dt class="votes"><?php print t("Votes", array(), array('context' => 'Primaries: resultats')); ?>:</dt>
           <dd class="votes"><?php print $voting['blank']['total_count']; ?></dd>
-          <dt class="percent"><?php print t("Percent", array(), array('context' => 'Primaries: resultats')); ?>:</dt>
+          <dt class="percent"><?php print t("Percentage", array(), array('context' => 'Primaries: resultats')); ?>:</dt>
           <dd class="percent"><?php print $voting['blank']['percent']; ?></dd>
         </dl>
       </div>

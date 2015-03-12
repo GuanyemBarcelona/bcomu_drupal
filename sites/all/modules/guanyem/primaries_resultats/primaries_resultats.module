@@ -111,20 +111,26 @@ function primaries_resultats_main($type){
         $all_blank_votes = array(
           'total_count' => 0,
         );
+        $all_answers = array();
         foreach ($data_measures['questions'] as $key => $question) {
+          // blank votes
           $blank_votes = $question['totals']['blank_votes'];
           $all_blank_votes['total_count'] += $blank_votes;
+          // answers
+          foreach ($question['answers'] as $key => $answer) {
+            $total_count = $answer['total_count'];
+            $answer['percent'] = _get_percentage($total_count, $total_votes);
+            $all_answers[] = $answer;
+          }
         }
+        // blank votes global percentage
         $all_blank_votes['percent'] = _get_percentage($all_blank_votes['total_count'], $total_votes);
-        $answers = $question['answers'];
-        foreach ($answers as $key => $answer) {
-          $total_count = $answer['total_count'];
-          $answers[$key]['percent'] = _get_percentage($total_count, $total_votes);
-        }
+        // sorting the answers
+        usort($all_answers, '_compare_measure_winners');
         //---
-        $voting['blank_votes'] = $all_blank_votes;
-        kpr($voting['blank_votes']);
-        $voting['answers'] = $answers;
+        $voting['max'] = 40;
+        $voting['blank'] = $all_blank_votes;
+        $voting['answers'] = $all_answers;
         $voting['total_votes'] = $total_votes;
         return theme('results_measures', array('voting' => $voting));
       }
@@ -132,11 +138,19 @@ function primaries_resultats_main($type){
   }
 }
 
+function _compare_measure_winners($measure1, $measure2){
+    if ($measure1['total_count'] == $measure2['total_count']) {
+      return 0;
+    }
+    return ($measure1['total_count'] > $measure2['total_count'])? -1 : 1;
+}
+
 function _get_percentage($value, $total){
   if (is_numeric($value) && is_numeric($total)){
     if ($total > 0){
       $percent = ($value / $total) * 100;
-      return number_format($percent, 2, ',', '.') . '%';
+      if ($percent > 0) return number_format($percent, 2, ',', '.') . '%';
+      else return 0;
     }else{
       return '0';
     }

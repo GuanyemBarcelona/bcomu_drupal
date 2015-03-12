@@ -17,7 +17,7 @@
         <dl class="results">
           <dt class="votes"><?php print t("Votes", array(), array('context' => 'Primaries: resultats')); ?>:</dt>
           <dd class="votes"><?php print $option['total_count']; ?></dd>
-          <dt class="percent"><?php print t("Percent", array(), array('context' => 'Primaries: resultats')); ?>:</dt>
+          <dt class="percent"><?php print t("Percentage", array(), array('context' => 'Primaries: resultats')); ?>:</dt>
           <dd class="percent"><?php print $option['percent']; ?></dd>
         </dl>
       </div>
@@ -25,16 +25,13 @@
     </section>
     <section class="blank-option">
       <div class="voting-option">
-        <div class="image">
-          
-        </div>
         <div class="content">
           <h2><?php print t("Blank vote", array(), array('context' => 'Primaries: resultats')); ?></h2>
         </div>
         <dl class="results">
           <dt class="votes"><?php print t("Votes", array(), array('context' => 'Primaries: resultats')); ?>:</dt>
           <dd class="votes"><?php print $voting['blank']['total_count']; ?></dd>
-          <dt class="percent"><?php print t("Percent", array(), array('context' => 'Primaries: resultats')); ?>:</dt>
+          <dt class="percent"><?php print t("Percentage", array(), array('context' => 'Primaries: resultats')); ?>:</dt>
           <dd class="percent"><?php print $voting['blank']['percent']; ?></dd>
         </dl>
       </div>

@@ -1,9 +1,16 @@
 article.primaries-resultats {
 	padding: 0 0 40px;
 }
-	.voting-option {
-		max-width: 200px;
+	.voting-options,
+	.blank-option {
+		text-align: center;
+		margin: 0 0 40px;
 	}
+		.voting-option {
+			display: inline-block;
+			max-width: 200px;
+		}
+			.voting-option .results {}
 
 	.voting-winner {}
 
@@ -11,6 +18,35 @@ article.primaries-resultats {
 		left: 0;
 		width: 100%;
 	}
+		article.primaries-resultats table tr.disabled {
+			opacity: .3;
+		}
+			article.primaries-resultats table th {
+				font-size: 1.5em;
+				padding: 8px 10px;
+			}
+			article.primaries-resultats table td {
+				font-size: 1.5em;
+				padding: 8px 10px;
+			}
+			article.primaries-resultats table td.title {
+				text-align: left;
+			}
+			article.primaries-resultats table td.count {
+				font-size: 2em;
+				font-weight: bold;
+			}
+			article.primaries-resultats table td.percent {
+				text-align: right;
+				font-size: 2em;
+			}
+				article.primaries-resultats table td h2 {
+					font-size: 1.1em;
+				}
+				article.primaries-resultats table td.image img {
+					max-width: 90px;
+					margin: 0 auto;
+				}
 
 	div[data-results-type="map"] {}
 		button.toggle-view {
@@ -21,6 +57,7 @@ article.primaries-resultats {
 			width: 90%;
 			max-width: 700px;
 			margin: 0 auto;
+			border: 3px solid #e65c56;
 		}
 			div[data-results-type="map"] .map .voting-winners {
 				position: absolute;
@@ -30,7 +67,7 @@ article.primaries-resultats {
 				height: 100%;
 			}
 				div[data-results-type="map"] .map .voting-winners .voting-winner {
-					max-width: 120px;
+					width: 15%;
 					position: absolute;
 					opacity: .5;
 				}
@@ -39,23 +76,23 @@ article.primaries-resultats {
 				}
 				/* Ciutat Vella */
 				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="0"] {
-					top: 425px;
-  				left: 290px;
+					top: 74%;
+					left: 45%;
 				}
 				/* Eixample */
 				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="1"] {
-					top: 310px;
-  				left: 270px;
+					top: 56%;
+					left: 45%;
 				}
 				/* Gràcia */
 				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="2"] {
-					top: 0;
-					left: 0;
+					top: 38%;
+					left: 47%;
 				}
 				/* Horta-Guinardó */
 				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="3"] {
-					top: 0;
-					left: 0;
+					top: 27%;
+					left: 60%;
 				}
 				/* Les Corts */
 				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="4"] {
@@ -94,7 +131,4 @@ article.primaries-resultats {
 
 	div[data-results-type="list"] {}
 		div[data-results-type="list"] table {}
-			div[data-results-type="list"] table .image {
-				/*max-width: 120px;*/
-			}
 	
