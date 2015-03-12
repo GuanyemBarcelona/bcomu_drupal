@@ -1350,6 +1350,9 @@ article.node .body .eixos-list {
           height: 2.2em;
           overflow: hidden;
         }
+        .blank-option .voting-option h2 {
+          height: auto;
+        }
           .node-candidacy-person.node-teaser h2 a,
           .voting-option h2 a {
             color: #e65c56;
