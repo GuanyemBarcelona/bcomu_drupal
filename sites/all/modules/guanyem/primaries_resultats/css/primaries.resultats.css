@@ -1,0 +1,100 @@
+article.primaries-resultats {
+	padding: 0 0 40px;
+}
+	.voting-option {
+		max-width: 200px;
+	}
+
+	.voting-winner {}
+
+	article.primaries-resultats table {
+		left: 0;
+		width: 100%;
+	}
+
+	div[data-results-type="map"] {}
+		button.toggle-view {
+			margin-bottom: 20px;
+		}
+		div[data-results-type="map"] .map {
+			position: relative;
+			width: 90%;
+			max-width: 700px;
+			margin: 0 auto;
+		}
+			div[data-results-type="map"] .map .voting-winners {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+				div[data-results-type="map"] .map .voting-winners .voting-winner {
+					max-width: 120px;
+					position: absolute;
+					opacity: .5;
+				}
+				div[data-results-type="map"] .map .voting-winners .voting-winner:hover {
+					opacity: 1;
+				}
+				/* Ciutat Vella */
+				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="0"] {
+					top: 425px;
+  				left: 290px;
+				}
+				/* Eixample */
+				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="1"] {
+					top: 310px;
+  				left: 270px;
+				}
+				/* Gràcia */
+				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="2"] {
+					top: 0;
+					left: 0;
+				}
+				/* Horta-Guinardó */
+				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="3"] {
+					top: 0;
+					left: 0;
+				}
+				/* Les Corts */
+				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="4"] {
+					top: 0;
+					left: 0;
+				}
+				/* Nou Barris */
+				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="5"] {
+					top: 0;
+					left: 0;
+				}
+				/* Sant Andreu */
+				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="6"] {
+					top: 0;
+					left: 0;
+				}
+				/* Sant Martí */
+				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="7"] {
+					top: 0;
+					left: 0;
+				}
+				/* Sants-Montjuïc */
+				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="8"] {
+					top: 0;
+					left: 0;
+				}
+				/* Sarrià-Sant Gervasi */
+				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="9"] {
+					top: 0;
+					left: 0;
+				}
+					div[data-results-type="map"] .map .voting-winners .voting-winner .content,
+					div[data-results-type="map"] .map .voting-winners .voting-winner .results {
+						display: none;
+					}
+
+	div[data-results-type="list"] {}
+		div[data-results-type="list"] table {}
+			div[data-results-type="list"] table .image {
+				/*max-width: 120px;*/
+			}
+	
