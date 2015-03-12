@@ -131,6 +131,33 @@ body.admin-menu {
       background: url("../images/sprite.png") no-repeat 0 -50px;
     }
 
+.social-network-list {}
+  .social-network-list ul {
+    overflow: hidden;
+  }
+    .social-network-list li {
+      float: left;
+      margin-left: 12px;
+    }
+    .social-network-list li:first-child {
+      margin-left: 0;
+    }
+      .social-network-list li a {
+        display: block;
+        width: 23px;
+        height: 23px;
+        text-align: center;
+        font-size: 1.6em;
+        padding: 3px 0 0;
+        color: #e65c56;
+        background: white;
+        -webkit-border-radius: 11px;
+        border-radius: 11px;
+      }
+        .social-network-list li a span {
+          display: none;
+        }
+
 /*********************
 * Site Header
 **********************/
@@ -291,6 +318,14 @@ header[role="banner"] {
               text-align: left;
               height: auto;
             }
+
+  .region-header #block-bcnencomu-social_networks_links {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 45px 10px 47px;
+    border-left: 1px solid white;
+  }
 
   /* inscriu-te i participa banner block */
   #block-block-4 {
@@ -1572,37 +1607,11 @@ footer[role="contentinfo"] {
           right: 0;
           background-position: -25px 0;
         }
-    #block-bcnencomu-social_networks_links {
+    .region-footer #block-bcnencomu-social_networks_links {
       float: left;
       width: 33%;
       padding-right: 20px;
     }
-      .social-network-list {}
-        .social-network-list ul {
-          overflow: hidden;
-        }
-          .social-network-list li {
-            float: left;
-            margin-left: 12px;
-          }
-          .social-network-list li:first-child {
-            margin-left: 0;
-          }
-            .social-network-list li a {
-              display: block;
-              width: 23px;
-              height: 23px;
-              text-align: center;
-              font-size: 1.6em;
-              padding: 3px 0 0;
-              color: #e65c56;
-              background: white;
-              -webkit-border-radius: 11px;
-              border-radius: 11px;
-            }
-              .social-network-list li a span {
-                display: none;
-              }
     #block-menu-menu-legal-menu {
       float: left;
       width: 33%;
