@@ -1,5 +1,6 @@
 <?php
 define('SITE_ID', 'bcnencomu');
+define('CURRENT_MODULE_PATH', drupal_get_path('module', 'bcnencomu'));
 define('BCNENCOMU_TWITTER_USER', 'Guanyem');
 
 /**
@@ -124,32 +125,26 @@ function bcnencomu_block_view($delta = '') {
 function bcnencomu_theme($existing, $type, $theme, $path) {
   return array(
     'social_network_links' => array(
-      'path' => drupal_get_path('module', 'bcnencomu'),
       'variables' => array('list' => array()),
       'template' => 'theme/social_network_links',
     ),
     'share_links' => array(
-      'path' => drupal_get_path('module', 'bcnencomu'),
       'variables' => array('list' => array(), 'current_url' => ''),
       'template' => 'theme/share_links',
     ),
     'creativecommons' => array(
-      'path' => drupal_get_path('module', 'bcnencomu'),
       'variables' => array('site_name' => ''),
       'template' => 'theme/creativecommons',
     ),
     'image_gallery' => array(
-      'path' => drupal_get_path('module', 'bcnencomu'),
       'variables' => array('images' => array(), 'thumbs' => FALSE),
       'template' => 'theme/image_gallery',
     ),
     'twitter_timeline' => array(
-      'path' => drupal_get_path('module', 'bcnencomu'),
       'variables' => array('app_user' => ''),
       'template' => 'theme/twitter_timeline',
     ),
     'node_nav' => array(
-      'path' => drupal_get_path('module', 'bcnencomu'),
       'variables' => array('links' => array()),
       'template' => 'theme/node_nav',
     ),
