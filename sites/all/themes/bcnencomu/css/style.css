@@ -9,8 +9,7 @@ header[role="banner"],
 #main, 
 .region-footer, 
 .cookies-message p,
-
-article.node table {
+article#node-161 table /* cookies table */ {
   width: 1366px;
   margin: 0 auto;
 }
@@ -644,21 +643,17 @@ article.node {}
     }
       
       article.node table {
-        position: relative;
-        left: -26%;
         margin: 0 0 30px;
         border-left: 1px solid #e65c56;
         border-bottom: 1px solid #e65c56;
       }
-      body.sidebar-first article.node table {
+      /* cookies table */
+      article#node-161 table {
+        position: relative;
+        left: -26%;
+      }
+      body.sidebar-first article#node-161 table {
         left: -39%;
-      }
-      article.primaries-resultats table {
-        left: 0;
-        margin-bottom: 0;
-      }
-      body.sidebar-first article.primaries-resultats table {
-        left: 0;
       }
         article.node table tr {}
           article.node table th, article.node table td {

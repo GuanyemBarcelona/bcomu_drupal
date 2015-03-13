@@ -10,10 +10,10 @@
     padding-left: 15px;
     padding-right: 15px;
   }
-  article.node table {
+  article#node-161 table {
     width: 126%;
   }
-  body.sidebar-first article.node table {
+  body.sidebar-first article#node-161 table {
     width: 139%;
   }
 
@@ -91,7 +91,7 @@
     display: none;
   }
 
-  article.node table {
+  article#node-161 table {
     position: static;
     left: auto;
     width: 100%;
