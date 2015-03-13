@@ -9,7 +9,7 @@ function primaries_resultats_menu() {
     'page callback' => 'primaries_resultats_main',
     'type' => MENU_CALLBACK,
     'page arguments' => array(2),
-    'access arguments' => array('access site in maintenance mode'/*'access content'*/),
+    'access arguments' => array('access content'),
   );
 
   return $items;
