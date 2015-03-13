@@ -327,10 +327,10 @@ function bcnencomu_preprocess_node(&$vars) {
         }*/
 
         // youtube
-        $youtube_video = field_get_items('node', $node_obj,'field_youtube_url');
+        /*$youtube_video = field_get_items('node', $node_obj,'field_youtube_url');
         if (isset($youtube_video[0]['safe_value'])){
           $vars['youtube_uri'] = $youtube_video[0]['safe_value'];
-        }
+        }*/
       }
       break;
 	}
