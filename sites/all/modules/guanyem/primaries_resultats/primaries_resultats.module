@@ -118,6 +118,7 @@ function primaries_resultats_main($type){
         $data_measures = json_decode($data_measures, TRUE);
         $total_votes = $data_measures['total_votes'];
         $voting['measure_blocks'] = array();
+        $max_per_block = array(7, 11, 12, 10);
         foreach ($data_measures['questions'] as $key1 => $question) {
           $block_answers_count = 0;
           $answers = $question['answers'];
@@ -133,7 +134,7 @@ function primaries_resultats_main($type){
           //---
           $voting['measure_blocks'][] = array(
             'name' => $answers[0]['category'],
-            'max' => 10,
+            'max' => $max_per_block[$key1],
             'answers' => $answers,
             'blank' => array(
               'total_count' => $blank_votes,
