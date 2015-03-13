@@ -1,0 +1,160 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+function primaries_resultats_menu() {
+  $items = array();
+
+  $items['primaries/resultats/%'] = array(
+    'page callback' => 'primaries_resultats_main',
+    'type' => MENU_CALLBACK,
+    'page arguments' => array(2),
+    'access arguments' => array('access site in maintenance mode'),
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function primaries_resultats_theme($existing, $type, $theme, $path) {
+  return array(
+    'results_head' => array(
+      'path' => drupal_get_path('module', 'primaries_resultats'),
+      'variables' => array('voting' => array()),
+      'template' => 'theme/results_head',
+    ),
+    'results_council' => array(
+      'path' => drupal_get_path('module', 'primaries_resultats'),
+      'variables' => array('voting' => array()),
+      'template' => 'theme/results_council',
+    ),
+    'results_measures' => array(
+      'path' => drupal_get_path('module', 'primaries_resultats'),
+      'variables' => array('voting' => array()),
+      'template' => 'theme/results_measures',
+    ),
+  );
+}
+
+/**
+* Main control
+*/
+function primaries_resultats_main($type){
+  drupal_add_js(libraries_get_path('Chart.js') . '/Chart.min.js');
+  drupal_add_css(drupal_get_path('module', 'primaries_resultats') . '/css/primaries.resultats.css', array('group' => CSS_THEME));
+  drupal_add_js(drupal_get_path('module', 'primaries_resultats') . '/js/primaries.resultats.js', array('group' => JS_THEME));
+  $data_path = drupal_get_path('module', 'primaries_resultats') . '/data';
+  $img_path = drupal_get_path('module', 'primaries_resultats') . '/images';
+  $voting = array();
+  switch ($type){
+    case 'capdellista':
+    case 'cabezadelista':
+      $data_head = file_get_contents($data_path . '/101000.results.json');
+      if ($data_head !== FALSE){
+        $data_head = json_decode($data_head, TRUE);
+        $total_votes = $data_head['total_votes'];
+        $question = $data_head['questions'][0];
+        $blank_votes = $question['totals']['blank_votes'];
+        $answers = $question['answers'];
+        foreach ($answers as $key => $answer) {
+          $total_count = $answer['total_count'];
+          $answers[$key]['percent'] = _get_percentage($total_count, $total_votes);
+        }
+        //---
+        $voting['answers'] = $answers;
+        $voting['blank'] = array(
+          'total_count' => $blank_votes,
+          'percent' => _get_percentage($blank_votes, $total_votes),
+        );
+        $voting['total_votes'] = $total_votes;
+        return theme('results_head', array('voting' => $voting));
+      }
+      break;
+    case 'consellers':
+    case 'consejeros':
+      $data_council = file_get_contents($data_path . '/103000.results.json');
+      if ($data_council !== FALSE){
+        $data_council = json_decode($data_council, TRUE);
+        $total_votes = $data_council['total_votes'];
+        $voting['map'] = theme('image', array('path' => $img_path . '/mapa_bcn.png'));
+        $voting['neighbourhoods'] = array();
+        foreach ($data_council['questions'] as $key => $question) {
+          // for all neighbourhoods
+          $blank_votes = $question['totals']['blank_votes'];
+          $answers = $question['answers'];
+          foreach ($answers as $key => $answer) {
+            $total_count = $answer['total_count'];
+            $answers[$key]['percent'] = _get_percentage($total_count, $total_votes);
+          }
+          //---
+          $voting['neighbourhoods'][] = array(
+            'name' => $question['description'],
+            'answers' => $answers,
+            'blank' => array(
+              'total_count' => $blank_votes,
+              'percent' => _get_percentage($blank_votes, $total_votes),
+            )
+          );
+        }
+        $voting['total_votes'] = $total_votes;
+        return theme('results_council', array('voting' => $voting));
+      }
+      break;
+    case 'mesures':
+    case 'medidas':
+      $data_measures = file_get_contents($data_path . '/102000.results.json');
+      if ($data_measures !== FALSE){
+        $data_measures = json_decode($data_measures, TRUE);
+        $total_votes = $data_measures['total_votes'];
+        $all_blank_votes = array(
+          'total_count' => 0,
+        );
+        $all_answers = array();
+        foreach ($data_measures['questions'] as $key => $question) {
+          // blank votes
+          $blank_votes = $question['totals']['blank_votes'];
+          $all_blank_votes['total_count'] += $blank_votes;
+          // answers
+          foreach ($question['answers'] as $key => $answer) {
+            $total_count = $answer['total_count'];
+            $answer['percent'] = _get_percentage($total_count, $total_votes);
+            $all_answers[] = $answer;
+          }
+        }
+        // blank votes global percentage
+        $all_blank_votes['percent'] = _get_percentage($all_blank_votes['total_count'], $total_votes);
+        // sorting the answers
+        usort($all_answers, '_compare_measure_winners');
+        //---
+        $voting['max'] = 40;
+        $voting['blank'] = $all_blank_votes;
+        $voting['answers'] = $all_answers;
+        $voting['total_votes'] = $total_votes;
+        return theme('results_measures', array('voting' => $voting));
+      }
+      break;  
+  }
+}
+
+function _compare_measure_winners($measure1, $measure2){
+    if ($measure1['total_count'] == $measure2['total_count']) {
+      return 0;
+    }
+    return ($measure1['total_count'] > $measure2['total_count'])? -1 : 1;
+}
+
+function _get_percentage($value, $total){
+  if (is_numeric($value) && is_numeric($total)){
+    if ($total > 0){
+      $percent = ($value / $total) * 100;
+      if ($percent > 0) return number_format($percent, 2, ',', '.') . '%';
+      else return 0;
+    }else{
+      return '0';
+    }
+  }
+  return '-';
+}
+

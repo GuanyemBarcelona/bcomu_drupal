@@ -1350,11 +1350,13 @@ article.node .body .eixos-list {
           background: none;
         }
         .view-candidacies .item-list .views-row .views-field-field-candidacy-photo,
-        .node-candidacy-person.node-teaser .image {
+        .node-candidacy-person.node-teaser .image,
+        .voting-option .image {
           margin-bottom: 10px;
         }
           .view-candidacies .item-list .views-row .views-field-field-candidacy-photo a,
-          .node-candidacy-person.node-teaser .image a {
+          .node-candidacy-person.node-teaser .image a,
+          .voting-option .image a {
             display: block;
             width: 100%;
             -webkit-border-radius: 50%;
@@ -1362,17 +1364,20 @@ article.node .body .eixos-list {
             border: 4px solid #e65c56;
           }
           .view-candidacies .item-list .views-row:hover .views-field-field-candidacy-photo a,
-          .node-candidacy-person.node-teaser:hover .image a {
+          .node-candidacy-person.node-teaser:hover .image a,
+          .voting-option .image:hover a {
             border-width: 6px;
             border-color: #b52821;
           }
             .view-candidacies .item-list .views-row .views-field-field-candidacy-photo a img,
-            .node-candidacy-person.node-teaser .image a img {
+            .node-candidacy-person.node-teaser .image a img,
+            .voting-option .image a img {
               -webkit-border-radius: 50%;
               border-radius: 50%;
             }
         .view-candidacies .item-list .views-row .views-field-title,
-        .node-candidacy-person.node-teaser h2 {
+        .node-candidacy-person.node-teaser h2,
+        .voting-option h2 {
           font-size: 2.2em;
           line-height: 1.1;
           font-weight: 800;
@@ -1380,11 +1385,16 @@ article.node .body .eixos-list {
           height: 2.2em;
           overflow: hidden;
         }
-          .node-candidacy-person.node-teaser h2 a {
+        .blank-option .voting-option h2 {
+          height: auto;
+        }
+          .node-candidacy-person.node-teaser h2 a,
+          .voting-option h2 a {
             color: #e65c56;
           }
           .view-candidacies .item-list .views-row:hover .views-field-title a,
-          .node-candidacy-person.node-teaser:hover h2 a {
+          .node-candidacy-person.node-teaser:hover h2 a,
+          .voting-option:hover h2 a {
             color: #b52821;
           }
 
