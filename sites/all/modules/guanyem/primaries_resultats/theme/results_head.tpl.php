@@ -1,6 +1,6 @@
 <article class="node primaries-resultats" data-voting-type="head">
   <header>
-    <h1><?php print t("Primàries: cap de llista amb equip de govern", array(), array('context' => 'Primaries: resultats')); ?></h1>
+    <h1><?php print t("Cap de llista amb equip de govern", array(), array('context' => 'Primaries: resultats')); ?></h1>
   </header>
   <div class="content">
     <?php if (count($voting['answers']) > 0){ ?>

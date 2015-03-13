@@ -1,6 +1,6 @@
 <article class="node primaries-resultats" data-voting-type="council">
   <header>
-    <h1><?php print t("Primàries: Consellers i conselleres de districte", array(), array('context' => 'Primaries: resultats')); ?></h1>
+    <h1><?php print t("Conselleres i consellers", array(), array('context' => 'Primaries: resultats')); ?></h1>
   </header>
   <div class="content">
     <div data-results-type="map">
@@ -44,7 +44,7 @@
               <th width="5%">#</th>
               <th width="55%"><?php print t("Name", array(), array('context' => 'Primaries: resultats')); ?></th>
               <th width="15%"><?php print t("Picture", array(), array('context' => 'Primaries: resultats')); ?></th>
-              <th width="15%"><?php print t("Number of votes", array(), array('context' => 'Primaries: resultats')); ?></th>
+              <th width="15%"><?php print t("Votes", array(), array('context' => 'Primaries: resultats')); ?></th>
               <th width="10%"><?php print t("Percentage", array(), array('context' => 'Primaries: resultats')); ?></th>
             </tr>
           </thead>

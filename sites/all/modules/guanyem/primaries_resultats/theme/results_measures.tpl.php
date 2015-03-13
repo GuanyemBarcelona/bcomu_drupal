@@ -1,9 +1,9 @@
 <article class="node primaries-resultats" data-voting-type="measures">
   <header>
-    <h1><?php print t("Primàries: Priorització de mesures", array(), array('context' => 'Primaries: resultats')); ?></h1>
+    <h1><?php print t("Priorització de mesures", array(), array('context' => 'Primaries: resultats')); ?></h1>
   </header>
   <div class="content">
-    <p class="info"><?php print t("This voting was made with 3, 2 and 1 point assignations per each vote made.", array(), array('context' => 'Primaries: resultats')); ?></p>
+    <p class="info"><?php print t("MEASURES_INTRO_TEXT", array(), array('context' => 'Primaries: resultats')); ?></p>
     <?php foreach ($voting['measure_blocks'] as $key1 => $measure_block) { ?>
       <h2><?php print $measure_block['name']; ?></h2>
       <?php if (count($measure_block['answers']) > 0){ ?>
@@ -13,7 +13,7 @@
             <tr>
               <th width="5%">#</th>
               <th width="70%"><?php print t("Title", array(), array('context' => 'Primaries: resultats')); ?></th>
-              <th width="15%"><?php print t("Number of points", array(), array('context' => 'Primaries: resultats')); ?></th>
+              <th width="15%"><?php print t("Points", array(), array('context' => 'Primaries: resultats')); ?></th>
               <th width="10%"><?php print t("Percentage", array(), array('context' => 'Primaries: resultats')); ?></th>
             </tr>
           </thead>
