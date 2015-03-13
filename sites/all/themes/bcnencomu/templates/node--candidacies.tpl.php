@@ -27,8 +27,6 @@
     <?php if (isset($candidacies_list)){ ?>
       <?php print $candidacies_list; ?>
     <?php } ?>
-
-    <a href="http://participa.barcelonaencomu.cat/" data-action="participa" rel="external"><i class="fa fa-sign-in"></i> <?php print t("Register to participate"); ?></a>
   </div>
   <?php } ?>
 </<?php print $tag; ?>> <!-- /node-->
