@@ -573,11 +573,11 @@ body.page-taxonomy-term #content-header h1 {
           font-size: 1.4em;
           margin-bottom: 1em;
         }  
-    .region-sidebar-first .menu-block-wrapper {}
-      .region-sidebar-first .menu-block-wrapper li {
+    .region-sidebar-first ul.menu {}
+      .region-sidebar-first ul.menu li {
         border-bottom: 1px solid white;
       }
-        .region-sidebar-first .menu-block-wrapper li a {
+        .region-sidebar-first ul.menu li a {
           display: block;
           font-size: 1.5em;
           font-weight: bold;
@@ -590,16 +590,16 @@ body.page-taxonomy-term #content-header h1 {
           -o-transition: all 0.3s ease-in-out;
           transition: all 0.3s ease-in-out;
         }
-        .region-sidebar-first .menu-block-wrapper li.active-trail a,
-        .region-sidebar-first .menu-block-wrapper li a.active,
-        .region-sidebar-first .menu-block-wrapper li a:hover {
+        .region-sidebar-first ul.menu li.active-trail a,
+        .region-sidebar-first ul.menu li a.active,
+        .region-sidebar-first ul.menu li a:hover {
           background: #577a9b;
         }
-        .region-sidebar-first .menu-block-wrapper li ul a {
+        .region-sidebar-first ul.menu li ul a {
           padding-left: 50px;
           background: #8ea7bf!important;
         }
-        .region-sidebar-first .menu-block-wrapper li ul li.active-trail a {
+        .region-sidebar-first ul.menu li ul li.active-trail a {
           background: #577a9b!important;
         }
 
@@ -652,6 +652,13 @@ article.node {}
       }
       body.sidebar-first article.node table {
         left: -39%;
+      }
+      article.primaries-resultats table {
+        left: 0;
+        margin-bottom: 0;
+      }
+      body.sidebar-first article.primaries-resultats table {
+        left: 0;
       }
         article.node table tr {}
           article.node table th, article.node table td {

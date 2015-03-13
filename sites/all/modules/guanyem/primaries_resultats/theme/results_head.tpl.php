@@ -6,7 +6,6 @@
     <?php if (count($voting['answers']) > 0){ ?>
     <section class="voting-options">
     <?php foreach ($voting['answers'] as $key => $option) { ?>
-    <?php //kpr($option); ?>
       <div class="voting-option<?php if ($key == 0){ ?> voting-winner<?php } ?>">
         <div class="image">
           <a href="<?php print $option['urls'][0]['url']; ?>"><img src="<?php print $option['urls'][1]['url']; ?>" /></a>
@@ -35,6 +34,10 @@
           <dd class="percent"><?php print $voting['blank']['percent']; ?></dd>
         </dl>
       </div>
+    </section>
+    <section class="general">
+      <p class="total-votes"><?php print t("Total votes", array(), array('context' => 'Primaries: resultats')); ?>: <span class="votes"><?php print $voting['total_votes']; ?></span></p>
+      <a data-action="verify-voting" href="<?php print $voting['verify_uri']; ?>" rel="external"><?php print t("Verify the results of this voting", array(), array('context' => 'Primaries: resultats')); ?></a>
     </section>
     <?php }else{ ?>
     <p class="empty"><?php print t("No voting was made on this topic", array(), array('context' => 'Primaries: resultats')); ?></p>

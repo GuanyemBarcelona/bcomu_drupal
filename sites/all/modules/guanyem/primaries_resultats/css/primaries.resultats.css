@@ -1,6 +1,21 @@
 article.primaries-resultats {
 	padding: 0 0 40px;
 }
+	article.primaries-resultats p.info {
+		text-align: left;
+	}
+
+	article.primaries-resultats .general {
+		text-align: center;
+		padding: 20px;
+		margin-bottom: 40px;
+		border: 3px solid #777;
+	}
+		article.primaries-resultats .general .total-votes {
+			font-weight: bold;
+		}
+			article.primaries-resultats .general .total-votes .votes {}
+
 	.voting-options {
 		text-align: center;
 		margin-bottom: 20px;
@@ -12,7 +27,7 @@ article.primaries-resultats {
 		text-align: center;
 		padding: 20px;
 		margin-bottom: 40px;
-		border: 3px solid #efefef;
+		border: 3px solid #EEE;
 	}
 		.voting-option {
 			display: inline-block;
@@ -61,9 +76,7 @@ article.primaries-resultats {
 	.voting-winner {}
 
 	article.primaries-resultats table {
-		left: 0;
 		width: 100%;
-		margin-bottom: 0;
 	}
 		article.primaries-resultats table tr.disabled {
 			opacity: .3;
@@ -122,22 +135,22 @@ article.primaries-resultats {
 					opacity: 1;
 				}
 				/* Ciutat Vella */
-				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="0"] {
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="1"] {
 					top: 73%;
 					left: 46%;
 				}
 				/* Eixample */
-				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="1"] {
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="2"] {
 					top: 56%;
 					left: 45%;
 				}
 				/* Gràcia */
-				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="2"] {
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="6"] {
 					top: 39%;
 					left: 47%;
 				}
 				/* Horta-Guinardó */
-				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="3"] {
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="7"] {
 					top: 27%;
 					left: 60%;
 				}
@@ -147,27 +160,27 @@ article.primaries-resultats {
 					left: 26%;
 				}
 				/* Nou Barris */
-				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="5"] {
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="8"] {
 					top: 31%;
 					left: 77%;
 				}
 				/* Sant Andreu */
-				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="6"] {
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="9"] {
 					top: 49%;
 					left: 74%;
 				}
 				/* Sant Martí */
-				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="7"] {
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="0"] {
 					top: 64%;
 					left: 64%;
 				}
 				/* Sants-Montjuïc */
-				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="8"] {
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="3"] {
 					top: 69%;
 					left: 26%;
 				}
 				/* Sarrià-Sant Gervasi */
-				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="9"] {
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="5"] {
 					top: 28%;
 					left: 36%;
 				}
