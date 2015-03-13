@@ -117,6 +117,35 @@ function primaries_resultats_main($type){
       if ($data_measures !== FALSE){
         $data_measures = json_decode($data_measures, TRUE);
         $total_votes = $data_measures['total_votes'];
+        $voting['measure_blocks'] = array();
+        foreach ($data_measures['questions'] as $key1 => $question) {
+          $block_answers_count = 0;
+          $answers = $question['answers'];
+          // block answers: calculate total points
+          foreach ($answers as $key2 => $answer) {
+            $block_answers_count += $answer['total_count'];
+          }
+          // now we calculate each block answers' percent based on these total points
+          foreach ($answers as $key2 => $answer) {
+            $answers[$key2]['percent'] = _get_percentage($answer['total_count'], $block_answers_count);
+          }
+          $blank_votes = $question['totals']['blank_votes'];
+          //---
+          $voting['measure_blocks'][] = array(
+            'name' => $answers[0]['category'],
+            'max' => 10,
+            'answers' => $answers,
+            'blank' => array(
+              'total_count' => $blank_votes,
+              'percent' => _get_percentage($blank_votes, $block_answers_count),
+            ),
+          );
+          $voting['verify_uri'] = str_replace('$', $voting_id, $verify_uri);
+          $voting['total_votes'] = $total_votes;
+        }
+
+        /*
+        // CODE TO MAKE A UNIQUE TABLE OF ALL 40+20 MEASURES
         $all_answers = array();
         $all_answers_count = 0;
         $all_blank_votes = array(
@@ -131,7 +160,7 @@ function primaries_resultats_main($type){
           $blank_votes = $question['totals']['blank_votes'];
           $all_blank_votes['total_count'] += $blank_votes;
         }
-        // now we calculate each answers's percent based on these total points
+        // now we calculate each answers' percent based on these total points
         foreach ($data_measures['questions'] as $key1 => $question) {
           foreach ($question['answers'] as $key2 => $answer) {
             $answer['percent'] = _get_percentage($answer['total_count'], $all_answers_count);
@@ -149,7 +178,7 @@ function primaries_resultats_main($type){
           'answers' => $all_answers,
           'blank' => $all_blank_votes,
           'total_votes' => $total_votes,
-        );
+        );*/
         return theme('results_measures', array('voting' => $voting));
       }
       break;  
