@@ -12,7 +12,7 @@
           <a href="<?php print $option['urls'][0]['url']; ?>"><img src="<?php print $option['urls'][1]['url']; ?>" /></a>
         </div>
         <div class="content">
-          <h2><a href="<?php print $option['urls'][0]['url']; ?>"><?php print $option['text']; ?></a></h2>
+          <h2><a href="<?php print $option['urls'][0]['url']; ?>"><?php print t("Team", array(), array('context' => 'Primaries: resultats')); ?>: <?php print $option['text']; ?></a></h2>
         </div>
         <dl class="results">
           <dt class="votes"><?php print t("Votes", array(), array('context' => 'Primaries: resultats')); ?>:</dt>
@@ -26,7 +26,7 @@
     <section class="blank-option">
       <div class="voting-option">
         <div class="content">
-          <h2><?php print t("Blank vote", array(), array('context' => 'Primaries: resultats')); ?></h2>
+          <h2><?php print t("Blank votes", array(), array('context' => 'Primaries: resultats')); ?></h2>
         </div>
         <dl class="results">
           <dt class="votes"><?php print t("Votes", array(), array('context' => 'Primaries: resultats')); ?>:</dt>

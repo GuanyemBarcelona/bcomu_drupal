@@ -30,7 +30,7 @@
     <section class="blank-option">
       <div class="voting-option">
         <div class="content">
-          <h2><?php print t("Blank vote", array(), array('context' => 'Primaries: resultats')); ?></h2>
+          <h2><?php print t("Blank votes", array(), array('context' => 'Primaries: resultats')); ?></h2>
         </div>
         <dl class="results">
           <dt class="votes"><?php print t("Votes", array(), array('context' => 'Primaries: resultats')); ?>:</dt>

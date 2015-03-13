@@ -1,22 +1,69 @@
 article.primaries-resultats {
 	padding: 0 0 40px;
 }
-	.voting-options,
+	.voting-options {
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	article.primaries-resultats[data-voting-type="head"] .voting-options {
+		margin-bottom: 40px;
+	}
 	.blank-option {
 		text-align: center;
-		margin: 0 0 40px;
+		padding: 20px;
+		margin-bottom: 40px;
+		border: 3px solid #efefef;
 	}
 		.voting-option {
 			display: inline-block;
 			max-width: 200px;
 		}
-			.voting-option .results {}
+		.blank-option .voting-option {
+			display: block;
+			max-width: none;
+		}
+			.voting-option .content {}
+				.voting-option .content h2 {
+					font-size: 2em;
+					text-align: center;
+				}
+				.blank-option .voting-option .content h2 {
+					font-size: 1.7em;
+				}
+			.voting-option .results {
+				height: 5em;
+				overflow: hidden;
+			}
+				.voting-option .results dt,
+				.voting-option .results dd {
+					display: block;
+					float: left;
+					font-size: 1.7em;
+					width: 50%;
+				}
+				.voting-option .results dt {
+					text-align: right;
+				}
+				.voting-option .results dd {
+					padding-left: .4em;
+					text-align: left;
+					font-weight: bold;
+				}
+				.voting-option .results dt.percent,
+				.voting-option .results dd.percent {
+					padding-top: .4em;
+				}
+				.voting-option .results dt.percent {
+					clear: both;
+				}
+				.voting-option .results dd.percent {}
 
 	.voting-winner {}
 
 	article.primaries-resultats table {
 		left: 0;
 		width: 100%;
+		margin-bottom: 0;
 	}
 		article.primaries-resultats table tr.disabled {
 			opacity: .3;
@@ -66,68 +113,107 @@ article.primaries-resultats {
 				width: 100%;
 				height: 100%;
 			}
-				div[data-results-type="map"] .map .voting-winners .voting-winner {
+				div[data-results-type="map"] .map .voting-winner {
 					width: 15%;
 					position: absolute;
 					opacity: .5;
 				}
-				div[data-results-type="map"] .map .voting-winners .voting-winner:hover {
+				div[data-results-type="map"] .map .voting-winner:hover {
 					opacity: 1;
 				}
 				/* Ciutat Vella */
-				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="0"] {
-					top: 74%;
-					left: 45%;
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="0"] {
+					top: 73%;
+					left: 46%;
 				}
 				/* Eixample */
-				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="1"] {
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="1"] {
 					top: 56%;
 					left: 45%;
 				}
 				/* Gràcia */
-				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="2"] {
-					top: 38%;
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="2"] {
+					top: 39%;
 					left: 47%;
 				}
 				/* Horta-Guinardó */
-				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="3"] {
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="3"] {
 					top: 27%;
 					left: 60%;
 				}
 				/* Les Corts */
-				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="4"] {
-					top: 0;
-					left: 0;
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="4"] {
+					top: 43%;
+					left: 26%;
 				}
 				/* Nou Barris */
-				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="5"] {
-					top: 0;
-					left: 0;
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="5"] {
+					top: 31%;
+					left: 77%;
 				}
 				/* Sant Andreu */
-				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="6"] {
-					top: 0;
-					left: 0;
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="6"] {
+					top: 49%;
+					left: 74%;
 				}
 				/* Sant Martí */
-				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="7"] {
-					top: 0;
-					left: 0;
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="7"] {
+					top: 64%;
+					left: 64%;
 				}
 				/* Sants-Montjuïc */
-				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="8"] {
-					top: 0;
-					left: 0;
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="8"] {
+					top: 69%;
+					left: 26%;
 				}
 				/* Sarrià-Sant Gervasi */
-				div[data-results-type="map"] .map .voting-winners .voting-winner[data-neighbourhood-id="9"] {
-					top: 0;
-					left: 0;
+				div[data-results-type="map"] .map .voting-winner[data-neighbourhood-id="9"] {
+					top: 28%;
+					left: 36%;
 				}
-					div[data-results-type="map"] .map .voting-winners .voting-winner .content,
-					div[data-results-type="map"] .map .voting-winners .voting-winner .results {
-						display: none;
+					div[data-results-type="map"] .map .voting-winner .image {
+						position: relative;
+						z-index: 2;
+						margin-bottom: 0;
 					}
+					div[data-results-type="map"] .map .voting-winner .info {
+						padding: 7px 7px 7px 50%;
+						position: absolute;
+						top: 0;
+						left: 25%;
+						width: 180%;
+						height: 100%;
+						overflow: hidden;
+						opacity: 0;
+						visibility: hidden;
+						background: rgb(255,255,255);
+						background: rgba(255,255,255,.7);
+						z-index: 1;
+						-webkit-border-radius: 0 20px 20px 0;
+						border-radius: 0 20px 20px 0;
+						-webkit-transition: all 0.3s ease-in-out;
+						-moz-transition: all 0.3s ease-in-out;
+						-ms-transition: all 0.3s ease-in-out;
+						-o-transition: all 0.3s ease-in-out;
+						transition: all 0.3s ease-in-out;
+					}
+					div[data-results-type="map"] .map .voting-winner:hover .info {
+						opacity: 1;
+						visibility: visible;
+						left: 50%;
+					}
+						div[data-results-type="map"] .map .voting-option .info h3 {
+							text-align: center;
+							font-size: 1.3em;
+						}
+						div[data-results-type="map"] .map .voting-option .info h2 {
+							font-size: 1.4em;
+						}
+						div[data-results-type="map"] .map .voting-winner .results {}
+							div[data-results-type="map"] .map .voting-winner .results dt,
+							div[data-results-type="map"] .map .voting-winner .results dd {
+								font-size: 1.2em;
+							}
 
 	div[data-results-type="list"] {}
 		div[data-results-type="list"] table {}
