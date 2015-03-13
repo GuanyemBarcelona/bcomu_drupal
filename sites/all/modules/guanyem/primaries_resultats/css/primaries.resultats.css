@@ -1,7 +1,7 @@
 article.primaries-resultats {
 	padding: 0 0 40px;
 }
-	article.primaries-resultats p.info {
+	article.primaries-resultats .info {
 		text-align: left;
 	}
 
@@ -230,4 +230,3 @@ article.primaries-resultats {
 
 	div[data-results-type="list"] {}
 		div[data-results-type="list"] table {}
-	

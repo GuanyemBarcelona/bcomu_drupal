@@ -3,7 +3,9 @@
     <h1><?php print t("Priorització de mesures", array(), array('context' => 'Primaries: resultats')); ?></h1>
   </header>
   <div class="content">
-    <p class="info"><?php print t("MEASURES_INTRO_TEXT", array(), array('context' => 'Primaries: resultats')); ?></p>
+    <div class="info">
+      <?php print t("MEASURES_INTRO_TEXT", array(), array('context' => 'Primaries: resultats')); ?>
+    </div>
     <?php foreach ($voting['measure_blocks'] as $key1 => $measure_block) { ?>
       <h2><?php print $measure_block['name']; ?></h2>
       <?php if (count($measure_block['answers']) > 0){ ?>
