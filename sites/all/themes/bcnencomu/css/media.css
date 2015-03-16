@@ -140,7 +140,6 @@
   body.sidebar-first #content,
   #sidebar-first,
   #block-bcnencomu-creativecommons,
-  #block-bcnencomu-social_networks_links,
   #block-menu-menu-legal-menu {
     float: none;
     width: 100%;
@@ -211,8 +210,17 @@
     min-height: 0;
   }
 
-	#block-bcnencomu-social_networks_links {
-    display: none;
+	.region-header #block-bcnencomu-social_networks_links {
+    position: static;
+    padding: 10px;
+    background: #e65c56;
+  }
+  .social-network-list {
+    text-align: center;
+  }
+  .social-network-list li {
+    display: inline-block;
+    float: none;
   }
 
   #site-logo, .region-header {
