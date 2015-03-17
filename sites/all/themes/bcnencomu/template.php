@@ -66,6 +66,7 @@ function bcnencomu_preprocess_html(&$vars) {
 
   // external scripts
   drupal_add_js(libraries_get_path('modernizr'). '/modernizr.custom.87176.js');
+  //drupal_add_js(libraries_get_path('Chart.js') . '/Chart.min.js');
 
   // Touch screen icons
   $icon =  array(

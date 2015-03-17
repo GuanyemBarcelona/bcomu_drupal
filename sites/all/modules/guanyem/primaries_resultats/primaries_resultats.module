@@ -42,7 +42,6 @@ function primaries_resultats_theme($existing, $type, $theme, $path) {
 * Main control
 */
 function primaries_resultats_main($type){
-  drupal_add_js(libraries_get_path('Chart.js') . '/Chart.min.js');
   drupal_add_css(drupal_get_path('module', 'primaries_resultats') . '/css/primaries.resultats.css', array('group' => CSS_THEME));
   drupal_add_js(drupal_get_path('module', 'primaries_resultats') . '/js/primaries.resultats.js', array('group' => JS_THEME));
   $data_path = drupal_get_path('module', 'primaries_resultats') . '/data';
