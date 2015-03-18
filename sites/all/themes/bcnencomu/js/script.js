@@ -111,6 +111,9 @@ var config = {
       window.open($(this).attr('href'));
 	  });
 
+    // microprestecs menu "Call us" link
+    $('article#node-284, article#node-285, article#node-290, article#node-292').find('.body a.btn.special').prepend('<i class="fa fa-phone"></i>');
+
 	  // cookies
 	  if (getCookie('bcnencomu_cookie_message') != 'accepted'){
 	    $('#page').prepend('<div class="cookies-message"><p>'+locale.COOKIES_MESSAGE[config.LANGUAGE]+' <button data-action="close" title="'+locale.CLOSE[config.LANGUAGE]+'">X</button></p></div>');
