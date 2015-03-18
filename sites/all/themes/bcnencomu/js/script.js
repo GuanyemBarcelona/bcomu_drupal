@@ -66,6 +66,38 @@ var config = {
       });
     }
 
+    // simple bar graph
+    // [graph value=34]
+    $('article.node .body p').each(function(i) {
+      // just works for first appearance of the graph
+      var text = $(this).text();
+      var graph_code_start = '[graph ';
+      var ind = text.indexOf(graph_code_start);
+      if (ind != -1){
+        var ind2 = text.indexOf(']', ind);
+        var attribs = text.substring(ind + graph_code_start.length, ind2);
+        attribs = attribs.split(' ');
+        var attribs_obj = {};
+        for (var i in attribs){
+          var attrib = attribs[i].split('=');
+          attribs_obj[attrib[0]] = attrib[1];
+        }
+        $(this).html('<span class="graph bar horizontal"><span class="value"></span><span class="info">'+attribs_obj.value+'%</span></span>');
+        var $graph = $(this).find('.graph');
+        var $value = $graph.find('.value');
+        var $info = $graph.find('.info');
+        $value.css({'width':0});
+        $value.animate({
+          width: attribs_obj.value + '%'
+        }, 2000);
+        $info.css({'opacity':0, 'right': '-20px'});
+        $info.animate({
+          opacity: 1,
+          right: '4px'
+        }, 1000);
+      }
+    });
+
     // some menu links must open in new window: will show an icon and mark them as rel external
     var $external_menu_links = $('#block-system-main-menu nav > ul.menu > li.mid-750 a, #block-menu-menu-secondary-menu nav > ul.menu > li.mid-900 a, .region-sidebar-first .menu-block-wrapper li.mid-927 a, .region-sidebar-first .menu-block-wrapper li.mid-923 a, .region-sidebar-first .menu-block-wrapper li.mid-906 a, .region-sidebar-first .menu-block-wrapper li.mid-928 a');
     $external_menu_links.each(function(i){
