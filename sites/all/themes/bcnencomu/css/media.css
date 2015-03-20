@@ -205,6 +205,14 @@
     margin: 0 0 20px;
   }
 
+  input[type="text"], 
+  input[type="password"], 
+  input[type="email"],
+  select,
+  textarea {
+    width: 100%;
+  }
+
   #content {
     padding: 20px 0 0;
     min-height: 0;
