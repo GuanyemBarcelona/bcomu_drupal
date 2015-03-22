@@ -20,8 +20,8 @@ body.not-front #content {
 }
 body.sidebar-first #content {
   float: right;
-  width: 64%;
-  margin: 0 11% 0 4.5%;
+  width: 75%;
+  margin: 0 0 0 4.5%;
 }
 #sidebar-first {
   float: left;
