@@ -246,17 +246,17 @@ function bcnencomu_preprocess_node(&$vars) {
 			// date
 		  $vars['date'] = gh_get_date_array($node_obj->created, 'day', TRUE);
 
-		  if ($vars['view_mode'] == 'full'){
-        // share links
-        $vars['share_links'] = bcnencomu_render_share_links($node_obj->nid);
-
-        // category
+      // category
         $category_field = 'field_post_category';
         if ($vars['type'] == 'press'){
           $category_field = 'field_press_category';
         }
         $category = field_view_field('node', $node_obj, $category_field, array('label' => 'hidden'));
         $vars['category'] = render($category);
+
+		  if ($vars['view_mode'] == 'full'){
+        // share links
+        $vars['share_links'] = bcnencomu_render_share_links($node_obj->nid);
 
         // tags
         $tags = field_view_field('node', $node_obj, 'field_tags', array('label' => 'hidden'));

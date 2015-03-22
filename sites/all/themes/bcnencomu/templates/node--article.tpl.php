@@ -8,6 +8,9 @@
   </div>
   <?php } ?>
   <div class="content">
+    <?php if (isset($category)){ ?>
+    <?php print $category; ?>
+    <?php } ?>
     <h2><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
     <?php if (isset($node_body_summary_html)){ ?>
     <div class="summary">

@@ -896,13 +896,14 @@ article.node-post-like {}
           article.node-post-like > .content .info .field-name-field-tags .field-item a:hover {
             text-decoration: underline;
           }
-      article.node-post-like > .content .info .field-name-field-post-category,
-      article.node-post-like > .content .info .field-name-field-press-category {
+      .node-post-like > .content .field-name-field-post-category,
+      .node-post-like > .content .field-name-field-press-category {
         clear: both;
         font-weight: normal;
         font-size: 1.1em;
         line-height: 1.4;
         text-transform: uppercase;
+        margin-bottom: .3em;
       }
 
 /* candidacies page */
