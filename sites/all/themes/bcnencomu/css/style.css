@@ -561,7 +561,7 @@ body.page-taxonomy-term #content-header h1 {
     padding-top: 45px;
   }
     .region-sidebar-first .block {
-      margin-bottom: 20px;
+      margin-bottom: 40px;
     }
       .region-sidebar-first .block > header {}
         .region-sidebar-first .block > header h1 {
@@ -601,6 +601,17 @@ body.page-taxonomy-term #content-header h1 {
         .region-sidebar-first ul.menu li ul li.active-trail a {
           background: #577a9b!important;
         }
+
+      /* categories terms list */
+      .view-categories-terms-list {}
+        .view-categories-terms-list .views-row {
+          margin-bottom: 12px;
+        }
+          .view-categories-terms-list .views-row .views-field-rendered-entity {
+            font-size: 1.6em;
+            text-transform: uppercase;
+            font-weight: 300;
+          }
 
 /*** forms ***/
 form {
