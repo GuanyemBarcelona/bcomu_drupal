@@ -620,6 +620,9 @@ form {
   .filter-wrapper {
     display: none;
   }
+  .webform-component--legal p {
+    font-size: 1.2em;
+  }
 
 /*** nodes ***/
 /* typical detail */
