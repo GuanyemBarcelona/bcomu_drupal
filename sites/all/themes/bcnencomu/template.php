@@ -134,6 +134,12 @@ function bcnencomu_preprocess_page(&$vars, $hook) {
 	if ((arg(0) == 'node' && arg(1) == 'add') || (arg(0) == 'taxonomy')){
 		$vars['must_show_title'] = TRUE;
 	}
+
+	// taxonomy page
+	if  (arg(0) == 'taxonomy' && arg(1) == 'term' && is_numeric(arg(2))) {
+		$vars['page']['content']['system_main']['nodes']['#prefix'] = '<div class="term-nodes">';
+    $vars['page']['content']['system_main']['nodes']['#suffix'] = '</div>';
+	}
 }
 
 function bcnencomu_preprocess_region(&$vars) {

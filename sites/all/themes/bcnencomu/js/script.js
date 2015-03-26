@@ -175,7 +175,7 @@ var config = {
 
 	$(window).load(function(){
     // Masonry
-    $('.view-frontpage, .view-blog, .view-articles, .view-multimedia, .view-albums').masonry({
+    $('.view-frontpage, .view-blog, .view-articles, .view-multimedia, .view-albums, .term-nodes').masonry({
       itemSelector: '.node-teaser'
     });
 	});
