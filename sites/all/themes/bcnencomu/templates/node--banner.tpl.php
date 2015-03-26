@@ -4,13 +4,17 @@
   <?php /* ----------------- TEASER DISPLAY ----------------- */ ?>
   <?php if (isset($teaser_image)){ ?>
   <div class="image">
-    <?php if (!$hide_button){ ?>
-    <?php print $teaser_image; ?>
+    <?php if (!isset($link_uri)){ ?>
+    <?php print $teaser_image; ?> <?php // if does not have a link, print just the image ?>
+    <?php }else{ ?>               <?php // else ?>
+    <?php if (!$hide_button){ ?>  <?php //   if we must show a button, print the image and the button ?>
+    <?php print $teaser_image; ?> 
     <a href="<?php print $link_uri; ?>" title="<?php print t("Read more"); ?>" data-action="read-more"<?php if ($external_link){ ?> rel="external"<?php } ?>><?php print t("Read more"); ?></a>
-    <?php }else{ ?>
+    <?php }else{ ?>               <?php //   else, print a linked image ?>
     <a href="<?php print $link_uri; ?>"<?php if ($external_link){ ?> rel="external"<?php } ?>>
       <?php print $teaser_image; ?>
     </a>
+    <?php } ?>
     <?php } ?>
   </div>
   <?php } ?>
