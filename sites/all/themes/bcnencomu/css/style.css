@@ -326,8 +326,8 @@ header[role="banner"] {
     border-left: 1px solid white;
   }
 
-  /* inscriu-te i participa banner block */
-  #block-block-4 {
+  /* special header block */
+  #block-block-5 {
     position: absolute;
     top: 0;
     right: 0;
@@ -335,29 +335,22 @@ header[role="banner"] {
     height: 115px;
     border-left: 1px solid white;
   }
-    #block-block-4 > .content {
+    #block-block-5 > .content {
       height: 100%;
     }
-      #block-block-4 p {
-        font-size: 1.8em;
-        line-height: 1.2;
-        font-weight: 500;
+      #block-block-5 p {
+        font-size: 1em;
+        line-height: 1;
         margin-bottom: 0;
         height: 100%;
       }
-        #block-block-4 a {
-          color: white;
+        #block-block-5 a {          
           display: block;
           height: 100%;
-          padding: 34px 115px 0 30px;
+          padding: 0;
           background: #63779b;
         }
-          #block-block-4 img {
-            width: auto;
-            position: absolute;
-            top: 15px;
-            right: 35px;
-          }
+          #block-block-5 img {}
 
   #block-menu-menu-secondary-menu {}
     #block-menu-menu-secondary-menu nav > ul.menu {}
