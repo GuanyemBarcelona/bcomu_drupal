@@ -1133,7 +1133,6 @@ article.node-video {}
         height: 100%;
         margin-left: .6%;
         float: left;
-        background: url("../images/bg_pattern.png") repeat 0 0;
       }
       .view-nodequeue-2 .view-content .views-row-1 {
         margin-left: 0;
@@ -1144,18 +1143,29 @@ article.node-video {}
         position: relative;
       }
         .view-nodequeue-2 .node > .content {
-          position: absolute;
-          top: 0;
-          left: 0;
-          padding: 20px;
+          height: 100%;
         }
           .view-nodequeue-2 .node > .content h2 {
             font-size: 2em;
-            text-shadow: 0 0 4px #666;
+            height: 100%;
             word-break: break-word;
           }
             .view-nodequeue-2 .node > .content h2 a {
+              display: block;
+              padding: 20px;
+              width: 100%;
+              height: 100%;
+              color: black;
+              border-bottom: 3px solid #e65c56;
+              -webkit-transition: all 0.3s ease-in-out;
+              -moz-transition: all 0.3s ease-in-out;
+              -ms-transition: all 0.3s ease-in-out;
+              -o-transition: all 0.3s ease-in-out;
+              transition: all 0.3s ease-in-out;
+            }
+            .view-nodequeue-2 .node > .content h2 a:hover {
               color: white;
+              background: #e65c56;
             }
           .view-nodequeue-2 .node > .content .summary {
             display: none;
