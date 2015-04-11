@@ -42,7 +42,7 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
       //$form['#action'] = base_path() . drupal_get_path_alias('node/' . $form['#node']->nid);
       //unset($form['author']['_author']);
       break;
-    case 'contact_site_form';
+    case 'contact_site_form':
       $form['cid']['#weight'] = -1;
       break;
   }
