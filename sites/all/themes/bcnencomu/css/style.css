@@ -974,6 +974,14 @@ article.node-video {}
       font-size: 1.2em;
     }
 
+/* measure detail */
+article.node-measure {}
+  article.node-measure .field-type-taxonomy-term-reference {
+    margin: 0 0 .5em;
+    font-size: 1.7em;
+    line-height: 1.25;
+  }
+
 /* comments */
 .comment-wrapper {
   margin: 50px auto 0;
