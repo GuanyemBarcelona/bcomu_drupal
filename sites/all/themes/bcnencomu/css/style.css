@@ -648,6 +648,11 @@ article.node {}
     article.node .body {
       text-align: justify;
     }
+      article.node .body img {
+        width: auto;
+        max-width: 100%;
+        margin: 0 auto;
+      }
       /* Graph bars */
       article.node .body .graph.bar {
         position: relative;
