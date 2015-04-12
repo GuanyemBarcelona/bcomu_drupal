@@ -3,6 +3,16 @@ define('SITE_ID', 'bcnencomu');
 define('BCNENCOMU_TWITTER_USER', 'Guanyem');
 
 /**
+ *  Implementation of hook_init().
+ */
+function bcnencomu_init() {
+  // css for the admin theme
+  if (user_access('administer modules') && path_is_admin(current_path())) {
+    drupal_add_css(drupal_get_path('module', 'bcnencomu') . '/css/admin.css', array('weight' => CSS_THEME));
+  }
+}
+
+/**
  * Implements hook_menu().
  */
 function bcnencomu_menu() {
@@ -347,8 +357,6 @@ function bcnencomu_render_image_gallery($images_field, $style_name, $show_thumbn
   }
   return FALSE;
 }
-
-
 
 /**
 * Removes format options for a form
