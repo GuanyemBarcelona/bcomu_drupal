@@ -348,16 +348,7 @@ function bcnencomu_render_image_gallery($images_field, $style_name, $show_thumbn
   return FALSE;
 }
 
-/**
- * Implements hook_wysiwyg_editor_settings_alter().
- */
-/*function bcnencomu_wysiwyg_editor_settings_alter(&$settings, $context) {
-  if ($context['profile']->editor == 'ckeditor') {
-    // Using ckeditor, set custom config file.
-    $settings['customConfig'] = base_path() . drupal_get_path('module', 'ada') . '/js/bcnencomu_ckeditor_config.js';
-  }
-}
-*/
+
 
 /**
 * Removes format options for a form
