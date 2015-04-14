@@ -1,6 +1,7 @@
 <?php
 define('CANDIDACY_HEAD_NID', 162);
 define('CANDIDACY_COUNCIL_NID', 173);
+define('CALENDAR_NID', 3);
 
 // Auto-rebuild the theme registry during theme development.
 if (theme_get_setting('clear_registry')) {
@@ -136,10 +137,15 @@ function bcnencomu_preprocess_page(&$vars, $hook) {
 	}
 
 	// taxonomy page
-	if  (arg(0) == 'taxonomy' && arg(1) == 'term' && is_numeric(arg(2))) {
+	if (arg(0) == 'taxonomy' && arg(1) == 'term' && is_numeric(arg(2))) {
 		$vars['page']['content']['system_main']['nodes']['#prefix'] = '<div class="term-nodes">';
     $vars['page']['content']['system_main']['nodes']['#suffix'] = '</div>';
 	}
+
+  // calendar page
+  if (arg(0) == 'node' && arg(1) == CALENDAR_NID) {
+    $vars['classes_array'][] = 'calendar-page';
+  }
 }
 
 function bcnencomu_preprocess_region(&$vars) {
