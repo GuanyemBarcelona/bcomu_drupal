@@ -755,6 +755,10 @@ article.node {}
         height: 360px;
         margin: 0 auto 30px;
       }
+      #page.calendar-page article.node .body iframe {
+        width: 100%;
+        height: 600px;
+      }
       article.node .body ul, article.node .field-name-body ul {
         list-style-type: square;
         margin: 0 0 2em;
