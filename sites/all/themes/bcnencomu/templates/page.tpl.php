@@ -71,8 +71,8 @@
           <div id="sidebar-first-inner" class="inner">
             <?php print render($page['sidebar_first']); ?>
           </div>
-        </aside>
-      <?php endif; ?> <!-- /sidebar-first -->
+        </aside> <!-- /sidebar-first -->
+      <?php endif; ?>
     </div>
   </div> <!-- /main -->
   <?php if ($page['footer_top'] || $page['footer']): ?>
