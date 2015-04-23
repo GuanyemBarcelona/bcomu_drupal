@@ -1,0 +1,113 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+function mesures_programa_menu() {
+  $items = array();
+
+  /*$items['async/test/districtes/%'] = array(
+    'page callback' => 'mesures_programa_test_districtes',
+    'type' => MENU_CALLBACK,
+    'page arguments' => array(3),
+    'access arguments' => array('access content'),
+  );*/
+
+  $items['programa/navega/model-ciutat/%'] = array(
+    'page callback' => 'mesures_programa_render_citymodel_page',
+    'type' => MENU_CALLBACK,
+    'page arguments' => array(3),
+    'access arguments' => array('administer bcnencomu settings')//array('access content'),
+  );
+  $items['programa/navega/model-ciutat/%/%'] = array(
+    'page callback' => 'mesures_programa_render_citymodel_district_page',
+    'type' => MENU_CALLBACK,
+    'page arguments' => array(3,4),
+    'access arguments' => array('administer bcnencomu settings')//array('access content'),
+  );
+
+  $items['programa/navega/territori/%'] = array(
+    'page callback' => 'mesures_programa_render_district_page',
+    'type' => MENU_CALLBACK,
+    'page arguments' => array(3),
+    'access arguments' => array('administer bcnencomu settings')//array('access content'),
+  );
+
+  $items['programa/navega/tema/%'] = array(
+    'page callback' => 'mesures_programa_render_topic_page',
+    'type' => MENU_CALLBACK,
+    'page arguments' => array(3),
+    'access arguments' => array('administer bcnencomu settings')//array('access content'),
+  );
+
+  return $items;
+}
+
+/*
+* Simple Test function for Districtes
+*/
+/*function mesures_programa_test_districtes($tid){
+  $response = array(
+    'districts' => _get_districts_with_measures($tid),
+  );
+  drupal_json_output($response);
+  drupal_exit();
+}*/
+
+/**
+ * Implements hook_theme().
+ */
+function mesures_programa_theme($existing, $type, $theme, $path) {
+  return array(
+    'citymodel_page' => array(
+      'path' => drupal_get_path('module', 'mesures_programa'),
+      'variables' => array('city_list' => '','district_list' => ''),
+      'template' => 'theme/citymodel_page',
+    ),
+    'citymodel_district_page' => array(
+      'path' => drupal_get_path('module', 'mesures_programa'),
+      'variables' => array('measure_list' => '', 'district_title' => ''),
+      'template' => 'theme/citymodel_district_page',
+    ),
+  );
+}
+
+/**
+ * Renders the City model page
+ */
+function mesures_programa_render_citymodel_page($tid){
+  $term_title = gh_get_taxonomy_name($tid);
+  $city_list = views_embed_view('measures_list_city', 'measures_list', $tid);
+  $district_list = views_embed_view('mesures_districtes_amb_mesures_model', 'block', $tid);
+  return theme('citymodel_page', array('term_title' => $term_title, 'city_list' => $city_list, 'district_list' => $district_list));
+}
+
+/**
+ * Renders the City model for the District page
+ */
+function mesures_programa_render_citymodel_district_page($tid, $district){
+  $term_title = gh_get_taxonomy_name($tid);
+  $district_title = gh_get_taxonomy_name($district);
+  $measure_list = views_embed_view('measures_list_district', 'measures_list', $tid, $district);
+  return theme('citymodel_district_page', array('term_title' => $term_title, 'district_title' => $district_title, 'measure_list' => $measure_list));
+}
+
+
+/**
+ * Renders the District page
+ */
+function mesures_programa_render_district_page($tid){
+  $term_title = gh_get_taxonomy_name($tid);
+  /*$city_list = views_embed_view('measures_list_city', 'measures_list', $tid);
+  $district_list = views_embed_view('mesures_districtes_amb_mesures_model', 'measures_list', $tid);
+  return theme('city_model_page', array('city_list' => $city_list, 'district_list' => $district_list));*/
+}
+
+/**
+ * Renders the Topic page
+ */
+function mesures_programa_render_topic_page($tid){
+  $term_title = gh_get_taxonomy_name($tid);
+  /*$city_list = views_embed_view('measures_list_city', 'measures_list', $tid);
+  $district_list = views_embed_view('mesures_districtes_amb_mesures_model', 'block', $tid);
+  return theme('city_model_page', array('city_list' => $city_list, 'district_list' => $district_list));*/
+}
