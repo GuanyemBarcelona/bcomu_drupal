@@ -171,20 +171,6 @@ var config = {
         }
       }
     }
-
-    // the Programme
-    // open 'Un programa en comú' links as overlay
-    $('article#node-383 .body a').each(function(i){
-      var href = $(this).attr('href');
-      //$(this).attr('href', href + '?oasis=1');
-      $(this).fancybox(
-        {
-          'type': 'iframe',
-          'width': 800,
-          'height': 600
-        }
-      );
-    });
 	});
 
 	$(window).load(function(){
