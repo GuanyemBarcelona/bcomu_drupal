@@ -139,6 +139,7 @@
 @media all and (max-width: 700px){
   body.sidebar-first #content,
   #sidebar-first,
+  .region-footer #block-bcnencomu-social_networks_links,
   #block-bcnencomu-creativecommons,
   #block-menu-menu-legal-menu {
     float: none;
