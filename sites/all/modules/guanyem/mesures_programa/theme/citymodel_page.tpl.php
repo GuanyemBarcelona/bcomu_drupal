@@ -3,7 +3,7 @@
     <h1><?php print t($title, array(), array('context' => 'Mesures Programa')); ?>: <?php print $term_title; ?></h1>
   </header>
   <div class="content">
-    <?php print $back_button; ?>
+    <a href="<?php print $back_link['uri']; ?>" data-action="go-back"><i class="fa fa-chevron-circle-left"></i> <?php print $back_link['title']; ?></a>
     
     <section data-subtype="city">
       <header>

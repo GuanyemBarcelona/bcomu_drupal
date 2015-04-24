@@ -26,7 +26,7 @@ function mesures_programa_menu() {
   );
 
   $items['programa/navega/territori/%'] = array(
-    'page callback' => 'mesures_programa_render_district_page',
+    'page callback' => 'mesures_programa_render_territory_page',
     'type' => MENU_CALLBACK,
     'page arguments' => array(3),
     'access arguments' => array('administer bcnencomu settings')//array('access content'),
@@ -36,6 +36,12 @@ function mesures_programa_menu() {
     'page callback' => 'mesures_programa_render_topic_page',
     'type' => MENU_CALLBACK,
     'page arguments' => array(3),
+    'access arguments' => array('administer bcnencomu settings')//array('access content'),
+  );
+  $items['programa/navega/tema/%/%'] = array(
+    'page callback' => 'mesures_programa_render_topic_district_page',
+    'type' => MENU_CALLBACK,
+    'page arguments' => array(3,4),
     'access arguments' => array('administer bcnencomu settings')//array('access content'),
   );
 
@@ -60,13 +66,18 @@ function mesures_programa_theme($existing, $type, $theme, $path) {
   return array(
     'citymodel_page' => array(
       'path' => drupal_get_path('module', 'mesures_programa'),
-      'variables' => array('city_list' => '','district_list' => ''),
+      'variables' => array(),
       'template' => 'theme/citymodel_page',
     ),
     'citymodel_district_page' => array(
       'path' => drupal_get_path('module', 'mesures_programa'),
-      'variables' => array('measure_list' => '', 'district_title' => ''),
+      'variables' => array(),
       'template' => 'theme/citymodel_district_page',
+    ),
+    'district_page' => array(
+      'path' => drupal_get_path('module', 'mesures_programa'),
+      'variables' => array(),
+      'template' => 'theme/district_page',
     ),
   );
 }
@@ -75,39 +86,73 @@ function mesures_programa_theme($existing, $type, $theme, $path) {
  * Renders the City model page
  */
 function mesures_programa_render_citymodel_page($tid){
+  $slug = 'citymodel';
   $term_title = gh_get_taxonomy_name($tid);
-  $city_list = views_embed_view('measures_list_city', 'measures_list', $tid);
-  $district_list = views_embed_view('mesures_districtes_amb_mesures_model', 'block', $tid);
-  return theme('citymodel_page', array('term_title' => $term_title, 'city_list' => $city_list, 'district_list' => $district_list));
+  $city_list = views_embed_view('measures_list_city', $slug, $tid);
+  $district_list = views_embed_view('mesures_districtes_amb_mesures_model', $slug, $tid);
+  $back_link = array(
+    'title' => t("Back to City model"),
+    'uri' => gh_get_node_path_alias(370),
+  );
+  return theme('citymodel_page', array('slug' => $slug, 'title' => 'City model', 'term_title' => $term_title, 'city_list' => $city_list, 'district_list' => $district_list, 'back_link' => $back_link));
 }
 
 /**
  * Renders the City model for the District page
  */
 function mesures_programa_render_citymodel_district_page($tid, $district){
+  $slug = 'citymodel';
   $term_title = gh_get_taxonomy_name($tid);
   $district_title = gh_get_taxonomy_name($district);
-  $measure_list = views_embed_view('measures_list_district', 'measures_list', $tid, $district);
-  return theme('citymodel_district_page', array('term_title' => $term_title, 'district_title' => $district_title, 'measure_list' => $measure_list));
+  $measure_list = views_embed_view('measures_list_district', $slug, $tid, $district);
+  $back_link = array(
+    'title' => t("Back to") . ' ' . $term_title,
+    'uri' => gh_get_base_and_lang_path() . drupal_get_path_alias('programa/navega/model-ciutat/'.$tid),
+  );
+  return theme('citymodel_district_page', array('slug' => $slug, 'title' => 'City model', 'term_title' => $term_title, 'district_title' => $district_title, 'measure_list' => $measure_list, 'back_link' => $back_link));
 }
 
 
 /**
- * Renders the District page
+ * Renders the Territory page
  */
-function mesures_programa_render_district_page($tid){
-  $term_title = gh_get_taxonomy_name($tid);
-  /*$city_list = views_embed_view('measures_list_city', 'measures_list', $tid);
-  $district_list = views_embed_view('mesures_districtes_amb_mesures_model', 'measures_list', $tid);
-  return theme('city_model_page', array('city_list' => $city_list, 'district_list' => $district_list));*/
+function mesures_programa_render_territory_page($district){
+  $slug = 'territory';
+  $district_title = gh_get_taxonomy_name($district);
+  $measure_list = views_embed_view('measures_list_district', $slug, $district);
+  $back_link = array(
+    'title' => t("Back to Territorial areas"),
+    'uri' => gh_get_node_path_alias(371),
+  );
+  return theme('district_page', array('slug' => $slug, 'title' => 'District', 'district_title' => $district_title, 'measure_list' => $measure_list, 'back_link' => $back_link));
 }
 
 /**
  * Renders the Topic page
  */
 function mesures_programa_render_topic_page($tid){
+  $slug = 'topic';
   $term_title = gh_get_taxonomy_name($tid);
-  /*$city_list = views_embed_view('measures_list_city', 'measures_list', $tid);
-  $district_list = views_embed_view('mesures_districtes_amb_mesures_model', 'block', $tid);
-  return theme('city_model_page', array('city_list' => $city_list, 'district_list' => $district_list));*/
+  $city_list = views_embed_view('measures_list_city', $slug, $tid);
+  $district_list = views_embed_view('mesures_districtes_amb_mesures_model', $slug, $tid);
+  $back_link = array(
+    'title' => t("Back to Thematic areas"),
+    'uri' => gh_get_node_path_alias(372),
+  );
+  return theme('citymodel_page', array('slug' => 'topic', 'title' => 'Topic', 'term_title' => $term_title, 'city_list' => $city_list, 'district_list' => $district_list, 'back_link' => $back_link));
+}
+
+/**
+ * Renders the Topic for the District page
+ */
+function mesures_programa_render_topic_district_page($tid, $district){
+  $slug = 'topic';
+  $term_title = gh_get_taxonomy_name($tid);
+  $district_title = gh_get_taxonomy_name($district);
+  $measure_list = views_embed_view('measures_list_district', $slug, $tid, $district);
+  $back_link = array(
+    'title' => t("Back to") . ' ' . $term_title,
+    'uri' => gh_get_base_and_lang_path() . drupal_get_path_alias('programa/navega/tema/'.$tid),
+  );
+  return theme('citymodel_district_page', array('slug' => $slug, 'title' => 'Topic', 'term_title' => $term_title, 'district_title' => $district_title, 'measure_list' => $measure_list, 'back_link' => $back_link));
 }
