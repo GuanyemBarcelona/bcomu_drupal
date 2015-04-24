@@ -613,10 +613,27 @@ body.page-taxonomy-term #content-header h1 {
 form {
   max-width: 500px;
 }
+.view-filters {
+  margin-bottom: 30px;
+}
+.view-filters form {
+  max-width: none;
+}
   .filter-wrapper {
     display: none;
   }
   .webform-component--legal p {
+    font-size: 1.2em;
+  }
+  .views-exposed-form .views-exposed-widget input[type="text"], 
+  .views-exposed-form .views-exposed-widget select {
+    width: 10em;
+  }
+  .views-exposed-form .views-exposed-widget input[type="text"] {
+    padding: .1em;
+  }
+  .views-exposed-form .views-exposed-widget .form-submit {
+    width: auto;
     font-size: 1.2em;
   }
 
@@ -1531,66 +1548,45 @@ article.node .body .eixos-list {
   width: auto;
 }
 
-/*.item-list ul.pager {
-  padding: 1.4em 0 1.5em;
-  overflow: hidden;
-  position: relative;
-  top: 0;
-  left: 0;
+.item-list ul.pager {
+  margin: 20px 0;
 }
   .item-list ul.pager > li {
-    font-size: 1em;
-    display: inline-block;
+    font-size: 1.4em;
   }
   .item-list ul.pager .ajax-progress {
-    display: none;
+    
   }
   .item-list ul.pager > li a {
-    text-transform: uppercase;
-    font-size: 1.7em;
-    color: #999;
-    padding: 10px 18px;
-    display: block;
+    
   }
   .item-list ul.pager > li a:hover {
     
   }
   .item-list ul.pager > li.pager-current {
-    font-weight: normal;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 1.7em;
-    padding: 16px 25px;
+    
   }
   .item-list ul.pager > li.pager-ellipsis {
-    display: none;
+    
   }
   .item-list ul.pager > li.pager-next {
-    position: absolute;
-    right: 0;
+    
   }
     .item-list ul.pager > li.pager-next a {
-      padding: 14px 8px;
       
     }
   .item-list ul.pager > li.pager-previous {
-    position: absolute;
-    left: 0;
+    
   }
     .item-list ul.pager > li.pager-previous a {
-      padding: 14px 6px;
+      
     }
   .item-list ul.pager > li.first,
   .item-list ul.pager > li.pager-last.last,
   .item-list ul.pager > li.pager-previous, 
-  .item-list ul.pager > li.pager-next,
-  .item-list ul.pager > li.pager-previous + li.pager-item {
-    background-image: none!important;
+  .item-list ul.pager > li.pager-next {
+    
   }
-  .item-list ul.pager > li.pager-last, 
-  .item-list ul.pager > li.pager-first {
-    display: none;
-  }*/
 
 /* owl carousel */
 .owl-pagination {
