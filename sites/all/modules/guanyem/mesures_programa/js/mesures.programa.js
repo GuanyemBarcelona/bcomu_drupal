@@ -20,6 +20,16 @@ var programa_config = {
         }
       );
     });
+
+    // sidebar menu icons
+    var $menu = $('#block-menu_block-3 .menu-block-wrapper > ul.menu');
+    if ($menu.length){
+      $menu.find('li.mid-956 > a').prepend('<i class="fa fa-star-o"></i>');
+      $menu.find('li.mid-957 > a').prepend('<i class="fa fa-cogs"></i>');
+      $menu.find('li.mid-958 > a').prepend('<i class="fa fa-map-marker"></i>');
+      $menu.find('li.mid-959 > a').prepend('<i class="fa fa-tag"></i>');
+      $menu.find('li.mid-961 > a').prepend('<i class="fa fa-search"></i>');
+    }
   });
 
 })(jQuery);
