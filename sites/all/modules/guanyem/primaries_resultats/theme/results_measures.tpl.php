@@ -1,6 +1,6 @@
 <article class="node primaries-resultats" data-voting-type="measures">
   <header>
-    <h1><?php print t("Priorització de mesures", array(), array('context' => 'Primaries: resultats')); ?></h1>
+    <h1><?php print t("Citizen mandate", array(), array('context' => 'Primaries: resultats')); ?></h1>
   </header>
   <div class="content">
     <div class="info">
