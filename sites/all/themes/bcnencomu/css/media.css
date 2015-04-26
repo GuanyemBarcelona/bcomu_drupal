@@ -214,6 +214,19 @@
     width: 100%;
   }
 
+  .views-exposed-form .views-exposed-widget {
+    float: none;
+    width: 100%;
+    height: auto;
+    margin: 0 0 20px;
+  }
+  .views-exposed-form .views-exposed-widget input[type="text"], .views-exposed-form .views-exposed-widget select {
+    width: 100%;
+  }
+  .views-exposed-form .views-exposed-widget .form-submit {
+    margin-top: 0;
+  }
+
   #content {
     padding: 20px 0 0;
     min-height: 0;
