@@ -229,13 +229,15 @@ function bcnencomu_preprocess_node(&$vars) {
 		if ($image_gallery !== FALSE) $vars['image_gallery'] = $image_gallery;
 	}
 
+  // share links
+  if ($vars['view_mode'] == 'full'){
+    $vars['share_links'] = bcnencomu_render_share_links($node_obj->nid);
+  }
+
 	// other type specific fields
 	switch ($vars['type']) {
 		case 'page': /********** PAGE **********/
 			if ($vars['view_mode'] == 'full'){
-        // share links
-        $vars['share_links'] = bcnencomu_render_share_links($node_obj->nid);
-
         // Candidacies pages
         if (in_array($node_obj->nid, array(CANDIDACY_HEAD_NID, CANDIDACY_COUNCIL_NID))){
           $vars['theme_hook_suggestions'][] = 'node__candidacies';
@@ -267,9 +269,6 @@ function bcnencomu_preprocess_node(&$vars) {
         $vars['category'] = render($category);
 
 		  if ($vars['view_mode'] == 'full'){
-        // share links
-        $vars['share_links'] = bcnencomu_render_share_links($node_obj->nid);
-
         // tags
         $tags = field_view_field('node', $node_obj, 'field_tags', array('label' => 'hidden'));
         $vars['tags'] = render($tags);
@@ -345,6 +344,9 @@ function bcnencomu_preprocess_node(&$vars) {
           $vars['youtube_uri'] = $youtube_video[0]['safe_value'];
         }*/
       }
+      break;
+    case 'measure':
+
       break;
 	}
 }
