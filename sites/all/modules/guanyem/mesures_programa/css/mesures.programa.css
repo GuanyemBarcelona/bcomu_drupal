@@ -1,16 +1,15 @@
 /* mesures programa */
-#block-menu_block-3 .menu-block-wrapper > ul.menu {}
-  #block-menu_block-3 .menu-block-wrapper > ul.menu li a {
-    position: relative;
+.region-sidebar-first ul.menu li a {
+  position: relative;
+}
+  .region-sidebar-first ul.menu li a .fa {
+    position: absolute;
+    top: 14px;
+    left: 8px;
   }
-    #block-menu_block-3 .menu-block-wrapper > ul.menu li a .fa {
-      position: absolute;
-      top: 14px;
-      left: 8px;
-    }
-    #block-menu_block-3 .menu-block-wrapper > ul.menu li li a .fa {
-      left: 28px;
-    }
+  .region-sidebar-first ul.menu li li a .fa {
+    left: 28px;
+  }
 
 article#node-369 .body {
   min-height: 30em;
@@ -280,3 +279,30 @@ article.node-mesures-programa {}
   .view-mesures-cercador table td.views-field-field-measure-for-city {
     text-align: center;
   }
+
+@media all and (max-width: 1080px){
+  article#node-369 .body > ul li a {
+    font-size: 1.5em;
+    padding-top: 1em;
+  }
+  .view-measures-topic .views-row {
+    width: 24.3%;
+    margin-right: .7%;
+  }
+    .view-measures-topic .views-row .views-field-name-field a {
+      font-size: 1.5em;
+      padding: 1em;
+    }
+}
+@media all and (max-width: 600px){
+  article#node-369 .body > ul li,
+  .view-measures-model .views-row {
+    float: none;
+    width: 100%;
+    height: auto;
+    margin: 0 0 20px;
+  }
+  .view-measures-topic .views-row {
+    width: 49.3%;
+  }
+}

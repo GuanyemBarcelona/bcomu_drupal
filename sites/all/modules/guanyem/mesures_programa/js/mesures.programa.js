@@ -22,13 +22,13 @@ var programa_config = {
     });
 
     // sidebar menu icons
-    var $menu = $('#block-menu_block-3 .menu-block-wrapper > ul.menu');
-    if ($menu.length){
-      $menu.find('li.mid-956 > a').prepend('<i class="fa fa-star-o"></i>');
-      $menu.find('li.mid-957 > a').prepend('<i class="fa fa-cogs"></i>');
-      $menu.find('li.mid-958 > a').prepend('<i class="fa fa-map-marker"></i>');
-      $menu.find('li.mid-959 > a').prepend('<i class="fa fa-tag"></i>');
-      $menu.find('li.mid-961 > a').prepend('<i class="fa fa-search"></i>');
+    var $sidebar_menu = $('.region-sidebar-first ul.menu');
+    if ($sidebar_menu.length){
+      $sidebar_menu.find('li.mid-966 > a').prepend('<i class="fa fa-star-o"></i>');
+      $sidebar_menu.find('li.mid-967 > a').prepend('<i class="fa fa-cogs"></i>');
+      $sidebar_menu.find('li.mid-968 > a').prepend('<i class="fa fa-map-marker"></i>');
+      $sidebar_menu.find('li.mid-969 > a').prepend('<i class="fa fa-tag"></i>');
+      $sidebar_menu.find('li.mid-970 > a').prepend('<i class="fa fa-search"></i>');
     }
   });
 
