@@ -16,33 +16,33 @@ function mesures_programa_menu() {
     'page callback' => 'mesures_programa_render_citymodel_page',
     'type' => MENU_CALLBACK,
     'page arguments' => array(3),
-    'access arguments' => array('administer bcnencomu settings')//array('access content'),
+    'access arguments' => array('access content'),
   );
   $items['programa/navega/model-ciutat/%/%'] = array(
     'page callback' => 'mesures_programa_render_citymodel_district_page',
     'type' => MENU_CALLBACK,
     'page arguments' => array(3,4),
-    'access arguments' => array('administer bcnencomu settings')//array('access content'),
+    'access arguments' => array('access content'),
   );
 
   $items['programa/navega/territori/%'] = array(
     'page callback' => 'mesures_programa_render_territory_page',
     'type' => MENU_CALLBACK,
     'page arguments' => array(3),
-    'access arguments' => array('administer bcnencomu settings')//array('access content'),
+    'access arguments' => array('access content'),
   );
 
   $items['programa/navega/tema/%'] = array(
     'page callback' => 'mesures_programa_render_topic_page',
     'type' => MENU_CALLBACK,
     'page arguments' => array(3),
-    'access arguments' => array('administer bcnencomu settings')//array('access content'),
+    'access arguments' => array('access content'),
   );
   $items['programa/navega/tema/%/%'] = array(
     'page callback' => 'mesures_programa_render_topic_district_page',
     'type' => MENU_CALLBACK,
     'page arguments' => array(3,4),
-    'access arguments' => array('administer bcnencomu settings')//array('access content'),
+    'access arguments' => array('access content'),
   );
 
   return $items;
