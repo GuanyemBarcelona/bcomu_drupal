@@ -15,16 +15,19 @@ article#node-369 .body {
   min-height: 30em;
 }
   article#node-369 .body > ul {
-    width: 90%;
-    margin: 0 auto;
     overflow: hidden;
+    padding-left: 0;
+    margin-top: 30px;
   }
     article#node-369 .body > ul li {
       float: left;
-      width: 31.333%;
-      margin: 0 2% 20px 0;
+      width: 24.1%;
+      margin: 0 0 20px 1.2%;
       font-size: 1em;
       line-height: 1;
+    }
+    article#node-369 .body > ul li:first-child {
+      margin-left: 0;
     }
       article#node-369 .body > ul li a {
         display: block;
@@ -35,7 +38,8 @@ article#node-369 .body {
         text-align: center;
         text-transform: none;
         font-weight: bold;
-        font-size: 1.8em;
+        text-decoration: none;
+        font-size: 1.6em;
         padding: 1.4em .6em;
         background: #e65c56;
         border: 1px solid #e65c56;
@@ -54,7 +58,6 @@ article#node-369 .body {
         border: 8px solid #e65c56;
       }
 	    article#node-369 .body > ul a .fa {
-		    float: left;
 		    margin-right: 8px;
 		  }
 .view-measures-model {

@@ -36,6 +36,7 @@ var programa_config = {
       $navega_page_menu.find('li').eq(0).find('> a').prepend('<i class="fa fa-cogs"></i>');
       $navega_page_menu.find('li').eq(1).find('> a').prepend('<i class="fa fa-map-marker"></i>');
       $navega_page_menu.find('li').eq(2).find('> a').prepend('<i class="fa fa-tag"></i>');
+      $navega_page_menu.find('li').eq(3).find('> a').prepend('<i class="fa fa-search"></i>');
     }
   });
 
