@@ -30,6 +30,13 @@ var programa_config = {
       $sidebar_menu.find('li.mid-969 > a').prepend('<i class="fa fa-tag"></i>');
       $sidebar_menu.find('li.mid-970 > a').prepend('<i class="fa fa-search"></i>');
     }
+    // programa navega menu icons
+    var $navega_page_menu = $('article#node-369 .body > ul');
+    if ($navega_page_menu){
+      $navega_page_menu.find('li').eq(0).find('> a').prepend('<i class="fa fa-cogs"></i>');
+      $navega_page_menu.find('li').eq(1).find('> a').prepend('<i class="fa fa-map-marker"></i>');
+      $navega_page_menu.find('li').eq(2).find('> a').prepend('<i class="fa fa-tag"></i>');
+    }
   });
 
 })(jQuery);
