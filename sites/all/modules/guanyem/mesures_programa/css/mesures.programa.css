@@ -287,6 +287,15 @@ article.node-mesures-programa {}
     text-align: center;
   }
 
+/* advice block for priority measures */
+#block-block-6 {
+  margin-top: 30px;
+}
+  #block-block-6 p {
+    font-size: 1.2em;
+    color: #999;
+  }
+
 @media all and (max-width: 1080px){
   article#node-369 .body > ul li a {
     font-size: 1.5em;
