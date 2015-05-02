@@ -1122,8 +1122,14 @@ article.node-measure {}
         background: rgb(255,255,255);
         background: rgba(255,255,255,.7);
       }
-        .node-slider.node-video a[data-action] {}
-          .node-slider.node-video a[data-action] .fa {
+        .node-slider a[data-action] {
+          position: relative;
+          top: -70px;
+        }
+        .node-slider.node-video a[data-action] {
+          top: 0;
+        }
+          .node-slider a[data-action] .fa {
             float: right;
           }
         .node-slider h2 {
