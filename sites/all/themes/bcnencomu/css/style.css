@@ -890,6 +890,7 @@ article.node-post-like {}
   }
     article.node-post-like > header .lead {
       margin: 0;
+      line-height: 1.2;
     }
   article.node-post-like > .content {}
     article.node-post-like > .content .info {
