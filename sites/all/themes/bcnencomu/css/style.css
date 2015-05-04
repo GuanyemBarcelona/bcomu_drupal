@@ -888,6 +888,12 @@ article.node-post-like {}
   article.node-post-like > header {
     margin: 0 0 1em;
   }
+    article.node-post-like > header .hashtag {
+      margin-bottom: .4em;
+      font-weight: bold;
+      font-size: 2em;
+      color: #e65c56;
+    }
     article.node-post-like > header .lead {
       margin: 0;
       line-height: 1.2;
@@ -1110,6 +1116,10 @@ article.node-measure {}
       position: relative;
     }
       .node-slider > .image {}
+        .node-slider > .image a[data-action] {
+          position: relative;
+          top: -70px;
+        }
       .node-slider > .content {
         position: absolute;
         top: 50%;
@@ -1123,16 +1133,15 @@ article.node-measure {}
         background: rgb(255,255,255);
         background: rgba(255,255,255,.7);
       }
-        .node-slider a[data-action] {
-          position: relative;
-          top: -70px;
-        }
-        .node-slider.node-video a[data-action] {
-          top: 0;
-        }
+        .node-slider a[data-action] {}
           .node-slider a[data-action] .fa {
             float: right;
           }
+        .node-slider .hashtag {
+          color: black;
+          font-weight: bold;
+          margin-bottom: .4em;
+        }
         .node-slider h2 {
           font-family: 'Arvo', Georgia, serif;
           font-size: 3em;

@@ -27,6 +27,9 @@
   </div>
   <?php } ?>
   <div class="content">
+    <?php if (isset($hashtag)){ ?>
+    <p class="hashtag"><?php print $hashtag; ?></p>
+    <?php } ?>
     <h2><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
     <?php if (isset($node_body_summary_html)){ ?>
     <div class="summary">
@@ -38,6 +41,9 @@
   <?php } else if ($view_mode == 'full') { ?>
   <?php /* ----------------- FULL DISPLAY ----------------- */ ?>
   <header>
+    <?php if (isset($hashtag)){ ?>
+    <p class="hashtag"><?php print $hashtag; ?></p>
+    <?php } ?>
     <h1><?php print $title; ?></h1>
     <?php if (isset($lead)){ ?>
     <h2 class="lead"><?php print $lead; ?></h2>

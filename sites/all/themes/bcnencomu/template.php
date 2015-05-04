@@ -261,12 +261,18 @@ function bcnencomu_preprocess_node(&$vars) {
 		  $vars['date'] = gh_get_date_array($node_obj->created, 'day', TRUE);
 
       // category
-        $category_field = 'field_post_category';
-        if ($vars['type'] == 'press'){
-          $category_field = 'field_press_category';
-        }
-        $category = field_view_field('node', $node_obj, $category_field, array('label' => 'hidden'));
-        $vars['category'] = render($category);
+      $category_field = 'field_post_category';
+      if ($vars['type'] == 'press'){
+        $category_field = 'field_press_category';
+      }
+      $category = field_view_field('node', $node_obj, $category_field, array('label' => 'hidden'));
+      $vars['category'] = render($category);
+
+      // hashtag
+      $hashtag = field_get_items('node', $node_obj,'field_hashtag');
+      if (isset($hashtag[0]['safe_value'])){
+        $vars['hashtag'] = $hashtag[0]['safe_value'];
+      }
 
 		  if ($vars['view_mode'] == 'full'){
         // tags
