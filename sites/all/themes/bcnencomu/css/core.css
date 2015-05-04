@@ -298,12 +298,14 @@ input[type="radio"] {
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="email"] {
   width: 22em;
 }
 
 input[type="text"],
 input[type="password"],
+input[type="email"],
 textarea,
 select {
   font-size: 1.7em;
