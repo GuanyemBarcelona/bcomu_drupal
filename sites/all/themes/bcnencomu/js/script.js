@@ -249,8 +249,8 @@ function prepareAllVIdeos(){
     if (typeof youtube_uri !== typeof undefined && youtube_uri !== false) {
       youtube_id = _get_youtube_id_from_uri(youtube_uri);
     }
-    if (!$video.is('.node-full')){
-      // --- teaser or slider or highlighted ---
+    if ($video.is('.node-teaser')){
+      // --- teaser ---
       // load image if has youtube_id
       if (youtube_id !== false){
         // this returned data from the youtube API is cached through simpleStorage
@@ -282,7 +282,39 @@ function prepareAllVIdeos(){
           }
         );
       });
-    }else{
+    }else if ($video.is('.node-slider')){
+      // --- slider ---
+      var $play_btn = $video.find('a[data-action="play"]');
+      var $image = $video.find('> .image');
+      var $content = $video.find('> .content');
+      $play_btn.click(function(e){
+        if (youtube_id !== false){
+          e.preventDefault();
+          // stop the caroussel
+          /*var $carousel = $video.closest('.owl-carousel');
+          $carousel.trigger('autoplay.stop.owl');*/
+          var $carousel = $video.closest('.owl-carousel').data('owlCarousel');
+          var current_item = $carousel.currentItem;
+          $carousel.stop();
+          $carousel.reinit({autoPlay: false});
+          $carousel.jumpTo(current_item);
+          // ---
+          $play_btn.hide();
+          $image.hide();
+          $content.hide();
+          var slide_player_id = 'video-' + html_id;
+          $video.prepend('<div class="video" id="'+slide_player_id+'" />');
+          var player = new YT.Player(slide_player_id, {
+            width: '640',
+            height: '390',
+            videoId: youtube_id,
+            events: {
+              'onReady': onPlayerReady
+            }
+          });
+        }
+      });
+    }else if ($video.is('.node-full')){
       // --- full ---
       if (youtube_id !== false){
         var player = new YT.Player(html_id, {
@@ -293,7 +325,6 @@ function prepareAllVIdeos(){
             'onReady': onPlayerReady
           }
         });
-
       }
     }
   });

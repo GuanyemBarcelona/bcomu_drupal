@@ -1109,21 +1109,34 @@ article.node-measure {}
     height: 557px;
     overflow: hidden;
   }
+    .view-nodequeue-1 .owl-carousel .owl-wrapper, .view-nodequeue-1 .owl-carousel .owl-item, .view-nodequeue-1 .owl-wrapper-outer,
     .view-nodequeue-1 .view-content .views-row {
-      
+      height: 100%;
     }
     .node-slider {
       position: relative;
+      height: 100%;
     }
-      .node-slider > .image {}
+      .node-slider > .image {
+        position: relative;
+        z-index: 2;
+      }
         .node-slider > .image a[data-action] {
           position: relative;
           top: -70px;
         }
+      .node-slider > .video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        height: 100%;
+      }
       .node-slider > .content {
         position: absolute;
         top: 50%;
         left: 50%;
+        z-index: 3;
         margin-left: -285px;
         margin-top: -150px;
         width: 570px;

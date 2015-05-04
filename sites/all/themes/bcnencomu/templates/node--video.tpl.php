@@ -31,7 +31,9 @@
       <?php if (isset($node_body_summary_html)){ ?>
       <p><?php print $node_body_summary_html; ?></p>
       <?php } ?>
-      <a href="<?php print $node_url; ?>" title="<?php print t("Play video"); ?>" data-action="read-more"><?php print t("Play video"); ?></a>
+      <?php if (isset($youtube_uri)){ ?>
+      <a href="<?php print $youtube_uri; ?>" title="<?php print t("Play video"); ?>" data-action="play"><?php print t("Play video"); ?></a>
+      <?php } ?>
     </div>
   </div>
   <?php } elseif ($view_mode == 'full') { ?>
