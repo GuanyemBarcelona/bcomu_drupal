@@ -2,6 +2,7 @@
 define('CANDIDACY_HEAD_NID', 162);
 define('CANDIDACY_COUNCIL_NID', 173);
 define('CALENDAR_NID', 3);
+define('ENCOMUMAP_NID', 1062);
 
 // Auto-rebuild the theme registry during theme development.
 if (theme_get_setting('clear_registry')) {
@@ -145,6 +146,11 @@ function bcnencomu_preprocess_page(&$vars, $hook) {
   // calendar page
   if (arg(0) == 'node' && arg(1) == CALENDAR_NID) {
     $vars['classes_array'][] = 'calendar-page';
+  }
+
+  // en comu map page
+  if (arg(0) == 'node' && arg(1) == ENCOMUMAP_NID) {
+    $vars['classes_array'][] = 'encomu-map-page';
   }
 }
 

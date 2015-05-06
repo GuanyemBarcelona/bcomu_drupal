@@ -513,12 +513,28 @@ a[data-action="go-back"] {
           display: none;
         }
 
-#main {
-
+#main {}
+/* en comu map */
+#page.encomu-map-page #main {
+  width: 100%;
 }
-#main > .inner {
-
-}
+  #page.encomu-map-page #content {
+    margin-left: 0;
+    padding: 0;
+  }
+  #page.encomu-map-page article.node > header h1 {
+    display: none;
+  }
+  #page.encomu-map-page article.node .share-links {
+    padding-right: 20px;
+    margin-bottom: 5px;
+  }
+  #page.encomu-map-page article.node .body iframe {
+    width: 100%;
+    height: 600px;
+    margin: 0;
+  }
+/* --- */
 
 #highlighted {
   
