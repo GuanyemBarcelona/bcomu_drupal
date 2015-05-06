@@ -522,12 +522,9 @@ a[data-action="go-back"] {
     margin-left: 0;
     padding: 0;
   }
-  #page.encomu-map-page article.node > header h1 {
-    display: none;
-  }
+  #page.encomu-map-page article.node > header h1,
   #page.encomu-map-page article.node .share-links {
-    padding-right: 20px;
-    margin-bottom: 5px;
+    display: none;
   }
   #page.encomu-map-page article.node .body iframe {
     width: 100%;
