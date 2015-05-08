@@ -297,6 +297,11 @@ function prepareAllVIdeos(){
           carousel.reinit({autoPlay: false});
           carousel.jumpTo(current_item);
           // ---
+          /*$video.closest('.view-content').animate({
+            height: video_heights[1] + 'px'
+          }, 500, function() {
+            
+          });*/
           $play_btn.hide();
           $image.hide();
           $content.hide();
@@ -310,6 +315,11 @@ function prepareAllVIdeos(){
               'onReady': onPlayerReady
             }
           });
+          // carousel events
+          /*var $carousel = $video.closest('.owl-carousel');
+          $carousel.on('to.owl.carousel', function(e) {
+            player.stopVideo();
+          });*/
         }
       });
     }else if ($video.is('.node-full')){
