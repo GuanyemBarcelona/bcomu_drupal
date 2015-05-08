@@ -26,13 +26,13 @@
   </div>
   <?php } ?>
   <div class="content">
-    <h2><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
+    <?php /*<h2><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2> */ ?>
     <div class="summary">
-      <?php if (isset($node_body_summary_html)){ ?>
+      <?php /*if (isset($node_body_summary_html)){ ?>
       <p><?php print $node_body_summary_html; ?></p>
-      <?php } ?>
+      <?php }*/ ?>
       <?php if (isset($youtube_uri)){ ?>
-      <a href="<?php print $youtube_uri; ?>" title="<?php print t("Play video"); ?>" data-action="play"><?php print t("Play video"); ?></a>
+      <a href="<?php print $youtube_uri; ?>" title="<?php print t("Play video"); ?>" data-action="play"><i class="icon"></i> <span><?php print t("Play video"); ?></span></a>
       <?php } ?>
     </div>
   </div>

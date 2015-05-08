@@ -1159,9 +1159,52 @@ article.node-measure {}
         background: rgb(255,255,255);
         background: rgba(255,255,255,.7);
       }
+      .node-slider.node-video > .content {
+        top: 0;
+        left: 0;
+        margin-left: 0;
+        margin-top: 0;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        background: none;
+      }
         .node-slider a[data-action] {}
           .node-slider a[data-action] .fa {
             float: right;
+          }
+        .node-slider a[data-action="play"] {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          margin-left: -50px;
+          margin-top: -50px;
+          width: 100px;
+          height: 100px;
+          padding: 0;
+          font-size: 1em;
+          color: white;
+          background: none;
+          -webkit-border-radius: 0;
+          border-radius: 0;
+          opacity: .5;
+          -webkit-transition: all 0.3s ease-in-out;
+          -moz-transition: all 0.3s ease-in-out;
+          -ms-transition: all 0.3s ease-in-out;
+          -o-transition: all 0.3s ease-in-out;
+          transition: all 0.3s ease-in-out;
+        }
+        .node-slider a[data-action="play"]:hover {
+          opacity: .8;
+        }
+          .node-slider a[data-action="play"] .icon {
+            width: 100%;
+            height: 100%;
+            background-image: url("../images/play_btn.png");
+            background-position: 0 0;
+          }
+          .node-slider a[data-action="play"] span {
+            display: none;
           }
         .node-slider .hashtag {
           color: black;

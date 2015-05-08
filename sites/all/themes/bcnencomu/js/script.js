@@ -146,9 +146,6 @@ var config = {
 
     // tags icon
     $('article.node-post-like > .content .info .field-name-field-tags .field-items').prepend('<i class="fa fa-tags"></i>');
-
-    // video teaser button
-    $('.node-slider.node-video a[data-action]').append('<i class="fa fa-play"></i>');
     
     // media gallery
     var $image_gallery = $('article .image-gallery');
@@ -287,17 +284,18 @@ function prepareAllVIdeos(){
       var $play_btn = $video.find('a[data-action="play"]');
       var $image = $video.find('> .image');
       var $content = $video.find('> .content');
+      var video_heights = [557, 768]; // original, play mode
       $play_btn.click(function(e){
         if (youtube_id !== false){
           e.preventDefault();
           // stop the caroussel
           /*var $carousel = $video.closest('.owl-carousel');
           $carousel.trigger('autoplay.stop.owl');*/
-          var $carousel = $video.closest('.owl-carousel').data('owlCarousel');
-          var current_item = $carousel.currentItem;
-          $carousel.stop();
-          $carousel.reinit({autoPlay: false});
-          $carousel.jumpTo(current_item);
+          var carousel = $video.closest('.owl-carousel').data('owlCarousel');
+          var current_item = carousel.currentItem;
+          carousel.stop();
+          carousel.reinit({autoPlay: false});
+          carousel.jumpTo(current_item);
           // ---
           $play_btn.hide();
           $image.hide();
