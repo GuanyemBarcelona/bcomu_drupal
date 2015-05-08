@@ -351,51 +351,6 @@ function placeMetadataInVideoContainer(data, $container){
   }catch(err){
     console.log(err);
   }
-
-  /*if ($container.parents('.view-multimedia').length > 0){
-    // duration
-    try {
-      var duration = getTimeString(details.duration);
-      $container.find('> .image a').append('<span class="duration">'+duration+'</span>');
-    }catch(err){
-      console.log(err);
-    }
-
-    // time ago
-    try {
-      var date = Date.parse(snippet.publishedAt);
-      var seconds = Math.round(date/1000);
-      $info.append('<time data-livestamp="'+seconds+'" datetime="'+seconds+'">'+seconds+'</time>');
-    }catch(err){
-      console.log(err);
-    }
-
-    // view count
-    try {
-      var views_count = parseInt(statistics.viewCount).toLocaleString();
-      $info.append('<span class="views-count">'+views_count+ ' ' + locale.VIDEO_VIEWS[config.LANGUAGE] + '</span>');
-    }catch(err){
-      console.log(err);
-    }
-
-    // HD available
-    try {
-      if (details.definition == 'hd'){
-        $features.append('<span class="hd" title="' + locale.VIDEO_HD_AVAILABLE[config.LANGUAGE] + '">HD</span>');
-      }
-    }catch(err){
-      console.log(err);
-    }
-
-    // CC available
-    try {
-      if (details.caption == 'true'){
-        $features.append('<span class="cc" title="' + locale.VIDEO_CC_AVAILABLE[config.LANGUAGE] + '">CC</span>');
-      }
-    }catch(err){
-      console.log(err);
-    }
-  }*/
 }
 
 // converts ISO 8601 duration format to a human readable string
