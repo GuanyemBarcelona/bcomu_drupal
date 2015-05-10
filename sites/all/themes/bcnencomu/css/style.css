@@ -1573,6 +1573,43 @@ article.node .body .eixos-list {
             color: #b52821;
           }
 
+/* campaign agenda */
+.view-campaign-agenda {}
+  .view-campaign-agenda .view-grouping {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e65c56;
+  }
+    .view-campaign-agenda .view-grouping > .view-grouping-header {
+      font-size: 2.7em;
+      color: #8ea7bf;
+      margin-bottom: 1em;
+    }
+    .view-campaign-agenda .view-grouping > .view-grouping-content {}
+      .view-campaign-agenda .view-grouping > .view-grouping-content > .item-list {}
+        .view-campaign-agenda .view-grouping > .view-grouping-content > .item-list h3 {
+          font-size: 1.8em;
+          font-weight: normal;
+          text-transform: uppercase;
+          color: #e65c56;
+          margin-bottom: 1em;
+        }
+        .view-campaign-agenda .views-row {
+          margin-bottom: 20px;
+          font-size: 1.7em;
+          line-height: 1.25;
+          overflow: hidden;
+        }
+          .view-campaign-agenda .views-row .views-field-field-date {
+            float: left;
+            font-size: 1.2em;
+            margin: 0 20px 40px 0;
+          }
+          .view-campaign-agenda .views-row .views-field-title {
+            font-weight: bold;
+          }
+          .view-campaign-agenda .views-row .views-field-field-venue {}
+
 /* search results */
 .search-form {
   max-width: none;
