@@ -1575,6 +1575,11 @@ article.node .body .eixos-list {
 
 /* campaign agenda */
 .view-campaign-agenda {}
+  .view-campaign-agenda .view-filters {}
+    .view-campaign-agenda .view-filters .form-item-field-date-value-1-value-month,
+    .view-campaign-agenda .view-filters .form-item-field-date-value-1-value-year {
+      display: none;
+    }
   .view-campaign-agenda .view-grouping {
     margin-bottom: 30px;
     padding-bottom: 20px;
