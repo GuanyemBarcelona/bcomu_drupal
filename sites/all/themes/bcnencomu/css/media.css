@@ -125,6 +125,9 @@
     height: 300px;
     margin: 0 auto 20px;
   }
+  article.node .body blockquote p, article.node .field-name-body blockquote p {
+    font-size: 2.4em;
+  }
 
   .view-nodequeue-2 .view-content .views-row,
   .node-teaser {
@@ -188,6 +191,14 @@
       .node-slider .summary p {
         font-size: 1.5em;
       }
+
+  article.node .body blockquote, article.node .field-name-body blockquote {
+    margin: 40px auto;
+    width: 80%;
+  }
+    article.node .body blockquote p, article.node .field-name-body blockquote p {
+      font-size: 2em;
+    }
 
   article.node-candidacy-person .field-name-field-candidacy-district {
     position: static;
