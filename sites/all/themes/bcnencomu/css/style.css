@@ -531,10 +531,6 @@ a[data-action="go-back"] {
   }
 /* --- */
 
-#highlighted {
-  
-}
-
 #content {
   padding: 40px 0 0;
   min-height: 400px;
@@ -1112,11 +1108,81 @@ article.node-measure {}
             text-decoration: underline;
           }
 
+#highlighted {
+  position: relative;
+}
+/* Campanya: agenda destacada */
+#block-views-campaign_agenda_home-block_1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 340px;
+  height: 420px;
+  background: #577a9a;
+  border-left: 1px solid white;
+}
+  .view-campaign-agenda-home {}
+    .view-campaign-agenda-home .view-content {}
+      .view-campaign-agenda-home .views-row {
+        overflow: hidden;
+        color: white;
+      }
+      .view-campaign-agenda-home .views-row {
+        overflow: hidden;
+        color: white;
+        padding: 12px 0;
+      }
+      .view-campaign-agenda-home .views-row-odd {
+        background: rgb(39,65,90);
+        background: rgba(39,65,90,.5);
+      }
+        .view-campaign-agenda-home .views-row .date-group { /* this div is created through script.js */
+          float: left;
+          width: 80px;
+          text-align: center;
+        }
+          .view-campaign-agenda-home .views-row .views-field-field-date-1 {
+            font-weight: bold;
+            font-size: 3em;
+          }
+          .view-campaign-agenda-home .views-row .views-field-field-date-2 {
+            font-weight: 100;
+            text-transform: uppercase;
+            font-size: 1.4em;
+            margin-bottom: .2em;
+          }
+          .view-campaign-agenda-home .views-row .views-field-field-date {
+            font-size: 1.6em;
+          }
+        .view-campaign-agenda-home .views-row > .content { /* this div is created through script.js */
+          float: left;
+          width: 257px;
+          min-height: 60px;
+          padding: 0 12px;
+          border-left: 3px solid white;
+        }
+          .view-campaign-agenda-home .views-row .views-field-field-venue,
+          .view-campaign-agenda-home .views-row .views-field-field-transport-tube {
+            color: #8daecc;
+            font-size: 1.2em;
+            line-height: 1.2;
+          }
+          .view-campaign-agenda-home .views-row .views-field-field-transport-tube {}
+          .view-campaign-agenda-home .views-row .views-field-title-field {
+            margin-top: .2em;
+            font-size: 1.2em;
+            line-height: 1.2;
+          }
+            .view-campaign-agenda-home .views-row .views-field-title-field a {
+              color: white;
+            }
 /* Home: carroussel */
-#block-views-nodequeue_1-block {}
+#block-views-nodequeue_1-block {
+  padding-right: 340px;
+}
 .view-nodequeue-1 {}
   .view-nodequeue-1 .view-content {
-    height: 557px;
+    height: 420px;
     overflow: hidden;
   }
     .view-nodequeue-1 .owl-carousel .owl-wrapper, .view-nodequeue-1 .owl-carousel .owl-item, .view-nodequeue-1 .owl-wrapper-outer,
