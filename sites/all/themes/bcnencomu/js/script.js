@@ -168,18 +168,6 @@ var config = {
         }
       }
     }
-
-    // home campaign agenda
-    var $home_campaign_agenda = $('.view-campaign-agenda-home');
-    if ($home_campaign_agenda.length){
-      var $rows = $home_campaign_agenda.find('.views-row');
-      $rows.each(function(){
-        $(this).wrapInner('<div class="content" />');
-        $(this).prepend('<div class="date-group" />');
-        $(this).find('.views-field-field-date, .views-field-field-date-1, .views-field-field-date-2').detach().appendTo($(this).find('.date-group'));
-      });
-      
-    }
 	});
 
 	$(window).load(function(){

@@ -32,9 +32,6 @@
   .view-nodequeue-1 .view-content {
     height: 39vw;
   }
-  .view-nodequeue-1 .view-content, #block-views-campaign_agenda_home-block_1 {
-    height: 28vw;
-  }
   .cookies-message {
     height: auto;
   }
@@ -45,15 +42,6 @@
   .view-nodequeue-2 .view-content .views-row,
   .node-teaser {
     width: 24.4%;
-  }
-}
-
-@media all and (max-width: 1200px){
-  .view-nodequeue-1 .view-content, #block-views-campaign_agenda_home-block_1 {
-    height: 26vw;
-  }
-  .view-campaign-agenda-home .views-row {
-    padding: .3vw 0;
   }
 }
 
@@ -75,23 +63,6 @@
     font-size: 1.3em;
     padding: 50px 10px;
   }
-  .view-nodequeue-1 .view-content, #block-views-campaign_agenda_home-block_1 {
-    height: 24vw;
-  }
-  .view-campaign-agenda-home .views-row .views-field-field-date-1 {
-    font-size: 1.8em;
-  }
-  .view-campaign-agenda-home .views-row .views-field-field-date {
-    font-size: 1.2em;
-  }
-  .view-campaign-agenda-home .views-row > .content {
-    min-height: 45px;
-  }
-  .view-campaign-agenda-home .views-row .views-field-field-venue, 
-  .view-campaign-agenda-home .views-row .views-field-field-transport-tube,
-  .view-campaign-agenda-home .views-row .views-field-title-field {
-    font-size: 1.1em;
-  }
 }
 
 @media all and (max-width: 950px){
@@ -110,37 +81,6 @@
   .social-network-list {
     border-left: none;
   }
-}
-
-@media all and (max-width: 900px){
-  #block-views-nodequeue_1-block {
-    padding-right: 0;
-  }
-  .view-nodequeue-1 .view-content {
-    height: 39vw;
-  }
-  #block-views-campaign_agenda_home-block_1 {
-    position: static;
-    width: 100%;
-    height: auto;
-    border-left: none;
-  }
-  .view-campaign-agenda-home .views-row {
-    padding: 5px 0;
-    position: relative;
-  }
-    .view-campaign-agenda-home .views-row .date-group {
-      position: absolute;
-      top: 5px;
-      left: 0;
-      float: none;
-    }
-    .view-campaign-agenda-home .views-row > .content {
-      float: none;
-      padding-left: 80px;
-      width: auto;
-      border-left: none;
-    }
 }
 
 @media all and (max-width: 850px){
