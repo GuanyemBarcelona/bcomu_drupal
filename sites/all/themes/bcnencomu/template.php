@@ -70,28 +70,6 @@ function bcnencomu_preprocess_html(&$vars) {
   drupal_add_js(libraries_get_path('modernizr'). '/modernizr.custom.87176.js');
   //drupal_add_js(libraries_get_path('Chart.js') . '/Chart.min.js');
 
-  // Touch screen icons
-  $icon =  array(
-    '#tag' => 'link',
-    '#attributes' => array(
-      'href' => base_path() . path_to_theme() . '/touch-icon.png',
-      'rel' => 'apple-touch-icon',
-    ),
-  );
-  drupal_add_html_head($icon, 'meta_touch_icon');
-  $icon_sizes = array(76, 120, 152);
-  foreach($icon_sizes as $size){
-    $icon = array(
-      '#tag' => 'link',
-      '#attributes' => array(
-        'href' => base_path() . path_to_theme() . '/touch-icon-' . $size . 'x' . $size . '.png',
-        'rel' => 'apple-touch-icon',
-        'sizes' => $size . 'x' . $size,
-      ),
-    );
-    drupal_add_html_head($icon, 'meta_touch_icon_' . $size);
-  }
-
   $vars['environment'] = variable_get('environment', 'dev');
 
   // PAGE FORMATS
