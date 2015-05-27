@@ -738,9 +738,11 @@ article.node {}
             color: white;
             font-weight: 700;
           }
-          article.node table td {
-
-          }
+          article.node table td {}
+	          article.node table th p, article.node table td p {
+	            font-size: 1em;
+	            margin-bottom: 0;
+	          }
       article.node .body a[data-action] {
         max-width: 200px;
       }
