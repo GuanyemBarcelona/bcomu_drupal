@@ -1745,9 +1745,10 @@ article.node .body .eixos-list {
 }
   .owl-buttons > div {
     position: absolute;
-    top: -50%;
+    top: 50%;
     width: 25px;
     height: 50px;
+    margin-top: -25px;
     background-image: url("../images/sprite.png");
     background-repeat: no-repeat; 
   }
