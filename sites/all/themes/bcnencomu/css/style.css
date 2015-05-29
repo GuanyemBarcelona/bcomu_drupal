@@ -1291,8 +1291,14 @@ article.node-measure {}
             display: none;
           }
 
+body.front .region-content-bottom {
+  overflow: hidden;
+}
 /* Home bottom list */
-#block-views-frontpage-block_1 {}
+#block-views-frontpage-block_1 {
+  float: left;
+  width: 75%;
+}
   .view-frontpage {}
     .node-teaser {
       width: 333px;
@@ -1333,6 +1339,72 @@ article.node-measure {}
             font-size: 1.4em;
             margin: 0;
           }
+
+/* home highlighted agenda */
+#block-views-highlighted_agenda-agenda_block {
+  float: right;
+  width: 25%;
+  background: #577a9a;
+}
+  .view-display-id-agenda_block {}
+    .view-display-id-agenda_block .view-content {}
+      .view-display-id-agenda_block .views-row {
+        overflow: hidden;
+        color: white;
+      }
+      .view-display-id-agenda_block .views-row {
+        overflow: hidden;
+        color: white;
+        padding: 12px 0;
+      }
+      .view-display-id-agenda_block .views-row-odd {
+        background: rgb(39,65,90);
+        background: rgba(39,65,90,.5);
+      }
+        .view-display-id-agenda_block .views-row .date-group { /* this div is created through script.js */
+          float: left;
+          width: 25%;
+          text-align: center;
+        }
+          .view-display-id-agenda_block .views-row .views-field-field-date-1 {
+            font-weight: bold;
+            font-size: 3em;
+          }
+          .view-display-id-agenda_block .views-row .views-field-field-date-2 {
+            font-weight: 100;
+            text-transform: uppercase;
+            font-size: 1.4em;
+            margin-bottom: .2em;
+          }
+          .view-display-id-agenda_block .views-row .views-field-field-date {
+            font-size: 1.6em;
+          }
+        .view-display-id-agenda_block .views-row > .content { /* this div is created through script.js */
+          float: left;
+          width: 75%;
+          min-height: 60px;
+          padding: 0 12px;
+          border-left: 3px solid white;
+        }
+          .view-display-id-agenda_block .views-row .views-field-field-venue,
+          .view-display-id-agenda_block .views-row .views-field-field-transport-tube {
+            color: white;
+            font-size: 1.2em;
+            line-height: 1.2;
+            opacity: .5;
+          }
+            .view-display-id-agenda_block .views-row .views-field-field-venue .fa {
+              margin-right: 5px;
+            }
+          .view-display-id-agenda_block .views-row .views-field-field-transport-tube {}
+          .view-display-id-agenda_block .views-row .views-field-title-field {
+            margin-top: .2em;
+            font-size: 1.2em;
+            line-height: 1.2;
+          }
+            .view-display-id-agenda_block .views-row .views-field-title-field a {
+              color: white;
+            }
 
 /* blog block */
 #block-views-blog-block {}
@@ -1574,47 +1646,47 @@ article.node .body .eixos-list {
             color: #b52821;
           }
 
-/* campaign agenda */
-.view-campaign-agenda {}
-  .view-campaign-agenda .view-filters {}
+/* campaign agenda page */
+.view-display-id-agenda_page {}
+  .view-display-id-agenda_page .view-filters {}
     .view-campaign-agenda .view-filters .form-item-field-date-value-1-value-month,
     .view-campaign-agenda .view-filters .form-item-field-date-value-1-value-year {
       display: none;
     }
-  .view-campaign-agenda .view-grouping {
+  .view-display-id-agenda_page .view-grouping {
     margin-bottom: 30px;
     padding-bottom: 20px;
     border-bottom: 2px solid #e65c56;
   }
-    .view-campaign-agenda .view-grouping > .view-grouping-header {
+    .view-display-id-agenda_page .view-grouping > .view-grouping-header {
       font-size: 2.7em;
       color: #8ea7bf;
       margin-bottom: 1em;
     }
-    .view-campaign-agenda .view-grouping > .view-grouping-content {}
-      .view-campaign-agenda .view-grouping > .view-grouping-content > .item-list {}
-        .view-campaign-agenda .view-grouping > .view-grouping-content > .item-list h3 {
+    .view-display-id-agenda_page .view-grouping > .view-grouping-content {}
+      .view-display-id-agenda_page .view-grouping > .view-grouping-content > .item-list {}
+        .view-display-id-agenda_page .view-grouping > .view-grouping-content > .item-list h3 {
           font-size: 1.8em;
           font-weight: normal;
           text-transform: uppercase;
           color: #e65c56;
           margin-bottom: 1em;
         }
-        .view-campaign-agenda .views-row {
+        .view-display-id-agenda_page .views-row {
           margin-bottom: 20px;
           font-size: 1.7em;
           line-height: 1.25;
           overflow: hidden;
         }
-          .view-campaign-agenda .views-row .views-field-field-date {
+          .view-display-id-agenda_page .views-row .views-field-field-date {
             float: left;
             font-size: 1.2em;
             margin: 0 20px 40px 0;
           }
-          .view-campaign-agenda .views-row .views-field-title-field {
+          .view-display-id-agenda_page .views-row .views-field-title-field {
             font-weight: bold;
           }
-          .view-campaign-agenda .views-row .views-field-field-venue {}
+          .view-display-id-agenda_page .views-row .views-field-field-venue {}
 
 /* search results */
 .search-form {

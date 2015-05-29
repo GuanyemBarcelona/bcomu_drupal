@@ -168,6 +168,23 @@ var config = {
         }
       }
     }
+
+    // home agenda
+    var $home_agenda = $('.view-display-id-agenda_block');
+    if ($home_agenda.length){
+      var $rows = $home_agenda.find('.views-row');
+      $rows.each(function(){
+        // wrap date
+        $(this).wrapInner('<div class="content" />');
+        $(this).prepend('<div class="date-group" />');
+        $(this).find('.views-field-field-date, .views-field-field-date-1, .views-field-field-date-2').detach().appendTo($(this).find('.date-group'));
+
+        // map icon
+        $(this).find('.views-field-field-venue .field-content').prepend('<i class="fa fa-map-marker"></i>');
+      });
+
+    }
+
 	});
 
 	$(window).load(function(){

@@ -39,9 +39,11 @@
     height: auto;
   }
 
-  .view-nodequeue-2 .view-content .views-row,
-  .node-teaser {
+  .view-nodequeue-2 .view-content .views-row {
     width: 24.4%;
+  }
+  .node-teaser {
+    width: 32.666%;
   }
 }
 
@@ -62,6 +64,23 @@
   #block-system-main-menu nav > ul.menu > li a {
     font-size: 1.3em;
     padding: 50px 10px;
+  }
+}
+
+@media all and (max-width: 1080px) and (min-width: 700px){
+  .view-display-id-agenda_block .views-row .views-field-field-date-1 {
+    font-size: 1.8em;
+  }
+  .view-display-id-agenda_block .views-row .views-field-field-date {
+    font-size: 1.2em;
+  }
+  .view-display-id-agenda_block .views-row > .content {
+    min-height: 45px;
+  }
+  .view-display-id-agenda_block .views-row .views-field-field-venue, 
+  .view-display-id-agenda_block .views-row .views-field-field-transport-tube,
+  .view-display-id-agenda_block .views-row .views-field-title-field {
+    font-size: 1.1em;
   }
 }
 
@@ -129,17 +148,25 @@
     font-size: 2.4em;
   }
 
-  .view-nodequeue-2 .view-content .views-row,
-  .node-teaser {
+  #block-views-frontpage-block_1 {
+    width: 66.666%;
+  }
+  #block-views-highlighted_agenda-agenda_block {
+    width: 33.333%;
+  }
+
+  .view-nodequeue-2 .view-content .views-row {
     width: 32.5333%;
     margin-bottom: 5px;
   }
   .view-nodequeue-2 .view-content .views-row.views-row-4 {
     margin-left: 0;
   }
-
-  .view-nodequeue-2 .node > .content h2 {
-    font-size: 1.7em;
+    .view-nodequeue-2 .node > .content h2 {
+      font-size: 1.7em;
+    }
+  .node-teaser {
+    width: 48.5%;
   }
 }
 
@@ -166,8 +193,7 @@
         height: 100%;
       }
 
-  .view-nodequeue-2 .view-content .views-row,
-  .node-teaser {
+  .view-nodequeue-2 .view-content .views-row {
     width: 48.8%;
   }
   .view-nodequeue-2 .view-content .views-row.views-row-3 {
@@ -180,6 +206,20 @@
   #block-bcnencomu-creativecommons p {
     text-align: left;
   }
+
+  #block-views-frontpage-block_1,
+  #block-views-highlighted_agenda-agenda_block {
+    float: none;
+    width: auto;
+  }
+  #block-views-highlighted_agenda-agenda_block {
+    max-width: 500px;
+    margin: 0 auto 20px;
+  }
+    .view-display-id-agenda_block .views-row {
+      padding: 5px 0;
+      position: relative;
+    }
 }
 
 @media all and (max-width: 600px){
