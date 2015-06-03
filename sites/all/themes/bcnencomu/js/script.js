@@ -42,6 +42,8 @@ var config = {
     attach: function(context, settings) {
       if ($(context).is('.view-multimedia')){
         prepareAllVIdeos();
+      } else if ($(context).is('.view-event-calendar')){
+        scrollCalendarToFirstEvent();
       }
     }
   };
@@ -127,6 +129,12 @@ var config = {
 
     // share links
     prepareShareLinks();
+
+    // Calendar: page scrolls until first event
+    var $calendar = $('.calendar-calendar');
+    if ($calendar.length){
+      scrollCalendarToFirstEvent();
+    }
 
     // Home Slider
     $home_slider = $('.view-nodequeue-1 .view-content');
@@ -229,6 +237,28 @@ var config = {
     var newWindow = window.open(url, title, 'scrollbars=yes, width=' + measures[0] + ', height=' + measures[1] + ', top=' + top + ', left=' + left);
     if (window.focus) {
       newWindow.focus();
+    }
+  }
+
+  function scrollCalendarToFirstEvent(){
+    var $calendar = $('.calendar-calendar');
+    if ($calendar.length){
+      var $day_container = $calendar.find('#single-day-container');
+      var min_top = 100000;
+      var item_found = false;
+      $calendar.find('.week-view .full div.single-day .inner, .calendar-calendar .day-view .full div.single-day .inner').each(function(i){
+        var $item = $(this).find('.view-item');
+        if ($item.length){
+          item_found = true;
+          var top = $item.offset().top - $day_container.offset().top;
+          if (top < min_top) min_top = top;
+        }
+      });
+      if (item_found){
+        $day_container.animate({
+          scrollTop: min_top
+        }, 1000);
+      }
     }
   }
 

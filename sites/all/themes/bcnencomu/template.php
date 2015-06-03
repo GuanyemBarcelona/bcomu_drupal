@@ -153,7 +153,7 @@ function bcnencomu_preprocess_node(&$vars) {
 	
 	// entity title
   if ($vars['view_mode'] == 'full'){
-		if ($node_obj->nid == 29){ // home
+		if ($node_obj->nid == 29 || $node_obj->nid == 3){ // home, calendar
 			unset($vars['title']);
   	}else{
 	  	$entity_title = field_get_items('node', $node_obj, 'title_field');

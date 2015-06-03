@@ -1688,6 +1688,21 @@ article.node .body .eixos-list {
           }
           .view-display-id-agenda_page .views-row .views-field-field-venue {}
 
+/* calendar */
+.calendar-calendar .month-view .full .inner .monthview, .calendar-calendar .week-view .full .inner .weekview, .calendar-calendar .day-view .full .inner .dayview {
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+.calendar-calendar .week-view .full div.single-day div.weekview, .calendar-calendar .day-view .full div.single-day div.dayview {
+  background: #e65c56;
+  border: 1px solid white;
+  padding: 3px;
+  color: white;
+}
+.calendar-calendar div.calendar {
+  font-size: 1em;
+}
+
 /* search results */
 .search-form {
   max-width: none;
