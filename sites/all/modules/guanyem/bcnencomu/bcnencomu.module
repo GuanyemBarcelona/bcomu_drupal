@@ -55,6 +55,13 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
     case 'contact_site_form':
       $form['cid']['#weight'] = -1;
       break;
+    case 'webform_client_form_294': // participa
+      if(isset($_GET['opt'])) {
+        if (in_array($_GET['opt'], array('newsletter', 'neighbourhood', 'streets', 'cyberactivist'))){
+          $form['submitted']['options']['#default_value'] = array($_GET['opt']);
+        }
+      }
+      break;
   }
 }
 
