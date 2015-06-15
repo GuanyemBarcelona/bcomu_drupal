@@ -1347,6 +1347,10 @@ body.front .region-content-bottom {
   background: #577a9a;
 }
   .view-display-id-agenda_block {}
+    .view-display-id-agenda_block .view-empty {
+      padding: 20px;
+      color: white;
+    }
     .view-display-id-agenda_block .view-content {}
       .view-display-id-agenda_block .views-row {
         overflow: hidden;
