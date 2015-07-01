@@ -245,7 +245,8 @@
   .view-nodequeue-2 .view-content .views-row,
   .node-teaser,
   .view-candidacies .item-list .views-row, .node-candidacy-person.node-teaser,
-  article.node-candidacy-person .field-name-field-candidacy-photo {
+  article.node-candidacy-person .field-name-field-candidacy-photo,
+  .view-offices-list .item-list .views-row .views-field-field-image {
     float: none;
     width: 100%;
     height: auto;
