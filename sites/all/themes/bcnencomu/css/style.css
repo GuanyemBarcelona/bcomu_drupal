@@ -1554,13 +1554,19 @@ article.node .body .eixos-list {
     }*/
 
 /* candidacies */
-.view-candidacies {}
-  .view-candidacies .item-list {
+.view-candidacies,
+.view-candidacies2 {}
+  .view-candidacies .item-list,
+  .view-candidacies2 .view-grouping {
     max-width: 1000px;
     margin: 0 auto 40px;
     border-bottom: 1px solid #febbbb;
   }
+    .view-candidacies2 .view-grouping .view-grouping-content {
+      padding: 0 40px;
+    }
     .view-candidacies .item-list a,
+    .view-candidacies2 .item-list a,
     .node-candidacy-person.node-teaser a {
       -webkit-transition: all 0.3s ease-in-out;
       -moz-transition: all 0.3s ease-in-out;
@@ -1568,27 +1574,41 @@ article.node .body .eixos-list {
       -o-transition: all 0.3s ease-in-out;
       transition: all 0.3s ease-in-out;
     }
-    .view-candidacies .item-list a:hover {
+    .view-candidacies .item-list a:hover,
+    .view-candidacies2 .item-list a:hover {
       color: #b52821;
     }
-    .view-candidacies .item-list > h3 {
+    .view-candidacies .item-list > h3,
+    .view-candidacies2 .view-grouping-header {
       font-size: 1.7em;
       text-transform: uppercase;
       color: #e65c56;
       font-weight: 300;
       margin: 0 0 1em;
     }
+    .view-candidacies2 .item-list > h3 {
+      font-size: 2em;
+    }
     .view-candidacies .item-list > ul,
-    .view-candidacies .item-list > ol {
+    .view-candidacies .item-list > ol,
+    .view-candidacies2 .item-list > ul,
+    .view-candidacies2 .item-list > ol {
       overflow: hidden;
     }
       .view-candidacies .item-list .views-row,
+      .view-candidacies2 .item-list .views-row,
       .node-candidacy-person.node-teaser {
         float: left;
         width: 25%;
         min-width: 160px;
         padding: 0 20px;
         margin: 0 0 40px;
+      }
+      .view-candidacies2 .item-list .views-row {
+        width: 18%;
+      }
+      .view-candidacies2 .item-list .views-row-1 {
+        
       }
       .node-candidacy-person.node-teaser {
         border-bottom: none;
@@ -1602,11 +1622,13 @@ article.node .body .eixos-list {
           background: none;
         }
         .view-candidacies .item-list .views-row .views-field-field-candidacy-photo,
+        .view-candidacies2 .item-list .views-row .views-field-field-candidacy-photo,
         .node-candidacy-person.node-teaser .image,
         .voting-option .image {
           margin-bottom: 10px;
         }
           .view-candidacies .item-list .views-row .views-field-field-candidacy-photo a,
+          .view-candidacies2 .item-list .views-row .views-field-field-candidacy-photo a,
           .node-candidacy-person.node-teaser .image a,
           .voting-option .image a {
             display: block;
@@ -1616,12 +1638,14 @@ article.node .body .eixos-list {
             border: 4px solid #e65c56;
           }
           .view-candidacies .item-list .views-row:hover .views-field-field-candidacy-photo a,
+          .view-candidacies2 .item-list .views-row:hover .views-field-field-candidacy-photo a,
           .node-candidacy-person.node-teaser:hover .image a,
           .voting-option .image:hover a {
             border-width: 6px;
             border-color: #b52821;
           }
             .view-candidacies .item-list .views-row .views-field-field-candidacy-photo a img,
+            .view-candidacies2 .item-list .views-row .views-field-field-candidacy-photo a img,
             .node-candidacy-person.node-teaser .image a img,
             .voting-option .image a img {
               -webkit-border-radius: 50%;
@@ -1637,6 +1661,14 @@ article.node .body .eixos-list {
           height: 2.2em;
           overflow: hidden;
         }
+        .view-candidacies2 .item-list .views-row .views-field-title {
+          font-size: 1.8em;
+          line-height: 1;
+          font-weight: 800;
+          text-align: center;
+          height: 1.8em;
+          overflow: hidden;
+        }
         .blank-option .voting-option h2 {
           height: auto;
         }
@@ -1645,6 +1677,7 @@ article.node .body .eixos-list {
             color: #e65c56;
           }
           .view-candidacies .item-list .views-row:hover .views-field-title a,
+          .view-candidacies2 .item-list .views-row:hover .views-field-title a,
           .node-candidacy-person.node-teaser:hover h2 a,
           .voting-option:hover h2 a {
             color: #b52821;
