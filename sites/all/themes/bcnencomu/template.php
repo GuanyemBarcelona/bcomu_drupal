@@ -320,10 +320,18 @@ function bcnencomu_preprocess_node(&$vars) {
         // type
         $type = field_get_items('node', $node_obj, 'field_candidacy_type');
         if (isset($type[0]['tid'])){
-          $list_nid = CANDIDACY_HEAD_NID; // Head
-          if ($type[0]['tid'] == 64) $list_nid = CANDIDACY_COUNCIL_NID; // Council March 2015
-          else if ($type[0]['tid'] == 432) $list_nid = CANDIDACY_COUNCIL_JULY_NID; // Council July 2015
-          $vars['list_uri'] = gh_get_node_path_alias($list_nid);
+        	if ($type[0]['tid'] == 63){
+        		$list_nid = CANDIDACY_HEAD_NID; // Head
+        	}else{
+        		// july first date: the starting date of the July 2015 council candidacy
+        		$july_candidacy_date = mktime(0,0,0,7,1,2015);
+        		if ($node_obj->created < $july_candidacy_date){
+        			$list_nid = CANDIDACY_COUNCIL_NID; // Council March 2015
+        		}else{
+        			$list_nid = CANDIDACY_COUNCIL_JULY_NID; // Council July 2015
+        		}
+        	}
+        	if (isset($list_nid)) $vars['list_uri'] = gh_get_node_path_alias($list_nid);
         }
 
         /*// district
