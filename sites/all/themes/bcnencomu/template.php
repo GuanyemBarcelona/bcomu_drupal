@@ -1,6 +1,7 @@
 <?php
 define('CANDIDACY_HEAD_NID', 162);
 define('CANDIDACY_COUNCIL_NID', 173);
+define('CANDIDACY_COUNCIL_JULY_NID', 1495);
 define('CALENDAR_NID', 3);
 define('ENCOMUMAP_NID', 1062);
 
@@ -223,15 +224,18 @@ function bcnencomu_preprocess_node(&$vars) {
 		case 'page': /********** PAGE **********/
 			if ($vars['view_mode'] == 'full'){
         // Candidacies pages
-        if (in_array($node_obj->nid, array(CANDIDACY_HEAD_NID, CANDIDACY_COUNCIL_NID))){
+        if (in_array($node_obj->nid, array(CANDIDACY_HEAD_NID, CANDIDACY_COUNCIL_NID, CANDIDACY_COUNCIL_JULY_NID))){
           $vars['theme_hook_suggestions'][] = 'node__candidacies';
           $vars['classes_array'][] = 'node-page-candidacies';
           if ($node_obj->nid == CANDIDACY_HEAD_NID){
             // head
             $vars['candidacies_list'] = views_embed_view('candidacies', 'block');
-          }else{
-            // council
+          }else if ($node_obj->nid == CANDIDACY_COUNCIL_NID){
+            // council March 2015
             $vars['candidacies_list'] = views_embed_view('candidacies', 'block_1');
+          }else if ($node_obj->nid == CANDIDACY_COUNCIL_JULY_NID){
+            // council July 2015
+            $vars['candidacies_list'] = views_embed_view('candidacies2', 'block');
           }
         }
       }
@@ -316,8 +320,9 @@ function bcnencomu_preprocess_node(&$vars) {
         // type
         $type = field_get_items('node', $node_obj, 'field_candidacy_type');
         if (isset($type[0]['tid'])){
-          $is_council = ($type[0]['tid'] == 64);
-          $list_nid = $is_council? CANDIDACY_COUNCIL_NID : CANDIDACY_HEAD_NID;
+          $list_nid = CANDIDACY_HEAD_NID; // Head
+          if ($type[0]['tid'] == 64) $list_nid = CANDIDACY_COUNCIL_NID; // Council March 2015
+          else if ($type[0]['tid'] == 432) $list_nid = CANDIDACY_COUNCIL_JULY_NID; // Council July 2015
           $vars['list_uri'] = gh_get_node_path_alias($list_nid);
         }
 
