@@ -60,7 +60,18 @@ function bcnencomu_preprocess_html(&$vars) {
 			'name' => 'viewport',
 		),
 	);
-  drupal_add_html_head($meta_viewport, 'meta_viewport'); 
+  drupal_add_html_head($meta_viewport, 'meta_viewport');
+
+  // globalsign domain verification meta
+  $meta_globalsign_domain_verification = array(
+		'#type' => 'html_tag',
+		'#tag' => 'meta',
+		'#attributes' => array(
+			'content' =>  'jWUMrdTC0yyEo-WRh7KwWE1x4bjogM-RFYNZp6ZIbL',
+			'name' => 'globalsign-domain-verification',
+		),
+	);
+  drupal_add_html_head($meta_globalsign_domain_verification, 'meta_globalsign_domain_verification');
 
   // external css
   drupal_add_css('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', array('type' => 'external'));
