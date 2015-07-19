@@ -92,6 +92,10 @@ article.primaries-resultats {
 			article.primaries-resultats table td.title {
 				text-align: left;
 			}
+			article.primaries-resultats table td.portrait {}
+				article.primaries-resultats table td.portrait img {
+					min-width: 50px;
+				}
 			article.primaries-resultats table td.count {
 				font-size: 2em;
 				font-weight: bold;
@@ -221,6 +225,12 @@ article.primaries-resultats {
 						}
 						div[data-results-type="map"] .map .voting-option .info h2 {
 							font-size: 1.4em;
+						}
+						div[data-results-type="map"] .map .voting-option .info .message {
+							font-size: 1.2em;
+							line-height: 1;
+							font-style: italic;
+							color: red;
 						}
 						div[data-results-type="map"] .map .voting-winner .results {}
 							div[data-results-type="map"] .map .voting-winner .results dt,

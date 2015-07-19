@@ -26,6 +26,19 @@ function primaries_resultats_menu() {
     'access arguments' => array('access content'),
   );
 
+  $items['eleccio-consellers-districtes/resultats/mapa'] = array(
+    'page callback' => 'equip_consellers_resultats_main',
+    'type' => MENU_CALLBACK,
+    'page arguments' => array('all'),
+    'access arguments' => array('access content'),
+  );
+  $items['eleccio-consellers-districtes/resultats/districte/%'] = array(
+    'page callback' => 'equip_consellers_resultats_main',
+    'type' => MENU_CALLBACK,
+    'page arguments' => array(3),
+    'access arguments' => array('access content'),
+  );
+
   return $items;
 }
 
@@ -49,11 +62,21 @@ function primaries_resultats_theme($existing, $type, $theme, $path) {
       'variables' => array('voting' => array()),
       'template' => 'theme/results_measures',
     ),
+    'results_council_team_map' => array(
+      'path' => drupal_get_path('module', 'primaries_resultats'),
+      'variables' => array('voting' => array()),
+      'template' => 'theme/results_council_team_map',
+    ),
+    'results_council_team_district' => array(
+      'path' => drupal_get_path('module', 'primaries_resultats'),
+      'variables' => array('voting' => array()),
+      'template' => 'theme/results_council_team_district',
+    ),
   );
 }
 
 /**
-* Main control
+* Main control for the Resultats Primaries March 2015
 */
 function primaries_resultats_main($type){
   drupal_add_css(drupal_get_path('module', 'primaries_resultats') . '/css/primaries.resultats.css', array('group' => CSS_THEME));
@@ -196,6 +219,149 @@ function primaries_resultats_main($type){
   }
 }
 
+/**
+* Main control for the Resultats Equips Consellers July 2015
+*/
+function equip_consellers_resultats_main($district){
+  drupal_add_css(drupal_get_path('module', 'primaries_resultats') . '/css/primaries.resultats.css', array('group' => CSS_THEME));
+  $data_path = drupal_get_path('module', 'primaries_resultats') . '/data';
+  $img_path = drupal_get_path('module', 'primaries_resultats') . '/images';
+  $verify_uri = 'https://vota.barcelonaencomu.cat/#/election/$/public/verify-results';
+  $voting = array();
+  if ($district == 'all'){
+    // map
+    $voting['map'] = theme('image', array('path' => $img_path . '/mapa_bcn.jpg'));
+    $voting['neighbourhoods'] = array();
+    for ($i = 0; $i < 10; $i++) {
+      // for all neighbourhoods
+      $voting_id = '1030'.$i.'0';
+      $data_council = file_get_contents($data_path . '/'.$voting_id.'.results.json');
+      if ($data_council !== FALSE){
+        $data_council = json_decode($data_council, TRUE);
+        $total_votes = $data_council['total_votes'];
+        $question = $data_council['questions'][0];
+        $blank_votes = $question['totals']['blank_votes'];
+        $answers = $question['answers'];
+        foreach ($answers as $key => $answer) {
+          $total_count = $answer['total_count'];
+          $answers[$key]['percent'] = _get_percentage($total_count, $total_votes);
+        }
+
+        $no_voting = ($i == 4 || $i == 5);
+        $message = FALSE;
+        $detail_uri = gh_get_base_and_lang_path() . 'eleccio-consellers-districtes/resultats/districte/' . $i;
+        if ($no_voting){
+          $message = t("No voting was done in this district", array(), array('context' => 'Equips Consellers: resultats'));
+          $detail_uri = '#';
+        }
+        //---
+        $voting['neighbourhoods'][] = array(
+          'no_voting' => $no_voting,
+          'message' => $message,
+          'name' => $question['description'],
+          'answers' => $answers,
+          'blank' => array(
+            'total_count' => $blank_votes,
+            'percent' => _get_percentage($blank_votes, $total_votes),
+          ),
+          'total_votes' => $total_votes,
+          'detail_uri' => $detail_uri,
+        );
+      }
+    }
+    return theme('results_council_team_map', array('voting' => $voting));
+  }else{
+    // district detail
+    $voting_id = '1050'.$district.'1';
+    $data_council = file_get_contents($data_path . '/'.$voting_id.'.results.json');
+    if ($data_council !== FALSE){
+      $data_council = json_decode($data_council, TRUE);
+      $total_votes = $data_council['total_votes'];
+      $counselors_per_district = _get_counselors_per_district($district);
+
+      // counselors results
+      $counselors = $data_council['questions'][0];
+      $blank_votes_counselors = $counselors['totals']['blank_votes'];
+      $answers_counselors_count = 0;
+      $answers_counselors = $counselors['answers'];
+      // calculate total points
+      foreach ($answers_counselors as $key2 => $answer) {
+        $answers_counselors_count += $answer['total_count'];
+      }
+      // now we calculate each answers' percent based on these total points
+      foreach ($answers_counselors as $key2 => $answer) {
+        $answers_counselors[$key2]['percent'] = _get_percentage($answer['total_count'], $answers_counselors_count);
+        // also obtain useful links
+        foreach ($answer['urls'] as $key3 => $url) {
+          switch ($url['title']) {
+            case 'URL':
+              $answers_counselors[$key2]['link'] = $url['url'];
+              break;
+            case 'Image URL':
+              $answers_counselors[$key2]['image_uri'] = $url['url'];
+              break;
+          }
+        }
+      }
+      //---
+      $voting_counselors = array(
+        'answers' => $answers_counselors,
+        'max' => $counselors_per_district['num_counselors'] - 1, // removing the head counselor, elected in past march's election
+        'blank' => array(
+          'total_count' => $blank_votes_counselors,
+          'percent' => _get_percentage($blank_votes_counselors, $answers_counselors_count),
+        ),
+      );
+
+      // substitutes results
+      if (isset($data_council['questions'][1])){
+        $substitutes = $data_council['questions'][1];
+        $blank_votes_substitutes = $substitutes['totals']['blank_votes'];
+        $answers_substitutes_count = 0;
+        $answers_substitutes = $substitutes['answers'];
+        // calculate total points
+        foreach ($answers_substitutes as $key2 => $answer) {
+          $answers_substitutes_count += $answer['total_count'];
+        }
+        // now we calculate each answers' percent based on these total points
+        foreach ($answers_substitutes as $key2 => $answer) {
+          $answers_substitutes[$key2]['percent'] = _get_percentage($answer['total_count'], $answers_substitutes_count);
+          // also obtain useful links
+          foreach ($answer['urls'] as $key3 => $url) {
+            switch ($url['title']) {
+              case 'URL':
+                $answers_substitutes[$key2]['link'] = $url['url'];
+                break;
+              case 'Image URL':
+                $answers_substitutes[$key2]['image_uri'] = $url['url'];
+                break;
+            }
+          }
+        }
+        //---
+        $voting_substitutes = array(
+          'answers' => $answers_substitutes,
+          'max' => $counselors_per_district['num_substitutes'],
+          'blank' => array(
+            'total_count' => $blank_votes_substitutes,
+            'percent' => _get_percentage($blank_votes_substitutes, $answers_substitutes_count),
+          ),
+        );
+      }
+
+      $voting['map_uri'] = gh_get_base_and_lang_path() . 'eleccio-consellers-districtes/resultats/mapa';
+      $voting['district_name'] = $counselors_per_district['name'];
+      $voting['subvotings'] = array(
+        'counselors' => $voting_counselors,
+      );
+      if (isset($voting_substitutes)) $voting['subvotings']['substitutes'] = $voting_substitutes;
+      $voting['verify_uri'] = str_replace('$', $voting_id, $verify_uri);
+      $voting['total_votes'] = $total_votes;
+    }
+    return theme('results_council_team_district', array('voting' => $voting));
+  }
+}
+
 function _compare_measure_winners($measure1, $measure2){
     if ($measure1['total_count'] == $measure2['total_count']) {
       return 0;
@@ -216,3 +382,58 @@ function _get_percentage($value, $total){
   return '-';
 }
 
+function _get_counselors_per_district($district_id){
+  $counselors_per_district = array(
+    0 => array(
+      'name' => 'Sant Martí',
+      'num_counselors' => 5,
+      'num_substitutes' => 2,
+    ),
+    1 => array(
+      'name' => 'Ciutat Vella',
+      'num_counselors' => 5,
+      'num_substitutes' => 2,
+    ),
+    2 => array(
+      'name' => 'Eixample',
+      'num_counselors' => 3,
+      'num_substitutes' => 2,
+    ),
+    3 => array(
+      'name' => 'Sants-Montjuïc',
+      'num_counselors' => 4,
+      'num_substitutes' => 2,
+    ),
+    4 => array(
+      'name' => 'Les Corts',
+      'num_counselors' => 0,
+      'num_substitutes' => 2,
+    ),
+    5 => array(
+      'name' => 'Sarrià-Sant Gervasi',
+      'num_counselors' => 0,
+      'num_substitutes' => 2,
+    ),
+    6 => array(
+      'name' => 'Gràcia',
+      'num_counselors' => 3,
+      'num_substitutes' => 2,
+    ),
+    7 => array(
+      'name' => 'Horta-Guinardó',
+      'num_counselors' => 4,
+      'num_substitutes' => 2,
+    ),
+    8 => array(
+      'name' => 'Nou Barris',
+      'num_counselors' => 6,
+      'num_substitutes' => 2,
+    ),
+    9 => array(
+      'name' => 'Sant Andreu',
+      'num_counselors' => 5,
+      'num_substitutes' => 2,
+    ),
+  );
+  return $counselors_per_district[$district_id];
+}
