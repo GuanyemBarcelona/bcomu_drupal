@@ -269,7 +269,6 @@ function equip_consellers_resultats_main($district){
       // substitutes results
       if (isset($data_council['questions'][1])){
         $substitutes = $data_council['questions'][1];
-        $blank_votes_substitutes = $substitutes['totals']['blank_votes'];
         $answers_substitutes_count = 0;
         $answers_substitutes = $substitutes['answers'];
         // calculate total points
@@ -295,10 +294,6 @@ function equip_consellers_resultats_main($district){
         $voting_substitutes = array(
           'answers' => $answers_substitutes,
           'max' => $counselors_per_district['num_substitutes'],
-          'blank' => array(
-            'total_count' => $blank_votes_substitutes,
-            'percent' => _get_percentage($blank_votes_substitutes, $answers_substitutes_count),
-          ),
         );
       }
 

@@ -38,6 +38,7 @@
           </tbody>
         </table>
       </section>
+      <?php if (isset($neighbourhood_voting['blank'])){ ?>
       <section class="blank-option">
         <div class="voting-option">
           <div class="content">
@@ -51,6 +52,7 @@
           </dl>
         </div>
       </section>
+      <?php } ?>
       <?php }else{ ?>
       <p class="empty"><?php print t("No voting was made on this topic", array(), array('context' => 'Primaries: resultats')); ?></p>
       <?php } ?>
