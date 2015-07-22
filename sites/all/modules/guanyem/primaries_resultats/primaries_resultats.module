@@ -203,15 +203,8 @@ function equip_consellers_resultats_main($district){
       $data_council = file_get_contents($data_path . '/'.$voting_id.'.results.json');
       if ($data_council !== FALSE){
         $data_council = json_decode($data_council, TRUE);
-        $total_votes = $data_council['total_votes'];
         $question = $data_council['questions'][0];
-        $blank_votes = $question['totals']['blank_votes'];
         $answers = $question['answers'];
-        foreach ($answers as $key => $answer) {
-          $total_count = $answer['total_count'];
-          $answers[$key]['percent'] = _get_percentage($total_count, $total_votes);
-        }
-
         $no_voting = ($i == 4 || $i == 5);
         $message = FALSE;
         $detail_uri = gh_get_base_and_lang_path() . 'eleccio-consellers-districtes/resultats/districte/' . $i;
@@ -225,11 +218,6 @@ function equip_consellers_resultats_main($district){
           'message' => $message,
           'name' => $question['description'],
           'answers' => $answers,
-          'blank' => array(
-            'total_count' => $blank_votes,
-            'percent' => _get_percentage($blank_votes, $total_votes),
-          ),
-          'total_votes' => $total_votes,
           'detail_uri' => $detail_uri,
         );
       }
