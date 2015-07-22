@@ -262,7 +262,7 @@ function equip_consellers_resultats_main($district){
         'max' => $counselors_per_district['num_counselors'] - 1, // removing the head counselor, elected in past march's election
         'blank' => array(
           'total_count' => $blank_votes_counselors,
-          'percent' => _get_percentage($blank_votes_counselors, $answers_counselors_count),
+          'percent' => _get_percentage($blank_votes_counselors, $total_votes),
         ),
       );
 
