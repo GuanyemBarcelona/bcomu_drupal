@@ -227,23 +227,23 @@ function equip_consellers_resultats_main($district){
     // district detail
     $voting_id = '1050'.$district.'1';
     $data_council = file_get_contents($data_path . '/'.$voting_id.'.results.json');
-    if ($data_council !== FALSE){
+    $data_council_original = file_get_contents($data_path . '/'.$voting_id.'.results.original.json');
+    if ($data_council !== FALSE && $data_council_original !== FALSE){
       $data_council = json_decode($data_council, TRUE);
+      $data_council_original = json_decode($data_council_original, TRUE);
       $total_votes = $data_council['total_votes'];
       $counselors_per_district = _get_counselors_per_district($district);
 
       // counselors results
       $counselors = $data_council['questions'][0];
+      $counselors_original = $data_council_original['questions'][0];
       $blank_votes_counselors = $counselors['totals']['blank_votes'];
-      $answers_counselors_count = 0;
       $answers_counselors = $counselors['answers'];
-      // calculate total points
+      $answers_counselors_original = $counselors_original['answers'];
+      // we calculate each answers' percent based on each original vote / total votes
       foreach ($answers_counselors as $key2 => $answer) {
-        $answers_counselors_count += $answer['total_count'];
-      }
-      // now we calculate each answers' percent based on these total points
-      foreach ($answers_counselors as $key2 => $answer) {
-        $answers_counselors[$key2]['percent'] = _get_percentage($answer['total_count'], $answers_counselors_count);
+        $answers_counselors[$key2]['votes'] = $answers_counselors_original[$key2]['total_count'];
+        $answers_counselors[$key2]['percent'] = _get_percentage($answers_counselors[$key2]['votes'], $total_votes);
         // also obtain useful links
         foreach ($answer['urls'] as $key3 => $url) {
           switch ($url['title']) {
@@ -269,15 +269,13 @@ function equip_consellers_resultats_main($district){
       // substitutes results
       if (isset($data_council['questions'][1])){
         $substitutes = $data_council['questions'][1];
-        $answers_substitutes_count = 0;
+        $substitutes_original = $data_council_original['questions'][1];
         $answers_substitutes = $substitutes['answers'];
-        // calculate total points
+        $answers_substitutes_original = $substitutes_original['answers'];
+        // we calculate each answers' percent based on each original vote / total votes
         foreach ($answers_substitutes as $key2 => $answer) {
-          $answers_substitutes_count += $answer['total_count'];
-        }
-        // now we calculate each answers' percent based on these total points
-        foreach ($answers_substitutes as $key2 => $answer) {
-          $answers_substitutes[$key2]['percent'] = _get_percentage($answer['total_count'], $answers_substitutes_count);
+          $answers_substitutes[$key2]['votes'] = $answers_substitutes_original[$key2]['total_count'];
+          $answers_substitutes[$key2]['percent'] = _get_percentage($answers_substitutes[$key2]['votes'], $total_votes);
           // also obtain useful links
           foreach ($answer['urls'] as $key3 => $url) {
             switch ($url['title']) {

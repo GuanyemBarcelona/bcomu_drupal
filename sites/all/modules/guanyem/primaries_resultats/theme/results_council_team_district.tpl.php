@@ -20,8 +20,9 @@
               <th width="10%"></th>
               <th width="30%"><?php print t("Name", array(), array('context' => 'Equips Consellers: resultats')); ?></th>
               <th width="30%"><?php print t("Team", array(), array('context' => 'Equips Consellers: resultats')); ?></th>
-              <th width="15%"><?php print t("Points", array(), array('context' => 'Primaries: resultats')); ?></th>
-              <th width="10%"><?php print t("Percentage", array(), array('context' => 'Primaries: resultats')); ?></th>
+              <th width="8%"><?php print t("Points", array(), array('context' => 'Primaries: resultats')); ?></th>
+              <th width="8%"><?php print t("Votes", array(), array('context' => 'Primaries: resultats')); ?></th>
+              <th width="9%"><?php print t("Percentage", array(), array('context' => 'Primaries: resultats')); ?></th>
             </tr>
           </thead>
           <tbody>
@@ -31,7 +32,8 @@
               <td class="portrait"><a href="<?php print $option['link']; ?>" rel="external"><img src="<?php print $option['image_uri']; ?>" alt=""></a></td>
               <td class="name"><h2><a href="<?php print $option['link']; ?>" rel="external"><?php print $option['text']; ?></a></h2></td>
               <td class="team"><?php print $option['category']; ?></td>
-              <td class="count"><?php print $option['total_count']; ?></td>
+              <td class="count points"><?php print $option['total_count']; ?></td>
+              <td class="count votes"><?php print $option['votes']; ?></td>
               <td class="percent"><?php print $option['percent']; ?></td>
             </tr>
             <?php } ?>
