@@ -2,6 +2,7 @@
 define('CANDIDACY_HEAD_NID', 162);
 define('CANDIDACY_COUNCIL_NID', 173);
 define('CANDIDACY_COUNCIL_JULY_NID', 1495);
+define('CANDIDACY_MANAGEMENT2015_NID', 1671);
 define('CALENDAR_NID', 3);
 define('ENCOMUMAP_NID', 1062);
 
@@ -335,11 +336,15 @@ function bcnencomu_preprocess_node(&$vars) {
         		$list_nid = CANDIDACY_HEAD_NID; // Head
         	}else{
         		// july first date: the starting date of the July 2015 council candidacy
-        		$july_candidacy_date = mktime(0,0,0,7,1,2015);
-        		if ($node_obj->created < $july_candidacy_date){
+        		$july2015_candidacy_date = mktime(0,0,0,7,1,2015);
+        		// september first date: the starting date of the September 2015 party management (direction, representatives) candidacy
+        		$september2015_candidacy_date = mktime(0,0,0,9,1,2015);
+        		if ($node_obj->created < $july2015_candidacy_date){
         			$list_nid = CANDIDACY_COUNCIL_NID; // Council March 2015
-        		}else{
+        		}else if ($node_obj->created < $september2015_candidacy_date){
         			$list_nid = CANDIDACY_COUNCIL_JULY_NID; // Council July 2015
+        		} else{
+        			$list_nid = CANDIDACY_MANAGEMENT2015_NID; // Management September 2015
         		}
         	}
         	if (isset($list_nid)) $vars['list_uri'] = gh_get_node_path_alias($list_nid);
