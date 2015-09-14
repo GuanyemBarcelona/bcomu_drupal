@@ -2,7 +2,8 @@
 define('CANDIDACY_HEAD_NID', 162);
 define('CANDIDACY_COUNCIL_NID', 173);
 define('CANDIDACY_COUNCIL_JULY_NID', 1495);
-define('CANDIDACY_MANAGEMENT2015_NID', 1671);
+define('CANDIDACY_COORDINATION2015_NID', 1671);
+define('CANDIDACY_GUARANTEES2015_NID', 1673);
 define('CALENDAR_NID', 3);
 define('ENCOMUMAP_NID', 1062);
 
@@ -332,20 +333,26 @@ function bcnencomu_preprocess_node(&$vars) {
         // type
         $type = field_get_items('node', $node_obj, 'field_candidacy_type');
         if (isset($type[0]['tid'])){
-        	if ($type[0]['tid'] == 63){
+          $type_tid = $type[0]['tid'];
+        	if ($type_tid == 63){
         		$list_nid = CANDIDACY_HEAD_NID; // Head
         	}else{
         		// july first date: the starting date of the July 2015 council candidacy
         		$july2015_candidacy_date = mktime(0,0,0,7,1,2015);
-        		// september first date: the starting date of the September 2015 party management (direction, representatives) candidacy
-        		$september2015_candidacy_date = mktime(0,0,0,9,1,2015);
+            // types for the september internal candidacies (coordination, which englobes management nd representatives, and guarantees)
+            $coordination_sept2015_tids = array(460, 461);
+            $guarantees_sept2015_tid = 462;
         		if ($node_obj->created < $july2015_candidacy_date){
         			$list_nid = CANDIDACY_COUNCIL_NID; // Council March 2015
-        		}else if ($node_obj->created < $september2015_candidacy_date){
-        			$list_nid = CANDIDACY_COUNCIL_JULY_NID; // Council July 2015
-        		} else{
-        			$list_nid = CANDIDACY_MANAGEMENT2015_NID; // Management September 2015
-        		}
+        		}else{
+              if ($type_tid == $guarantees_sept2015_tid){
+                $list_nid = CANDIDACY_GUARANTEES2015_NID; // Guarantees September 2015
+              }else if (in_array($type_tid, $coordination_sept2015_tids)){
+                $list_nid = CANDIDACY_COORDINATION2015_NID; // Coordination September 2015
+              }else{
+                $list_nid = CANDIDACY_COUNCIL_JULY_NID; // Council July 2015
+              }
+            }
         	}
         	if (isset($list_nid)) $vars['list_uri'] = gh_get_node_path_alias($list_nid);
         }
