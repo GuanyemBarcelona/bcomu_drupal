@@ -1322,8 +1322,7 @@ body.front .region-content-bottom {
 }
 /* Home bottom list */
 #block-views-frontpage-block_1 {
-  float: left;
-  width: 75%;
+  
 }
   .view-frontpage {}
     .node-teaser {
