@@ -169,7 +169,6 @@ header[role="banner"] {
 .region-header-top {
   position: relative;
   height: 36px;
-  overflow: hidden;
   background: #575757;
 }
 
@@ -179,7 +178,6 @@ header[role="banner"] {
   left: 0;
   width: 20.50%;
   height: 115px;
-  /*padding: 24px 30px;*/
   background: white;
   z-index: 2;
 }
@@ -352,13 +350,23 @@ header[role="banner"] {
         }
           #block-block-5 img {}
 
-  #block-menu-menu-secondary-menu {}
+  #block-menu-menu-top-menu {
+    float: left;
+    padding-right: 10px;
+    margin-right: 10px;
+    border-right: 1px solid #AAA;
+  }
+  #block-menu-menu-secondary-menu {
+    float: left;
+  }
+    #block-menu-menu-top-menu nav > ul.menu, 
     #block-menu-menu-secondary-menu nav > ul.menu {}
+      #block-menu-menu-top-menu nav > ul.menu > li,
       #block-menu-menu-secondary-menu nav > ul.menu > li {
         float: left;
         position: relative;
-        margin: 0 15px 0 0;
       }
+        #block-menu-menu-top-menu nav > ul.menu > li a,
         #block-menu-menu-secondary-menu nav > ul.menu > li a {
           display: block;
           font-size: 1.2em;
@@ -373,10 +381,25 @@ header[role="banner"] {
           -o-transition: all 0.3s ease-in-out;
           transition: all 0.3s ease-in-out;
         }
+        #block-menu-menu-top-menu nav > ul.menu > li.active-trail a,
+        #block-menu-menu-top-menu nav > ul.menu > li a.active,
+        #block-menu-menu-top-menu nav > ul.menu > li a:hover,
         #block-menu-menu-secondary-menu nav > ul.menu > li.active-trail a,
         #block-menu-menu-secondary-menu nav > ul.menu > li a.active,
         #block-menu-menu-secondary-menu nav > ul.menu > li a:hover {
           color: #f9efb9;
+        }
+        #block-menu-menu-top-menu nav > ul.menu > li ul,
+        #block-menu-menu-secondary-menu nav > ul.menu > li ul {
+          display: none;
+          position: absolute;
+          top: 36px;
+          left: 0;
+          width: 120px;
+        }
+        #block-menu-menu-top-menu nav > ul.menu > li:hover ul,
+        #block-menu-menu-secondary-menu nav > ul.menu > li:hover ul {
+          display: block;
         }
         
 /* responsive menu */
@@ -511,7 +534,10 @@ a[data-action="go-back"] {
           display: none;
         }
 
-#main {}
+#main {
+  position: relative;
+  z-index: 9;
+}
 /* en comu map */
 #page.encomu-map-page #main {
   width: 100%;
@@ -2016,6 +2042,7 @@ footer[role="contentinfo"] {
 * Clearfix
 **********************/
 #block-system-main-menu nav > ul.menu:after,
+#block-menu-menu-top-menu nav > ul.menu:after,
 #block-menu-menu-secondary-menu nav > ul.menu:after,
 #main > .inner:after {
   content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;
