@@ -164,6 +164,9 @@ header[role="banner"] {
   position: relative;
   z-index: 10;
 }
+#page.page-without-navigation header[role="banner"] {
+  height: 115px;
+}
   header[role="banner"] > .inner {}
 
 .region-header-top {

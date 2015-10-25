@@ -144,6 +144,11 @@ function bcnencomu_preprocess_page(&$vars, $hook) {
   if (arg(0) == 'node' && arg(1) == ENCOMUMAP_NID) {
     $vars['classes_array'][] = 'encomu-map-page';
   }
+
+  // page without header blocks
+  if (empty($vars['page']['header'])){
+    $vars['classes_array'][] = 'page-without-navigation';
+  }
 }
 
 function bcnencomu_preprocess_region(&$vars) {
