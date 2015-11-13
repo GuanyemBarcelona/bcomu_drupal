@@ -6,7 +6,7 @@
       <?php print render($page['header_top']); ?>
       <?php endif; ?>
 
-      <?php if ($logo){ $title_tag = ($is_front)? 'h1' : 'h2'; ?>
+      <?php if (isset($logo)){ $title_tag = ($is_front)? 'h1' : 'h2'; ?>
       <<?php print $title_tag ?> id="site-logo">
         <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
           <img src="<?php print $logo; ?>" alt="<?php print t('Logo'); ?>"/>

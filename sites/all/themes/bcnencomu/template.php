@@ -6,6 +6,7 @@ define('CANDIDACY_COORDINATION2015_NID', 1671);
 define('CANDIDACY_GUARANTEES2015_NID', 1673);
 define('CALENDAR_NID', 3);
 define('ENCOMUMAP_NID', 1062);
+define('ENCOMU_FORM_NID', 1808);
 
 // Auto-rebuild the theme registry during theme development.
 if (theme_get_setting('clear_registry')) {
@@ -148,6 +149,11 @@ function bcnencomu_preprocess_page(&$vars, $hook) {
   // page without header blocks
   if (empty($vars['page']['header'])){
     $vars['classes_array'][] = 'page-without-navigation';
+  }
+
+  // en comu form page
+  if (arg(0) == 'node' && arg(1) == ENCOMU_FORM_NID) {
+    unset($vars['logo']);
   }
 }
 
