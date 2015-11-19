@@ -190,9 +190,46 @@ var config = {
         // map icon
         $(this).find('.views-field-field-venue .field-content').prepend('<i class="fa fa-map-marker"></i>');
       });
-
     }
 
+    // accordions inside article body, the html of each collapsible group is like:
+    // .group
+    //   h3
+    //   .content
+    var $groups = $('article.node .body .group');
+    if ($groups.length){
+      $groups.each(function(i){
+        var $group = $(this);
+        $group.addClass('accordion');
+        $group.attr('id', 'accordion-' + i);
+        var $title = $group.find('> h3');
+        $title.append('<i class="fa fa-chevron-down"></i>');
+        var $content = $group.find('> .content');
+        $content.slideUp(10);
+        $title.css({'cursor':'pointer'});
+        var anim_speed = 300;
+        $title.click(function(e){
+          $groups.each(function(j){
+            var $title = $(this).find('> h3');
+            var $content = $(this).find('> .content');
+            if (i == j){ // this group
+              $title.parent().toggleClass('open');
+              $content.slideToggle(anim_speed);
+              $title.find('.fa').remove();
+              if ($title.parent().hasClass('open')){
+                $title.append('<i class="fa fa-chevron-up"></i>');
+              }else{
+                $title.append('<i class="fa fa-chevron-down"></i>');
+              }
+              
+            }else{ // another sibling group
+              $title.parent().removeClass('open');
+              $content.slideUp(anim_speed);
+            }
+          });
+        });
+      });
+    }
 	});
 
 	$(window).load(function(){

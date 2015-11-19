@@ -677,6 +677,19 @@ form {
     font-size: 1.2em;
   }
 
+/* accordions */
+.accordion {}
+  .accordion > h3 {
+    color: #e65c56;
+  }
+  .accordion > h3:hover {
+    text-decoration: underline;
+  }
+    .accordion > h3 .fa {
+      margin-left: 10px;
+    }
+  .accordion > .content {}
+
 /*** nodes ***/
 /* typical detail */
 article.node {}
