@@ -720,6 +720,7 @@ article.node {}
         }
     article.node .body {
       text-align: justify;
+      padding-right: 220px;
     }
       article.node .body img {
         width: auto;

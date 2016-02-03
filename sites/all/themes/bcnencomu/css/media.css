@@ -65,6 +65,9 @@
     font-size: 1.3em;
     padding: 50px 10px;
   }
+  article.node .body {
+    padding-right: 0;
+  }
 }
 
 @media all and (max-width: 1080px) and (min-width: 700px){
