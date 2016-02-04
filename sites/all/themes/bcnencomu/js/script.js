@@ -230,6 +230,48 @@ var config = {
         });
       });
     }
+
+    // cronograma Qui Som
+    var $cronograma = $('.view-cronograma-quisom');
+    if ($cronograma.length){
+      //$('#content-header h1').fadeIn(300);
+      $cronograma.find('.views-row').each(function(i){
+        var $row = $(this);
+        $row.addClass('scrollme');
+        $row.find('.views-field').each(function(j){
+          var $field = $(this);
+          var sign = 1;
+          if ($row.hasClass('views-row-odd')) sign = -1;
+          $field.filter('.views-field-field-image').addClass('animateme').attr({
+            'data-when': 'enter',
+            'data-from': 1,
+            'data-to': .3,
+            'data-opacity': 0,
+            'data-translatex': 200 * sign
+          });
+          $field.filter('.views-field-field-day').addClass('animateme').attr({
+            'data-when': 'enter',
+            'data-from': 1,
+            'data-to': .3,
+            'data-opacity': 0,
+            'data-translatex': -150 * sign
+          });
+          $field.filter('.views-field-title').addClass('animateme').attr({
+            'data-when': 'enter',
+            'data-from': 1,
+            'data-to': .3,
+            'data-opacity': 0,
+            'data-translatex': -200 * sign
+          });
+          $field.filter('.views-field-field-milestone-importance').find('span[data-value]').addClass('animateme').attr({
+            'data-when': 'enter',
+            'data-from': 1,
+            'data-to': .3,
+            'data-opacity': .3
+          });
+        });
+      });
+    }
 	});
 
 	$(window).load(function(){

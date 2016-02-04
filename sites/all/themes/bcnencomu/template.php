@@ -126,7 +126,7 @@ function bcnencomu_preprocess_page(&$vars, $hook) {
 
 	// must show title
 	$vars['must_show_title'] = FALSE;
-	if ((arg(0) == 'node' && arg(1) == 'add') || (arg(0) == 'taxonomy')){
+	if ((arg(0) == 'node' && arg(1) == 'add') || (arg(0) == 'taxonomy') || (arg(0) == 'cronograma')){
 		$vars['must_show_title'] = TRUE;
 	}
 
