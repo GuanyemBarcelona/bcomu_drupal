@@ -1834,21 +1834,55 @@ article.node .body .eixos-list {
 }
 
 /* cronograma Qui Som */
-body.page-cronograma #content {
+#page.cronograma-page #content {
   margin-left: 0;
 }
-body.page-cronograma #content-header h1 {
-  /*opacity: 0;*/
+#page.cronograma-page article > header h1 {
+  opacity: 0;
   font-size: 4em;
   font-weight: 100;
   text-align: center;
-  margin: 3em 0 3em;
+  margin: 3em 0 2em;
+  -webkit-transition: all 1.5s ease;
+  -moz-transition: all 1.5s ease;
+  -ms-transition: all 1.5s ease;
+  -o-transition: all 1.5s ease;
+  transition: all 1.5s ease;
 }
+#page.cronograma-page article > header h1.appear {
+  opacity: 1;
+}
+#page.cronograma-page .share-links {
+  text-align: center;
+  background: white;
+  position: relative;
+  z-index: 2;
+  padding: 30px 0;
+  margin-bottom: 60px;
+}
+#page.cronograma-page article.node .body {
+  padding: 40px 0;
+  width: 60%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+  #page.cronograma-page article.node .body p {
+    opacity: 0;
+    text-align: center;
+    font-size: 2.4em;
+    font-weight: 100;
+    margin-bottom: 4em;
+    padding: 2em 0;
+    background: white;
+  }
 .view-cronograma-quisom {
   position: relative;
   overflow: hidden;
   margin-bottom: 40px;
 }
+/* the time line */
+#page.cronograma-page article.node > .content:before,
 .view-cronograma-quisom:before {
   position: absolute;
   content: " ";

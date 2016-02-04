@@ -7,6 +7,7 @@ define('CANDIDACY_GUARANTEES2015_NID', 1673);
 define('CALENDAR_NID', 3);
 define('ENCOMUMAP_NID', 1062);
 define('ENCOMU_FORM_NID', 1808);
+define('CRONOGRAMA_NID', 1875);
 
 // Auto-rebuild the theme registry during theme development.
 if (theme_get_setting('clear_registry')) {
@@ -126,7 +127,7 @@ function bcnencomu_preprocess_page(&$vars, $hook) {
 
 	// must show title
 	$vars['must_show_title'] = FALSE;
-	if ((arg(0) == 'node' && arg(1) == 'add') || (arg(0) == 'taxonomy') || (arg(0) == 'cronograma')){
+	if ((arg(0) == 'node' && arg(1) == 'add') || (arg(0) == 'taxonomy')){
 		$vars['must_show_title'] = TRUE;
 	}
 
@@ -154,6 +155,11 @@ function bcnencomu_preprocess_page(&$vars, $hook) {
   // en comu form page
   if (arg(0) == 'node' && arg(1) == ENCOMU_FORM_NID) {
     unset($vars['logo']);
+  }
+
+  // cronograma Qui som page
+  if (arg(0) == 'node' && arg(1) == CRONOGRAMA_NID) {
+    $vars['classes_array'][] = 'cronograma-page';
   }
 }
 

@@ -232,12 +232,22 @@ var config = {
     }
 
     // cronograma Qui Som
-    var $cronograma = $('.view-cronograma-quisom');
+    var $cronograma = $('#page.cronograma-page');
     if ($cronograma.length){
-      //$('#content-header h1').fadeIn(300);
-      $cronograma.find('.views-row').each(function(i){
+      $('article > header h1').addClass('appear');
+      $cronograma.find('article.node .body p, .view-cronograma-quisom .views-row').each(function(i){
         var $row = $(this);
         $row.addClass('scrollme');
+        // paragraphs
+        if ($row.is('p')){
+          $row.addClass('animateme').attr({
+            'data-when': 'enter',
+            'data-from': 1,
+            'data-to': .1,
+            'data-opacity': 0
+          });
+        }
+        // fields
         $row.find('.views-field').each(function(j){
           var $field = $(this);
           var sign = 1;
