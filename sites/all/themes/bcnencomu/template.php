@@ -160,6 +160,7 @@ function bcnencomu_preprocess_page(&$vars, $hook) {
   // cronograma Qui som page
   if (arg(0) == 'node' && arg(1) == CRONOGRAMA_NID) {
     $vars['classes_array'][] = 'cronograma-page';
+    $vars['page']['sidebar_first'] = FALSE;
   }
 }
 

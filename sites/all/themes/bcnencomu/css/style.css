@@ -1836,13 +1836,15 @@ article.node .body .eixos-list {
 /* cronograma Qui Som */
 #page.cronograma-page #content {
   margin-left: 0;
+  float: none;
+  width: auto;
 }
 #page.cronograma-page article > header h1 {
   opacity: 0;
   font-size: 4em;
   font-weight: 100;
   text-align: center;
-  margin: 3em 0 2em;
+  margin: 2em 0;
   -webkit-transition: all 1.5s ease;
   -moz-transition: all 1.5s ease;
   -ms-transition: all 1.5s ease;
@@ -1858,10 +1860,9 @@ article.node .body .eixos-list {
   position: relative;
   z-index: 2;
   padding: 30px 0;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 #page.cronograma-page article.node .body {
-  padding: 40px 0;
   width: 60%;
   margin: 0 auto;
   position: relative;
@@ -1891,16 +1892,17 @@ article.node .body .eixos-list {
   height: 100%;
   left: 50%;
   z-index: 1;
+  opacity: .2;
 }
   .view-cronograma-quisom .view-content > .item-list > ul {
     position: relative;
-    padding-top: 300px;
     z-index: 2;
   }
   .view-cronograma-quisom .view-content .views-row {
     position: relative;
     clear: both;
-    padding: 200px 30px 160px;
+    padding: 40px 30px 40px;
+    margin-bottom: 50px;
     float: left;
     text-align: right;
     color: #e65c56;
@@ -1924,14 +1926,13 @@ article.node .body .eixos-list {
         max-width: 500px;
         min-width: 200px;
         margin: 0 0 .5em;
-        position: relative;
-        left: 109%;
-        top: -140px;
-        float: left;
+        position: absolute;
+        right: -75%;
+        top: 0;
       }
       .view-cronograma-quisom .views-row.views-row-odd .views-field-field-image {
-        left: -109%;
-        float: right;
+        right: auto;
+        left: -75%;
       }
       .view-cronograma-quisom .views-field-body {}
         .view-cronograma-quisom .views-field-body p {
@@ -1945,7 +1946,7 @@ article.node .body .eixos-list {
         border-radius: 50%;
         background: #e65c56;
         position: absolute;
-        top: 210px;
+        top: 100px;
       }
       .view-cronograma-quisom .views-row.views-row-odd .views-field-field-milestone-importance span[data-value] {
         right: auto;
@@ -1989,6 +1990,20 @@ article.node .body .eixos-list {
       }
       .view-cronograma-quisom .views-row.views-row-odd .views-field-field-milestone-importance span[data-value="1"] {
         left: -5px;
+      }
+      .view-cronograma-quisom .views-field-field-link {}
+        .view-cronograma-quisom .views-field-field-link a {
+          text-decoration: underline;
+          text-align: right;
+        }
+      .view-cronograma-quisom .views-field-edit-node {
+        margin-top: 20px;
+      }
+      .view-cronograma-quisom .views-field-edit-node a {
+        background: #e65c56;
+        color: white;
+        font-size: 1.4em;
+        padding: .2em .5em;
       }
 
 /* search results */
