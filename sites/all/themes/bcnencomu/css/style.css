@@ -1935,8 +1935,8 @@ article.node .body .eixos-list {
       }
       .view-cronograma-quisom .views-field-body {}
         .view-cronograma-quisom .views-field-body p {
-          font-weight: 100;
-          font-size: 2em;
+          font-size: 1.8em;
+          font-weight: 300;
         }
       .view-cronograma-quisom .views-field-field-link {
         font-size: 1.7em;
