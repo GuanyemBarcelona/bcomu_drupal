@@ -103,6 +103,19 @@
   .social-network-list {
     border-left: none;
   }
+
+  .view-cronograma-quisom .views-field-field-day {
+    font-size: 1.5em;
+  }
+  .view-cronograma-quisom .views-field-title {
+    font-size: 2.2em;
+  }
+  .view-cronograma-quisom .views-field-body p {
+    font-size: 1.6em;
+  }
+  .view-cronograma-quisom .views-field-field-link {
+    font-size: 1.5em;
+  }
 }
 
 @media all and (max-width: 850px){
@@ -246,6 +259,23 @@
     position: static;
     margin-bottom: 1em;
   }
+
+  .view-cronograma-quisom .view-content .views-row,
+  .view-cronograma-quisom .view-content .views-row.views-row-odd {
+    float: none;
+    width: auto;
+  }
+  .view-cronograma-quisom .view-content .views-row .views-field {
+    background: rgba(255,255,255,.5);
+  }
+  .view-cronograma-quisom .views-field-field-image,
+  .view-cronograma-quisom .views-row.views-row-odd .views-field-field-image {
+    position: static;
+    margin: 0 0 20px;
+  }
+  .view-cronograma-quisom .views-field-field-milestone-importance span[data-value] {
+    display: none;
+  }
 }
 
 @media all and (max-width: 500px){
@@ -312,6 +342,10 @@
   }
   .region-header {
     background: none;
+  }
+
+  #page.cronograma-page article > header h1 {
+    font-size: 3em;
   }
 }
 

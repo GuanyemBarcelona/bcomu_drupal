@@ -1883,7 +1883,6 @@ article.node .body .eixos-list {
   margin-bottom: 40px;
 }
 /* the time line */
-#page.cronograma-page article.node > .content:before,
 .view-cronograma-quisom:before {
   position: absolute;
   content: " ";
@@ -1923,16 +1922,16 @@ article.node .body .eixos-list {
         margin-bottom: .8em;
       }
       .view-cronograma-quisom .views-field-field-image {
+        width: 100%;
         max-width: 500px;
-        min-width: 200px;
         margin: 0 0 .5em;
         position: absolute;
-        right: -75%;
+        left: 105%;
         top: 0;
       }
       .view-cronograma-quisom .views-row.views-row-odd .views-field-field-image {
-        right: auto;
-        left: -75%;
+        left: auto;
+        right: 105%;
       }
       .view-cronograma-quisom .views-field-body {}
         .view-cronograma-quisom .views-field-body p {
