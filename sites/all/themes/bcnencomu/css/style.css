@@ -1904,7 +1904,6 @@ article.node .body .eixos-list {
     margin-bottom: 50px;
     float: left;
     text-align: right;
-    color: #e65c56;
     min-height: 300px;
     width: 50%;
   }
@@ -1918,6 +1917,7 @@ article.node .body .eixos-list {
       }
       .view-cronograma-quisom .views-field-title-field {
         font-size: 2.4em;
+        color: #e65c56;
         margin-bottom: .8em;
       }
       .view-cronograma-quisom .views-field-field-image {
@@ -1935,6 +1935,7 @@ article.node .body .eixos-list {
       .view-cronograma-quisom .views-field-body {}
         .view-cronograma-quisom .views-field-body p {
           font-size: 1.8em;
+          color: #e65c56;
           font-weight: 300;
         }
       .view-cronograma-quisom .views-field-field-link {
