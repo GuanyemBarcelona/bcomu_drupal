@@ -1900,7 +1900,7 @@ article.node .body .eixos-list {
   .view-cronograma-quisom .view-content .views-row {
     position: relative;
     clear: both;
-    padding: 40px 30px 40px;
+    padding: 40px 30px 60px;
     margin-bottom: 50px;
     float: left;
     text-align: right;
@@ -1916,9 +1916,8 @@ article.node .body .eixos-list {
         font-size: 1.8em;
         margin-bottom: .5em;
       }
-      .view-cronograma-quisom .views-field-title {
-        font-weight: 100;
-        font-size: 3em;
+      .view-cronograma-quisom .views-field-title-field {
+        font-size: 2.4em;
         margin-bottom: .8em;
       }
       .view-cronograma-quisom .views-field-field-image {

@@ -266,7 +266,7 @@ var config = {
             'data-opacity': 0,
             'data-translatex': -150 * sign
           });
-          $field.filter('.views-field-title').addClass('animateme').attr({
+          $field.filter('.views-field-title-field').addClass('animateme').attr({
             'data-when': 'enter',
             'data-from': .6,
             'data-to': .1,
