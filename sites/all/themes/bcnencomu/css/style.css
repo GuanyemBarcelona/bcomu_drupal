@@ -622,7 +622,7 @@ body.page-taxonomy-term #content-header h1 {
           -o-transition: all 0.3s ease-in-out;
           transition: all 0.3s ease-in-out;
         }
-        .region-sidebar-first ul.menu li.active-trail a,
+        .region-sidebar-first ul.menu li a.active-trail,
         .region-sidebar-first ul.menu li a.active,
         .region-sidebar-first ul.menu li a:hover {
           background: #577a9b;
@@ -632,11 +632,10 @@ body.page-taxonomy-term #content-header h1 {
         }
           .region-sidebar-first ul.menu li ul a {
             padding-left: 50px;
-            background: #8ea7bf!important;
           }
-          .region-sidebar-first ul.menu li ul li.active-trail a {
-            background: #577a9b!important;
-          }
+            .region-sidebar-first ul.menu li ul ul a {
+              padding-left: 75px;
+            }
 
       /* categories terms list */
       .view-categories-terms-list {}
