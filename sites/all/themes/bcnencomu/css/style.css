@@ -1823,6 +1823,10 @@ article.node .body .eixos-list {
           .view-display-id-agenda_page .views-row .views-field-field-venue {}
 
 /* calendar */
+.view-event-calendar {}
+  .view-event-calendar > header > h1 {
+    font-size: 1em;
+  }
 .calendar-calendar .month-view .full .inner .monthview, .calendar-calendar .week-view .full .inner .weekview, .calendar-calendar .day-view .full .inner .dayview {
   -webkit-border-radius: 0;
   border-radius: 0;
@@ -1854,6 +1858,42 @@ article.node .body .eixos-list {
     top: 2px;
     right: 2px;
   }
+.view .date-nav-wrapper .date-heading h3 {
+  font-size: 2.4em;
+}
+.view .date-nav-wrapper .date-prev, .view .date-nav-wrapper .date-next {
+  border-radius: 0;
+  padding: .3em .5em;
+  background: none;
+}
+  .view .date-nav-wrapper .date-prev a, .view .date-nav-wrapper .date-next a {
+    margin: 0;
+    font-size: 1.6em;
+    font-weight: normal;
+  }
+.view-my-events {}
+  .view-my-events .view-content {}
+    .view-my-events .views-row {
+      margin-bottom: 20px;
+    }
+      .view-my-events .views-row .views-field {
+        font-size: 1.4em;
+        margin-bottom: .4em;
+      }
+      .view-my-events .views-row .views-field-title {
+        font-size: 1.8em;
+        font-weight: bold;
+      }
+      .view-my-events .views-row .views-field-field-event-type {
+        text-transform: uppercase;
+        font-size: 1.3em;
+      }
+        .view-my-events .views-row .views-label {
+          color: #999;
+        }
+        .view-my-events .views-row .field-content {
+          display: inline;
+        }
 
 /* cronograma Qui Som */
 #page.cronograma-page #content {
