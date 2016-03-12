@@ -93,6 +93,10 @@ body.admin-menu {
   display: none;
 }
 
+.ui-datepicker {
+  width: 190px;
+}
+
 #page {
   
 }
