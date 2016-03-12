@@ -1828,10 +1828,28 @@ article.node .body .eixos-list {
   border: 1px solid white;
   padding: 3px;
   color: white;
+  position: relative;
 }
 .calendar-calendar div.calendar {
   font-size: 1em;
 }
+  .calendar-calendar td .views-field {
+    margin-bottom: .2em;
+  }
+  .calendar-calendar td .views-field-field-event-type {
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+  .calendar-calendar td a {
+    color: white;
+    font-weight: normal;
+    text-decoration: underline;
+  }
+  .calendar-calendar td .views-field-edit-node {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+  }
 
 /* cronograma Qui Som */
 #page.cronograma-page #content {
