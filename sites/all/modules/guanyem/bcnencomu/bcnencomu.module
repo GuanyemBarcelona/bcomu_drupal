@@ -62,6 +62,21 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
         }
       }
       break;
+    case 'event_node_form':
+      global $user;
+      if (in_array('calendari', $user->roles)){
+        // disable additional_settings vertical tabs and hide some fields
+        $form['additional_settings']['#type'] = 'fieldset';
+        $form['options']['#collapsible'] = false;
+        $form['options']['#collapsed'] = false;
+        unset($form['options']['#title']);
+        $form['options']['promote']['#access'] = false;
+        $form['options']['sticky']['#access'] = false;
+        $form['language']['#access'] = false;
+        $form['revision_information']['#access'] = false;
+        $form['author']['#access'] = false;
+      }
+      break;
   }
 }
 

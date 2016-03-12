@@ -232,6 +232,8 @@ legend {
   *margin-left: -7px;
   padding: 0;
   white-space: normal;
+  font-size: 1.7em;
+  font-weight: bold;
 }
 
 button, input, select, textarea {
@@ -609,4 +611,9 @@ div.messages.status {}
 }
   .views-exposed-form label {
     font-weight: normal;
+  }
+
+.vertical-tabs {}
+  .vertical-tabs ul.vertical-tabs-list li {
+    font-size: 1.5em;
   }
