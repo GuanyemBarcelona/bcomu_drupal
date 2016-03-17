@@ -1391,6 +1391,11 @@ body.front .region-content-bottom {
   width: 25%;
   background: #577a9a;
 }
+/* Calendar agenda */
+#block-views-calendar_agenda-agenda_block {}
+  #block-views-calendar_agenda-agenda_block > .content {
+    background: #577a9a;
+  }
   .view-display-id-agenda_block {}
     .view-display-id-agenda_block .view-empty {
       padding: 20px;
