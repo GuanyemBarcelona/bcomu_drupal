@@ -1071,6 +1071,20 @@ article.node-measure {}
     line-height: 1.25;
   }
 
+/* event detail */
+article.node-event {}
+
+  article.node-event .field {
+    margin: 0 0 .5em;
+    font-size: 1.7em;
+    line-height: 1.25;
+  }
+    article.node-event .field p {
+      margin: 0;
+      font-size: 1em;
+      line-height: 1;
+    }
+
 /* comments */
 .comment-wrapper {
   margin: 50px auto 0;
