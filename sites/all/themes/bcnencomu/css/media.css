@@ -68,6 +68,13 @@
   article.node .body {
     padding-right: 0;
   }
+
+  .view .date-nav-wrapper .date-heading h3 {
+    font-size: 2em;
+  }
+  .view .date-nav-wrapper .date-prev a, .view .date-nav-wrapper .date-next a {
+    font-size: 1.4em;
+  }
 }
 
 @media all and (max-width: 1080px) and (min-width: 700px){
@@ -195,7 +202,13 @@
   #sidebar-first,
   .region-footer #block-bcnencomu-social_networks_links,
   #block-bcnencomu-creativecommons,
-  #block-menu-menu-legal-menu {
+  #block-menu-menu-legal-menu,
+  .view .date-nav-wrapper .date-prev, .view .date-nav-wrapper .date-next {
+    position: static;
+    left: auto;
+    top: auto;
+    right: auto;
+    bottom: auto;
     float: none;
     width: 100%;
     height: auto;
@@ -276,6 +289,16 @@
   .view-cronograma-quisom .views-field-field-milestone-importance span[data-value] {
     display: none;
   }
+
+  .view-event-calendar .view-content {
+    min-width: 600px;
+  }
+    .calendar-calendar .week-view table.full {
+      min-width: 600px;
+    }
+    .calendar-calendar .week-view #single-day-container, .calendar-calendar .day-view #single-day-container {
+      height: auto;
+    }
 }
 
 @media all and (max-width: 500px){
