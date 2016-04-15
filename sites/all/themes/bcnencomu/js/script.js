@@ -136,7 +136,7 @@ var config = {
       scrollCalendarToFirstEvent();
     }
     // open event links as overlay
-    $('div.single-day div.weekview .views-field-title a, .view-calendar-agenda .views-row .views-field-title-field a').each(function(i){
+    $('div.single-day div.weekview .views-field-title a, div.single-day div.weekview .views-field-field-date a, .view-calendar-agenda .views-row .views-field-title-field a').each(function(i){
       var href = $(this).attr('href');
       $(this).attr('href', href + '?oasis=1');
       $(this).fancybox(
