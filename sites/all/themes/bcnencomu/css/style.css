@@ -1842,7 +1842,9 @@ article.node .body .eixos-list {
           .view-display-id-agenda_page .views-row .views-field-field-venue {}
 
 /* calendar */
-.view-event-calendar {}
+.view-event-calendar {
+  margin-bottom: 40px;
+}
   .view-event-calendar > header > h1 {
     font-size: 1em;
   }
