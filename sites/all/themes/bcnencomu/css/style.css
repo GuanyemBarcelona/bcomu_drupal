@@ -1853,32 +1853,44 @@ article.node .body .eixos-list {
   border-radius: 0;
 }
 .calendar-calendar .week-view .full div.single-day div.weekview, .calendar-calendar .day-view .full div.single-day div.dayview {
-  background: #e65c56;
+  background: #666;
   border: 1px solid white;
   padding: 3px;
   color: white;
   position: relative;
+  font-family: Verdana, Arial, sans-serif;
+}
+.calendar-calendar .day-view td .stripe, .calendar-calendar .month-view .full td .stripe, .calendar-calendar .week-view .full td .stripe {
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+.calendar-calendar .week-view div.single-day .view-item .contents, .calendar-calendar .day-view div.single-day .view-item .contents {
+  position: relative;
+  z-index: 2;
 }
 .calendar-calendar div.calendar {
   font-size: 1em;
 }
   .calendar-calendar td .views-field {
     margin-bottom: .2em;
-  }
-  .calendar-calendar td .views-field-field-event-type {
-    text-transform: uppercase;
-    font-size: 11px;
+    font-size: 10px;
+    line-height: 1.15;
   }
   .calendar-calendar td a {
     color: white;
     font-weight: normal;
-    text-decoration: underline;
   }
   .calendar-calendar td .views-field-edit-node {
     position: absolute;
     top: 2px;
     right: 2px;
   }
+    .calendar-calendar td .views-field-edit-node a {
+      text-decoration: underline;
+    }
 .view .date-nav-wrapper .date-heading h3 {
   font-size: 2.4em;
 }
