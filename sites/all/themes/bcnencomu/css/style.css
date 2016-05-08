@@ -16,16 +16,16 @@ article#node-161 table /* cookies table */ {
 
 #content {}
 body.not-front #content {
-  margin-left: 20.50%;
+  margin-left: 15%;
 }
 body.sidebar-first #content {
   float: right;
-  width: 75%;
-  margin: 0 0 0 4.5%;
+  width: 81%;
+  margin: 0 0 0 4%;
 }
 #sidebar-first {
   float: left;
-  width: 20.50%;
+  width: 15%;
 }
 
 /*********************
@@ -152,10 +152,7 @@ body.admin-menu {
         text-align: center;
         font-size: 1.6em;
         padding: 3px 0 0;
-        color: #e65c56;
-        background: white;
-        -webkit-border-radius: 11px;
-        border-radius: 11px;
+        color: #666;
       }
         .social-network-list li a span {
           display: none;
@@ -167,6 +164,7 @@ body.admin-menu {
 header[role="banner"] {
   position: relative;
   z-index: 10;
+  padding-top: 10px;
 }
 #page.page-without-navigation header[role="banner"] {
   height: 115px;
@@ -176,35 +174,29 @@ header[role="banner"] {
 .region-header-top {
   position: relative;
   height: 36px;
-  background: #575757;
+  padding-left: 15%;
 }
 
 #site-logo {
-  position: absolute;
-  top: 36px;
-  left: 0;
-  width: 20.50%;
-  height: 115px;
-  background: white;
-  z-index: 2;
+  float: left;
+  width: 15%;
+  margin-bottom: 0;
 }
   #site-logo a {
     display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 235px;
-    height: 74px;
-    margin-top: -37px;
-    margin-left: -117px;
+    width: 100%;
+    height: 100%;
+    padding: 0 18px 0 10px;
   }
+    #site-logo a img {
+      
+    }
 
 .region-header {
+  float: right;
+  width: 85%;
   position: relative;
-  height: 115px;
-  overflow: hidden;
-  background: #e65c56;
-  z-index: 1;
+  
 }
   #block-user-login {
     
@@ -213,12 +205,43 @@ header[role="banner"] {
   #block-user-info {
     
   }
-    
+  
+  #block-locale-language {
+    position: absolute;
+    top: 11px;
+    right: 10px;
+  }
+    #block-locale-language ul {}
+      #block-locale-language li {
+        display: inline;
+        font-size: 1.2em;
+      }
+      #block-locale-language li:before {
+        content: "-";
+        margin-right: 3px;
+      }
+      #block-locale-language li:first-child:before {
+        content: "";
+        margin-right: 0;
+      }
+        #block-locale-language li a {
+          color: #666;
+        }
+        #block-locale-language li a.active {
+          color: black;
+        }
+
+  #block-bcnencomu-social_networks_links {
+    position: absolute;
+    top: 6px;
+    right: 80px;
+  }
+
   #block-search-form {
     position: absolute;
-    top: 7px;
+    top: 34px;
     right: 10px;
-    width: 127px;
+    width: 190px;
   }
     #block-search-form input[type="text"] {
       width: 100%;
@@ -245,91 +268,60 @@ header[role="banner"] {
       -webkit-border-radius: 0;
       border-radius: 0;
     }
-  
-  #block-locale-language {
-    position: absolute;
-    top: 11px;
-    right: 155px;
-  }
-    #block-locale-language ul {}
-      #block-locale-language li {
-        display: inline;
-        font-size: 1.2em;
-        font-weight: bold;
-        color: white;
-      }
-      #block-locale-language li:before {
-        content: "/";
-        margin-right: 1px;
-      }
-      #block-locale-language li:first-child:before {
-        content: "";
-        margin-right: 0;
-      }
-        #block-locale-language li a {
-          color: white;
-        }
       
   #block-system-main-menu {
-    padding-left: 20.5%;
+    padding: 20px 0 0;
+    margin-bottom: 25px;
   }
     #block-system-main-menu nav > ul.menu {}
       #block-system-main-menu nav > ul.menu > li {
         float: left;
         position: relative;
-        margin: 0;
+        margin-right: 40px;
       }
         #block-system-main-menu nav > ul.menu > li a {
           display: block;
-          font-size: 1.6em;
+          font-size: 2em;
           line-height: 1.3;
           font-weight: bold;
-          text-transform: uppercase;
-          text-align: center;
-          color: white;
-          padding: 50px 20px;
-          border-right: 1px solid white;
+          color: #2f2f2f;
+          padding: 8px 0;
+          border-bottom: 2px solid transparent;
           -webkit-transition: all 0.3s ease-in-out;
           -moz-transition: all 0.3s ease-in-out;
           -ms-transition: all 0.3s ease-in-out;
           -o-transition: all 0.3s ease-in-out;
           transition: all 0.3s ease-in-out;
         }
-        #block-system-main-menu nav > ul.menu > li.active-trail a,
-        #block-system-main-menu nav > ul.menu > li a.active,
-        #block-system-main-menu nav > ul.menu > li a:hover {
-          background: #c3352f;
+        #block-system-main-menu nav > ul.menu > li.active-trail > a,
+        #block-system-main-menu nav > ul.menu > li > a.active,
+        #block-system-main-menu nav > ul.menu > li > a:hover {
+          border-bottom: 2px solid #e65c56;
         }
         #block-system-main-menu nav > ul.menu > li ul {
           display: none;
-          padding: 3px 0 0;
-          height: auto;
+          padding: 3px 25px 15px;
           position: absolute;
-          top: 72px;
-          left: 0;
-          width: 100%;
+          top: 40px;
+          left: -25px;
+          width: 270px;
+          background: white;
         }
         #block-system-main-menu nav > ul.menu > li:hover ul {
-          /*display: block;*/
+          display: block;
         }
           #block-system-main-menu nav > ul.menu > li ul li {
             display: list-item;
           }
             #block-system-main-menu nav > ul.menu > li ul li a {
-              padding: 1.6em 1.7em;
-              font-size: 1.1em;
-              line-height: 1.3;
-              text-align: left;
-              height: auto;
+              padding: 2px 0;
+              font-size: 1.5em;
+              color: #3d3a3a;
             }
-
-  .region-header #block-bcnencomu-social_networks_links {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 45px 10px 47px;
-    border-left: 1px solid white;
-  }
+            .active-trail
+            #block-system-main-menu nav > ul.menu > li ul li a.active {
+              color: black;
+            }
 
   /* special header block */
   #block-block-5 {
@@ -357,56 +349,34 @@ header[role="banner"] {
         }
           #block-block-5 img {}
 
-  #block-menu-menu-top-menu {
-    float: left;
-    padding-right: 10px;
-    margin-right: 10px;
-    border-right: 1px solid #AAA;
-  }
   #block-menu-menu-secondary-menu {
     float: left;
   }
-    #block-menu-menu-top-menu nav > ul.menu, 
     #block-menu-menu-secondary-menu nav > ul.menu {}
-      #block-menu-menu-top-menu nav > ul.menu > li,
       #block-menu-menu-secondary-menu nav > ul.menu > li {
         float: left;
         position: relative;
+        margin-right: 20px;
       }
-        #block-menu-menu-top-menu nav > ul.menu > li a,
         #block-menu-menu-secondary-menu nav > ul.menu > li a {
           display: block;
           font-size: 1.2em;
-          font-weight: bold;
-          text-transform: uppercase;
-          padding: 12px;
+          padding: 12px 0;
           text-align: center;
-          color: white;
+          color: #666;
           -webkit-transition: all 0.3s ease-in-out;
           -moz-transition: all 0.3s ease-in-out;
           -ms-transition: all 0.3s ease-in-out;
           -o-transition: all 0.3s ease-in-out;
           transition: all 0.3s ease-in-out;
         }
-        #block-menu-menu-top-menu nav > ul.menu > li.active-trail a,
-        #block-menu-menu-top-menu nav > ul.menu > li a.active,
-        #block-menu-menu-top-menu nav > ul.menu > li a:hover,
         #block-menu-menu-secondary-menu nav > ul.menu > li.active-trail a,
         #block-menu-menu-secondary-menu nav > ul.menu > li a.active,
         #block-menu-menu-secondary-menu nav > ul.menu > li a:hover {
-          color: #f9efb9;
+          color: black;
         }
-        #block-menu-menu-top-menu nav > ul.menu > li ul,
         #block-menu-menu-secondary-menu nav > ul.menu > li ul {
           display: none;
-          position: absolute;
-          top: 36px;
-          left: 0;
-          width: 120px;
-        }
-        #block-menu-menu-top-menu nav > ul.menu > li:hover ul,
-        #block-menu-menu-secondary-menu nav > ul.menu > li:hover ul {
-          display: block;
         }
         
 /* responsive menu */
@@ -2324,8 +2294,8 @@ footer[role="contentinfo"] {
 /*********************
 * Clearfix
 **********************/
+header[role="banner"] > .inner:after,
 #block-system-main-menu nav > ul.menu:after,
-#block-menu-menu-top-menu nav > ul.menu:after,
 #block-menu-menu-secondary-menu nav > ul.menu:after,
 #main > .inner:after {
   content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;
