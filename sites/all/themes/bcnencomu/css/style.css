@@ -592,14 +592,13 @@ body.front #content {
 
 #content-header h1,
 article > header h1 {
-  font-size: 3.4em;
+  font-size: 5em;
   color: #e65c56;
-  margin-bottom: .7em;
+  margin-bottom: .4em;
 }
 body.page-taxonomy-term #content-header h1 {
   font-size: 2.4em;
   text-transform: uppercase;
-  font-weight: 300;
 }
   
 #sidebar-first {}
@@ -771,18 +770,16 @@ article.node {}
         max-width: 200px;
       }
       article.node .body h2, article.node .field-name-body h2 {
-        font-weight: normal;
-        font-size: 2.7em;
+        font-size: 3em;
         color: #8ea7bf;
         margin-bottom: 1em;
       }
       article.node .body h3, article.node .field-name-body h3 {
-        font-weight: normal;
         font-size: 2.3em;
+        font-weight: 300;
         margin-bottom: 1em;
       }
       article.node .body h4, article.node .field-name-body h4 {
-        font-weight: normal;
         font-size: 1.8em;
         color: #e65c56;
         margin-bottom: 1em;
