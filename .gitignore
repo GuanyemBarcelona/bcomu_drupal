@@ -5,8 +5,8 @@ sites/*/settings*.php
 sites/*/files
 sites/*/private
 
-# Ignore the robots.txt
-robots.txt
-
 # Ignore other files
 sites/*/default.settings.php
+/*.txt
+/*.html
+/manuals
