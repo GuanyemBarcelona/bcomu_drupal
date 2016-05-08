@@ -534,9 +534,48 @@ a[data-action="go-back"] {
   }
 /* --- */
 
-#highlighted {
-  
-}
+.region-highlighted {}
+  .region-highlighted .menu-block-wrapper {
+    position: relative;
+  }
+    .region-highlighted .menu-block-wrapper ul.menu {
+      width: 100%;
+      display: table;
+      table-layout: fixed;
+      border: 1px solid #ececec;
+    }
+      .region-highlighted .menu-block-wrapper ul.menu li {
+        display: table-cell;
+      }
+        .region-highlighted .menu-block-wrapper ul.menu li a {
+          display: block;
+          font-size: 1.3em;
+          padding: 10px;
+          text-align: center;
+          color: #3d3a3a;
+          background: #ececec;
+          -webkit-transition: all 0.3s ease-in-out;
+          -moz-transition: all 0.3s ease-in-out;
+          -ms-transition: all 0.3s ease-in-out;
+          -o-transition: all 0.3s ease-in-out;
+          transition: all 0.3s ease-in-out;
+        }
+        .region-highlighted .menu-block-wrapper ul.menu li a.active-trail,
+        .region-highlighted .menu-block-wrapper ul.menu li a.active,
+        .region-highlighted .menu-block-wrapper ul.menu li a:hover {
+          background: white;
+        }
+          .region-highlighted .menu-block-wrapper ul.menu li ul.menu {
+            display: none;
+            position: absolute;
+            left: 0;
+          }
+          .region-highlighted .menu-block-wrapper ul.menu li.active-trail > ul.menu {
+            display: table;
+          }
+            .region-highlighted .menu-block-wrapper ul.menu li ul.menu li a {
+              
+            }
 
 #content {
   padding: 40px 0 0;
@@ -578,38 +617,7 @@ body.page-taxonomy-term #content-header h1 {
         .region-sidebar-first .block > .content p {
           font-size: 1.4em;
           margin-bottom: 1em;
-        }  
-    .region-sidebar-first ul.menu {}
-      .region-sidebar-first ul.menu li {
-        border-bottom: 1px solid white;
-      }
-        .region-sidebar-first ul.menu li a {
-          display: block;
-          font-size: 1.5em;
-          font-weight: bold;
-          color: white;
-          background: #8ea7bf;
-          padding: 15px 30px;
-          -webkit-transition: all 0.3s ease-in-out;
-          -moz-transition: all 0.3s ease-in-out;
-          -ms-transition: all 0.3s ease-in-out;
-          -o-transition: all 0.3s ease-in-out;
-          transition: all 0.3s ease-in-out;
         }
-        .region-sidebar-first ul.menu li a.active-trail,
-        .region-sidebar-first ul.menu li a.active,
-        .region-sidebar-first ul.menu li a:hover {
-          background: #577a9b;
-        }
-        .region-sidebar-first ul.menu li ul {
-          border-top: 1px solid white;
-        }
-          .region-sidebar-first ul.menu li ul a {
-            padding-left: 50px;
-          }
-            .region-sidebar-first ul.menu li ul ul a {
-              padding-left: 75px;
-            }
 
       /* categories terms list */
       .view-categories-terms-list {}
