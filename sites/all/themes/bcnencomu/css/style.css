@@ -1349,7 +1349,14 @@ body.front .region-content-bottom {
 }
 /* Home bottom list */
 #block-views-frontpage-block_1 {
-  
+}
+#block-views-frontpage-block_1:before {
+  content: " ";
+  display: block;
+  width: 90%;
+  padding-top: 20px;
+  margin: 0 auto;
+  border-top: 2px solid #e65c56;
 }
   .view-frontpage {}
     .node-teaser {
