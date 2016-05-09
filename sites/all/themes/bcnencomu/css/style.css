@@ -498,14 +498,30 @@ a[data-action="go-back"] {
 .share-links {
   margin: 0 0 30px;
 }
-  .share-links ul {}
+  .share-links ul {
+    overflow: hidden;
+  }
     .share-links li {
-      display: inline-block;
-      margin-right: 4px;
+      float: left;
+      margin-left: 6px;
     }
-      .share-links li a {}
+    .share-links li:first-child {
+      margin-left: 0;
+    }
+      .share-links li a {
+        display: block;
+        width: 24px;
+        height: 24px;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        background: #e65c56;
+      }
         .share-links li a .fa {
-          font-size: 2em;
+          padding-top: .4em;
+          width: 100%;
+          text-align: center;
+          font-size: 1.3em;
+          color: white;
         }
         .share-links li a .label {
           display: none;
