@@ -256,17 +256,14 @@ a.btn {
   cursor: pointer;
   border: none;
   display: block;
-  width: 12em;
-  padding: 8px 16px;
-  margin: 0 auto;
+  width: 340px;
+  padding: 1em 1.2em;
+  margin: 0;
   text-align: center;
   line-height: 1;
-  text-transform: uppercase;
-  font-size: 1.6em;
-  color: white;
-  background: #e65c56;
-  -webkit-border-radius: 14px;
-  border-radius: 14px;
+  font-size: 13px;
+  color: #3d3a3a;
+  background: #ececec;
 }
   button .fa,
   input[type="button"] .fa,

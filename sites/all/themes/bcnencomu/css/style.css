@@ -786,10 +786,8 @@ article.node {}
       }
       article.node .body a.btn, article.node .field-name-body a.btn {
         display: inline-block;
-        width: auto;
-        color: white;
-        font-size: 1em;
         text-decoration: none;
+        color: #3d3a3a;
         margin: 0 4px 4px 0;
       }
       article.node .body a.btn.active, article.node .field-name-body a.btn.active {
