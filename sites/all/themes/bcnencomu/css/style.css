@@ -1891,8 +1891,7 @@ article.node .body .eixos-list {
 }
 #page.cronograma-page article > header h1 {
   opacity: 0;
-  font-size: 4em;
-  font-weight: 100;
+  font-size: 3.6em;
   text-align: center;
   margin: 2em 0;
   -webkit-transition: all 1.5s ease;
