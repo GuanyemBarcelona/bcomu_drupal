@@ -41,6 +41,9 @@
   <?php } else if ($view_mode == 'full') { ?>
   <?php /* ----------------- FULL DISPLAY ----------------- */ ?>
   <header>
+    <?php if (isset($share_links)){ ?>
+      <?php print $share_links; ?>
+    <?php } ?>
     <?php if (isset($hashtag)){ ?>
     <p class="hashtag"><?php print $hashtag; ?></p>
     <?php } ?>
@@ -62,10 +65,6 @@
       <?php print $category; ?>
       <?php } ?>
     </aside>
-
-    <?php if (isset($share_links)){ ?>
-      <?php print $share_links; ?>
-    <?php } ?>
 
     <?php /*if (isset($image_gallery)){ ?>
       <?php print $image_gallery; ?>

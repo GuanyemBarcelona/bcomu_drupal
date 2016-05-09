@@ -9,13 +9,12 @@
   <?php } else if ($view_mode == 'full') { ?>
   <?php /* ----------------- FULL DISPLAY ----------------- */ ?>
   <header>
-    <h1><?php print $title; ?></h1>
-  </header>
-  <div class="content">
     <?php if (isset($share_links)){ ?>
       <?php print $share_links; ?>
     <?php } ?>
-    
+    <h1><?php print $title; ?></h1>
+  </header>
+  <div class="content">
     <?php 
       // We hide the comments and links now so that we can render them later.
       hide($content['comments']);
