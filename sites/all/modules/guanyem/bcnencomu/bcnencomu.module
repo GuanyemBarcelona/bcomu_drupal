@@ -314,17 +314,23 @@ function bcnencomu_render_share_links($nid) {
   $current_url = gh_get_absolute_path() . gh_get_node_path_alias($nid);
   $final_list = array();
   $social_links = array(
-    'twitter' => array(
-      'name' => 'Twitter',
-      'share_url' => 'https://twitter.com/intent/tweet?url=',
-      'label' => t("Tweet"),
-      'description' => t("Tweet"),
+    'telegram' => array(
+      'name' => 'Telegram',
+      'share_url' => 'https://telegram.me/share/url?url=',
+      'label' => t("Share"),
+      'description' => t("Share on Telegram"),
     ),
     'facebook' => array(
       'name' => 'Facebook',
       'share_url' => 'https://www.facebook.com/sharer/sharer.php?u=',
       'label' => t("Share", array(), array('context' => 'Facebook share')),
       'description' => t("Share on Facebook"),
+    ),
+    'twitter' => array(
+      'name' => 'Twitter',
+      'share_url' => 'https://twitter.com/intent/tweet?url=',
+      'label' => t("Tweet"),
+      'description' => t("Tweet"),
     ),
   );
   foreach ($social_links as $social_machine => $item) {
