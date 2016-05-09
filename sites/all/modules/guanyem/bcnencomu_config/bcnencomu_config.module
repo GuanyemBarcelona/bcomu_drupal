@@ -108,6 +108,7 @@ function bcnencomu_config_settings_form_submit($form, &$form_state) {
  */
 function bcnencomu_config_get_social_types() {
   return array(
+    'telegram' => 'Telegram',
     'facebook' => 'Facebook',
     'twitter' => 'Twitter',
     'youtube' => 'Youtube',
