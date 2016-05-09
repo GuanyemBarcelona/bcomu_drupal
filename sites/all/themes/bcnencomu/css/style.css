@@ -496,7 +496,9 @@ a[data-action="go-back"] {
 }
 
 .share-links {
-  margin: 0 0 30px;
+  position: relative;
+  float: right;
+  top: 10px;
 }
   .share-links ul {
     overflow: hidden;
