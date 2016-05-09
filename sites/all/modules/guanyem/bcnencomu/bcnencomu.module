@@ -293,11 +293,10 @@ function bcnencomu_render_social_network_links() {
     $field = 'social_' . $social_machine;
     $social_url = variable_get('bcnencomu_config_' . $field, '');
     if ($social_url != ''){
-      $fa_name = 'fa-' . $social_machine; // font awesome class name: http://fortawesome.github.io/Font-Awesome/icons/
       $final_list[] = array(
         'machine_name' => $social_machine,
         'name' => $social_name,
-        'fa_name' => $fa_name,
+        'fa_name' => _get_font_awesome_slug($social_machine),
         'url' => $social_url,
       );
     }
@@ -330,9 +329,8 @@ function bcnencomu_render_share_links($nid) {
   );
   foreach ($social_links as $social_machine => $item) {
     $new_item = $item;
-    $fa_name = 'fa-' . $social_machine; // font awesome class name: http://fortawesome.github.io/Font-Awesome/icons/
     $new_item['machine_name'] = $social_machine;
-    $new_item['fa_name'] = $fa_name;
+    $new_item['fa_name'] = _get_font_awesome_slug($social_machine);
     $final_list[] = $new_item;
   }
   $variables = array(
@@ -340,6 +338,19 @@ function bcnencomu_render_share_links($nid) {
     'current_url' => $current_url,
   );
   return theme('share_links', $variables);
+}
+
+/*
+* Get the social brand's font awesome correspondance as a slug: http://fortawesome.github.io/Font-Awesome/icons/
+*/
+function _get_font_awesome_slug($social_slug){
+  $fa_slug = $social_slug;
+  switch ($social_slug){
+    case 'telegram':
+      $fa_slug = 'paper-plane';
+      break;
+  }
+  return 'fa-' . $fa_slug;
 }
 
 /**
