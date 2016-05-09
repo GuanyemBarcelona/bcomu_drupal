@@ -593,6 +593,9 @@ a[data-action="go-back"] {
 body.front #content {
   padding: 30px 0 0;
 }
+body.node-type-post #content {
+  padding-top: 0;
+}
 #content-area {}
 
 #content-top {
@@ -929,6 +932,8 @@ body.front article.node-page {
 article.node-post-like {}
   article.node-post-like > header {
     margin: 0 0 1em;
+    padding-top: 30px;
+    border-top: 2px solid #e65c56;
   }
     article.node-post-like > header .hashtag {
       margin-bottom: .4em;
@@ -966,7 +971,7 @@ article.node-post-like {}
       }
         article.node-post-like > .content .info .field-name-field-tags .fa {
           margin-right: 5px;
-          color: #e65c56;
+          color: #8ea7bf;
         }
         article.node-post-like > .content .info .field-name-field-tags .field-item {
           display: inline;
@@ -978,6 +983,9 @@ article.node-post-like {}
         article.node-post-like > .content .info .field-name-field-tags .field-item:last-child:after {
           content: "";
         }
+          article.node-post-like > .content .info .field-name-field-tags .field-item a {
+            color: #8ea7bf;
+          }
           article.node-post-like > .content .info .field-name-field-tags .field-item a:hover {
             text-decoration: underline;
           }
