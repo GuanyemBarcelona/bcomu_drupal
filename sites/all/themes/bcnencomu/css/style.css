@@ -681,7 +681,9 @@ form {
 
 /*** nodes ***/
 /* typical detail */
-article.node {}
+article.node {
+  padding-right: 220px;
+}
   article.node > .content {}
     article.node .image-gallery {
       margin: 10px 0 20px;
@@ -709,7 +711,6 @@ article.node {}
         }
     article.node .body {
       text-align: justify;
-      padding-right: 220px;
     }
       article.node .body img {
         width: auto;
