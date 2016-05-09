@@ -937,8 +937,9 @@ article.node-post-like {}
       color: #e65c56;
     }
     article.node-post-like > header .lead {
-      margin: 0;
-      line-height: 1.2;
+      line-height: 1.1;
+      font-size: 3em;
+      margin-bottom: 1em;
     }
   article.node-post-like > .content {}
     article.node-post-like > .content .info {
