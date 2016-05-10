@@ -227,9 +227,8 @@ function bcnencomu_preprocess_node(&$vars) {
     }
   }else if ($vars['view_mode'] == 'highlighted'){
     if (isset($teaser_uri)){
-      $teaser_style = 'highlighted_home';
       $vars['classes_array'][] = 'with-image';
-      $vars['teaser_image'] = theme('image_style', array('path' => $teaser_uri, 'style_name' => $teaser_style));
+      $vars['teaser_image'] = theme('image', array('path' => $teaser_uri));
     }
 	}else if ($vars['view_mode'] == 'full'){
 		$gallery_style = 'gallery';
@@ -321,9 +320,6 @@ function bcnencomu_preprocess_node(&$vars) {
       $vars['external_link'] = FALSE;
       if (isset($link[0]['attributes']['target'])){
         $vars['external_link'] = ($link[0]['attributes']['target'] == '_blank');
-      }
-      if (isset($link[0]['url'])){
-        $vars['link_uri'] = $link[0]['url'];
       }
       $hide_button = field_get_items('node', $node_obj,'field_hide_button');
       $vars['hide_button'] = ($hide_button[0]['value'] == '1');
