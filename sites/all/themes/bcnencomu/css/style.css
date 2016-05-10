@@ -837,7 +837,7 @@ article.node {
         height: 600px;
       }
       article.node .body ul, article.node .field-name-body ul {
-        list-style-type: square;
+        list-style-type: none;
         margin: 0 0 2em;
         padding-left: 2.5em;
       }
@@ -848,8 +848,19 @@ article.node {
       }
         article.node .body li, article.node .field-name-body li {
           margin: 0 0 .2em;
+          padding-left: 1em;
           font-size: 1.7em;
           line-height: 1.25;
+          position: relative;
+        }
+        article.node .body li:before, article.node .field-name-body li:before {
+          content: "•";
+          line-height: 0;
+          font-size: 1.4em;
+          position: absolute;
+          color: #c9c9c9;
+          top: 11px;
+          left: 0;
         }
           article.node .body li p, article.node .field-name-body li p {
             font-size: 1em;
