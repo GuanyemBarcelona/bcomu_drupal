@@ -300,7 +300,7 @@ header[role="banner"] {
         }
         #block-system-main-menu nav > ul.menu > li ul {
           display: none;
-          padding: 3px 25px 15px;
+          padding: 11px 25px 15px;
           position: absolute;
           top: 40px;
           left: -25px;
@@ -316,11 +316,13 @@ header[role="banner"] {
             #block-system-main-menu nav > ul.menu > li ul li a {
               padding: 2px 0;
               font-size: 1.5em;
+              font-weight: normal;
               color: #3d3a3a;
             }
-            .active-trail
-            #block-system-main-menu nav > ul.menu > li ul li a.active {
-              color: black;
+            #block-system-main-menu nav > ul.menu > li ul li.active-trail a,
+            #block-system-main-menu nav > ul.menu > li ul li a.active,
+            #block-system-main-menu nav > ul.menu > li ul li a:hover {
+              color: #e65c56;
             }
 
   /* special header block */
