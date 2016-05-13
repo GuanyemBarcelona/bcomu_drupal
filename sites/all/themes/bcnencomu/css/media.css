@@ -17,6 +17,10 @@
     width: 139%;
   }
 
+  .region-header {
+    padding-left: 0;
+  }
+
   .view-nodequeue-1 .view-content {
     height: 39vw;
   }
@@ -296,11 +300,21 @@
 }
 
 @media all and (max-width: 500px){
+  #block-search-form {
+    display: none;
+  }
+  
   .view-nodequeue-2 .view-content .views-row,
   .node-teaser,
   .view-candidacies .item-list .views-row, .node-candidacy-person.node-teaser,
   article.node-candidacy-person .field-name-field-candidacy-photo,
-  .view-offices-list .item-list .views-row .views-field-field-image {
+  .view-offices-list .item-list .views-row .views-field-field-image,
+  .views-exposed-form .views-exposed-widget {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
     float: none;
     width: 100%;
     height: auto;
@@ -315,12 +329,6 @@
     width: 100%;
   }
 
-  .views-exposed-form .views-exposed-widget {
-    float: none;
-    width: 100%;
-    height: auto;
-    margin: 0 0 20px;
-  }
   .views-exposed-form .views-exposed-widget input[type="text"], .views-exposed-form .views-exposed-widget select {
     width: 100%;
   }
