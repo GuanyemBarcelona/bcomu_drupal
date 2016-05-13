@@ -127,7 +127,7 @@
     display: none;
   }
 
-  article.node {
+  .region-content {
     padding-right: 0;
   }
 

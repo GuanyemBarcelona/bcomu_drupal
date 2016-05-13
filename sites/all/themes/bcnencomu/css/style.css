@@ -606,6 +606,11 @@ body.front #content {
 body.node-type-post #content {
   padding-top: 0;
 }
+  
+.region-content {
+  padding-right: 210px;
+}
+
 #content-area {}
 
 #content-top {
@@ -704,9 +709,7 @@ form {
 
 /*** nodes ***/
 /* typical detail */
-article.node {
-  padding-right: 210px;
-}
+article.node {}
   article.node > .content {}
     article.node .image-gallery {
       margin: 10px 0 20px;
