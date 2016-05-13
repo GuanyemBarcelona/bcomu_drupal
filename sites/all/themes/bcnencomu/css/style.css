@@ -16,16 +16,15 @@ article#node-161 table /* cookies table */ {
 
 #content {}
 body.not-front #content {
-  margin-left: 15%;
+  margin-left: 210px;
 }
 body.sidebar-first #content {
   float: right;
-  width: 81%;
-  margin: 0 0 0 4%;
+  margin: 0 0 0 30px;
 }
 #sidebar-first {
   float: left;
-  width: 15%;
+  width: 210px;
 }
 
 /*********************
@@ -174,29 +173,29 @@ header[role="banner"] {
 .region-header-top {
   position: relative;
   height: 36px;
-  padding-left: 15%;
+  padding-left: 210px;
 }
 
 #site-logo {
-  float: left;
-  width: 15%;
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 210px;
   margin-bottom: 0;
 }
   #site-logo a {
     display: block;
     width: 100%;
     height: 100%;
-    padding: 0 20px 0 10px;
+    padding: 0 20px 0 14px;
   }
     #site-logo a img {
       
     }
 
 .region-header {
-  float: right;
-  width: 85%;
+  padding-left: 210px;
   position: relative;
-  
 }
   #block-user-login {
     
@@ -239,9 +238,9 @@ header[role="banner"] {
 
   #block-search-form {
     position: absolute;
-    top: 33px;
+    top: 26px;
     right: 10px;
-    width: 190px;
+    width: 210px;
   }
     #block-search-form input[type="text"] {
       width: 100%;
@@ -387,7 +386,7 @@ header[role="banner"] {
   z-index: 100;
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   width: 50px;
 }
 .mobile-menu.opened {
@@ -396,9 +395,10 @@ header[role="banner"] {
 }
   .mobile-menu button {
     display: block;
+    float: right;
     width: 36px;
     height: 36px;
-    margin: 0 0 0 10px;
+    margin: 0 10px 0 10px;
     outline: none;
     text-indent: -500em;
     background-image: url("../images/sprite.png");
@@ -407,11 +407,9 @@ header[role="banner"] {
     z-index: 2;
     min-width: 0;
     padding: 2px 0 4px;
-    -webkit-border-radius: 0;
-    border-radius: 0;
   }
   .mobile-menu.opened button {
-    background-color: #e65c56;
+    background-color: white;
     background-position: -206px -57px;
   }
   .mobile-menu .menus-wrapper {
@@ -421,42 +419,36 @@ header[role="banner"] {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #e65c56;
+    background: white;
     z-index: 1;
   }
   .mobile-menu.opened .menus-wrapper {
     display: block;
   }
     .mobile-menu nav {
-      margin-bottom: 30px;
-      border-bottom: 1px solid white;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #eee;
     }
       .mobile-menu ul.menu li {
-        border-top: 1px solid white;
-      }
-      .mobile-menu ul.menu li:first-child {
-        border-top: none;
+        
       }
         .mobile-menu ul.menu li a {
           display: block;
-          font-size: 1.3em;
-          font-weight: bold;
+          font-size: 1.8em;
+          color: #2f2f2f;
           text-align: left;
-          text-transform: uppercase;
-          padding: 10px;
+          padding: 7px 10px;
           line-height: 1.4;
-          color: white;
         }
         .mobile-menu ul.menu li a.active-trail,
-        .mobile-menu ul.menu li a.active,
-        .mobile-menu ul.menu li a:hover {
-          background: #c3352f;
+        .mobile-menu ul.menu li a.active {
+          color: #e65c56;
         }
         .mobile-menu ul.menu li ul {
           display: none;
         }
         .mobile-menu ul.menu li.active-trail ul {
-          border-top: 1px solid white;
           display: block;
         }
           .mobile-menu ul.menu li.active-trail ul li {}
@@ -699,7 +691,7 @@ form {
 /*** nodes ***/
 /* typical detail */
 article.node {
-  padding-right: 220px;
+  padding-right: 210px;
 }
   article.node > .content {}
     article.node .image-gallery {

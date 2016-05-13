@@ -17,18 +17,6 @@
     width: 139%;
   }
 
-  #site-logo {
-    padding: 20px 10px;
-    min-width: 218px;
-    left: 15px;
-  }
-    #site-logo a {
-      width: 95%;
-      height: auto;
-      position: static;
-      margin: 0 auto;
-    }
-
   .view-nodequeue-1 .view-content {
     height: 39vw;
   }
@@ -48,26 +36,18 @@
 }
 
 @media all and (max-width: 1080px){
-  body.not-front #content {
-    margin-left: 218px;
-  }
-  body.not-front.sidebar-first #content {
-    margin: 0 3% 0 0;
-    width: 70%;
-  }
-  #sidebar-first {
-    width: 218px;
-  }
   #block-system-main-menu {
-    padding-left: 218px;
+    padding-top: 22px;
   }
-  #block-system-main-menu nav > ul.menu > li a {
-    font-size: 1.3em;
-    padding: 50px 10px;
-  }
-  article.node {
-    padding-right: 0;
-  }
+    #block-system-main-menu nav > ul.menu > li {
+      margin-right: 25px;
+    }
+    #block-system-main-menu nav > ul.menu > li a {
+      font-size: 1.7em;
+    }
+    #block-system-main-menu nav > ul.menu > li ul li a {
+      font-size: 1.3em;
+    }
 
   .view .date-nav-wrapper .date-heading h3 {
     font-size: 2em;
@@ -100,15 +80,25 @@
   }
   #block-system-main-menu,
   #block-menu-menu-secondary-menu,
-  #block-search-form,
-  .region-sidebar-first .menu-block-wrapper {
+  .region-highlighted .menu-block-wrapper {
     display: none;
   }
-  #block-locale-language {
-    right: 10px;
+
+  header[role="banner"] {
+    height: 70px;
+    padding-top: 2px;
   }
-  .social-network-list {
-    border-left: none;
+  #site-logo {
+    top: 5px;
+  }
+  #block-search-form {
+    top: 0;
+  }
+  .region-header-top #block-bcnencomu-social_networks_links {
+    right: 110px;
+  }
+  #block-locale-language {
+    right: 40px;
   }
 
   .view-cronograma-quisom .views-field-field-day {
@@ -131,10 +121,6 @@
   }
   #admin-menu {
     display: none;
-  }
-
-  #block-menu-menu-top-menu {
-    margin-left: 30px;
   }
 
   article#node-161 table {
@@ -343,28 +329,12 @@
     min-height: 0;
   }
 
-	.region-header #block-bcnencomu-social_networks_links {
-    position: static;
-    padding: 10px;
-    background: #e65c56;
-  }
   .social-network-list {
     text-align: center;
   }
   .social-network-list li {
     display: inline-block;
     float: none;
-  }
-
-  #site-logo, .region-header {
-    height: auto;
-  }
-  #site-logo {
-    position: static;
-    margin: 0;
-  }
-  .region-header {
-    background: none;
   }
 
   #page.cronograma-page article > header h1 {
