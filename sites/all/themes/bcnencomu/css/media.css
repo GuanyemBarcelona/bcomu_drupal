@@ -17,10 +17,6 @@
     width: 139%;
   }
 
-  .region-header {
-    padding-left: 0;
-  }
-
   .view-nodequeue-1 .view-content {
     height: 39vw;
   }
@@ -94,6 +90,10 @@
   #block-menu-menu-secondary-menu,
   .region-highlighted .menu-block-wrapper {
     display: none;
+  }
+
+  .region-header {
+    padding-left: 0;
   }
 
   header[role="banner"] {
