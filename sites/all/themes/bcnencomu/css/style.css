@@ -299,30 +299,42 @@ header[role="banner"] {
         }
         #block-system-main-menu nav > ul.menu > li ul {
           display: none;
-          padding: 11px 25px 15px;
+          padding: 5px 0;
           position: absolute;
           top: 40px;
-          left: -25px;
+          left: -22px;
           width: 270px;
           background: white;
         }
-        #block-system-main-menu nav > ul.menu > li:hover ul {
+        #block-system-main-menu nav > ul.menu > li:hover > ul {
           display: block;
         }
           #block-system-main-menu nav > ul.menu > li ul li {
             display: list-item;
+            position: relative;
           }
             #block-system-main-menu nav > ul.menu > li ul li a {
-              padding: 2px 0;
+              padding: 5px 22px;
               font-size: 1.5em;
               font-weight: normal;
               color: #3d3a3a;
             }
-            #block-system-main-menu nav > ul.menu > li ul li.active-trail a,
-            #block-system-main-menu nav > ul.menu > li ul li a.active,
-            #block-system-main-menu nav > ul.menu > li ul li a:hover {
+            #block-system-main-menu nav > ul.menu > li ul li.active-trail > a,
+            #block-system-main-menu nav > ul.menu > li ul li > a.active,
+            #block-system-main-menu nav > ul.menu > li ul li > a:hover {
               color: #e65c56;
             }
+            #block-system-main-menu nav > ul.menu > li ul li ul {
+              display: none;
+              top: 0;
+              left: 270px;
+            }
+            #block-system-main-menu nav > ul.menu > li ul li:hover > ul {
+              display: block;
+            }
+              #block-system-main-menu nav > ul.menu > li ul li ul li a {
+                padding: 5px 10px;
+              }
 
   /* special header block */
   #block-block-5 {
