@@ -1622,6 +1622,14 @@ body.front .region-content-bottom {
             color: #6c6c6c;
             font-size: 2em;
             font-weight: 500;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -ms-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+          }
+          .view-eixos .views-row:hover .views-field-title .field-content a {
+            color: #e65c56;
           }
       .view-eixos .views-row .views-field-edit-node {
         position: absolute;
