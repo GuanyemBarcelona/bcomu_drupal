@@ -53,6 +53,10 @@
       font-size: 1.3em;
     }
 
+  #content-header h1, article > header h1 {
+    font-size: 4em;
+  }
+
   .view .date-nav-wrapper .date-heading h3 {
     font-size: 2em;
   }
@@ -139,9 +143,6 @@
     padding-right: 15px;
   }
 
-  #content-header h1, article > header h1 {
-    font-size: 2.4em;
-  }
   p, article.node .body li, article.node .field-name-body li {
     font-size: 1.5em;
   }
@@ -201,6 +202,10 @@
     width: 100%;
     height: auto;
     margin: 0 0 20px;
+  }
+
+  #content-header h1, article > header h1 {
+    font-size: 3em;
   }
 
   .view-nodequeue-1 .view-content {
