@@ -576,6 +576,7 @@ a[data-action="go-back"] {
           .region-highlighted .menu-block-wrapper ul.menu li ul.menu {
             display: none;
             position: absolute;
+            top: 0;
             left: 0;
           }
           .region-highlighted .menu-block-wrapper ul.menu li.active-trail > ul.menu {
