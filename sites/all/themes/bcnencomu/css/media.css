@@ -36,6 +36,10 @@
 }
 
 @media all and (max-width: 1080px){
+  body.not-front #content {
+    margin-left: 0;
+  }
+
   #block-system-main-menu {
     padding-top: 22px;
   }
@@ -123,18 +127,16 @@
     display: none;
   }
 
+  article.node {
+    padding-right: 0;
+  }
+
   article#node-161 table {
     position: static;
     left: auto;
     width: 100%;
     padding-left: 15px;
     padding-right: 15px;
-  }
-
-  body.not-front #content,
-  body.not-front.sidebar-first #content {
-    margin: 0;
-    width: auto;
   }
 
   #content-header h1, article > header h1 {
