@@ -244,7 +244,8 @@
 }
 
 @media all and (max-width: 600px){
-  #block-block-4 {
+  #block-block-4,
+  .region-header-top #block-bcnencomu-social_networks_links {
     display: none;
   }
 
