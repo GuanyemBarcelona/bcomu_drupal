@@ -1463,6 +1463,69 @@ body.front .region-content-bottom {
             margin: 0;
           }
 
+/* Boxed list */
+.view.box-list {
+  margin: 20px 0;
+}
+  .view.box-list .view-content {
+    overflow: hidden;
+  }
+    .view.box-list .views-row {
+      position: relative;
+      float: left;
+      width: 33%;
+      height: 117px;
+      margin: 0 .5% 5px 0;
+      border: 1px solid #ececec;
+      overflow: hidden;
+    }
+    .view.box-list .views-row-3,
+    .view.box-list .views-row-6,
+    .view.box-list .views-row-9,
+    .view.box-list .views-row-12,
+    .view.box-list .views-row-15,
+    .view.box-list .views-row-18,
+    .view.box-list .views-row-21 {
+      margin-right: 0;
+    }
+      .view.box-list .views-row .views-field-field-icon {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        width: 105px;
+      }
+      .view.box-list .views-row .views-field-title {
+        padding-left: 110px;
+        height: 100%;
+      }
+        .view.box-list .views-row .views-field-title .field-content {
+          display: table;
+          width: 100%;
+          height: 100%;
+        }
+          .view.box-list .views-row .views-field-title .field-content a {
+            display: table-cell;
+            width: 100%;
+            height: 100%;
+            vertical-align: middle;
+            color: #6c6c6c;
+            font-size: 2em;
+            font-weight: 500;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -ms-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+          }
+          .view.box-list .views-row:hover .views-field-title .field-content a {
+            color: #e65c56;
+          }
+      .view.box-list .views-row .views-field-edit-node {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+      }
+
 /* home highlighted agenda */
 #block-views-highlighted_agenda-agenda_block {
   float: right;
@@ -1585,66 +1648,6 @@ body.front .region-content-bottom {
   .view-articles .views-row {
     
   }
-
-/* Eixos list */
-.view-eixos {
-  margin: 20px 0;
-}
-  .view-eixos .view-content {
-    overflow: hidden;
-  }
-    .view-eixos .views-row {
-      position: relative;
-      float: left;
-      width: 33%;
-      height: 117px;
-      margin: 0 .5% 5px 0;
-      border: 1px solid #ececec;
-      overflow: hidden;
-    }
-    .view-eixos .views-row-3,
-    .view-eixos .views-row-6,
-    .view-eixos .views-row-9,
-    .view-eixos .views-row-12 {
-      margin-right: 0;
-    }
-      .view-eixos .views-row .views-field-field-icon {
-        position: absolute;
-        top: 2px;
-        left: 0;
-        width: 105px;
-      }
-      .view-eixos .views-row .views-field-title {
-        padding-left: 110px;
-        height: 100%;
-      }
-        .view-eixos .views-row .views-field-title .field-content {
-          display: table;
-          width: 100%;
-          height: 100%;
-        }
-          .view-eixos .views-row .views-field-title .field-content a {
-            display: table-cell;
-            width: 100%;
-            height: 100%;
-            vertical-align: middle;
-            color: #6c6c6c;
-            font-size: 2em;
-            font-weight: 500;
-            -webkit-transition: all 0.3s ease-in-out;
-            -moz-transition: all 0.3s ease-in-out;
-            -ms-transition: all 0.3s ease-in-out;
-            -o-transition: all 0.3s ease-in-out;
-            transition: all 0.3s ease-in-out;
-          }
-          .view-eixos .views-row:hover .views-field-title .field-content a {
-            color: #e65c56;
-          }
-      .view-eixos .views-row .views-field-edit-node {
-        position: absolute;
-        bottom: 5px;
-        right: 5px;
-      }
 
 /* candidacies */
 .view-candidacies,
