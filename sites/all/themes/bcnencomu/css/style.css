@@ -1490,7 +1490,7 @@ body.front .region-content-bottom {
     }
       .box-list .views-row .views-field-field-icon {
         position: absolute;
-        top: 2px;
+        top: 0;
         left: 0;
         width: 105px;
       }
