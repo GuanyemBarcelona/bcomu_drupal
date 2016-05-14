@@ -1479,6 +1479,9 @@ body.front .region-content-bottom {
       border: 1px solid #ececec;
       overflow: hidden;
     }
+    .view-measures-model .views-row {
+      height: 230px;
+    }
     .box-list .views-row-3,
     .box-list .views-row-6,
     .box-list .views-row-9,
@@ -1494,6 +1497,9 @@ body.front .region-content-bottom {
         left: 0;
         width: 105px;
       }
+      .view-measures-model .views-row .views-field-field-icon {
+        width: 100%;
+      }
       .box-list .views-row .views-field-title,
       .box-list .views-row .views-field-name-field {
         height: 100%;
@@ -1502,6 +1508,9 @@ body.front .region-content-bottom {
       .view-eixos .views-row .views-field-title {
         padding-left: 110px;
       }
+       .view-measures-model .views-row .views-field-name-field {
+          padding: 110px 20px 0;
+        }
         .box-list .views-row .views-field-title .field-content,
         .box-list .views-row .views-field-name-field .field-content {
           display: table;
