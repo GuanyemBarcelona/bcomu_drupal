@@ -656,15 +656,21 @@ body.page-taxonomy-term #content-header h1 {
         }
 
       /* categories terms list */
-      .view-categories-terms-list {}
-        .view-categories-terms-list .views-row {
-          margin-bottom: 12px;
+      .view-categories-terms-list {
+        margin: 0 0 25px;
+      }
+        .view-categories-terms-list .item-list > ul {
+          text-align: center;
         }
-          .view-categories-terms-list .views-row .views-field-rendered-entity {
-            font-size: 1.6em;
-            text-transform: uppercase;
-            font-weight: 300;
+          .view-categories-terms-list .views-row {
+            display: inline-block;
+            margin-right: 14px;
           }
+            .view-categories-terms-list .views-row .views-field-rendered-entity {
+              font-size: 1.6em;
+              text-transform: uppercase;
+              font-weight: 300;
+            }
 
 /*** forms ***/
 form {
