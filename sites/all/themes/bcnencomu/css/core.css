@@ -252,7 +252,8 @@ input[type="button"],
 input[type="reset"],
 input[type="submit"],
 a[data-action],
-a.btn {
+a.btn,
+.file a {
   cursor: pointer;
   border: none;
   display: block;
@@ -264,6 +265,11 @@ a.btn {
   font-size: 13px;
   color: #3d3a3a;
   background: #ececec;
+}
+.file a {
+  width: auto;
+  display: inline-block;
+  padding: .4em 1em;
 }
   button .fa,
   input[type="button"] .fa,
@@ -614,3 +620,11 @@ div.messages.status {}
   .vertical-tabs ul.vertical-tabs-list li {
     font-size: 1.5em;
   }
+
+.file img {
+  display: none;
+}
+
+.ui-datepicker {
+  width: 190px;
+}

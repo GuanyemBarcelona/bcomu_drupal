@@ -88,14 +88,6 @@ body.admin-menu {
     width: 100%;
   }
 
-.file img {
-  display: none;
-}
-
-.ui-datepicker {
-  width: 190px;
-}
-
 #page {
   
 }
@@ -837,7 +829,7 @@ article.node {}
         display: inline-block;
         text-decoration: none;
         color: #3d3a3a;
-        margin: 0 4px 4px 0;
+        margin: 0 0 5px;
       }
       article.node .body a.btn.active, article.node .field-name-body a.btn.active {
         color: #e65c56;
@@ -1835,15 +1827,6 @@ body.front .region-content-bottom {
       .view-offices-list .item-list .views-row .views-field-field-cv {
         margin-bottom: .3em;
       }
-        .view-offices-list .item-list .views-row .views-field-field-cv a {
-          padding: 4px 10px;
-          text-transform: uppercase;
-          font-size: 1.4em;
-          color: white;
-          background: #e65c56;
-          -webkit-border-radius: 14px;
-          border-radius: 14px;
-        }
       .view-offices-list .item-list .views-row .views-field-body {
         margin-top: 1em;
       }
