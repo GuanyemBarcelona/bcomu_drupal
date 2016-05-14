@@ -1,16 +1,4 @@
 /* mesures programa */
-.region-sidebar-first ul.menu li a {
-  position: relative;
-}
-  .region-sidebar-first ul.menu li a .fa {
-    position: absolute;
-    top: 14px;
-    left: 8px;
-  }
-  .region-sidebar-first ul.menu li li a .fa {
-    left: 28px;
-  }
-
 article#node-369 .body {
   min-height: 30em;
 }
@@ -141,9 +129,21 @@ article#node-369 .body {
       .view-measures-district .views-row .views-field-name a:hover {
         
       }
+
 .view-measures-topic {
   margin-bottom: 30px;
 }
+
+.box-list.view-measures-model {}
+  .box-list.view-measures-model .views-row {
+    height: 230px;
+  }
+    .box-list.view-measures-model .views-row .views-field-field-icon {
+      width: 100%;
+    }
+    .box-list.view-measures-model .views-row .views-field-name-field {
+      padding: 110px 20px 0;
+    }
 
 article.node-mesures-programa {}
   article.node-mesures-programa section[data-subtype] {
