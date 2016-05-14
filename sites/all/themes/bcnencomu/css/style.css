@@ -1455,6 +1455,41 @@ body.front .region-content-bottom {
             margin: 0;
           }
 
+/* content region block menu */
+.region-content .block-menu-block {
+  margin: 20px 0;
+}
+  .region-content .block-menu-block ul.menu {
+    overflow: hidden;
+  }
+    .region-content .block-menu-block ul.menu li {
+      display: table;
+      float: left;
+      width: 33%;
+      height: 117px;
+      margin: 0 .5% 5px 0;
+      border: 1px solid #ececec;
+      overflow: hidden;
+    }
+      .region-content .block-menu-block ul.menu li a {
+        display: table-cell;
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+        color: #6c6c6c;
+        font-size: 2em;
+        text-align: center;
+        font-weight: 500;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+      }
+      .region-content .block-menu-block ul.menu li:hover a {
+        color: #e65c56;
+      }
+
 /* Boxed list */
 .box-list {
   margin: 20px 0;
