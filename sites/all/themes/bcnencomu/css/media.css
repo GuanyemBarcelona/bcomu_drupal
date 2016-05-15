@@ -16,9 +16,6 @@
   body.sidebar-first article#node-161 table {
     width: 139%;
   }
-  body.not-front #content {
-    margin-left: 0;
-  }
 
   .view-nodequeue-1 .view-content {
     height: 39vw;
@@ -44,6 +41,13 @@
 }
 
 @media all and (max-width: 1080px){
+  body.not-front #content {
+    margin-left: 15%;
+  }
+  .region-content {
+    padding-right: 15%;
+  }
+
   #block-system-main-menu {
     padding-top: 22px;
   }
@@ -97,7 +101,7 @@
   }
 
   .region-header {
-    padding-left: 0;
+    padding-left: 15%;
   }
 
   header[role="banner"] {
@@ -146,6 +150,13 @@
   .barris-map.clicked {
     width: 458px;
     height: 421px;
+  }
+
+  body.not-front #content {
+    margin-left: 0;
+  }
+  .region-content {
+    padding-right: 0;
   }
 
   body.admin-menu {
