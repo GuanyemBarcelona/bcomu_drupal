@@ -2160,6 +2160,66 @@ body.front .region-content-bottom {
         padding: .2em .5em;
       }
 
+/* Grups als barris */
+.view-grups-als-barris {
+  max-width: 450px;
+  padding-left: 27px;
+}
+  .view-grups-als-barris .view-content {}
+    .view-grups-als-barris .view-content > .item-list {}
+      .view-grups-als-barris .view-content > .item-list > h3 {
+        font-size: 4em;
+      }
+      .view-grups-als-barris .view-content > .item-list > ul {}
+        .view-grups-als-barris .views-row {
+          margin-bottom: 40px;
+        }
+          .view-grups-als-barris .views-row .views-field {
+            font-size: 1.7em;
+            line-height: 1.25;
+            margin-bottom: .5em;
+            position: relative;
+          }
+          .view-grups-als-barris .views-row .views-field:before {
+            position: absolute;
+            top: -3px;
+            left: -30px;
+            content: " ";
+            display: block;
+            width: 25px;
+            height: 25px;
+            background-image: url("../images/sprite.png");
+            background-repeat: no-repeat;
+            background-position: -25px -25px;
+          }
+            .view-grups-als-barris .views-row .views-field a {
+              color: #595959;
+              text-decoration: underline;
+            }
+          .view-grups-als-barris .views-row .views-field-title {
+            font-size: 3em;
+            font-weight: 200;
+            color: #a2b6ca;
+          }
+          .view-grups-als-barris .views-row .views-field-field-grup-meetings:before {
+            background-position: 0 -125px;
+          }
+          .view-grups-als-barris .views-row .views-field-field-grup-email:before {
+            background-position: -25px -125px;
+          }
+          .view-grups-als-barris .views-row .views-field-field-grup-web:before {
+            background-position: -50px -125px;
+          }
+          .view-grups-als-barris .views-row .views-field-field-grup-facebook:before {
+            background-position: -75px -125px;
+          }
+          .view-grups-als-barris .views-row .views-field-field-grup-twitter:before {
+            background-position: -100px -125px;
+          }
+          .view-grups-als-barris .views-row .views-field-field-grup-telegram:before {
+            background-position: -125px -125px;
+          }
+
 /* search results */
 .search-form {
   max-width: none;
