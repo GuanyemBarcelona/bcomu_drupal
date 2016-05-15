@@ -195,13 +195,6 @@
     font-size: 2.4em;
   }
 
-  #block-views-frontpage-block_1 {
-    width: 66.666%;
-  }
-  #block-views-highlighted_agenda-agenda_block {
-    width: 33.333%;
-  }
-
   .view-nodequeue-2 .view-content .views-row {
     width: 32.5333%;
     margin-bottom: 5px;
@@ -263,20 +256,6 @@
   #block-bcnencomu-creativecommons p {
     text-align: left;
   }
-
-  #block-views-frontpage-block_1,
-  #block-views-highlighted_agenda-agenda_block {
-    float: none;
-    width: auto;
-  }
-  #block-views-highlighted_agenda-agenda_block {
-    max-width: 500px;
-    margin: 0 auto 20px;
-  }
-    .view-display-id-agenda_block .views-row {
-      padding: 5px 0;
-      position: relative;
-    }
 }
 
 @media all and (max-width: 600px){
