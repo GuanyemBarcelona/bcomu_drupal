@@ -2162,13 +2162,128 @@ body.front .region-content-bottom {
 
 /* Grups als barris */
 .view-grups-als-barris {
-  max-width: 450px;
-  padding-left: 27px;
+  min-height: 421px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 40px;
 }
-  .view-grups-als-barris .view-content {}
+  .barris-map {
+    position: absolute;
+    top: 0;
+    right: 50%;
+    z-index: 1;
+    margin-right: -229px;
+    width: 458px;
+    height: 421px;
+    background: url("../images/mapa_bcn_barris.png") no-repeat 0 0;
+    -webkit-transition: all 0.6s ease-in-out;
+    -moz-transition: all 0.6s ease-in-out;
+    -ms-transition: all 0.6s ease-in-out;
+    -o-transition: all 0.6s ease-in-out;
+    transition: all 0.6s ease-in-out;
+  }
+  .barris-map.clicked {
+    margin-right: 0;
+    right: 0;
+  }
+    .barris-map ul {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      list-style: none;
+    }
+      .barris-map li {
+        position: absolute;
+        font-size: 1.4em;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        width: 85px;
+        text-align: center;
+      }
+      .barris-map li:before {
+        position: absolute;
+        top: -47px;
+        left: 50%;
+        margin-left: -25px;
+        content: " ";
+        display: block;
+        width: 50px;
+        height: 50px;
+        background-image: url("../images/sprite.png");
+        background-repeat: no-repeat;
+        background-position: -250px 0;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+      }
+      .barris-map li.active:before {
+        background-position: -250px -50px;
+      }
+      .barris-map li[data-index="0"] {
+        top: 333px;
+        left: 195px;
+      }
+      .barris-map li[data-index="1"] {
+        top: 276px;
+        left: 172px;
+      }
+      .barris-map li[data-index="2"] {
+        top: 322px;
+        left: 95px;
+      }
+      .barris-map li[data-index="3"] {
+        top: 221px;
+        left: 103px;
+      }
+      .barris-map li[data-index="4"] {
+        top: 157px;
+        left: 149px;
+      }
+      .barris-map li[data-index="5"] {
+        top: 221px;
+        left: 218px;
+      }
+      .barris-map li[data-index="6"] {
+        top: 150px;
+        left: 265px;
+      }
+      .barris-map li[data-index="7"] {
+        top: 189px;
+        left: 331px;
+      }
+      .barris-map li[data-index="8"] {
+        top: 255px;
+        left: 323px;
+      }
+      .barris-map li[data-index="9"] {
+        top: 322px;
+        left: 291px;
+      }
+  .view-grups-als-barris .view-content {
+    padding-left: 27px;
+  }
+  .view-grups-als-barris.with-js .view-content {
+    position: relative;
+    z-index: 2;
+    float: left;
+    width: 50%;
+    padding-right: 20px;
+  }
     .view-grups-als-barris .view-content > .item-list {}
+    .view-grups-als-barris.with-js .view-content > .item-list {
+      display: none;
+    }
+    .view-grups-als-barris.with-js .view-content > .item-list.active {
+      display: block;
+    }
       .view-grups-als-barris .view-content > .item-list > h3 {
         font-size: 4em;
+      }
+      .view-grups-als-barris.with-js .view-content > .item-list > h3 {
+        display: none;
       }
       .view-grups-als-barris .view-content > .item-list > ul {}
         .view-grups-als-barris .views-row {

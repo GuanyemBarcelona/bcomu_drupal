@@ -307,6 +307,25 @@ var config = {
         });
       });
     }
+
+    // Grups als barris page
+    var $grups_barris = $('.view-grups-als-barris');
+    if ($grups_barris.length){
+      $grups_barris.addClass('with-js');
+      $grups_barris.find('.view-content').before('<div class="barris-map"><ul></ul></div>');
+      var $map = $grups_barris.find('.barris-map');
+      $grups_barris.find('.view-content > .item-list > h3').each(function(i){
+        $map.find('ul').append('<li data-index="'+i+'">'+$(this).text()+'</li>');
+      });
+      $map.find('li').click(function(e){
+        var index = $(this).attr('data-index');
+        $map.addClass('clicked');
+         $map.find('li').removeClass('active');
+        $(this).addClass('active');
+        $grups_barris.find('.view-content > .item-list').removeClass('active');
+        $grups_barris.find('.view-content > .item-list').eq(index).addClass('active');
+      });
+    }
 	});
 
 	$(window).load(function(){

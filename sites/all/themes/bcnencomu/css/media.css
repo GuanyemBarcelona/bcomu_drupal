@@ -16,6 +16,9 @@
   body.sidebar-first article#node-161 table {
     width: 139%;
   }
+  body.not-front #content {
+    margin-left: 0;
+  }
 
   .view-nodequeue-1 .view-content {
     height: 39vw;
@@ -33,13 +36,14 @@
   .node-teaser {
     width: 32.666%;
   }
+
+  .barris-map.clicked {
+    right: 0;
+    margin-right: 0;
+  }
 }
 
 @media all and (max-width: 1080px){
-  body.not-front #content {
-    margin-left: 0;
-  }
-
   #block-system-main-menu {
     padding-top: 22px;
   }
@@ -128,15 +132,27 @@
 }
 
 @media all and (max-width: 850px){
+  .barris-map.clicked {
+    position: static;
+    left: auto;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    float: none;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 20px;
+  }
+  .barris-map.clicked {
+    width: 458px;
+    height: 421px;
+  }
+
   body.admin-menu {
     margin-top: 0!important;
   }
   #admin-menu {
     display: none;
-  }
-
-  .region-content {
-    padding-right: 0;
   }
 
   article#node-161 table {
