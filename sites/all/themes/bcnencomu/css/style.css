@@ -668,13 +668,16 @@ body.page-taxonomy-term #content-header h1 {
         }
           .view-categories-terms-list .views-row {
             display: inline-block;
+            line-height: 1.4;
             margin-right: 14px;
           }
-            .view-categories-terms-list .views-row .views-field-rendered-entity {
-              font-size: 1.6em;
-              text-transform: uppercase;
-              font-weight: 300;
-            }
+            .view-categories-terms-list .views-row .views-field-rendered-entity {}
+              .view-categories-terms-list .views-row .views-field-rendered-entity a {
+                font-size: 1.6em;
+                text-transform: uppercase;
+                font-weight: 300;
+                text-decoration: underline;
+              }
 
 /*** forms ***/
 form {
