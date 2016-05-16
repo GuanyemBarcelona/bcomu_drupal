@@ -463,13 +463,14 @@ header[role="banner"] {
         }
         .mobile-menu ul.menu li ul {
           display: none;
+          padding-left: 20px;
         }
         .mobile-menu ul.menu li.active-trail ul {
           display: block;
         }
           .mobile-menu ul.menu li.active-trail ul li {}
             .mobile-menu ul.menu li.active-trail ul li a {
-              padding-left: 40px;
+              
             }
 
 /*********************
