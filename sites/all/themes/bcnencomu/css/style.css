@@ -1340,7 +1340,7 @@ article.node-event {}
     }
       .view-nodequeue-2 .view-content .views-row {
         width: 333px;
-        height: 100%;
+        height: 165px;
         margin-left: .6%;
         float: left;
       }
@@ -1372,7 +1372,11 @@ article.node-event {}
             font-size: 1.3em;
             font-weight: 500;
           }
-        .view-nodequeue-2 .node > .field-name-field-link {}
+        .view-nodequeue-2 .node > .field-name-field-link {
+          position: absolute;
+          bottom: 12px;
+          left: 12px;
+        }
           .view-nodequeue-2 .node > .field-name-field-link a {
             display: block;
             width: 125px;

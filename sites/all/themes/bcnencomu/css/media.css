@@ -29,7 +29,14 @@
 
   .view-nodequeue-2 .view-content .views-row {
     width: 24.4%;
+    height: 14vw;
   }
+    .view-nodequeue-2 .node > h2 {
+      font-size: 1.6em;
+    }
+    .view-nodequeue-2 .node > .summary {
+      padding-right: 70px;
+    }
   .node-teaser {
     width: 32.666%;
   }
@@ -38,6 +45,15 @@
     right: 0;
     margin-right: 0;
   }
+}
+
+@media all and (max-width: 1150px){
+  .view-nodequeue-2 .view-content .views-row {
+    height: 16vw;
+  }
+    .view-nodequeue-2 .node > .summary {
+      padding-right: 0;
+    }
 }
 
 @media all and (max-width: 1080px){
@@ -59,6 +75,20 @@
     }
     #block-system-main-menu nav > ul.menu > li ul li a {
       font-size: 1.3em;
+    }
+
+  .view-nodequeue-2 .view-content .views-row {
+    width: 48.8%;
+    margin-bottom: 5px;
+  }
+  .view-nodequeue-2 .view-content .views-row.views-row-3 {
+    margin-left: 0;
+  }
+  .view-nodequeue-2 .view-content .views-row.views-row-4 {
+    margin-left: .6%;
+  }
+    .view-nodequeue-2 .node > h2 {
+      font-size: 1.8em;
     }
 
   #content-header h1, article > header h1 {
@@ -166,6 +196,10 @@
     display: none;
   }
 
+  .view-nodequeue-2 .view-content .views-row {
+    height: 25vw;
+  }
+
   article#node-161 table {
     position: static;
     left: auto;
@@ -195,22 +229,13 @@
     font-size: 2.4em;
   }
 
-  .view-nodequeue-2 .view-content .views-row {
-    width: 32.5333%;
-    margin-bottom: 5px;
-  }
-  .view-nodequeue-2 .view-content .views-row.views-row-4 {
-    margin-left: 0;
-  }
-    .view-nodequeue-2 .node > .content h2 {
-      font-size: 1.7em;
-    }
   .node-teaser {
     width: 48.5%;
   }
 }
 
 @media all and (max-width: 700px){
+  .view-nodequeue-2 .view-content .views-row,
   body.sidebar-first #content,
   #sidebar-first,
   .region-footer #block-bcnencomu-social_networks_links,
@@ -227,6 +252,13 @@
     height: auto;
     margin: 0 0 20px;
   }
+  .view-nodequeue-2 .view-content .views-row {
+    height: 165px;
+    margin-bottom: 5px;
+  }
+    .view-nodequeue-2 .node > .summary {
+      padding-right: 90px;
+    }
 
   #content-header h1, article > header h1 {
     font-size: 3em;
@@ -242,16 +274,6 @@
         width: auto;
         height: 100%;
       }
-
-  .view-nodequeue-2 .view-content .views-row {
-    width: 48.8%;
-  }
-  .view-nodequeue-2 .view-content .views-row.views-row-3 {
-    margin-left: 0;
-  }
-  .view-nodequeue-2 .view-content .views-row.views-row-4 {
-    margin-left: .6%;
-  }
 
   #block-bcnencomu-creativecommons p {
     text-align: left;
@@ -310,7 +332,6 @@
     display: none;
   }
   
-  .view-nodequeue-2 .view-content .views-row,
   .node-teaser,
   .view-candidacies .item-list .views-row, .node-candidacy-person.node-teaser,
   article.node-candidacy-person .field-name-field-candidacy-photo,
@@ -354,10 +375,6 @@
   }
   .views-exposed-form .views-exposed-widget .form-submit {
     margin-top: 0;
-  }
-
-  .view-nodequeue-2 .view-content .views-row {
-    margin-bottom: 5px;
   }
 
   #content {
