@@ -59,10 +59,13 @@ var config = {
     if ($main_menu.length){
       // responsive menu
       $('#page').prepend('<div class="mobile-menu"><button data-action="open-mobile-menu">Menu</button></div>');
+      var $home_link = $('#site-logo a');
+      var home_link_html = '';
+      if ($home_link.length) home_link_html = '<a href="' + $home_link.attr('href') + '" class="home-link">'+$home_link.attr('title')+'</a>';
       var $mobile_menu = $('.mobile-menu');
       var $main_menu_content = $main_menu.find('> .content');
       var $secondary_menu_content = $('#block-menu-menu-secondary-menu > .content');
-      $mobile_menu.append('<div class="menus-wrapper">' + $main_menu_content.html() + $secondary_menu_content.html() + '</div>');
+      $mobile_menu.append('<div class="menus-wrapper">' + home_link_html + $main_menu_content.html() + $secondary_menu_content.html() + '</div>');
       $('button[data-action="open-mobile-menu"]').click(function(e){
         $mobile_menu.toggleClass('opened');
       });
