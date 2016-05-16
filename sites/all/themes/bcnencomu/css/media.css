@@ -337,6 +337,10 @@
     padding-top: 70px;
   }
 
+  .view-nodequeue-1 .view-content {
+    height: 52vw;
+  }
+
   input[type="text"], 
   input[type="password"], 
   input[type="email"],
