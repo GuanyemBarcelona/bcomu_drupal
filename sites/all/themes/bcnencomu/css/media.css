@@ -57,7 +57,7 @@
   body.not-front #content {
     margin-left: 15%;
   }
-  .region-content {
+  #content-inner {
     padding-right: 15%;
   }
 
@@ -182,7 +182,7 @@
   body.not-front #content {
     margin-left: 0;
   }
-  .region-content {
+  #content-inner {
     padding-right: 0;
   }
 

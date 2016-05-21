@@ -602,12 +602,13 @@ body.front #content {
 body.node-type-post #content {
   padding-top: 0;
 }
-  
-.region-content {
+
+#content-inner {
   padding-right: 210px;
 }
-
-#content-area {}
+body.front #content-inner {
+  padding-right: 0;
+}
 
 .region-content-top {
   margin-bottom: 20px;
