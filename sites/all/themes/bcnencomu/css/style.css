@@ -618,6 +618,28 @@ body.node-type-post #content {
     margin-bottom: 25px;
   }
 
+/* Press block */
+#block-block-3 {
+  padding: 18px 22px;
+  border: 1px solid #ececec;
+}
+  #block-block-3 > header {}
+    #block-block-3 > header h1 {
+      font-size: 2.5em;
+      font-weight: normal;
+      color: #828282;
+      margin-bottom: .3em;
+    }
+  #block-block-3 > .content {}
+    #block-block-3 > .content p {
+      font-size: 1.5em;
+      color: #828282;
+      margin-bottom: 0;
+    }
+    #block-block-3 > .content a {
+      color: #828282;
+    }
+
 .block-views {}
   .block-views > header {}
     .block-views > header h1 {
