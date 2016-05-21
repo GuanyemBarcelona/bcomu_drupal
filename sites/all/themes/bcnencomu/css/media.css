@@ -13,9 +13,6 @@
   article#node-161 table {
     width: 126%;
   }
-  body.sidebar-first article#node-161 table {
-    width: 139%;
-  }
 
   .view-nodequeue-1 .view-content {
     height: 39vw;
@@ -236,8 +233,6 @@
 
 @media all and (max-width: 700px){
   .view-nodequeue-2 .view-content .views-row,
-  body.sidebar-first #content,
-  #sidebar-first,
   .region-footer #block-bcnencomu-social_networks_links,
   #block-bcnencomu-creativecommons,
   #block-menu-menu-legal-menu,
