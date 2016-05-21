@@ -609,9 +609,14 @@ body.node-type-post #content {
 
 #content-area {}
 
-#content-top {
-  margin-bottom: 8px;
+.region-content-top {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e65c56;
 }
+  .region-content-top .block {
+    margin-bottom: 25px;
+  }
 
 .block-views {}
   .block-views > header {}
@@ -622,37 +627,56 @@ body.node-type-post #content {
       text-align: center;
       margin-bottom: 1.5em;
     }
+    #block-views-categories_terms_list-block > header h1,
+    #block-views-categories_terms_list-block_1 > header h1 {
+      font-size: 1.3em;
+      color: #828282;
+      text-align: left;
+      text-transform: none;
+    }
 
 #content-header h1,
-article > header h1 {
+article > header h1,
+body.page-taxonomy-term #content-header h1 {
   font-size: 5em;
   color: #e65c56;
   margin-bottom: .6em;
 }
-body.page-taxonomy-term #content-header h1 {
-  font-size: 2.4em;
-  text-transform: uppercase;
-}
 
 /* categories terms list */
-.view-categories-terms-list {
-  margin: 0 0 25px;
-}
-  .view-categories-terms-list .item-list > ul {
-    text-align: center;
-  }
+.view-categories-terms-list {}
+  .view-categories-terms-list .item-list > ul {}
     .view-categories-terms-list .views-row {
       display: inline-block;
       line-height: 1.4;
       margin-right: 14px;
     }
-      .view-categories-terms-list .views-row .views-field-rendered-entity {}
-        .view-categories-terms-list .views-row .views-field-rendered-entity a {
-          font-size: 1.6em;
-          text-transform: uppercase;
-          font-weight: 300;
-          text-decoration: underline;
-        }
+      .view-categories-terms-list .views-row a {
+        font-size: 1.3em;
+        color: #3a3a3a;
+        padding: .4em 1em .5em;
+        background: white;
+        border: 1px solid #ececec;
+        -webkit-border-radius: 15px;
+        border-radius: 15px;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+      }
+      .view-categories-terms-list .views-row.all a {
+        background: #ececec;
+      }
+      .view-categories-terms-list .views-row.all a.active {
+        display: none;
+      }
+      .view-categories-terms-list .views-row a:hover,
+      .view-categories-terms-list .views-row a.active {
+        color: white;
+        background: #999;
+        border-color: #999;
+      }
 
 /*** forms ***/
 form {
