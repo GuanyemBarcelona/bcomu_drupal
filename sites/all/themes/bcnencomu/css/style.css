@@ -1420,16 +1420,7 @@ body.front .region-content-bottom {
   overflow: hidden;
 }
 /* Home bottom list */
-#block-views-frontpage-block_1 {
-}
-#block-views-frontpage-block_1:before {
-  content: " ";
-  display: block;
-  width: 90%;
-  padding-top: 20px;
-  margin: 0 auto;
-  border-top: 2px solid #e65c56;
-}
+#block-views-frontpage-block_1 {}
   .view-frontpage {}
     .node-teaser {
       width: 309px;
