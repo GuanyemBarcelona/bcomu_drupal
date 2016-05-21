@@ -1445,9 +1445,12 @@ body.front .region-content-bottom {
 #block-views-frontpage-block_1 {}
   .view-frontpage {}
     .node-teaser {
-      width: 333px;
+      width: 309px;
       margin: 0 .6% 8px 0;
       border-bottom: 1px solid #febbbb;
+    }
+    .view-frontpage .node-teaser {
+      width: 333px;
     }
     .node-teaser.node-banner {
       position: relative;
