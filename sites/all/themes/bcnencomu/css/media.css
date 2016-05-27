@@ -51,6 +51,12 @@
     .view-nodequeue-2 .node > .summary {
       padding-right: 0;
     }
+
+  .box-list .views-row .views-field-title .field-content a,
+  .box-list .views-row .views-field-name-field .field-content a,
+  .box-list .views-row .views-field-title-field .field-content a {
+    font-size: 1.7em;
+  }
 }
 
 @media all and (max-width: 1080px){
@@ -131,6 +137,13 @@
     padding-left: 15%;
   }
 
+  body.not-front #content {
+    margin-left: 0;
+  }
+  #content-inner {
+    padding-right: 0;
+  }
+
   header[role="banner"] {
     height: 70px;
     padding-top: 2px;
@@ -179,13 +192,6 @@
     height: 421px;
   }
 
-  body.not-front #content {
-    margin-left: 0;
-  }
-  #content-inner {
-    padding-right: 0;
-  }
-
   body.admin-menu {
     margin-top: 0!important;
   }
@@ -228,6 +234,14 @@
 
   .node-teaser {
     width: 48.5%;
+  }
+
+  .box-list .views-row {
+    width: 49.5%;
+    margin-right: 1%;
+  }
+  .box-list .views-row-even {
+    margin-right: 0;
   }
 }
 
@@ -331,7 +345,8 @@
   .view-candidacies .item-list .views-row, .node-candidacy-person.node-teaser,
   article.node-candidacy-person .field-name-field-candidacy-photo,
   .view-offices-list .item-list .views-row .views-field-field-image,
-  .views-exposed-form .views-exposed-widget {
+  .views-exposed-form .views-exposed-widget,
+  .box-list .views-row {
     position: static;
     top: auto;
     left: auto;
@@ -387,6 +402,11 @@
 
   #page.cronograma-page article > header h1 {
     font-size: 3em;
+  }
+
+  .box-list .views-row {
+    position: relative;
+    height: 117px;
   }
 }
 
