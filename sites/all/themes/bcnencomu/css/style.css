@@ -1640,21 +1640,24 @@ body.front .region-content-bottom {
         width: 105px;
       }
       .box-list .views-row .views-field-title,
-      .box-list .views-row .views-field-name-field {
+      .box-list .views-row .views-field-name-field,
+      .box-list .views-row .views-field-title-field {
         height: 100%;
         padding: 0 20px;
       }
-      .view-eixos .views-row .views-field-title {
+      .view-eixos .views-row .views-field-title-field {
         padding-left: 110px;
       }
         .box-list .views-row .views-field-title .field-content,
-        .box-list .views-row .views-field-name-field .field-content {
+        .box-list .views-row .views-field-name-field .field-content,
+        .box-list .views-row .views-field-title-field .field-content {
           display: table;
           width: 100%;
           height: 100%;
         }
           .box-list .views-row .views-field-title .field-content a,
-          .box-list .views-row .views-field-name-field .field-content a {
+          .box-list .views-row .views-field-name-field .field-content a,
+          .box-list .views-row .views-field-title-field .field-content a {
             display: table-cell;
             width: 100%;
             height: 100%;
@@ -1669,11 +1672,12 @@ body.front .region-content-bottom {
             -o-transition: all 0.3s ease-in-out;
             transition: all 0.3s ease-in-out;
           }
-          .view-eixos .views-row .views-field-title .field-content a {
+          .view-eixos .views-row .views-field-title-field .field-content a {
             text-align: left;
           }
           .box-list .views-row:hover .views-field-title .field-content a,
-          .box-list .views-row:hover .views-field-name-field .field-content a {
+          .box-list .views-row:hover .views-field-name-field .field-content a,
+          .box-list .views-row:hover .views-field-title-field .field-content a {
             color: #e65c56;
           }
       .box-list .views-row .views-field-edit-node {
