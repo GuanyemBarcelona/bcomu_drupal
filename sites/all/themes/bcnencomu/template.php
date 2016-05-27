@@ -8,6 +8,7 @@ define('CALENDAR_NID', 3);
 define('ENCOMUMAP_NID', 1062);
 define('ENCOMU_FORM_NID', 1808);
 define('CRONOGRAMA_NID', 1875);
+define('EIXOS_NID', 2037);
 
 // Auto-rebuild the theme registry during theme development.
 if (theme_get_setting('clear_registry')) {
@@ -370,23 +371,22 @@ function bcnencomu_preprocess_node(&$vars) {
         	}
         	if (isset($list_nid)) $vars['list_uri'] = gh_get_node_path_alias($list_nid);
         }
-
-        /*// district
-        $district = field_get_items('node', $node_obj, 'field_candidacy_district');
-        if (isset($district[0]['tid'])){
-          $district_name = gh_get_taxonomy_name($district[0]['tid']);
-          $vars['district_link'] = l($district_name, 'taxonomy/term/' . $district[0]['tid']);
-        }*/
-
-        // youtube
-        /*$youtube_video = field_get_items('node', $node_obj,'field_youtube_url');
-        if (isset($youtube_video[0]['safe_value'])){
-          $vars['youtube_uri'] = $youtube_video[0]['safe_value'];
-        }*/
       }
       break;
-    case 'measure':
-
+    case 'eix_tematic':
+      $vars['back_link'] = l(t("Torna al llistat d'eixos"), 'node/' . EIXOS_NID, array('attributes' => array('data-action' => 'go-back')));
+      $web_field = field_get_items('node', $node_obj, 'field_grup_web');
+      if (!empty($web_field)){
+        $vars['web_link'] = l(t("Visit our web"), $web_field[0]['url'], array('attributes' => array('rel' => 'external')));
+      }
+      $facebook_field = field_get_items('node', $node_obj, 'field_grup_facebook');
+      if (!empty($facebook_field)){
+        $vars['facebook_link'] = l(t("Visit our Facebook page"), $facebook_field[0]['url'], array('attributes' => array('rel' => 'external')));
+      }
+      $twitter_field = field_get_items('node', $node_obj, 'field_grup_twitter');
+      if (!empty($twitter_field)){
+        $vars['twitter_link'] = l(t("Read our Twitter"), 'https://twitter.com/' . $twitter_field[0]['safe_value'], array('attributes' => array('rel' => 'external')));
+      }
       break;
 	}
 }
