@@ -1143,6 +1143,92 @@ article.node-event {}
       line-height: 1;
     }
 
+/* eix tematic detail */
+article.node-eix-tematic {}
+  article.node-eix-tematic a[data-action="go-back"]:before {
+    content: "<";
+    margin-right: 10px;
+  }
+  article.node-eix-tematic .field {
+    margin-bottom: 20px;
+  }
+    article.node-eix-tematic .field .field-label {
+      font-size: 3em;
+      line-height: 1.1;
+      font-weight: 300;
+      color: #a2b6ca;
+      margin-bottom: .5em;
+    }
+  article.node-eix-tematic .field-name-field-eix-grup-treball {}
+    article.node-eix-tematic .field-name-field-eix-grup-treball .field-items ul li {
+      position: relative;
+      font-size: 1.7em;
+      line-height: 1.25;
+      padding-left: 1.1em;
+      font-weight: bold;
+      margin-bottom: .6em;
+    }
+    article.node-eix-tematic .field-name-field-eix-grup-treball .field-items ul li:before {
+      content: "•";
+      line-height: 0;
+      font-size: 1.4em;
+      position: absolute;
+      color: #c9c9c9;
+      top: 11px;
+      left: 4px;
+    }
+  article.node-eix-tematic .field-name-field-eix-coordi {}
+    article.node-eix-tematic .field-name-field-eix-coordi .field-items {
+      font-size: 1.7em;
+      line-height: 1.25;
+    }
+  article.node-eix-tematic .field-name-body {
+    padding: 20px 0;
+    border-top: 2px solid #e65c56;
+    border-bottom: 2px solid #e65c56;
+  }
+    article.node-eix-tematic .field-name-body p {}
+  article.node-eix-tematic .extra-links {
+    padding-bottom: 40px;
+  }
+    article.node-eix-tematic .extra-links .field {
+      margin-bottom: 5px;
+    }
+      article.node-eix-tematic .extra-links .field .field-item {
+        font-size: 1.7em;
+        line-height: 1.25;
+        position: relative;
+        padding-left: 30px;
+      }
+        article.node-eix-tematic .extra-links .field .field-item a {
+          color: #6c6c6c;
+          text-decoration: underline;
+        }
+      article.node-eix-tematic .extra-links .field .field-item:before {
+        position: absolute;
+        top: -3px;
+        left: 0;
+        content: " ";
+        display: block;
+        width: 25px;
+        height: 25px;
+        background-image: url("../images/sprite.png");
+        background-repeat: no-repeat;
+        background-position: -25px -25px;
+      }
+      article.node-eix-tematic .extra-links .field-name-field-grup-email .field-item:before {
+        background-position: -25px -125px;
+      }
+      article.node-eix-tematic .extra-links .field-name-field-grup-web .field-item:before {
+        background-position: -50px -125px;
+      }
+      article.node-eix-tematic .extra-links .field-name-field-grup-facebook .field-item:before {
+        background-position: -75px -125px;
+      }
+      article.node-eix-tematic .extra-links .field-name-field-grup-twitter .field-item:before {
+        background-position: -100px -125px;
+      }
+
 /* comments */
 .comment-wrapper {
   margin: 50px auto 0;
