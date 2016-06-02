@@ -1143,7 +1143,7 @@ article.node-event {}
       line-height: 1;
     }
 
-/* eix tematic detail */
+/* espai (old eix tematic) detail */
 article.node-eix-tematic {}
   article.node-eix-tematic a[data-action="go-back"]:before {
     content: "<";
@@ -1645,7 +1645,7 @@ body.front .region-content-bottom {
         height: 100%;
         padding: 0 20px;
       }
-      .view-eixos .views-row .views-field-title-field {
+      .view-espais.view-display-id-eixos .views-row .views-field-title-field {
         padding-left: 110px;
       }
         .box-list .views-row .views-field-title .field-content,
@@ -1672,7 +1672,7 @@ body.front .region-content-bottom {
             -o-transition: all 0.3s ease-in-out;
             transition: all 0.3s ease-in-out;
           }
-          .view-eixos .views-row .views-field-title-field .field-content a {
+          .view-espais.view-display-id-eixos .views-row .views-field-title-field .field-content a {
             text-align: left;
           }
           .box-list .views-row:hover .views-field-title .field-content a,
