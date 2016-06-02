@@ -8,7 +8,9 @@ define('CALENDAR_NID', 3);
 define('ENCOMUMAP_NID', 1062);
 define('ENCOMU_FORM_NID', 1808);
 define('CRONOGRAMA_NID', 1875);
-define('EIXOS_NID', 2037);
+define('ESPAIS_EIXOS_NID', 2037);
+define('ESPAIS_GRUPS_NID', 2054);
+define('ESPAIS_COMIS_NID', 2053);
 
 // Auto-rebuild the theme registry during theme development.
 if (theme_get_setting('clear_registry')) {
@@ -374,7 +376,17 @@ function bcnencomu_preprocess_node(&$vars) {
       }
       break;
     case 'eix_tematic':
-      $vars['back_link'] = l(t("Torna al llistat d'eixos"), 'node/' . EIXOS_NID, array('attributes' => array('data-action' => 'go-back')));
+      // back to list link
+      $espai_nids = array(
+        547 => ESPAIS_EIXOS_NID,
+        578 => ESPAIS_GRUPS_NID,
+        549 => ESPAIS_COMIS_NID,
+      );
+      $espai_type = field_get_items('node', $node_obj, 'field_space_bcomu');
+      if (!empty($espai_type)){
+        $espai_type_tid = $espai_type[0]['tid'];
+        $vars['back_link'] = l(t("Back to the list"), 'node/' . $espai_nids[$espai_type_tid], array('attributes' => array('data-action' => 'go-back')));
+      }
       $web_field = field_get_items('node', $node_obj, 'field_grup_web');
       if (!empty($web_field)){
         $vars['web_link'] = l(t("Visit our web"), $web_field[0]['url'], array('attributes' => array('rel' => 'external')));
