@@ -1323,11 +1323,8 @@ article.node-eix-tematic {}
 .view-nodequeue-1 {}
   .view-nodequeue-1 .view-content {
     height: 557px;
-    padding-bottom: 30px;
   }
-    .view-nodequeue-1 .owl-pagination {
-
-    }
+    .view-nodequeue-1 .owl-pagination {}
     .view-nodequeue-1 .owl-carousel .owl-wrapper, .view-nodequeue-1 .owl-carousel .owl-item, .view-nodequeue-1 .owl-wrapper-outer,
     .view-nodequeue-1 .view-content .views-row {
       height: 100%;
