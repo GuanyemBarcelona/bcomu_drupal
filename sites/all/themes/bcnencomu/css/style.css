@@ -658,6 +658,18 @@ body.front #content-inner {
       text-transform: none;
     }
 
+/**** Relatem el canvi ****/
+#page.page-relatem-canvi #block-views-categories_terms_list-block {
+  display: none;
+}
+/* title block */
+#block-block-7 {
+  max-width: 600px;
+  margin: 0 auto;
+}
+/**************************/
+
+/* the main title */
 #content-header h1,
 article > header h1,
 body.page-taxonomy-term #content-header h1 {

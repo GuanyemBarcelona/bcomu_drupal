@@ -11,6 +11,7 @@ define('CRONOGRAMA_NID', 1875);
 define('ESPAIS_EIXOS_NID', 2037);
 define('ESPAIS_GRUPS_NID', 2054);
 define('ESPAIS_COMIS_NID', 2053);
+define('RELATEM_CANVI_TID', 584);
 
 // Auto-rebuild the theme registry during theme development.
 if (theme_get_setting('clear_registry')) {
@@ -138,6 +139,11 @@ function bcnencomu_preprocess_page(&$vars, $hook) {
 	if (arg(0) == 'taxonomy' && arg(1) == 'term' && is_numeric(arg(2))) {
 		$vars['page']['content']['system_main']['nodes']['#prefix'] = '<div class="term-nodes">';
     $vars['page']['content']['system_main']['nodes']['#suffix'] = '</div>';
+    // relatem el canvi page class
+    if (arg(2) == RELATEM_CANVI_TID){
+      $vars['classes_array'][] = 'page-relatem-canvi';
+      $vars['must_show_title'] = FALSE;
+    }
 	}
 
   // calendar page
