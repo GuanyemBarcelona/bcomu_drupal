@@ -1,0 +1,14 @@
+<div class="pocketlist" ng-class="{'empty-list': isListEmpty()}">
+    <div class="search" ng-hide="isListEmpty()">
+        <input type="text" ng-model="searchText" ng-minlength="{{minSearchLength}}" placeholder="Cerca per paraula...">
+        <button data-action="reset" ng-click="resetSearch()">x</button>
+    </div>
+
+    <div class="pocketlist-items">
+        <p class="loading-text" ng-show="listLoading">Carregant...</p>
+        <ul infinite-scroll="loadList()" infinite-scroll-disabled="listLoading" infinite-scroll-distance="0">
+            <pocket-list-item ng-repeat="item in fullList | filter:searchText"></pocket-list-item>
+        </ul>
+        <p class="empty-text" ng-show="showEmptySearchMessage()">No s'ha trobat res amb aquestes paraules...</p>
+    </div>
+</div>

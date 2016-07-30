@@ -1,0 +1,114 @@
+/**
+ * @file
+ * Page modules
+ *
+ */
+
+body.not-front #content {
+    margin-left: 0;
+}
+#content-inner {
+    padding-right: 0;
+}
+
+ /* Fader */
+.image-fader {
+    &.ng-hide-add, &.ng-hide-remove {
+        transition: all linear 0.5s;
+        display: block !important;
+    }
+    &.ng-hide-add.ng-hide-add-active, &.ng-hide-remove {
+        opacity: 0;
+    }
+    &.ng-hide-add, &.ng-hide-remove.ng-hide-remove-active {
+        opacity: 1;
+    }
+}
+
+.loading-text {
+    z-index: 10;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    padding: 1em;
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+    background: rgba(255,255,255,.8);
+}
+.empty-list .loading-text {
+    position: static;
+}
+
+/* ----- */
+.mainContent {}
+
+/*** Home ***/
+.page[data-slug="home"] {
+    
+}
+    .pocketlist {
+        margin: 20px 0;
+        .search {
+            margin-bottom: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            input[type="text"]{
+                padding: .4em .6em .5em;
+                margin-right: 5px;
+                background: white;
+            }
+            button[data-action="reset"] {
+                width: auto;
+                display: inline-block;
+            }
+        }
+        .pocketlist-items {
+            position: relative;
+            > ul {
+                display: flex;
+                flex-wrap: wrap;
+                position: relative;
+                width: 102.5%;
+                left: -1.3%;
+            }
+        }
+        .pocketlist-item {
+            width: 23%;
+            padding: 12px 0;
+            overflow: hidden;
+            margin: 0 1% 20px;
+            border: 1px solid #EEE;
+            @media all and (max-width: $medium_width){
+                width: 48%;
+            }
+            @media all and (max-width: $micro_width){
+                @include one-columnize;
+            }
+            a {
+                transition: all linear .2s;
+                color: black;
+                &:hover {
+                    color: $theme_red;
+                }
+            }
+            h3 {
+                padding: 0 15px;
+                font-weight: bold;
+                font-size: 17px;
+                margin-bottom: .6em;
+            }
+            .image {
+                margin-bottom: 10px;
+            }
+            .body {
+                padding: 0 15px;
+                p {
+                    font-size: 13px;
+                }
+            }
+        }
+    }

@@ -1,0 +1,11 @@
+<li class="pocketlist-item">
+    <a ng-href="{{item.given_url}}" external-link>
+        <h3>{{item.resolved_title || item.given_title}}</h3>
+        <div class="image" ng-if="item.has_image == '1' && item.image_width > 0">
+            <img ng-src="{{item.image_src}}">
+        </div>
+        <div class="body" ng-if="item.has_image == '0' || item.image_width == 0">
+            <p>{{item.excerpt}}</p>
+        </div>
+    </a>
+</li>

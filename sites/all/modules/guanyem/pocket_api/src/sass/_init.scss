@@ -1,0 +1,20 @@
+//
+// Initialization partial
+//
+
+// RWD breakpoints
+$big_width: 1200px;
+$normal_width: 980px;
+$medium_width: 860px;
+$mini_width: 650px;
+$micro_width: 500px;
+$nano_width: 320px;
+
+// theme colors
+$theme_red: #e65c56;
+
+// =============================================================================
+// Partials to be shared with all .scss files.
+// =============================================================================
+@import "mixins";
+@import "animation";
