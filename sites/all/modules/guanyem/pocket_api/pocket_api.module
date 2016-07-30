@@ -1,0 +1,181 @@
+<?php
+define('POCKET_API_SLUG', 'pocket_api');
+define('POCKET_API_ENDPOINT', 'https://getpocket.com/v3');
+
+$path_to_keys = __DIR__ . '/secret/pocketkeys.php';
+if (file_exists($path_to_keys)) {
+  require $path_to_keys;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function pocket_api_menu() {
+  $items = array();
+
+  $items['async/test/pocket/%'] = array(
+    'page callback' => 'pocket_api_test',
+    'type' => MENU_CALLBACK,
+    'page arguments' => array(3),
+    'access arguments' => array('access content'),
+  );
+
+  $items['api/pocket/getlist/%/%'] = array(
+    'page callback' => 'pocket_api_get_list_part',
+    'type' => MENU_CALLBACK,
+    'page arguments' => array(3, 4),
+    'access arguments' => array('access content'),
+  );
+
+  $items['api/pocket/getcount'] = array(
+    'page callback' => 'pocket_api_get_list_count',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access content'),
+  );
+
+  $items['recull-premsa'] = array(
+    'page callback' => 'pocket_api_render_list',
+    'type' => MENU_NORMAL_ITEM,
+    'access arguments' => array('access content'),
+  );
+
+  return $items;
+}
+
+/*
+* Simple Test function
+*/
+function pocket_api_test($type){
+  switch ($type){
+    case 'last':
+      $response = pocket_api_get_last_creation_time();
+      break;
+    default:
+      $response = 'Wrong test type specified.';
+  }
+  
+  drupal_json_output($response);
+  drupal_exit();
+}
+
+/**
+ * Implements hook_theme().
+ */
+function pocket_api_theme($existing, $type, $theme, $path) {
+  return array(
+    'pocket_list' => array(
+      'path' => drupal_get_path('module', POCKET_API_SLUG),
+      'variables' => array(),
+      'template' => 'src/index',
+    ),
+  );
+}
+
+function pocket_api_render_list(){
+  // renders the AngularJS app
+  $base_path = base_path() . drupal_get_path('module', POCKET_API_SLUG) . '/src';
+  return theme('pocket_list', array('base_path' => $base_path));
+}
+
+function pocket_api_get_list_part($count = 24, $offset = 0){
+  // fetch data from database
+  $result = db_query_range('SELECT * FROM {pocket_api_list} ORDER BY id ASC', $offset, $offset + $count);
+  $response = $result->fetchAll();
+  drupal_json_output($response);
+  drupal_exit();
+}
+
+function pocket_api_get_list_count(){
+  // return how many pockets are stored in database
+  $result = db_query('SELECT COUNT(*) AS count FROM {pocket_api_list}');
+  $response = intval($result->fetchField(0));
+  if ($response === false) $response = 0;
+  drupal_json_output($response);
+  drupal_exit();
+}
+
+function pocket_api_get_last_creation_time(){
+  // return the date the last pocket was stored in database
+  $result = db_query('SELECT created FROM {pocket_api_list} ORDER BY created');
+  return intval($result->fetchField(0));
+}
+
+/*
+ * Implements hook_cron().
+ */
+function pocket_api_cron(){
+  pocket_api_save_last_pockets();
+}
+
+function pocket_api_save_last_pockets(){
+  // save pocket api data in database - to do in a cron
+  $last_time = pocket_api_get_last_creation_time();
+  $pockets = pocket_api_get_new_pockets($last_time);
+  if ($pockets !== false){
+    $queue = DrupalQueue::get('save_pocket_data');
+    foreach ($pockets->list as $key => $pocket_item) {
+      $queue->createItem($pocket_item);
+    }
+  }
+}
+
+function pocket_api_get_new_pockets($since = false){
+  global $POCKET_API_CONSUMER_KEY, $POCKET_API_ACCESS_TOKEN;
+  if (!isset($POCKET_API_CONSUMER_KEY)){
+    die('key not set');
+  }
+  // get the pocket items from the Pocket API
+  $api_uri = POCKET_API_ENDPOINT . '/get';
+  $data = array(
+    'consumer_key' => $POCKET_API_CONSUMER_KEY,
+    'access_token' => $POCKET_API_ACCESS_TOKEN,
+    'detailType' => 'complete',
+    'state' => 'all',
+    'sort' => 'newest' // not working
+  );
+  if ($since !== false) $data['since'] = $since;
+  $options = array(
+    'http' => array(
+      'header'  => "Content-type: application/x-www-form-urlencoded",
+      'method'  => 'POST',
+      'content' => http_build_query($data),
+    )
+  );
+  $context = stream_context_create($options);
+  $response = json_decode(file_get_contents($api_uri, false, $context));
+  unset($POCKET_API_CONSUMER_KEY);
+  unset($POCKET_API_ACCESS_TOKEN);
+  return $response;
+}
+ 
+/*
+ * Implements hook_cron_queue_info().
+ */
+function pocket_api_cron_queue_info(){
+  $queues['save_pocket_data'] = array(
+    'worker callback' => 'pocket_api_save_pocket_item',
+    'time' => 10,
+  );
+  return $queues;
+}
+
+function pocket_api_save_pocket_item($data){
+  $fields = array(
+    'created' => REQUEST_TIME,
+    'has_image' => intval($data->has_image),
+  );
+  if (isset($data->given_url)) $fields['given_url'] = $data->given_url;
+  if (isset($data->resolved_title)) $fields['resolved_title'] = $data->resolved_title;
+  if (isset($data->given_title)) $fields['given_title'] = $data->given_title;
+  if (isset($data->image)){
+    $fields['image_width'] = intval($data->image->width);
+    $fields['image_height'] = intval($data->image->height);
+    $fields['image_src'] = $data->image->src;
+  }
+  if (isset($data->excerpt)) $fields['excerpt'] = $data->excerpt;
+
+  $result = db_insert('pocket_api_list')
+    ->fields($fields)
+    ->execute();
+}
+

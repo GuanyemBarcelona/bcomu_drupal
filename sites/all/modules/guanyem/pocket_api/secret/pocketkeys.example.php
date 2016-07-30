@@ -1,0 +1,5 @@
+<?php
+global $POCKET_API_CONSUMER_KEY, $POCKET_API_ACCESS_TOKEN;
+
+$POCKET_API_CONSUMER_KEY = 'API Consumer Key here';
+$POCKET_API_ACCESS_TOKEN = 'API Access Token here';
