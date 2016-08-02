@@ -4,8 +4,7 @@ angular.module('bcomupocket')
 
     self.apiEndpoint = '/api/pocket';
 
-    self.getCount = function(cb){
-        var uri = self.apiEndpoint + '/getcount';
+    self.getData = function(uri, cb){
         $http({
             method: 'GET',
             url: uri,
@@ -15,14 +14,12 @@ angular.module('bcomupocket')
         }).then(cb);
     };
 
-    self.getList = function(count, offset, cb){
-        var uri = self.apiEndpoint + '/getlist/' + count + '/' + offset;
-        $http({
-            method: 'GET',
-            url: uri,
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            }
-        }).then(cb);
+    self.getCount = function(cb){
+        self.getData(self.apiEndpoint + '/getcount', cb);
     };
+
+    self.getList = function(count, offset, cb){
+        self.getData(self.apiEndpoint + '/getlist/' + count + '/' + offset, cb);
+    };
+
 });
