@@ -79,7 +79,7 @@ function pocket_api_render_list(){
 
 function pocket_api_get_list_part($count = 24, $offset = 0){
   // fetch data from database
-  $result = db_query_range('SELECT * FROM {pocket_api_list} ORDER BY id ASC', $offset, $offset + $count);
+  $result = db_query_range('SELECT * FROM {pocket_api_list} ORDER BY time_added DESC', $offset, $offset + $count);
   $response = $result->fetchAll();
   drupal_json_output($response);
   drupal_exit();
