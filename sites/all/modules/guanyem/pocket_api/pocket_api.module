@@ -131,7 +131,7 @@ function pocket_api_get_new_pockets($since = false){
     'access_token' => $POCKET_API_ACCESS_TOKEN,
     'detailType' => 'complete',
     'state' => 'all',
-    'sort' => 'newest' // not working
+    'sort' => 'newest'
   );
   if ($since !== false) $data['since'] = $since;
   $options = array(
