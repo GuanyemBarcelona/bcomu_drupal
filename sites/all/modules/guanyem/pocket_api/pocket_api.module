@@ -122,7 +122,7 @@ function pocket_api_save_last_pockets(){
 function pocket_api_get_new_pockets($since = false){
   global $POCKET_API_CONSUMER_KEY, $POCKET_API_ACCESS_TOKEN;
   if (!isset($POCKET_API_CONSUMER_KEY)){
-    die('key not set');
+    throw new Exception("Cannot run Cron: API Key for the Pocket service is not set.");
   }
   // get the pocket items from the Pocket API
   $api_uri = POCKET_API_ENDPOINT . '/get';
