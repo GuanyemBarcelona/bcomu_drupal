@@ -36,7 +36,7 @@ angular.module('bcomupocket')
     };
 
     $scope.loadListProcess = function(){
-        if ($scope.maxItems > $scope.fullList.length + $scope.itemsPerPage){
+        if ($scope.fullList.length == 0 || ($scope.maxItems > $scope.fullList.length + $scope.itemsPerPage)){
             $scope.listLoading = true;
             pocketServ.getList($scope.itemsPerPage, $scope.fullList.length, function(data){
                 $scope.listLoading = false;
