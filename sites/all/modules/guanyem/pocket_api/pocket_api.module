@@ -162,6 +162,7 @@ function pocket_api_save_pocket_item($data){
   $fields = array(
     'created' => REQUEST_TIME,
     'has_image' => intval($data->has_image),
+    'time_added' => intval($data->time_added),
   );
   if (isset($data->given_url)) $fields['given_url'] = $data->given_url;
   if (isset($data->resolved_title)) $fields['resolved_title'] = $data->resolved_title;

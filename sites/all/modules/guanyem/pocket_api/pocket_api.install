@@ -17,6 +17,11 @@
         'not null' => TRUE,
         'default' => 0
       ),
+      'time_added' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0
+      ),
       'given_url' => array(
         'type' => 'varchar',
         'length' => 255,
