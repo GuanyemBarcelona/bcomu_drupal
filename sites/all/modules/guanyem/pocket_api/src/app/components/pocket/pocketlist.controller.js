@@ -14,7 +14,7 @@ angular.module('bcomupocket')
             // maxItems not set
             $scope.listLoading = true;
             pocketServ.getCount(function(data){
-                $scope.listLoading = false;
+                //$scope.listLoading = false;
                 if (data.status == 200){
                     $scope.maxItems = parseInt(data.data);
                     if (angular.isNumber($scope.maxItems)){
