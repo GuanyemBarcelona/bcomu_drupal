@@ -96,7 +96,7 @@ function pocket_api_get_list_count(){
 
 function pocket_api_get_last_creation_time(){
   // return the date the last pocket was stored in database
-  $result = db_query('SELECT created FROM {pocket_api_list} ORDER BY created');
+  $result = db_query('SELECT created FROM {pocket_api_list} ORDER BY created DESC');
   return intval($result->fetchField(0));
 }
 
