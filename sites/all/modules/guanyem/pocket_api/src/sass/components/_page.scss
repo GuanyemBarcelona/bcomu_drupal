@@ -102,21 +102,16 @@ body.not-front #content {
                 font-size: 17px;
                 margin-bottom: .6em;
             }
-            .image {
-                margin-bottom: 10px;
-            }
+            .image {}
             .body {
                 padding: 0 15px;
-                margin-bottom: 10px;
                 p {
                     font-size: 13px;
                 }
             }
             .item-tags {
-                position: absolute;
-                bottom: 10px;
-                left: 15px;
-                width: 93%;
+                padding: 0 15px;
+                margin-top: 10px;
                 ul {
                     display: inline;
                 }
