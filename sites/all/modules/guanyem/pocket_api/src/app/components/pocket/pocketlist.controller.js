@@ -9,6 +9,7 @@ angular.module('bcomupocket')
     $scope.minSearchLength = 2;
     $scope.maxItems = -1;
     $scope.tagsList = [];
+    $scope.currentTag = null;
 
     $scope.loadList = function(){
         if ($scope.maxItems == -1){
@@ -48,6 +49,30 @@ angular.module('bcomupocket')
                 }
             });
         }
+    };
+
+    $scope.chooseTag = function(tagname){
+        $scope.fullList = [];
+        if ($scope.currentTag !== tagname){
+            $scope.currentTag = tagname;
+            $scope.loadTaggedList(tagname);
+        }else{
+            // clear tag filter
+            $scope.currentTag = null;
+            $scope.loadListProcess();
+        }
+    };
+
+    $scope.loadTaggedList = function(tagname){
+        $scope.listLoading = true;
+        pocketServ.getTaggedBy($scope.currentTag, function(data){
+            $scope.listLoading = false;
+            if (data.status == 200){
+                for (var i in data.data){
+                    $scope.fullList.push(data.data[i]);
+                }
+            }
+        });
     };
 
     $scope.loadTags = function(){

@@ -124,6 +124,13 @@ body.not-front #content {
                     @include separate-by-commas;
                     font-size: 13px;
                     display: inline;
+                    a {
+                        cursor: pointer;
+                        color: #999;
+                        &:hover, &.active {
+                            color: $theme_red;
+                        }
+                    }
                 }
             }
         }
@@ -138,6 +145,7 @@ body.not-front #content {
             line-height: 1.4;
             margin-right: 14px;
             a {
+                cursor: pointer;
                 font-size: 1.3em;
                 color: #3a3a3a;
                 padding: .4em 1em .5em;
@@ -148,7 +156,7 @@ body.not-front #content {
                 &:hover, &.active {
                     color: white;
                     background: #999;
-                    border-color: #999;
+                    border-color: #777;
                 }
             }
         }

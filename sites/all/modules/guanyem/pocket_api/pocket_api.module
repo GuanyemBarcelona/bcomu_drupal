@@ -36,6 +36,12 @@ function pocket_api_menu() {
     'type' => MENU_CALLBACK,
     'access arguments' => array('access content'),
   );
+  $items['api/pocket/gettaggedby/%'] = array(
+    'page callback' => 'pocket_api_get_items_by_tagname',
+    'type' => MENU_CALLBACK,
+    'page arguments' => array(3),
+    'access arguments' => array('access content'),
+  );
 
   $items['recull-premsa'] = array(
     'page callback' => 'pocket_api_render_list',
@@ -85,14 +91,19 @@ function pocket_api_get_list_part($count = 24, $offset = 0){
   // fetch data from database
   $result = db_query_range('SELECT * FROM {pocket_api_list} ORDER BY time_added DESC', $offset, $offset + $count);
   $response = $result->fetchAll();
+  $response = pocket_api_arrange_tags($response);
+  drupal_json_output($response);
+  drupal_exit();
+}
+
+// arrange the tags value as a json object
+function pocket_api_arrange_tags($response){
   foreach ($response as $key => $item) {
-    // arrange the tags value as a json object
     if (!is_null($item->tags)){
       $response[$key]->tags = unserialize($item->tags);
     }
   }
-  drupal_json_output($response);
-  drupal_exit();
+  return $response;
 }
 
 function pocket_api_get_list_count(){
@@ -179,7 +190,7 @@ function pocket_api_save_pocket_item($data){
     ->execute();
 }
 
-function pocket_api_get_all_tags(){
+function pocket_api_get_all_tag_objects(){
   $result = db_query('SELECT tags FROM {pocket_api_list}');
   $response = $result->fetchAll();
   $all_tags = array();
@@ -195,7 +206,24 @@ function pocket_api_get_all_tags(){
       }
     }
   }
-  $response = $all_tags;
+  return $all_tags;
+}
+
+function pocket_api_get_all_tags(){
+  $response = pocket_api_get_all_tag_objects();
+  drupal_json_output($response);
+  drupal_exit();
+}
+
+function pocket_api_get_items_by_tagname($tagname){
+  $tags = pocket_api_get_all_tag_objects();
+  if (is_null($tags[$tagname])) $response = [];
+  else {
+    $result = db_query('SELECT * FROM {pocket_api_list} WHERE item_id IN (:ids)', array(':ids' => $tags[$tagname]));
+    $response = $result->fetchAll();
+    $response = pocket_api_arrange_tags($response);
+  }
+
   drupal_json_output($response);
   drupal_exit();
 }

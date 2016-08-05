@@ -26,4 +26,8 @@ angular.module('bcomupocket')
         self.getData(self.apiEndpoint + '/gettags', cb);
     };
 
+    self.getTaggedBy = function(tagname, cb){
+        self.getData(self.apiEndpoint + '/gettaggedby/' + tagname, cb);
+    };
+
 });
