@@ -188,11 +188,9 @@ function pocket_api_get_all_tags(){
       $item_tags = unserialize($item->tags);
       foreach ($item_tags as $key2 => $item_tag) {
         if (!isset($all_tags[$item_tag->tag])){
-          $all_tags[$item_tag->tag] = array(
-            'count' => 1,
-          );
+          $all_tags[$item_tag->tag] = array($item_tag->item_id);
         }else{
-          $all_tags[$item_tag->tag]['count']++;
+          $all_tags[$item_tag->tag][] = $item_tag->item_id;
         }
       }
     }
