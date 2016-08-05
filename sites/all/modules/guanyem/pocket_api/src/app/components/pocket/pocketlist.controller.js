@@ -55,7 +55,7 @@ angular.module('bcomupocket')
         $scope.fullList = [];
         if ($scope.currentTag !== tagname){
             $scope.currentTag = tagname;
-            $scope.loadTaggedList(tagname);
+            $scope.loadTaggedList();
         }else{
             // clear tag filter
             $scope.currentTag = null;
@@ -63,7 +63,7 @@ angular.module('bcomupocket')
         }
     };
 
-    $scope.loadTaggedList = function(tagname){
+    $scope.loadTaggedList = function(){
         $scope.listLoading = true;
         pocketServ.getTaggedBy($scope.currentTag, function(data){
             $scope.listLoading = false;
