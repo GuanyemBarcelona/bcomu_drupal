@@ -17,6 +17,10 @@
         'not null' => TRUE,
         'default' => 0
       ),
+      'item_id' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+      ),
       'time_added' => array(
         'type' => 'int',
         'not null' => TRUE,
