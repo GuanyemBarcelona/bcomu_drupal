@@ -135,9 +135,29 @@ body.not-front #content {
     }
 
     .tag-filters-list {
+        position: relative;
         text-align: center;
-        margin: 30px 0;
+        margin: 30px 0 50px;
         line-height: 35px;
+        &.open {
+            ul {
+                max-height: 1000px;
+            }
+        }
+        button[data-action="see-all-tags"] {
+            width: 50px;
+            padding: .1em;
+            position: absolute;
+            bottom: -22px;
+            font-size: 16px;
+            left: 50%;
+            margin-left: -25px;
+        }
+        ul {
+            transition: max-height 0.8s ease-in-out;
+            max-height: 34px;
+            overflow: hidden;
+        }
         .tag-filter {
             display: inline-block;
             line-height: 1.4;
