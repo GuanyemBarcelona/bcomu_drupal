@@ -197,16 +197,28 @@ function pocket_api_get_all_tag_objects(){
   foreach ($response as $key => $item) {
     if (!is_null($item->tags)){
       $item_tags = unserialize($item->tags);
+      // append in $all_tags an array of item ids
       foreach ($item_tags as $key2 => $item_tag) {
         if (!isset($all_tags[$item_tag->tag])){
-          $all_tags[$item_tag->tag] = array($item_tag->item_id);
+          $all_tags[$item_tag->tag]['ids'] = array($item_tag->item_id);
         }else{
-          $all_tags[$item_tag->tag][] = $item_tag->item_id;
+          $all_tags[$item_tag->tag]['ids'][] = $item_tag->item_id;
         }
       }
     }
   }
+  // order $all_tags by count of item ids
+  foreach ($all_tags as $key => $tag) {
+    $all_tags[$key]['count'] = count($tag['ids']);
+  }
+  uasort($all_tags, '_sort_by_count');
+
   return $all_tags;
+}
+
+function _sort_by_count($a, $b){
+  if ($a['count'] == $b['count']) return 0;
+  return ($a['count'] > $b['count']) ? -1 : 1;
 }
 
 function pocket_api_get_all_tags(){
@@ -219,7 +231,7 @@ function pocket_api_get_items_by_tagname($tagname){
   $tags = pocket_api_get_all_tag_objects();
   if (is_null($tags[$tagname])) $response = [];
   else {
-    $result = db_query('SELECT * FROM {pocket_api_list} WHERE item_id IN (:ids)', array(':ids' => $tags[$tagname]));
+    $result = db_query('SELECT * FROM {pocket_api_list} WHERE item_id IN (:ids)', array(':ids' => $tags[$tagname]['ids']));
     $response = $result->fetchAll();
     $response = pocket_api_arrange_tags($response);
   }
