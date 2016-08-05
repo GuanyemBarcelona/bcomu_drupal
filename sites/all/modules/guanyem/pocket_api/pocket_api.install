@@ -63,6 +63,9 @@
       'excerpt' => array(
         'type' => 'text',
       ),
+      'tags' => array(
+        'type' => 'text',
+      ),
     ),
     'primary key' => array('id'),
   );

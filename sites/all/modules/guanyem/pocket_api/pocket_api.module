@@ -26,9 +26,13 @@ function pocket_api_menu() {
     'page arguments' => array(3, 4),
     'access arguments' => array('access content'),
   );
-
   $items['api/pocket/getcount'] = array(
     'page callback' => 'pocket_api_get_list_count',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access content'),
+  );
+  $items['api/pocket/gettags'] = array(
+    'page callback' => 'pocket_api_get_all_tags',
     'type' => MENU_CALLBACK,
     'access arguments' => array('access content'),
   );
@@ -81,6 +85,12 @@ function pocket_api_get_list_part($count = 24, $offset = 0){
   // fetch data from database
   $result = db_query_range('SELECT * FROM {pocket_api_list} ORDER BY time_added DESC', $offset, $offset + $count);
   $response = $result->fetchAll();
+  foreach ($response as $key => $item) {
+    // arrange the tags value as a json object
+    if (!is_null($item->tags)){
+      $response[$key]->tags = unserialize($item->tags);
+    }
+  }
   drupal_json_output($response);
   drupal_exit();
 }
@@ -112,9 +122,8 @@ function pocket_api_save_last_pockets(){
   $last_time = pocket_api_get_last_creation_time();
   $pockets = pocket_api_get_new_pockets($last_time);
   if ($pockets !== false){
-    $queue = DrupalQueue::get('save_pocket_data');
     foreach ($pockets->list as $key => $pocket_item) {
-      $queue->createItem($pocket_item);
+      pocket_api_save_pocket_item($pocket_item);
     }
   }
 }
@@ -146,17 +155,6 @@ function pocket_api_get_new_pockets($since = false){
   unset($POCKET_API_ACCESS_TOKEN);
   return $response;
 }
- 
-/*
- * Implements hook_cron_queue_info().
- */
-function pocket_api_cron_queue_info(){
-  $queues['save_pocket_data'] = array(
-    'worker callback' => 'pocket_api_save_pocket_item',
-    'time' => 10,
-  );
-  return $queues;
-}
 
 function pocket_api_save_pocket_item($data){
   $fields = array(
@@ -173,9 +171,32 @@ function pocket_api_save_pocket_item($data){
     $fields['image_src'] = $data->image->src;
   }
   if (isset($data->excerpt)) $fields['excerpt'] = $data->excerpt;
+  if (isset($data->tags)) $fields['tags'] = serialize($data->tags);
 
   $result = db_insert('pocket_api_list')
     ->fields($fields)
     ->execute();
 }
 
+function pocket_api_get_all_tags(){
+  $result = db_query('SELECT tags FROM {pocket_api_list}');
+  $response = $result->fetchAll();
+  $all_tags = array();
+  foreach ($response as $key => $item) {
+    if (!is_null($item->tags)){
+      $item_tags = unserialize($item->tags);
+      foreach ($item_tags as $key2 => $item_tag) {
+        if (!isset($all_tags[$item_tag->tag])){
+          $all_tags[$item_tag->tag] = array(
+            'count' => 1,
+          );
+        }else{
+          $all_tags[$item_tag->tag]['count']++;
+        }
+      }
+    }
+  }
+  $response = $all_tags;
+  drupal_json_output($response);
+  drupal_exit();
+}

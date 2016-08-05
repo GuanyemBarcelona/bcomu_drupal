@@ -22,4 +22,8 @@ angular.module('bcomupocket')
         self.getData(self.apiEndpoint + '/getlist/' + count + '/' + offset, cb);
     };
 
+    self.getTags = function(cb){
+        self.getData(self.apiEndpoint + '/gettags', cb);
+    };
+
 });

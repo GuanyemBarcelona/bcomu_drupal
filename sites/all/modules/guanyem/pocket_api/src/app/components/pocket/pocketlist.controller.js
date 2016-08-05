@@ -8,6 +8,7 @@ angular.module('bcomupocket')
     $scope.listLoading = false;
     $scope.minSearchLength = 2;
     $scope.maxItems = -1;
+    $scope.tagsList = [];
 
     $scope.loadList = function(){
         if ($scope.maxItems == -1){
@@ -47,6 +48,14 @@ angular.module('bcomupocket')
                 }
             });
         }
+    };
+
+    $scope.loadTags = function(){
+        pocketServ.getTags(function(data){
+            if (data.status == 200){
+                $scope.tagsList = data.data;
+            }
+        });
     };
 
     $scope.isListEmpty = function(){

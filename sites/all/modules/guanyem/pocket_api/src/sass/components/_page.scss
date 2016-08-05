@@ -77,6 +77,7 @@ body.not-front #content {
             }
         }
         .pocketlist-item {
+            position: relative;
             width: 23%;
             padding: 12px 0;
             overflow: hidden;
@@ -106,8 +107,48 @@ body.not-front #content {
             }
             .body {
                 padding: 0 15px;
+                margin-bottom: 10px;
                 p {
                     font-size: 13px;
+                }
+            }
+            .item-tags {
+                position: absolute;
+                bottom: 10px;
+                left: 15px;
+                width: 93%;
+                ul {
+                    display: inline;
+                }
+                .tag {
+                    @include separate-by-commas;
+                    font-size: 13px;
+                    display: inline;
+                }
+            }
+        }
+    }
+
+    .tag-filters-list {
+        text-align: center;
+        margin: 30px 0;
+        line-height: 35px;
+        .tag-filter {
+            display: inline-block;
+            line-height: 1.4;
+            margin-right: 14px;
+            a {
+                font-size: 1.3em;
+                color: #3a3a3a;
+                padding: .4em 1em .5em;
+                background: white;
+                border: 1px solid #ececec;
+                border-radius: 15px;
+                transition: all 0.3s ease-in-out;
+                &:hover, &.active {
+                    color: white;
+                    background: #999;
+                    border-color: #999;
                 }
             }
         }

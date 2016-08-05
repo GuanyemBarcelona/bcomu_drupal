@@ -8,4 +8,10 @@
             <p>{{item.excerpt}}</p>
         </div>
     </a>
+    <div class="item-tags" ng-hide="item.tags == null">
+        <i class="fa fa-tags" aria-hidden="true"></i>
+        <ul>
+            <li class="tag" ng-repeat="tag in item.tags">{{tag.tag}}</li>
+        </ul>
+    </div>
 </li>
