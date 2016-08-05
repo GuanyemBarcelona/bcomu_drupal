@@ -130,6 +130,9 @@ body.not-front #content {
                         &:hover, &.active {
                             color: $theme_red;
                         }
+                        &.active:hover {
+                            text-decoration: line-through;
+                        }
                     }
                 }
             }
@@ -157,6 +160,9 @@ body.not-front #content {
                     color: white;
                     background: #999;
                     border-color: #777;
+                }
+                &.active:hover {
+                    text-decoration: line-through;
                 }
             }
         }
