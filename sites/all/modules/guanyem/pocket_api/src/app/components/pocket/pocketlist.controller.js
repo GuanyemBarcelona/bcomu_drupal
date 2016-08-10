@@ -9,7 +9,7 @@ angular.module('bcomupocket')
     $scope.minSearchLength = 2;
     $scope.maxItems = -1;
     $scope.tagsList = [];
-    $scope.currentTag = null;
+    $scope.currentTags = [];
 
     $scope.loadList = function(){
         if ($scope.maxItems == -1){
@@ -51,28 +51,41 @@ angular.module('bcomupocket')
         }
     };
 
+    $scope.tagIsSelected = function(tagname){
+        return ($scope.currentTags.indexOf(tagname) != -1);
+    };
+
     $scope.chooseTag = function(tagname){
         $scope.fullList = [];
-        if ($scope.currentTag !== tagname){
-            $scope.currentTag = tagname;
-            $scope.loadTaggedList();
+        var ind = $scope.currentTags.indexOf(tagname);
+        if (ind == -1){
+            // tag not found, add it
+            $scope.currentTags.push(tagname);
+            
         }else{
-            // clear tag filter
-            $scope.currentTag = null;
-            $scope.loadListProcess();
+            // tag found, remove it
+            $scope.currentTags.splice(ind, 1);
         }
+        $scope.loadTaggedList();
     };
 
     $scope.loadTaggedList = function(){
-        $scope.listLoading = true;
-        pocketServ.getTaggedBy($scope.currentTag, function(data){
-            $scope.listLoading = false;
-            if (data.status == 200){
-                for (var i in data.data){
-                    $scope.fullList.push(data.data[i]);
+        if ($scope.currentTags.length > 0){
+            // there are tags to filter, load the tagged data
+            $scope.listLoading = true;
+            pocketServ.getTaggedBy($scope.currentTags, function(data){
+                $scope.listLoading = false;
+                if (data.status == 200){
+                    for (var i in data.data){
+                        $scope.fullList.push(data.data[i]);
+                    }
                 }
-            }
-        });
+            });
+            return true;
+        }
+        // there are no tags to filter, do the normal data loading
+        $scope.loadListProcess();
+        return false;
     };
 
     $scope.loadTags = function(){

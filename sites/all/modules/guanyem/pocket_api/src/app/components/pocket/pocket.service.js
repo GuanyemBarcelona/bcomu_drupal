@@ -26,8 +26,13 @@ angular.module('bcomupocket')
         self.getData(self.apiEndpoint + '/gettags', cb);
     };
 
-    self.getTaggedBy = function(tagname, cb){
-        self.getData(self.apiEndpoint + '/gettaggedby/' + tagname, cb);
+    /*
+    * @param
+    *   Array tagnames: expects an array of tagnames
+    */
+    self.getTaggedBy = function(tagnames, cb){
+        var tags = encodeURIComponent(tagnames.join('+'));
+        self.getData(self.apiEndpoint + '/gettaggedby/' + tags, cb);
     };
 
 });

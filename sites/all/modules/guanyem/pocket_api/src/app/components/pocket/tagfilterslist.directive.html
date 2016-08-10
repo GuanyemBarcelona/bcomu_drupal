@@ -1,7 +1,7 @@
 <div class="tag-filters-list">
     <ul>
         <li class="tag-filter" ng-repeat="(key, item) in tagsList">
-            <a ng-click="chooseTag(key)" ng-class="{'active': currentTag == key}">{{key}} <span class="count">({{item.count}})</span></a>
+            <a ng-click="chooseTag(key)" ng-class="{'active': tagIsSelected(key)}">{{key}} <span class="count">({{item.count}})</span></a>
         </li>
     </ul>
     <button data-action="see-all-tags">+</button>

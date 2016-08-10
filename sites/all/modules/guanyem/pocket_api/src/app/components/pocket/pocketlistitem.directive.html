@@ -12,7 +12,7 @@
         <i class="fa fa-tags" aria-hidden="true"></i>
         <ul>
             <li class="tag" ng-repeat="tag in item.tags">
-                <a ng-click="chooseTag(tag.tag)" ng-class="{'active': currentTag == tag.tag}">{{tag.tag}}</a>
+                <a ng-click="chooseTag(tag.tag)" ng-class="{'active': tagIsSelected(tag.tag)}">{{tag.tag}}</a>
             </li>
         </ul>
     </div>

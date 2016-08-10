@@ -10,7 +10,7 @@
 
     <div class="pocketlist-items">
         <p class="loading-text" ng-show="listLoading">Carregant...</p>
-        <ul infinite-scroll="loadList()" infinite-scroll-disabled="listLoading || currentTag != null" infinite-scroll-distance="0">
+        <ul infinite-scroll="loadList()" infinite-scroll-disabled="listLoading || currentTags.length > 0" infinite-scroll-distance="0">
             <pocket-list-item ng-repeat="item in fullList | filter:searchText"></pocket-list-item>
         </ul>
         <p class="empty-text" ng-show="showEmptySearchMessage()">No s'ha trobat res amb aquestes paraules...</p>
