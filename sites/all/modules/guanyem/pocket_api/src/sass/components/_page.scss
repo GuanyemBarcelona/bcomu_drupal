@@ -145,13 +145,7 @@ body.not-front #content {
             }
         }
         button[data-action="see-all-tags"] {
-            width: 50px;
-            padding: .1em;
-            position: absolute;
-            bottom: -22px;
-            font-size: 16px;
-            left: 50%;
-            margin-left: -25px;
+            margin: 20px auto;
         }
         ul {
             transition: max-height 0.8s ease-in-out;
