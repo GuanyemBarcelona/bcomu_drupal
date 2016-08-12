@@ -1,8 +1,8 @@
 <div class="pocketlist" ng-class="{'empty-list': isListEmpty()}">
     <div class="filters">
         <div class="search" ng-hide="isListEmpty()">
-            <input type="text" ng-model="searchText" ng-minlength="{{minSearchLength}}" placeholder="Cerca per paraula...">
-            <button data-action="reset" ng-click="resetSearch()">x</button>
+            <input type="text" ng-model="searchText" ng-minlength="{{minSearchLength}}" placeholder="Cerca per títol...">
+            <button data-action="reset" ng-click="resetSearch()" title="Esborra aquesta cerca">x</button>
         </div>
 
         <tag-filters-list></tag-filters-list>
