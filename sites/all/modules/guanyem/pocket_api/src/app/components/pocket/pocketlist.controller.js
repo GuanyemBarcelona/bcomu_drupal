@@ -8,6 +8,7 @@ angular.module('bcomupocket')
     $scope.listLoading = false;
     $scope.minSearchLength = 2;
     $scope.maxItems = -1;
+    $scope.originalTagsList = [];
     $scope.tagsList = [];
     $scope.currentTags = [];
 
@@ -55,18 +56,19 @@ angular.module('bcomupocket')
         return ($scope.currentTags.indexOf(tagname) != -1);
     };
 
-    $scope.chooseTag = function(tagname){
-        $scope.fullList = [];
-        var ind = $scope.currentTags.indexOf(tagname);
-        if (ind == -1){
-            // tag not found, add it
-            $scope.currentTags.push(tagname);
-            
-        }else{
-            // tag found, remove it
-            $scope.currentTags.splice(ind, 1);
+    $scope.chooseTag = function(tagname, count){
+        if (count > 0){
+            $scope.fullList = [];
+            var ind = $scope.currentTags.indexOf(tagname);
+            if (ind == -1){
+                // tag not found, add it
+                $scope.currentTags.push(tagname);
+            }else{
+                // tag found, remove it
+                $scope.currentTags.splice(ind, 1);
+            }
+            $scope.loadTaggedList();
         }
-        $scope.loadTaggedList();
     };
 
     $scope.loadTaggedList = function(){
@@ -79,19 +81,46 @@ angular.module('bcomupocket')
                     for (var i in data.data){
                         $scope.fullList.push(data.data[i]);
                     }
+                    $scope.refreshTagList();
                 }
             });
             return true;
         }
         // there are no tags to filter, do the normal data loading
         $scope.loadListProcess();
+        $scope.tagsList = angular.copy($scope.originalTagsList);
         return false;
+    };
+
+    /*
+    * Refresh the tags list counts (items) after the tagnames selected
+    */
+    $scope.refreshTagList = function(){
+        var itemsPerTag = [];
+        angular.forEach($scope.fullList, function(item, key) {
+            angular.forEach(item.tags, function(tag, key2) {
+                if (angular.isUndefined(itemsPerTag[tag.tag])){
+                    itemsPerTag[tag.tag] = 1;
+                }else{
+                    itemsPerTag[tag.tag]++;
+                }
+            });
+        });
+
+        angular.forEach($scope.tagsList, function(tag, key) {
+            if (angular.isUndefined(itemsPerTag[key])){
+                $scope.tagsList[key].count = 0;
+            }else{
+                $scope.tagsList[key].count = itemsPerTag[key];
+            }
+        });
     };
 
     $scope.loadTags = function(){
         pocketServ.getTags(function(data){
             if (data.status == 200){
-                $scope.tagsList = data.data;
+                $scope.originalTagsList = data.data;
+                $scope.tagsList = angular.copy($scope.originalTagsList);
             }
         });
     };

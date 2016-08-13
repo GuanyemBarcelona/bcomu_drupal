@@ -178,6 +178,15 @@ body.not-front #content {
                 &.active:hover {
                     text-decoration: line-through;
                 }
+                &.empty {
+                    opacity: .3;
+                    cursor: default;
+                    &:hover {
+                        color: #3a3a3a;
+                        background: white;
+                        border-color: #ececec;
+                    }
+                }
             }
         }
     }
