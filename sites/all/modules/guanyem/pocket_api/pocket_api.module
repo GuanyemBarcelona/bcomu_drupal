@@ -128,8 +128,10 @@ function pocket_api_cron(){
   pocket_api_save_last_pockets();
 }
 
+/*
+ * Save pocket api data in database - to do in a cron
+ */
 function pocket_api_save_last_pockets(){
-  // save pocket api data in database - to do in a cron
   $last_time = pocket_api_get_last_creation_time();
   $pockets = pocket_api_get_new_pockets($last_time);
   if ($pockets !== false){
