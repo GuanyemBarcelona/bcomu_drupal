@@ -93,7 +93,8 @@ angular.module('bcomupocket')
     };
 
     /*
-    * Refresh the tags list counts (items) after the tagnames selected
+    * Refresh the tags list counts (items) after loadTaggedList data (items) has been received
+    + so we know which of these items have whatever tags
     */
     $scope.refreshTagList = function(){
         var itemsPerTag = [];
