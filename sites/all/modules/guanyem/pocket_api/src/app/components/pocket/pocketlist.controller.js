@@ -57,7 +57,8 @@ angular.module('bcomupocket')
     };
 
     $scope.chooseTag = function(tagname, count){
-        if (count > 0){
+        if (angular.isUndefined(count) || count > 0){
+            // tag is from a pocket item (so no count available) or is from the upper taglist and its count must be bigger than zero
             $scope.fullList = [];
             var ind = $scope.currentTags.indexOf(tagname);
             if (ind == -1){
@@ -69,6 +70,10 @@ angular.module('bcomupocket')
             }
             $scope.loadTaggedList();
         }
+    };
+
+    $scope.test = function(some){
+        console.log(some);
     };
 
     $scope.loadTaggedList = function(){
