@@ -129,6 +129,11 @@ function bcnencomu_preprocess_page(&$vars, $hook) {
 		$vars['classes_array'][] = 'with-navigation';
 	}
 
+  // Adding class if is there a sidebar first
+  if (!empty($vars['page']['sidebar_first'])) {
+    $vars['classes_array'][] = 'with-sidebar';
+  }
+
 	// must show title
 	$vars['must_show_title'] = FALSE;
 	if ((arg(0) == 'node' && arg(1) == 'add') || (arg(0) == 'taxonomy')){
