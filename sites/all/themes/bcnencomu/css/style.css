@@ -684,7 +684,7 @@ body.page-taxonomy-term #content-header h1 {
     .view-categories-terms-list .views-row {
       display: inline-block;
       line-height: 1.4;
-      margin-right: 14px;
+      margin: 0 1em 2em 0;
     }
       .view-categories-terms-list .views-row a {
         font-size: 1.3em;
