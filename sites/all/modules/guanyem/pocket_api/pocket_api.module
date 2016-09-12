@@ -219,11 +219,6 @@ function pocket_api_get_all_tag_objects(){
   return $all_tags;
 }
 
-function _sort_by_count($a, $b){
-  if ($a['count'] == $b['count']) return 0;
-  return ($a['count'] > $b['count']) ? -1 : 1;
-}
-
 function pocket_api_get_all_tags(){
   $response = pocket_api_get_all_tag_objects();
   drupal_json_output($response);
