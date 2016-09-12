@@ -209,11 +209,12 @@ function pocket_api_get_all_tag_objects(){
       }
     }
   }
-  // order $all_tags by count of item ids
   foreach ($all_tags as $key => $tag) {
     $all_tags[$key]['count'] = count($tag['ids']);
   }
-  uasort($all_tags, '_sort_by_count');
+
+  // order $all_tags alphabetically by key
+  ksort($all_tags);
 
   return $all_tags;
 }
