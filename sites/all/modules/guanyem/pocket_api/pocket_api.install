@@ -75,3 +75,12 @@
   );
   return $schema;
 }
+
+function pocket_api_update_7100() {
+  $spec = array(
+    'type' => 'varchar',
+    'length' => 255,
+    'default' => '',
+  ); 
+  db_add_field('pocket_api_list', 'source_host', $spec);
+}
