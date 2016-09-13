@@ -8,6 +8,17 @@ if (file_exists($path_to_keys)) {
 }
 
 /**
+ * Implements hook_permission().
+ */
+function pocket_api_permission(){
+  return array(
+    'administer pocket settings' => array(
+      'title' => t("Administer Pocket webapp settings"),
+    ),
+  );
+}
+
+/**
  * Implements hook_menu().
  */
 function pocket_api_menu() {
@@ -47,6 +58,14 @@ function pocket_api_menu() {
     'page callback' => 'pocket_api_render_list',
     'type' => MENU_NORMAL_ITEM,
     'access arguments' => array('access content'),
+  );
+
+  $items['admin/pocket/recreate'] = array(
+    'title' => 'Recreate the Pocket list',
+    'description' => 'Recreate the Pocket list if some pockets were removed from the original Pocket list at getpocket.com.',
+    'page callback' => 'pocket_api_recreate_list',
+    'access arguments' => array('administer pocket settings'),
+    'type' => MENU_CALLBACK,
   );
 
   return $items;
@@ -264,4 +283,14 @@ function pocket_api_get_items_by_tagnames($tagnames){
 
   drupal_json_output($response);
   drupal_exit();
+}
+
+/*
+ * Recreates the database list, emptying the database table, and refilling it with all the current Pocket list items.
+ * Useful when some items from the current Pocket list have been deleted, what made the webapp list not synced.
+ */
+function pocket_api_recreate_list(){
+  $result = db_truncate('pocket_api_list')->execute();
+  pocket_api_save_last_pockets();
+  drupal_goto('recull-premsa');
 }
