@@ -54,7 +54,7 @@ function pocket_api_menu() {
     'access arguments' => array('access content'),
   );
 
-  $items['recull-premsa'] = array(
+  $items['comuns-premsa'] = array(
     'page callback' => 'pocket_api_render_list',
     'type' => MENU_NORMAL_ITEM,
     'access arguments' => array('access content'),
@@ -292,5 +292,5 @@ function pocket_api_get_items_by_tagnames($tagnames){
 function pocket_api_recreate_list(){
   $result = db_truncate('pocket_api_list')->execute();
   pocket_api_save_last_pockets();
-  drupal_goto('recull-premsa');
+  drupal_goto('comuns-premsa');
 }
