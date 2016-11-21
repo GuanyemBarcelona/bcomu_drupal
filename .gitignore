@@ -11,3 +11,4 @@ sites/*/default.settings.php
 /*.html
 /manuals
 /database
+.idea/
