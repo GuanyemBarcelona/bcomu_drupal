@@ -12,6 +12,7 @@ define('ESPAIS_EIXOS_NID', 2037);
 define('ESPAIS_GRUPS_NID', 2054);
 define('ESPAIS_COMIS_NID', 2053);
 define('RELATEM_CANVI_TID', 584);
+define('INTERNACIONAL_TID', 588);
 
 // Auto-rebuild the theme registry during theme development.
 if (theme_get_setting('clear_registry')) {
@@ -149,6 +150,11 @@ function bcnencomu_preprocess_page(&$vars, $hook) {
       $vars['classes_array'][] = 'page-relatem-canvi';
       $vars['must_show_title'] = FALSE;
     }
+    // internacional page class
+    if (arg(2) == INTERNACIONAL_TID){
+      $vars['classes_array'][] = 'page-internacional';
+      $vars['must_show_title'] = FALSE;
+    }
 	}
 
   // calendar page
@@ -196,7 +202,7 @@ function bcnencomu_preprocess_node(&$vars) {
 
 	// Add view mode class (if not teaser, because it already has it)
 	if ($vars['view_mode'] != 'teaser') $vars['classes_array'][] = 'node-' . $vars['view_mode'];
-	
+
 	// entity title
   if ($vars['view_mode'] == 'full'){
 		if ($node_obj->nid == 29 || $node_obj->nid == 3){ // home, calendar
