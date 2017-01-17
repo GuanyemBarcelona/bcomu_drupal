@@ -9,8 +9,7 @@
  */
 
 /**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
+ * Implements hook_uninstall().
  */
 function prev_next_uninstall() {
   db_delete('variable')
@@ -19,8 +18,7 @@ function prev_next_uninstall() {
 }
 
 /**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
+ * Implents hook_enable().
  */
 function prev_next_enable() {
   $max_nid = db_query('SELECT MAX(nid) FROM {node}')->fetchField();
@@ -31,19 +29,18 @@ function prev_next_enable() {
 }
 
 /**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
+ * Implements hook_schema().
  */
 function prev_next_schema() {
   $schema['prev_next_node'] = array(
     'description' => 'Prev/Next node',
     'fields' => array(
-      'nid' => array(
+      'prev_nid' => array(
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE,
       ),
-      'prev_nid' => array(
+      'nid' => array(
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE,
@@ -67,3 +64,4 @@ function prev_next_schema() {
   );
   return $schema;
 }
+
