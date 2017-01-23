@@ -29,10 +29,21 @@ var locale = {
     es: "Con subtítulos",
     en: "Closed captioning"
   },
+  LOADING: {
+    ca: "Carregant...",
+    es: "Cargando...",
+    en: "Loading..."
+  },
+  DISTRICT_VERIFICATIONS_TITLE: {
+    ca: "Propers punts de verificació",
+    es: "Próximos puntos de verificación",
+    en: "Next verification points"
+  }
 }
 var config = {
   LANGUAGE: 'ca',
   THEME_URL: '/sites/all/themes/bcnencomu/',
+  DISTRICT_VERIFICATIONS_URI: '/async/verifications/',
   YOUTUBE_API_KEY: 'AIzaSyC_oxmNRn9OI3_SaRbHfFWJtTyeaiD24bY',
   CACHED_DATA_TTL: 24*60*60*1000 // 24h
 };
@@ -140,14 +151,7 @@ var config = {
     }
     // open event links as overlay
     $('div.single-day div.weekview .views-field-title a, div.single-day div.weekview .views-field-field-date a, .view-calendar-agenda .views-row .views-field-title-field a').each(function(i){
-      var href = $(this).attr('href');
-      $(this).attr('href', href + '?oasis=1');
-      $(this).fancybox(
-        {
-          'type': 'iframe',
-          'width': 500
-        }
-      );
+      prepareEventLink($(this));
     });
 
     // Home Slider
@@ -317,16 +321,42 @@ var config = {
       $grups_barris.addClass('with-js');
       $grups_barris.find('.view-content').before('<div class="barris-map"><ul></ul></div>');
       var $map = $grups_barris.find('.barris-map');
+      // prepare verificacions box
+      $map.after('<div class="verificacions"><button data-action="close">X</button><h3>'+locale.DISTRICT_VERIFICATIONS_TITLE[config.LANGUAGE]+'</h3><div class="content"></div></div>');
+      var $verificacions = $grups_barris.find('.verificacions');
+      $verificacions.attr('data-visible', false);
+      var $verificacions_content = $verificacions.find('> .content');
+      $verificacions.find('[data-action="close"]').click(function(e){
+        e.preventDefault();
+        $verificacions.attr('data-visible', false);
+      });
+      //---
       $grups_barris.find('.view-content > .item-list > h3').each(function(i){
-        $map.find('ul').append('<li data-index="'+i+'">'+$(this).text()+'</li>');
+        var tid = $(this).find('> span').attr('data-tid');
+        $map.find('ul').append('<li data-index="'+i+'" data-tid="'+tid+'">'+$(this).text()+'</li>');
       });
       $map.find('li').click(function(e){
         var index = $(this).attr('data-index');
+        var tid = $(this).attr('data-tid');
+        $verificacions_content.html('');
         $map.addClass('clicked');
-         $map.find('li').removeClass('active');
+        $map.find('li').removeClass('active');
         $(this).addClass('active');
         $grups_barris.find('.view-content > .item-list').removeClass('active');
         $grups_barris.find('.view-content > .item-list').eq(index).addClass('active');
+        // get the verificacions events for this district
+        $verificacions.attr('data-visible', false);
+        $.ajax({
+          url: config.DISTRICT_VERIFICATIONS_URI + tid
+        })
+        .done(function(data){
+          $verificacions.attr('data-visible', true);
+          $verificacions_content.html(data);
+          $verificacions_content.find('.views-field-title a').each(function(i){
+            prepareEventLink($(this));
+          })
+        });
+        // ---
       });
     }
 	});
@@ -561,4 +591,16 @@ function getTimeString(duration){
 
 function onPlayerReady(e) {
   e.target.playVideo();
+}
+
+// prepare the event links to open as overlay
+function prepareEventLink($obj){
+  var href = $obj.attr('href');
+  $obj.attr('href', href + '?oasis=1');
+  $obj.fancybox(
+    {
+      'type': 'iframe',
+      'width': 500
+    }
+  );
 }

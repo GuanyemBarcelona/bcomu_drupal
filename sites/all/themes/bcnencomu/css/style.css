@@ -2320,7 +2320,6 @@ body.front .region-content-bottom {
 /* Grups als barris */
 .view-grups-als-barris {
   min-height: 421px;
-  overflow: hidden;
   position: relative;
   margin-bottom: 40px;
 }
@@ -2419,40 +2418,99 @@ body.front .region-content-bottom {
         top: 322px;
         left: 291px;
       }
-  .view-grups-als-barris .view-content {
+    .verificacions {
+      position: absolute;
+      top: 0;
+      right: -80px;
+      z-index: 2;
+      width: 290px;
+      padding: 8px;
+      background: rgb(255, 255, 255);
+      background: rgba(255, 255, 255, .7);
+      border: 2px solid #e65c56;
+      opacity: 0;
+      -webkit-transition: all .6s ease;
+      -moz-transition: all .6s ease;
+      -ms-transition: all .6s ease;
+      -o-transition: all .6s ease;
+      transition: all .6s ease;
+    }
+    .verificacions[data-visible="true"] {
+      opacity: 1;
+    }
+      .verificacions a:hover {
+        text-decoration: underline;
+      }
+      .verificacions [data-action="close"] {
+        padding: 0;
+        font-size: 1em;
+        width: 10px;
+        height: 10px;
+        color: #e65c56;
+        background: none;
+        position: absolute;
+        top: 6px;
+        right: 6px;
+      }
+      .verificacions > h3 {
+        font-size: 1.3em;
+        color: #e65c56;
+        text-transform: uppercase;
+        margin-bottom: .7em;
+      }
+      .view-district-verification {}
+        .view-district-verification .views-row {
+          margin-bottom: 5px;
+          overflow: hidden;
+        }
+          .view-district-verification .views-row .views-field-field-date {
+            float: left;
+            width: 25%;
+            font-size: 1.2em;
+            line-height: 1.3;
+          }
+          .view-district-verification .views-row .views-field-title {
+            float: left;
+            width: 73%;
+            font-size: 1.2em;
+            line-height: 1.3;
+            margin-bottom: .4em;
+          }
+
+  .view-grups-als-barris > .view-content {
     padding-left: 27px;
   }
-  .view-grups-als-barris.with-js .view-content {
+  .view-grups-als-barris.with-js > .view-content {
     position: relative;
     z-index: 2;
     float: left;
     width: 50%;
     padding-right: 20px;
   }
-    .view-grups-als-barris .view-content > .item-list {}
-    .view-grups-als-barris.with-js .view-content > .item-list {
+    .view-grups-als-barris > .view-content > .item-list {}
+    .view-grups-als-barris.with-js > .view-content > .item-list {
       display: none;
     }
-    .view-grups-als-barris.with-js .view-content > .item-list.active {
+    .view-grups-als-barris.with-js > .view-content > .item-list.active {
       display: block;
     }
-      .view-grups-als-barris .view-content > .item-list > h3 {
+      .view-grups-als-barris > .view-content > .item-list > h3 {
         font-size: 4em;
       }
-      .view-grups-als-barris.with-js .view-content > .item-list > h3 {
+      .view-grups-als-barris.with-js > .view-content > .item-list > h3 {
         display: none;
       }
-      .view-grups-als-barris .view-content > .item-list > ul {}
-        .view-grups-als-barris .views-row {
+      .view-grups-als-barris > .view-content > .item-list > ul {}
+        .view-grups-als-barris > .view-content .views-row {
           margin-bottom: 40px;
         }
-          .view-grups-als-barris .views-row .views-field {
+          .view-grups-als-barris > .view-content .views-row .views-field {
             font-size: 1.7em;
             line-height: 1.25;
             margin-bottom: .5em;
             position: relative;
           }
-          .view-grups-als-barris .views-row .views-field:before {
+          .view-grups-als-barris > .view-content .views-row .views-field:before {
             position: absolute;
             top: -3px;
             left: -30px;
@@ -2464,35 +2522,35 @@ body.front .region-content-bottom {
             background-repeat: no-repeat;
             background-position: -25px -25px;
           }
-            .view-grups-als-barris .views-row .views-field a {
+            .view-grups-als-barris > .view-content .views-row .views-field a {
               color: #595959;
               text-decoration: underline;
             }
-          .view-grups-als-barris .views-row .views-field-title {
+          .view-grups-als-barris > .view-content .views-row .views-field-title {
             font-size: 3em;
             font-weight: 200;
             color: #a2b6ca;
           }
-          .view-grups-als-barris .views-row .views-field-field-grup-meetings:before {
+          .view-grups-als-barris > .view-content .views-row .views-field-field-grup-meetings:before {
             background-position: 0 -125px;
           }
-          .view-grups-als-barris .views-row .views-field-field-grup-email:before {
+          .view-grups-als-barris > .view-content .views-row .views-field-field-grup-email:before {
             background-position: -25px -125px;
           }
-          .view-grups-als-barris .views-row .views-field-field-grup-web:before {
+          .view-grups-als-barris > .view-content .views-row .views-field-field-grup-web:before {
             background-position: -50px -125px;
           }
-          .view-grups-als-barris .views-row .views-field-field-grup-facebook:before {
+          .view-grups-als-barris > .view-content .views-row .views-field-field-grup-facebook:before {
             background-position: -75px -125px;
           }
-          .view-grups-als-barris .views-row .views-field-field-grup-twitter:before {
+          .view-grups-als-barris > .view-content .views-row .views-field-field-grup-twitter:before {
             background-position: -100px -125px;
           }
-          .view-grups-als-barris .views-row .views-field-field-grup-telegram:before {
+          .view-grups-als-barris > .view-content .views-row .views-field-field-grup-telegram:before {
             background-position: -125px -125px;
           }
 
-/* search results */
+  /* search results */
 .search-form {
   max-width: none;
 }
@@ -2720,6 +2778,7 @@ footer[role="contentinfo"] {
 header[role="banner"] > .inner:after,
 #block-system-main-menu nav > ul.menu:after,
 #block-menu-menu-secondary-menu nav > ul.menu:after,
+.view-grups-als-barris:after,
 #main > .inner:after {
   content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;
 }
