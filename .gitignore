@@ -6,7 +6,6 @@ sites/*/files
 sites/*/private
 
 # Ignore other files
-sites/*/default.settings.php
 /*.txt
 /*.html
 /manuals
