@@ -3,9 +3,12 @@ Drupal 7 code for the Barcelonaencomu site
 
 https://barcelonaencomu.cat/
 
-made with love by the BarcelonaEnComu Web Team (formerly known as Guanyem Web Team)
+made with love by the Guanyem Web Team.
 
 Contents
 ---
-All the code excluding the drupal 7 core and the backend modules/libraries. Frontend libraries are included, for now.
+All the code for the drupal 7 site including the core files for simplicity.
 
+Site custom modules are at /sites/all/modules/guanyem/.
+
+Site custom theme is at /sites/all/themes/bcnencomu/.
