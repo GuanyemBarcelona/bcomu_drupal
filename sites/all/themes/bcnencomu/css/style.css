@@ -168,6 +168,9 @@ header[role="banner"] {
 #page.page-without-navigation header[role="banner"] {
   height: 115px;
 }
+#page.mapa-del-canvi header[role="banner"] {
+  display: none;
+}
   header[role="banner"] > .inner {}
 
 .region-header-top {
@@ -518,6 +521,13 @@ a[data-action="go-back"] {
   float: right;
   top: 10px;
 }
+#page.mapa-del-canvi .share-links {
+  position: absolute;
+  float: none;
+  top: auto;
+  bottom: 0;
+  right: 0;
+}
   .share-links ul {
     overflow: hidden;
   }
@@ -784,6 +794,15 @@ form {
 /* typical detail */
 article.node {}
   article.node > .content {}
+  #page.mapa-del-canvi article.node > .content {
+    position: relative;
+  }
+    #page.mapa-del-canvi article.node .logo-bcomu {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 150px;
+    }
     article.node .image-gallery {
       margin: 10px 0 20px;
     }
@@ -815,6 +834,9 @@ article.node {}
         width: auto;
         max-width: 100%;
         margin: 0 auto;
+      }
+      #page.mapa-del-canvi article.node .body img {
+        margin: 0;
       }
       /* Graph bars */
       article.node .body .graph.bar {
@@ -875,6 +897,10 @@ article.node {}
       article.node .body a[data-action] {
         max-width: 200px;
       }
+      #page.mapa-del-canvi article.node .body p {
+        font-size: 1.8em;
+        max-width: 700px;
+      }
       article.node .body h2, article.node .field-name-body h2 {
         font-size: 3em;
         color: #8ea7bf;
@@ -884,6 +910,10 @@ article.node {}
         font-size: 2.3em;
         font-weight: 300;
         margin-bottom: 1em;
+      }
+      #page.mapa-del-canvi article.node .body h3 {
+        font-size: 3.5em;
+        font-weight: bold;
       }
       article.node .body h4, article.node .field-name-body h4 {
         font-size: 1.8em;
@@ -917,6 +947,7 @@ article.node {}
         width: 100%;
         height: 600px;
       }
+
       article.node .body ul, article.node .field-name-body ul {
         list-style-type: none;
         margin: 0 0 2em;
@@ -2717,6 +2748,9 @@ body.front .region-content-bottom {
 **********************/
 footer[role="contentinfo"] {
   background: #e65c56;
+}
+#page.mapa-del-canvi footer[role="contentinfo"] {
+  display: none;
 }
   .region-footer {
     overflow: hidden;

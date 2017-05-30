@@ -35,9 +35,12 @@
   <?php } else if ($view_mode == 'full') { ?>
   <?php /* ----------------- FULL DISPLAY ----------------- */ ?>
   <header>
+      <?php if (!$is_mapa_del_canvi){ ?>
     <?php if (isset($share_links)){ ?>
       <?php print $share_links; ?>
     <?php } ?>
+      <?php } ?>
+
     <?php if (isset($title)) { ?>
     <h1><?php print $title; ?></h1>
     <?php } ?>
@@ -46,6 +49,15 @@
     <?php } ?>
   </header>
   <div class="content">
+      <?php if ($is_mapa_del_canvi){ ?>
+          <a href="<?php echo url() ?>" class="logo-bcomu">
+              <img src="<?php echo theme_get_setting('logo', 'bcnencomu') ?>" alt="Logo">
+          </a>
+          <?php if (isset($share_links)){ ?>
+              <?php print $share_links; ?>
+          <?php } ?>
+      <?php } ?>
+
     <?php /*if (isset($image_gallery)){ ?>
       <?php print $image_gallery; ?>
     <?php }*/ ?>
