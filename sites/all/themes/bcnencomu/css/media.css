@@ -45,6 +45,22 @@
 }
 
 @media all and (max-width: 1150px){
+  #page.mapa-del-canvi article.node .logo-bcomu {
+    position: static;
+    left: auto;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    float: none;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 20px;
+  }
+  #page.mapa-del-canvi article.node .logo-bcomu {
+    width: 150px;
+    margin: 0 0 20px;
+  }
+
   .view-nodequeue-2 .view-content .views-row {
     height: 16vw;
   }
