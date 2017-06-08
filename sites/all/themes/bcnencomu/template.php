@@ -13,6 +13,7 @@ define('ESPAIS_GRUPS_NID', 2054);
 define('ESPAIS_COMIS_NID', 2053);
 define('RELATEM_CANVI_TID', 584);
 define('INTERNACIONAL_TID', 588);
+define('EQUIP_BCOMU_NID', 1617);
 
 // Auto-rebuild the theme registry during theme development.
 if (theme_get_setting('clear_registry')) {
@@ -428,6 +429,14 @@ function bcnencomu_preprocess_node(&$vars) {
       $twitter_field = field_get_items('node', $node_obj, 'field_grup_twitter');
       if (!empty($twitter_field)){
         $vars['twitter_link'] = l(t("Read our Twitter"), 'https://twitter.com/' . $twitter_field[0]['safe_value'], array('attributes' => array('rel' => 'external')));
+      }
+      break;
+    case 'office': /********** OFFICE (NOMENAMENT) **********/
+      if ($vars['view_mode'] == 'full'){
+        $destination = $node_obj->field_office_destination[LANGUAGE_NONE][0]['tid'];
+        if ($destination == 431){ // destination: BComu
+          $vars['link_to_equip_bcomu'] = l('< ' . t("Back to the team"),'node/' . EQUIP_BCOMU_NID, ['attributes' => ['data-action' => 'back']]);
+        }
       }
       break;
 	}

@@ -1305,6 +1305,41 @@ article.node-eix-tematic {}
         background-position: -100px -125px;
       }
 
+/* office (nomenament) detail */
+article.node-office {
+  margin-bottom: 40px;
+}
+  article.node-office [data-action="back"] {
+    width: auto;
+    display: inline-block;
+    margin: 0 0 20px;
+  }
+  article.node-office .field-name-field-office-bcomu-area {
+    font-size: 2.4em;
+    font-weight: 300;
+    margin-bottom: .4em;
+  }
+  article.node-office .field-name-field-office-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+  article.node-office .field-name-field-image {
+    float: right;
+    border: 4px solid #e65c56;
+    width: 20%;
+    min-width: 200px;
+    margin: 0 0 40px 30px;
+  }
+article.node-office .field-name-field-cv {}
+    article.node-office .field-name-field-cv .file a {
+      width: 240px;
+      padding: 1em;
+    }
+    article.node-office .field-name-field-cv .file-size {
+      font-size: 1.4em;
+    }
+
 /* comments */
 .comment-wrapper {
   margin: 50px auto 0;
