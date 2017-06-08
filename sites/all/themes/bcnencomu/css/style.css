@@ -2015,20 +2015,19 @@ body.front .region-content-bottom {
 
 /* office appointments (nomenaments) */
 .view-offices-list {}
+  .view-offices-list > .view-content > .item-list {
+    margin-bottom: 40px;
+  }
+    .view-offices-list > .view-content > .item-list > h3 {
+      font-size: 2.4em;
+    }
   .view-offices-list .item-list {}
     .view-offices-list .item-list .views-row {
       overflow: hidden;
       margin-bottom: 20px;
     }
-      .view-offices-list .item-list .views-row .views-field-field-image {
-          float: left;
-          border: 4px solid #e65c56;
-          width: 20%;
-          min-width: 200px;
-          margin: 0 20px 12px 0;
-      }
       .view-offices-list .item-list .views-row .views-field-title {
-          font-size: 2.4em;
+          font-size: 1.8em;
           font-weight: bold;
           color: #e65c56;
           margin-bottom: .3em;
@@ -2038,22 +2037,6 @@ body.front .region-content-bottom {
         font-weight: bold;
         margin-bottom: .3em;
       }
-      .view-offices-list .item-list .views-row .views-field-field-office-destination {
-        color: #e65c56;
-        text-transform: uppercase;
-        font-weight: 300;
-        font-size: 1.5em;
-        margin-bottom: 1em;
-      }
-      .view-offices-list .item-list .views-row .views-field-field-cv {
-        margin-bottom: .3em;
-      }
-      .view-offices-list .item-list .views-row .views-field-body {
-        margin-top: 1em;
-      }
-        .view-offices-list .item-list .views-row .views-field-body p {
-          font-size: 1.5em;
-        }
 
 /* campaign agenda page */
 .view-display-id-agenda_page {}
