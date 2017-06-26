@@ -2401,6 +2401,23 @@ body.front .region-content-bottom {
       .view-documents .views-row .views-field-field-document .file-size {
         font-size: 1.2em;
       }
+      .view-documents .views-row .views-field-field-document a {
+        cursor: pointer;
+        border: none;
+        margin: 0;
+        text-align: center;
+        line-height: 1;
+        font-size: 13px;
+        color: #3d3a3a;
+        background: #ececec;
+        width: auto;
+        display: inline-block;
+        padding: .4em 1em;
+      }
+      .views-field-edit-node {
+        margin-top: 5px;
+        font-size: 1.2em;
+      }
 
 /* Grups als barris */
 .view-grups-als-barris {
