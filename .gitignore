@@ -11,8 +11,8 @@
 /scripts
 /themes
 
-# Ignore vendor files, will use composer
-/vendor
+# Ignore dependencies
+node_modules
 
 # Ignore folder where drupal core files are installed through composer
 /core
