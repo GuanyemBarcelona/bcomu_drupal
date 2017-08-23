@@ -31,10 +31,7 @@ scripts[] = js/script.js
 
 plugins[panels][layouts] = layouts
 
-stylesheets[all][] = css/plugins.css
-stylesheets[all][] = css/core.css
 stylesheets[all][] = css/style.css
-stylesheets[all][] = css/media.css
 
 settings[basic_tabs] = 1
 settings[basic_breadcrumb_separator] = /
