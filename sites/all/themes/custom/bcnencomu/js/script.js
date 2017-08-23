@@ -153,20 +153,17 @@ var config = {
     });
 
     // Home Slider
-    $home_slider = $('.view-nodequeue-1 .view-content');
-    if ($home_slider.length){
-      $home_slider.owlCarousel({
-        items: 1,
-        navigation: true,
-        pagination: true,
-        navigationText: false,
-        scrollPerPage: true,
-        slideSpeed: 500,
-        autoPlay: true,
-        stopOnHover: true,
-        itemsCustom: [[0, 1]]
-      });
-    }
+    $('.view-nodequeue-1 .view-content').slick({
+      infinite: false,
+      autoplay: true,
+      adaptiveHeight: true,
+      autoplaySpeed: 6000,
+      speed: 1000,
+      pauseOnHover: true,
+      dots: true,
+      arrows: false
+    });
+
 
     // tags icon
     $('article.node-post-like > .content .info .field-name-field-tags .field-items').prepend('<i class="fa fa-tags"></i>');
