@@ -29,8 +29,6 @@ var config = {
 	$(window).ready(function(){
 		config.LANGUAGE = $('html').attr('lang');
 
-    moment.locale(config.LANGUAGE);
-
     // main menu
     var $main_menu = $('#block-system-main-menu');
     if ($main_menu.length){
