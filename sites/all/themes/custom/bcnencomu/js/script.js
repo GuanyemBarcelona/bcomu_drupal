@@ -1,34 +1,4 @@
 var locale = {
-  CLOSE: {
-    ca: "Tanca",
-    es: "Cerrar",
-    en: "Close"
-  },
-  COOKIES_MESSAGE: {
-    ca: "El nostre portal web web utilitza cookies amb la finalitat de millorar l'experiència de l'usuari. Al fer servir els nostres serveis acceptes l'ús que fem de les 'cookies'.",
-    es: "Nuestro sitio web utiliza cookies con el fin de mejorar la experiencia del usuario. Al utilizar nuestros servicios aceptas el uso que hacemos de las 'cookies'.",
-    en: "Our web site uses cookies to improve the user experience. Using our services you agree to the use of the 'cookies'."
-  },
-  COOKIES_MORE_INFO: {
-  	ca: "Més informació",
-    es: "Más información",
-    en: "More information"
-  },
-  VIDEO_VIEWS: {
-    ca: "visualitzacions",
-    es: "visualizaciones",
-    en: "views"
-  },
-  VIDEO_HD_AVAILABLE: {
-    ca: "Vídeo disponible en HD",
-    es: "Video disponible en HD",
-    en: "Video available in HD"
-  },
-  VIDEO_CC_AVAILABLE: {
-    ca: "Amb subtítols",
-    es: "Con subtítulos",
-    en: "Closed captioning"
-  },
   LOADING: {
     ca: "Carregant...",
     es: "Cargando...",
@@ -42,10 +12,8 @@ var locale = {
 }
 var config = {
   LANGUAGE: 'ca',
-  THEME_URL: '/sites/all/themes/bcnencomu/',
-  DISTRICT_VERIFICATIONS_URI: '/async/verifications/',
-  YOUTUBE_API_KEY: 'AIzaSyC_oxmNRn9OI3_SaRbHfFWJtTyeaiD24bY',
-  CACHED_DATA_TTL: 24*60*60*1000 // 24h
+  THEME_URL: '/sites/all/themes/custom/bcnencomu/',
+  DISTRICT_VERIFICATIONS_URI: '/async/verifications/'
 };
 
 (function($){
@@ -127,17 +95,6 @@ var config = {
 
     // microprestecs menu "Call us" link
     $('article#node-284, article#node-285, article#node-290, article#node-292').find('.body a.btn.special').prepend('<i class="fa fa-phone"></i>');
-
-	  // cookies
-	  if (getCookie('bcnencomu_cookie_message') != 'accepted'){
-	    $('#page').prepend('<div class="cookies-message"><p>'+locale.COOKIES_MESSAGE[config.LANGUAGE]+' <button data-action="close" title="'+locale.CLOSE[config.LANGUAGE]+'">X</button></p></div>');
-	    setCookie('bcnencomu_cookie_message', 'accepted', 90);
-	    var $cookies_message = $('.cookies-message');
-	    $cookies_message.on('click', 'button[data-action="close"]', function(e){
-	      e.preventDefault();
-	      $cookies_message.fadeOut(300);
-	    });
-	  }
 
     // share links
     prepareShareLinks();
