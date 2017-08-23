@@ -29,8 +29,6 @@ features[] = secondary_menu
 scripts[] = node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js
 scripts[] = node_modules/masonry-layout/dist/masonry.pkgd.min.js
 scripts[] = node_modules/slick-carousel/slick/slick.min.js
-scripts[] = node_modules/moment/moment.js
-scripts[] = node_modules/simplestorage.js/simpleStorage.min.js
 scripts[] = js/plugins.js
 scripts[] = js/script.js
 
