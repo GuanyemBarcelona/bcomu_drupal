@@ -1,0 +1,26 @@
+{
+  "name": "bcnencomu",
+  "version": "3.0.0",
+  "license": "MIT",
+  "engines": {
+    "node": "~4.4.5",
+    "npm": "~2.15.5"
+  },
+  "dependencies": {
+    "@fancyapps/fancybox": "^3.1.20",
+    "html5shiv": "afarkas/html5shiv",
+    "masonry-layout": "^4.2.0",
+    "moment": "^2.18.1",
+    "owl.carousel": "^2.2.0",
+    "simplestorage.js": "^0.2.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0"
+  },
+  "scripts": {
+    "gulp": "gulp"
+  }
+}
