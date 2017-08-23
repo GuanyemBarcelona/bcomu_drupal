@@ -34,6 +34,11 @@ scripts[] = js/script.js
 
 plugins[panels][layouts] = layouts
 
+; First we remove the system's menu and message styling since our theme will take care of it
+stylesheets[all][] = system.menus.css
+stylesheets[all][] = system.messages.css
+stylesheets[all][] = system.theme.css
+; our styles
 stylesheets[all][] = css/styles.css
 
 settings[basic_tabs] = 1
