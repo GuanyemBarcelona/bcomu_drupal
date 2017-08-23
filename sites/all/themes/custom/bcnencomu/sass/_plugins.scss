@@ -1,0 +1,70 @@
+/**
+* External Plugins CSS
+*/
+
+/* Fancybox */
+@import "../node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css";
+/* fancybox */
+.fancybox-skin {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+/* Slick Carousel */
+@import "../node_modules/slick-carousel/slick/slick.scss";
+.slick-slider {
+  * {
+    outline: none;
+  }
+}
+.slick-dots {
+  position: relative;
+  top: -35px;
+  text-align: center;
+  li {
+    display: inline-block;
+    margin-left: 5px;
+    button {
+      @include hide-text;
+      padding: 0;
+      width: 15px;
+      height: 15px;
+      border: 2px solid $theme_red;
+      border-radius: 50%;
+      background: white;
+    }
+    &.slick-active {
+      button {
+        background: $theme_red;
+      }
+    }
+  }
+}
+
+/* Socicon */
+[data-icon]:before {
+  font-family: "socicon" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="socicon-"]:before,
+[class*=" socicon-"]:before {
+  font-family: "socicon" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

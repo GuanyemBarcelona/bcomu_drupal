@@ -31,9 +31,6 @@
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
-    <div id="skip">
-      <a href="#block-system-main-menu"><?php print t('Jump to Navigation'); ?></a>
-    </div>
     <?php print $page_top; ?>
     <div id="page-wrapper">
       <?php print $page; ?>

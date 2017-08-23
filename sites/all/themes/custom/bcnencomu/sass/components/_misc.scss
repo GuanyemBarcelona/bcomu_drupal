@@ -1,0 +1,423 @@
+/**
+ * @file
+ * Generic and Drupal styles
+ */
+
+/**
+ * Accessibility features.
+ */
+
+/* element-invisible as defined by http://snook.ca/archives/html_and_css/hiding-content-for-accessibility */
+.element-invisible,
+%element-invisible {
+  @include element-invisible;
+}
+
+/* Turns off the element-invisible effect. */
+%element-invisible-off {
+  @include element-invisible-off;
+}
+
+.element-focusable,
+%element-focusable {
+  @extend %element-invisible;
+
+  &:active,
+  &:focus {
+    @extend %element-invisible-off;
+  }
+}
+
+#skip-link {
+  @extend %element-invisible;
+}
+
+/* social links */
+.social-network-list {
+  overflow: hidden;
+  li {
+    float: left;
+    margin-left: 12px;
+    &:first-child {
+      margin-left: 0;
+    }
+    a {
+      display: block;
+      font-size: 110%;
+      text-align: center;
+      color: $theme_grey_dark;
+      padding-top: .3em;
+      transition: all .3s ease;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      &:hover {
+        opacity: .6;
+      }
+      &[data-social-network="facebook"]:before {
+        content: "\e028";
+      }
+      &[data-social-network="twitter"]:before {
+        content: "\e08d";
+      }
+      &[data-social-network="youtube"]:before {
+        content: "\e0a5";
+      }
+      &[data-social-network="instagram"]:before {
+        content: "\e044";
+      }
+      &[data-social-network="telegram"]:before {
+        content: "\e087";
+      }
+      &[data-social-network="mail"]:before {
+        content: "\e050";
+      }
+      span {
+        display: none;
+      }
+    }
+  }
+}
+
+/* primary tabs */
+.tabs-primary {
+  @extend %clearfix;
+  margin: 20px 0;
+  padding-left: 2px;
+  border-bottom: 1px solid #999;
+  li {
+    float: left;
+    font-size: 14px;
+    margin: 0 2px;
+    position: relative;
+    top: 1px;
+    a {
+      display: block;
+      padding: .3em .5em;
+      background: white;
+      border: 1px solid #999;
+      border-bottom: none;
+    }
+  }
+}
+
+/**
+ * Pager.
+ */
+
+/* A list of page numbers when more than 1 page of content is available. */
+.pager {
+  clear: both;
+  margin-top: 30px;
+  padding: 0;
+  text-align: center;
+}
+%pager__item {
+  display: inline-block;
+  font-size: 15px;
+  text-align: center;
+  list-style-type: none;
+  background-image: none;
+  a {
+    display: block;
+    padding: 5px;
+  }
+}
+.pager-item {
+  @extend %pager__item;
+}
+.pager-current {
+  @extend %pager__item;
+  padding: 5px;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+}
+.pager-first,
+.pager-previous,
+.pager-next,
+.pager-last,
+.pager-ellipsis {
+  @extend %pager__item;
+}
+.pager-ellipsis {
+
+}
+
+/**
+ * Messages
+ */
+.messages {
+  background-color: $theme_red;
+  padding: 15px 20px;
+  margin: 20px 0;
+  color: white;
+  font-size: 14px;
+  &.error {
+    background-color: $theme_error;
+  }
+}
+
+/**
+ * Views filters
+ */
+.views-exposed-form {
+  .views-exposed-widgets {
+    .views-exposed-widget {
+      float: none;
+      padding: 0;
+      margin-bottom: 40px;
+      .form-item {
+        label {
+          margin-right: 0;
+        }
+      }
+      label {
+        font-size: 140%;
+        color: black;
+      }
+      select {
+        max-width: 220px;
+      }
+      .views-widget {
+        label {
+          color: $theme_red;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        input[type="radio"]:checked + label {
+          color: $theme_grey_darker;
+          text-decoration: underline;
+        }
+      }
+      .bef-tree {
+        .bef-tree-child {
+          padding-left: 20px;
+        }
+      }
+      .bef-select-as-links {
+        .form-type-bef-link {
+          font-size: 140%;
+          line-height: 1.2;
+          margin-bottom: .8em;
+          a {
+            color: black;
+            &:hover, &.active {
+              color: $theme_red;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.view-empty {
+  font-size: 160%;
+}
+
+/* krumo messages */
+.krumo-root {
+  img {
+    width: auto;
+  }
+}
+
+/* ckeditor */
+.cke_contents {
+  padding: 10px;
+}
+
+/**
+ * Forms
+ */
+
+.form-item {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+legend {
+  font-size: 220%;
+  font-weight: bold;
+  margin-bottom: .3em;
+}
+
+label {
+  margin-bottom: .4em;
+  font-size: 170%;
+  font-weight: normal;
+}
+
+/* buttons */
+a[data-action], input[type="submit"], input[type="button"], button {
+  @include buttonize;
+}
+
+input[type="submit"][disabled], input[type="button"][disabled] {
+    opacity: .2;
+}
+
+input[type="text"], input[type="password"], input[type="email"], textarea {
+    padding: 10px;
+    border: 1px solid $theme_grey_light;
+}
+
+input[type="text"], input[type="password"], input[type="email"], textarea, select {
+    font-size: 260%;
+    width: 100%;
+}
+
+select {
+  height: 28px;
+  font-size: 15px;
+  font-weight: 200;
+  color: #a2a2a2;
+  background-color: $body_background;
+  border: none;
+  box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.4);
+}
+
+/* radios */
+input[type="radio"]:not(:checked),
+input[type="radio"]:checked {
+    position: absolute;
+    left: -9999px;
+}
+input[type="radio"]:not(:checked) + label,
+input[type="radio"]:checked + label {
+    position: relative;
+    display: block;
+    padding-left: 30px;
+    cursor: pointer;
+}
+    /* shape */
+    input[type="radio"]:not(:checked) + label:before,
+    input[type="radio"]:checked + label:before {
+        display: block;
+        width: 16px;
+        height: 16px;
+        background: white;
+        border-radius: 50%;
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        transition: all .2s;
+        box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.4);
+    }
+    /* checked shape */
+    input[type="radio"]:not(:checked) + label:after,
+    input[type="radio"]:checked + label:after {
+        display: block;
+        background-color: $theme_grey_light;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        content: '';
+        position: absolute;
+        top: 7px;
+        left: 7px;
+        transition: all .2s;
+    }
+/* disabled radio */
+input[type="radio"]:disabled {}
+    input[type="radio"]:disabled + label {
+        color: #aaa;
+    }
+    input[type="radio"]:disabled + label:before {
+        opacity: .4;
+    }
+    input[type="radio"]:disabled + label:after {
+        opacity: .4;
+    }
+/* checked mark changes */
+input[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+}
+input[type="radio"]:not(:checked) + label:hover:after,
+input[type="radio"]:checked + label:after {
+    opacity: 1;
+}
+input[type="radio"]:checked + label:after {}
+
+/* checkboxes */
+input[type="checkbox"]:not(:checked),
+input[type="checkbox"]:checked {
+    position: absolute;
+    left: -9999px;
+}
+input[type="checkbox"]:not(:checked) + label,
+input[type="checkbox"]:checked + label {
+    position: relative;
+    display: block;
+    padding-left: 30px;
+    cursor: pointer;
+}
+    /* shape */
+    input[type="checkbox"]:not(:checked) + label:before,
+    input[type="checkbox"]:checked + label:before {
+        display: block;
+        width: 16px;
+        height: 16px;
+        background: white;
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        transition: all .2s;
+        box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.4);
+    }
+    /* checked shape */
+    input[type="checkbox"]:not(:checked) + label:after,
+    input[type="checkbox"]:checked + label:after {
+        display: block;
+        background-color: $theme_grey_light;
+        width: 8px;
+        height: 8px;
+        content: '';
+        position: absolute;
+        top: 7px;
+        left: 7px;
+        transition: all .2s;
+    }
+/* disabled checkbox */
+input[type="checkbox"]:disabled {}
+    input[type="checkbox"]:disabled + label {
+        color: #aaa;
+    }
+    input[type="checkbox"]:disabled + label:before {
+        opacity: .4;
+    }
+    input[type="checkbox"]:disabled + label:after {
+        opacity: .4;
+    }
+/* checked mark changes */
+input[type="checkbox"]:not(:checked) + label:after {
+    opacity: 0;
+}
+input[type="checkbox"]:not(:checked) + label:hover:after,
+input[type="checkbox"]:checked + label:after {
+    opacity: 1;
+}
+input[type="checkbox"]:checked + label:after {}
+
+/**
+ * Tables
+ */
+table {
+  border-top: 1px solid $theme_grey_lighter;
+  border-left: 1px solid $theme_grey_lighter;
+  td, th {
+    font-size: 160%;
+    padding: 5px 10px;
+    border-bottom: 1px solid $theme_grey_lighter;
+    border-right: 1px solid $theme_grey_lighter;
+  }
+}

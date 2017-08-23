@@ -1,0 +1,73 @@
+//
+// Initialization
+//
+
+// =============================================================================
+// Variables
+// =============================================================================
+
+// Layout
+$page_inner_maxwidth: 1280px;
+$page_horizontal_padding: 20px;
+$mobile_menu_min_width: 780px;
+$body_width: 600px;
+$header-height: 100px;
+$header-fixed-height: 55px;
+// Responsive breakpoints, change these as you see fit
+$huge_screen_width: 1280px;
+$bigger_screen_width: 1080px;
+$big_screen_width: 990px;
+$mediumbig_screen_width: 900px;
+$medium_screen_width: 800px;
+$small_screen_width: 680px;
+$micro_screen_width: 480px;
+$nano_screen_width: 320px;
+
+//
+// Font faces, stacks and sizes.
+//
+$base-font-size: 170%;
+$base-font-size-smaller: 150%;
+$base-line-height: 1.4;
+
+// The following font family declarations are based on the Microsoft core web
+// fonts which are common fonts available on most computer systems. The DejaVu
+// and Nimbus Sans fonts are commonly available on Linux systems where the MS
+// fonts are less common. Tahoma and Helvetica are also widely available.
+
+// First, let's create some font stacks.
+$my_font: "Roboto", Helvetica, Arial, sans-serif;
+
+// sans serif fonts
+$verdana:         Verdana, Tahoma, "DejaVu Sans", sans-serif;
+$tahoma:          Tahoma, Verdana, "DejaVu Sans", sans-serif;
+$helvetica:       Helvetica, Arial, "Nimbus Sans L", sans-serif;
+$arial:           Arial, Helvetica, "Nimbus Sans L", sans-serif;
+// serif fonts
+$times-new-roman: "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+$times:           Times, "Times New Roman", Georgia, "DejaVu Serif", serif;
+$georgia:         Georgia, "Times New Roman", "DejaVu Serif", serif;
+
+// For an explanation of why "monospace" is at the end of this list, see
+// http://meyerweb.com/eric/thoughts/2010/02/12/fixed-monospace-sizing/
+$courier:         "Courier New", "DejaVu Sans Mono", monospace, sans-serif;
+
+// Now create some variables for the font stacks we want to use on this site.
+$base-font-family: $my_font; // The font family set on the html element.
+$font-monospace:   $courier;
+
+
+// theme colors
+$theme_grey_lighter: #EAEAEA;
+$theme_grey_light: #9B9B9B;
+$theme_grey_dark: #777;
+$theme_grey_darker: #4A4A4A;
+$theme_red: #e65c56;
+$theme_error: #EE3333;
+$theme_success: #72C610;
+
+// color binding
+$link_color: $theme_red;
+$link_hover_color: $theme_red;
+$body_background: #FFF;
+$body_color: #000;
