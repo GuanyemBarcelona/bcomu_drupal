@@ -83,15 +83,6 @@ function bcnencomu_preprocess_html(&$vars) {
 	);
   drupal_add_html_head($meta_globalsign_domain_verification, 'meta_globalsign_domain_verification');
 
-  // external css
-  drupal_add_css('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', array('type' => 'external'));
-  drupal_add_css('//fonts.googleapis.com/css?family=Roboto:400,300,100,400italic,500,500italic,700,700italic&subset=latin,latin-ext', array('type' => 'external'));
-  drupal_add_css('//fonts.googleapis.com/css?family=Arvo:400,400italic', array('type' => 'external'));
-
-  // external scripts
-  drupal_add_js(libraries_get_path('modernizr'). '/modernizr.custom.87176.js');
-  //drupal_add_js(libraries_get_path('Chart.js') . '/Chart.min.js');
-
   $vars['environment'] = variable_get('environment', 'dev');
 
   // PAGE FORMATS

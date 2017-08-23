@@ -8,6 +8,7 @@
   <head>
     <?php print $head; ?>
     <title><?php print $head_title; ?></title>
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,300,100,400italic,500,500italic,700,700italic&subset=latin,latin-ext" rel="stylesheet">
     <?php print $styles; ?>
     <!--[if lt IE 9]>
     <script src="<?php print base_path() . path_to_theme(); ?>/node_modules/html5shiv/dist/html5shiv.min.js"></script>
