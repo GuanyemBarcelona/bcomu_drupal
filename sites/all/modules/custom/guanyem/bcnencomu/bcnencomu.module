@@ -188,33 +188,6 @@ function bcnencomu_theme($existing, $type, $theme, $path) {
   );
 }
 
-/**
- *  Implements hook_menu_local_tasks_alter().
- */
-function bcnencomu_menu_local_tasks_alter(&$data, $router_item, $root_path) {
-  /*$my_profile_link = array(
-  	'href' => 'user',
-    'title' => t("My profile"),
-    'localized_options' => array('attributes' => array('data-action' => 'my-profile')),
-  );
-
-  switch ($root_path) {
-    case 'messages':
-      $data['actions']['output'][0]['#link']['localized_options'] = array('attributes' => array('data-action' => 'add-message'));
-      // my profile link
-      $data['actions']['output'][] = array(
-        '#theme' => 'menu_local_action',
-        '#link' => $my_profile_link,
-      );
-      // all messages link
-      array_unshift($data['actions']['output'], array( // we use array_unshift and not push, in order to put this link at the beggining
-        '#theme' => 'menu_local_action',
-        '#link' => $all_messages_link,
-      ));
-      break;
-  }*/
-}
-
 /*
 * Simple Test functions
 */
@@ -293,11 +266,13 @@ function bcnencomu_render_social_network_links() {
     $field = 'social_' . $social_machine;
     $social_url = variable_get('bcnencomu_config_' . $field, '');
     if ($social_url != ''){
+      $rel = 'external';
       $final_list[] = array(
+
         'machine_name' => $social_machine,
         'name' => $social_name,
-        'fa_name' => _get_font_awesome_slug($social_machine),
         'url' => $social_url,
+        'rel' => $rel,
       );
     }
   }
@@ -336,7 +311,6 @@ function bcnencomu_render_share_links($nid) {
   foreach ($social_links as $social_machine => $item) {
     $new_item = $item;
     $new_item['machine_name'] = $social_machine;
-    $new_item['fa_name'] = _get_font_awesome_slug($social_machine);
     $final_list[] = $new_item;
   }
   $variables = array(
@@ -344,19 +318,6 @@ function bcnencomu_render_share_links($nid) {
     'current_url' => $current_url,
   );
   return theme('share_links', $variables);
-}
-
-/*
-* Get the social brand's font awesome correspondance as a slug: http://fortawesome.github.io/Font-Awesome/icons/
-*/
-function _get_font_awesome_slug($social_slug){
-  $fa_slug = $social_slug;
-  switch ($social_slug){
-    case 'telegram':
-      $fa_slug = 'paper-plane';
-      break;
-  }
-  return 'fa-' . $fa_slug;
 }
 
 /**
