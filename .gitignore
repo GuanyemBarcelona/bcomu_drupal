@@ -1,13 +1,39 @@
-# Ignore files and configuration files that may contain sensitive information.
-sites/*/settings*.php
+# Ignore all core files
+/*.txt
+/*.php
+/.htaccess
+/.editorconfig
+/web.config
+/includes
+/misc
+/modules
+/profiles
+/scripts
+/themes
+
+# Ignore vendor files, will use composer
+/vendor
+
+# Ignore folder where drupal core files are installed through composer
+/core
+
+# Ignore contrib modules, contrib themes, libraries and translations
+/sites/*/modules/contrib
+/sites/*/themes/contrib
+/sites/*/libraries
+/sites/*/translations
+
+# Ignore configuration files that may contain sensitive information.
+/sites/*/settings.php
+/sites/*/secret.settings.php
 
 # Ignore paths that contain user-generated content.
-sites/*/files
-sites/*/private
+/sites/*/files
+/sites/*/private
 
-# Ignore other files
-/*.txt
-/*.html
+# Ignore processed assets, will be processed in the server with gulp
+/sites/all/themes/custom/municilab_theme/css/
+
+# Other
 /manuals
-/database
-.idea/
+/.idea
