@@ -17,10 +17,7 @@
 # Ignore folder where drupal core files are installed through composer
 /core
 
-# Ignore contrib modules, contrib themes, libraries and translations
-/sites/*/modules/contrib
-/sites/*/themes/contrib
-/sites/*/libraries
+# Ignore translations
 /sites/*/translations
 
 # Ignore configuration files that may contain sensitive information.
@@ -32,7 +29,7 @@
 /sites/*/private
 
 # Ignore processed assets, will be processed in the server with gulp
-/sites/all/themes/custom/municilab_theme/css/
+/sites/all/themes/custom/bcnencomu/css/
 
 # Other
 /manuals
