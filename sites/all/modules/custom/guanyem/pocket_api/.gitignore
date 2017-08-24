@@ -1,1 +1,4 @@
 /secret/pocketkeys.php
+/src/assets/
+/src/node_modules
+/src/bower_components/
