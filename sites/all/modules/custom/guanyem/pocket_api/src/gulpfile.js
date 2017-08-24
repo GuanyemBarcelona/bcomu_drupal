@@ -37,3 +37,6 @@ gulp.task('watch', function() {
     //watch .js files
     gulp.watch('app/**/*.js', ['scripts']);
 });
+
+// The default task
+gulp.task('default', ['styles', 'scripts']);
