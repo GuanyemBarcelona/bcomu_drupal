@@ -15,7 +15,7 @@ angular.module('bcomupocket', ['ngRoute', 'ngSanitize', 'ngAnimate', 'infinite-s
     };
 
     //var baseHref = APP_CONFIG.baseHref;// TOFIX: this is done too soon
-    var baseHref = '/sites/all/modules/guanyem/pocket_api/src';
+    var baseHref = '/sites/all/modules/custom/guanyem/pocket_api/src';
     $routeProvider
         .when('/', {
             templateUrl: baseHref + '/app/components/pages/home.page.html'
