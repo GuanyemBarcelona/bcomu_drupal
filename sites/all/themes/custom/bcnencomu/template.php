@@ -112,6 +112,14 @@ function bcnencomu_preprocess_page(&$vars, $hook) {
 	$vars['is_format_ajax'] = bcnencomu_is_format('async');
 	$vars['is_format_oasis'] = bcnencomu_is_format('oasis');
 
+	// home page
+    if ($vars['is_front']){
+        // is there an agenda
+        if (isset($vars['page']['content_bottom']['views_highlighted_agenda-agenda_block'])){
+            $vars['classes_array'][] = 'has-agenda';
+        }
+    }
+
 	// Adding a class to #page in wireframe mode
 	if (theme_get_setting('wireframe_mode')) {
 		$vars['classes_array'][] = 'wireframe-mode';
@@ -122,10 +130,10 @@ function bcnencomu_preprocess_page(&$vars, $hook) {
 		$vars['classes_array'][] = 'with-navigation';
 	}
 
-  // Adding class if is there a sidebar first
-  if (!empty($vars['page']['sidebar_first'])) {
-    $vars['classes_array'][] = 'with-sidebar';
-  }
+    // Adding class if is there a sidebar first
+    if (!empty($vars['page']['sidebar_first'])) {
+        $vars['classes_array'][] = 'with-sidebar';
+    }
 
 	// must show title
 	$vars['must_show_title'] = FALSE;
@@ -136,17 +144,17 @@ function bcnencomu_preprocess_page(&$vars, $hook) {
 	// taxonomy page
 	if (arg(0) == 'taxonomy' && arg(1) == 'term' && is_numeric(arg(2))) {
 		$vars['page']['content']['system_main']['nodes']['#prefix'] = '<div class="term-nodes">';
-    $vars['page']['content']['system_main']['nodes']['#suffix'] = '</div>';
-    // relatem el canvi page class
-    if (arg(2) == RELATEM_CANVI_TID){
-      $vars['classes_array'][] = 'page-relatem-canvi';
-      $vars['must_show_title'] = FALSE;
-    }
-    // internacional page class
-    if (arg(2) == INTERNACIONAL_TID){
-      $vars['classes_array'][] = 'page-internacional';
-      $vars['must_show_title'] = FALSE;
-    }
+        $vars['page']['content']['system_main']['nodes']['#suffix'] = '</div>';
+        // relatem el canvi page class
+        if (arg(2) == RELATEM_CANVI_TID){
+          $vars['classes_array'][] = 'page-relatem-canvi';
+          $vars['must_show_title'] = FALSE;
+        }
+        // internacional page class
+        if (arg(2) == INTERNACIONAL_TID){
+          $vars['classes_array'][] = 'page-internacional';
+          $vars['must_show_title'] = FALSE;
+        }
 	}
 
   // calendar page

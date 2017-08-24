@@ -19,16 +19,27 @@
   </div>
   <?php } ?>
   <?php } else if ($view_mode == 'highlighted') { ?>
-  <h2><?php print $title; ?></h2>
-  <div class="summary">
-    <?php if (isset($node_body_html)) { ?>
-    <?php print $node_body_html; ?>
+
+    <?php if (isset($content['field_link'])){ ?>
+    <a href="<?php print $content['field_link']['#items'][0]['url']; ?>">
     <?php } ?>
-  </div>
-  <?php print render($content['field_link']); ?>
-  <?php if (isset($teaser_image)){ ?>
-  <div class="image"><?php print $teaser_image; ?></div>
-  <?php } ?>
+
+      <h2><?php print $title; ?></h2>
+
+      <div class="summary">
+        <?php if (isset($node_body_html)) { ?>
+        <?php print $node_body_html; ?>
+        <?php } ?>
+      </div>
+
+      <?php if (isset($teaser_image)){ ?>
+      <div class="image"><?php print $teaser_image; ?></div>
+      <?php } ?>
+
+    <?php if (isset($content['field_link'])){ ?>
+    </a>
+    <?php } ?>
+
   <?php } else if ($view_mode == 'full') { ?>
   <?php /* ----------------- FULL DISPLAY ----------------- */ ?>
   <?php // There is no full ?>

@@ -32,61 +32,8 @@
   @extend %element-invisible;
 }
 
-/* social links */
-.social-network-list {
-  overflow: hidden;
-  li {
-    float: left;
-    margin-left: 12px;
-    &:first-child {
-      margin-left: 0;
-    }
-    a {
-      display: block;
-      font-size: 140%;
-      text-align: center;
-      color: $theme_grey_light;
-      padding-top: .3em;
-      transition: all .3s ease;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      &:hover {
-        opacity: .6;
-      }
-      &[data-social-network="facebook"]:before {
-        content: "\e028";
-      }
-      &[data-social-network="twitter"]:before {
-        content: "\e08d";
-      }
-      &[data-social-network="youtube"]:before {
-        content: "\e0a5";
-      }
-      &[data-social-network="instagram"]:before {
-        content: "\e044";
-      }
-      &[data-social-network="telegram"]:before {
-        content: "\e087";
-      }
-      &[data-social-network="tumblr"]:before {
-        content: "\e08b";
-      }
-      &[data-social-network="flickr"]:before {
-        content: "\e02d";
-      }
-      &[data-social-network="mail"]:before {
-        content: "\e050";
-      }
-      span {
-        display: none;
-      }
-    }
-  }
-}
-
 /* primary tabs */
-.tabs-primary {
+.tabs.primary {
   @extend %clearfix;
   margin: 20px 0;
   padding-left: 2px;
@@ -170,51 +117,7 @@
 .views-exposed-form {
   .views-exposed-widgets {
     .views-exposed-widget {
-      float: none;
-      padding: 0;
-      margin-bottom: 40px;
-      .form-item {
-        label {
-          margin-right: 0;
-        }
-      }
-      label {
-        font-size: 140%;
-        color: black;
-      }
-      select {
-        max-width: 220px;
-      }
-      .views-widget {
-        label {
-          color: $theme_red;
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-        input[type="radio"]:checked + label {
-          color: $theme_grey_darker;
-          text-decoration: underline;
-        }
-      }
-      .bef-tree {
-        .bef-tree-child {
-          padding-left: 20px;
-        }
-      }
-      .bef-select-as-links {
-        .form-type-bef-link {
-          font-size: 140%;
-          line-height: 1.2;
-          margin-bottom: .8em;
-          a {
-            color: black;
-            &:hover, &.active {
-              color: $theme_red;
-            }
-          }
-        }
-      }
+      .views-widget {}
     }
   }
 }
