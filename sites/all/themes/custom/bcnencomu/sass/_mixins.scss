@@ -14,9 +14,7 @@
 %wrapper {
   margin: 0 auto;
   max-width: $page_inner_maxwidth;
-  @media screen and (max-width: $page_inner_maxwidth) {
-    padding: 0 $page_horizontal_padding;
-  }
+  padding: 0 $page_horizontal_padding;
 }
 
 // a narrow body

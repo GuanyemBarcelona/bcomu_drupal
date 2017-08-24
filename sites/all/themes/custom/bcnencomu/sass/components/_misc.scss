@@ -43,9 +43,9 @@
     }
     a {
       display: block;
-      font-size: 110%;
+      font-size: 140%;
       text-align: center;
-      color: $theme_grey_dark;
+      color: $theme_grey_light;
       padding-top: .3em;
       transition: all .3s ease;
       width: 22px;
@@ -68,6 +68,12 @@
       }
       &[data-social-network="telegram"]:before {
         content: "\e087";
+      }
+      &[data-social-network="tumblr"]:before {
+        content: "\e08b";
+      }
+      &[data-social-network="flickr"]:before {
+        content: "\e02d";
       }
       &[data-social-network="mail"]:before {
         content: "\e050";
