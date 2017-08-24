@@ -1,4 +1,7 @@
-# bcomu_drupal
+Barcelonaencomu drupal site
+=========
+Version 3.0.0
+---
 Drupal 7 code for the Barcelonaencomu site
 
 https://barcelonaencomu.cat/
@@ -7,8 +10,10 @@ made with love by the Guanyem Web Team.
 
 Contents
 ---
-All the code for the drupal 7 site including the core files for simplicity.
+All the code for the drupal 7 site excluding the core files.
 
-Site custom modules are at /sites/all/modules/guanyem/.
+Includes al contrib modules for simplicity.
 
-Site custom theme is at /sites/all/themes/bcnencomu/.
+Site custom modules are at /sites/all/modules/custom/.
+
+Site custom theme is at /sites/all/themes/custom/.
