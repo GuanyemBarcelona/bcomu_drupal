@@ -668,6 +668,7 @@ a[data-action="go-back"] {
 #content-header h1,
 article > header h1,
 body.page-taxonomy-term #content-header h1 {
+  @extend %narrowbody;
   font-size: 420%;
   font-weight: 900;
   margin-bottom: .6em;
@@ -677,33 +678,39 @@ body.page-taxonomy-term #content-header h1 {
 }
 
 /* categories terms list */
-.view-categories-terms-list {}
-.view-categories-terms-list .item-list > ul {}
-.view-categories-terms-list .views-row {
-  display: inline-block;
-  line-height: 1.4;
-  margin: 0 1em 2em 0;
-}
-.view-categories-terms-list .views-row a {
-  font-size: 1.3em;
-  color: #3a3a3a;
-  padding: .4em 1em .5em;
-  background: white;
-  border: 1px solid #ececec;
-  border-radius: 15px;
-  transition: all 0.3s ease-in-out;
-}
-.view-categories-terms-list .views-row.all a {
-  background: #ececec;
-}
-.view-categories-terms-list .views-row.all a.active {
-  display: none;
-}
-.view-categories-terms-list .views-row a:hover,
-.view-categories-terms-list .views-row a.active {
-  color: white;
-  background: #999;
-  border-color: #999;
+.view-categories-terms-list {
+  @extend %wrapper;
+  margin-bottom: 10px;
+  .item-list {
+    > ul {
+      @extend %clearfix;
+    }
+  }
+  .views-row {
+    float: left;
+    margin: 0 20px 20px 0;
+    .all a {
+      background: $theme_red;
+      &.active {
+        display: none;
+      }
+    }
+    a {
+      display: block;
+      font-size: 180%;
+      font-weight: 900;
+      color: $theme_red;
+      padding: .5em 1em .6em;
+      background: white;
+      border: 2px solid $theme_red;
+      transition: all 0.3s ease-in-out;
+      &:hover,
+      &.active {
+        color: white;
+        background: $theme_red;
+      }
+    }
+  }
 }
 
 /*** forms ***/
@@ -1461,7 +1468,7 @@ body.page-comment-reply form.comment-form {
 .view-frontpage {}
 .node-teaser {
   position: relative;
-  width: 396px;
+  width: 388px;
   padding: 5px 0 30px;
   margin-right: 2%;
   border-top: 1px solid $theme_grey_light;
