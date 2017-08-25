@@ -45,31 +45,29 @@
   <?php } else if ($view_mode == 'full') { ?>
   <?php /* ----------------- FULL DISPLAY ----------------- */ ?>
   <header>
-    <?php if (isset($share_links)){ ?>
-      <?php print $share_links; ?>
-    <?php } ?>
     <?php if (isset($hashtag)){ ?>
     <p class="hashtag"><?php print $hashtag; ?></p>
     <?php } ?>
+
     <h1><?php print $title; ?></h1>
+
+    <aside class="info">
+        <?php if (isset($category)){ ?>
+            <?php print $category; ?>
+        <?php } ?>
+
+        <time datetime="<?php print $date['machine']; ?>"><?php print $date['human']; ?></time>
+
+        <?php if (isset($share_links)){ ?>
+            <?php print $share_links; ?>
+        <?php } ?>
+    </aside>
+
     <?php if (isset($lead)){ ?>
     <h2 class="lead"><?php print $lead; ?></h2>
     <?php } ?>
   </header>
   <div class="content">
-    <aside class="info">
-      <?php if (isset($author_name)){ ?>
-      <p class="name author"><?php print $author_name; ?></p>
-      <?php } ?>
-      <time datetime="<?php print $date['machine']; ?>"><?php print $date['human']; ?></time>
-      <?php if (isset($tags)){ ?>
-      <?php print $tags; ?>
-      <?php } ?>
-      <?php if (isset($category)){ ?>
-      <?php print $category; ?>
-      <?php } ?>
-    </aside>
-
     <?php /*if (isset($image_gallery)){ ?>
       <?php print $image_gallery; ?>
     <?php }*/ ?>
@@ -79,6 +77,16 @@
       <?php print $node_body_html; ?>
       <?php } ?>
     </div>
+
+      <aside class="bottom-info">
+          <?php if (isset($tags)){ ?>
+              <?php print $tags; ?>
+          <?php } ?>
+
+          <?php if (isset($share_links)){ ?>
+              <?php print $share_links; ?>
+          <?php } ?>
+      </aside>
 
     <?php if (isset($node_nav)){ ?>
     <?php print $node_nav; ?>
