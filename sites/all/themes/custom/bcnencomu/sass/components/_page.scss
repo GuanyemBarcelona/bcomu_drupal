@@ -599,7 +599,9 @@ a[data-action="go-back"] {
 }
 
 .region-content {
-  @extend %wrapper;
+  > .inner {
+    @extend %wrapper;
+  }
 }
 
 /* Press block */
@@ -2518,53 +2520,72 @@ body.page-comment-reply form.comment-form {
 * Footer
 **********************/
 footer[role="contentinfo"] {
-  background: $theme_red;
+  #page.mapa-del-canvi & {
+    display: none;
+  }
 }
-#page.mapa-del-canvi footer[role="contentinfo"] {
-  display: none;
-}
+
+/*** footer bottom ***/
 .region-footer {
-  overflow: hidden;
-  padding: 40px 0;
+  @extend %clearfix;
+  padding: 16px 0;
+  color: $theme_grey_light;
+  background: $theme_grey_darker;
+  > .inner {
+    @extend %wrapper;
+  }
+  p {
+    color: white;
+    font-size: 140%;
+    margin-bottom: 0;
+  }
+  a {
+    color: $theme_grey_light;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  nav {
+    ul.menu {
+      @extend %clearfix;
+      li {
+        float: left;
+        margin-right: 1em;
+        a {
+          display: block;
+          font-size: 140%;
+          padding: .3em 0;
+        }
+      }
+    }
+  }
 }
-.region-footer p {
-  color: white;
-  font-size: 1.2em;
-  margin: 0;
-}
-.region-footer a {
-  color: white;
-}
-.region-footer a:hover {
-  text-decoration: underline;
-}
+
+/* cc block */
 #block-bcnencomu-creativecommons {
   float: right;
   width: 33%;
-  padding-right: 20px;
+  p {
+    @extend %clearfix;
+    line-height: 1;
+    a {
+      &:hover {
+        .icon {
+          opacity: 1;
+        }
+      }
+      .icon {
+        float: right;
+        opacity: .5;
+        width: 75px;
+        background-position: 0 -175px;
+      }
+    }
+  }
 }
-#block-bcnencomu-creativecommons p {
-  position: relative;
-  text-align: right;
-  padding-right: 30px;
-}
-#block-bcnencomu-creativecommons p .icon.cc {
-  position: absolute;
-  top: 2px;
-  right: 0;
-  background-position: -25px 0;
-}
-.region-footer #block-bcnencomu-social_networks_links {
-  float: left;
-  width: 33%;
-  padding-right: 20px;
-}
+
+/* legal menu */
 #block-menu-menu-legal-menu {
   float: left;
   width: 33%;
-}
-#block-menu-menu-legal-menu nav li {
-  display: inline;
-  font-size: 1.2em;
-  margin-right: 1em;
 }

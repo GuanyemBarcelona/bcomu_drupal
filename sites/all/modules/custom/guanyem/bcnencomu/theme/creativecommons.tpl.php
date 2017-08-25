@@ -1,1 +1,1 @@
-<p><?php print t('This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>'); ?> <i class="icon cc"></i></p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" title="<?php print t("This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License"); ?>"><i class="icon cc"></i></a></p>
