@@ -332,8 +332,8 @@ function bcnencomu_preprocess_node(&$vars) {
         $vars['tags'] = render($tags);
 
 		  	// node navigation
-		  	$node_nav = bcnencomu_render_node_navigation($node_obj->nid);
-		  	if ($node_nav !== FALSE) $vars['node_nav'] = $node_nav;
+		  	//$node_nav = bcnencomu_render_node_navigation($node_obj->nid);
+		  	//if ($node_nav !== FALSE) $vars['node_nav'] = $node_nav;
 
 		  	// lead
 		  	$lead = field_get_items('node', $node_obj, 'field_lead');
