@@ -69,3 +69,27 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+[data-social-network="facebook"]:before {
+  content: "\e028";
+}
+[data-social-network="twitter"]:before {
+  content: "\e08d";
+}
+[data-social-network="youtube"]:before {
+  content: "\e0a5";
+}
+[data-social-network="instagram"]:before {
+  content: "\e044";
+}
+[data-social-network="telegram"]:before {
+  content: "\e087";
+}
+[data-social-network="tumblr"]:before {
+  content: "\e08b";
+}
+[data-social-network="flickr"]:before {
+  content: "\e02d";
+}
+[data-social-network="mail"]:before {
+  content: "\e050";
+}
