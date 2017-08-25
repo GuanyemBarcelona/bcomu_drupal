@@ -338,15 +338,8 @@ function bcnencomu_preprocess_node(&$vars) {
 		  	// lead
 		  	$lead = field_get_items('node', $node_obj, 'field_lead');
 		  	if (isset($lead[0]['safe_value'])){
-					$vars['lead'] = $lead[0]['safe_value'];
-				}
-
-		  	// author
-		  	$author_obj = user_load($node_obj->uid);
-				$author_name = field_get_items('user', $author_obj, 'field_full_name');
-				if (isset($author_name[0]['safe_value'])){
-					$vars['author_name'] = $author_name[0]['safe_value'];
-				}
+                $vars['lead'] = $lead[0]['safe_value'];
+            }
 		  }
 			break;
     case 'banner':
