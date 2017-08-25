@@ -72,6 +72,8 @@ body {
 }
 
 #page {
+  position: relative;
+  z-index: 1;
   width: 100%;
   overflow: hidden;
 }
@@ -348,7 +350,7 @@ header[role="banner"] {
   }
   &.opened [data-action="open-mobile-menu"] {
     &:before {
-      background-position: -350px -50px;
+      background-position: -200px -50px;
     }
   }
   nav {
@@ -361,6 +363,7 @@ header[role="banner"] {
     box-shadow: -5px 0 50px 0 rgba(0, 0, 0, 0.31);
     transition: all 1s ease;
     > ul.menu {
+      padding-top: 10px;
       li {
         list-style-type: none;
         list-style-image: none;
@@ -371,17 +374,16 @@ header[role="banner"] {
           ul {
             display: block;
           }
-          a {
+          > a {
             color: $theme_red;
           }
         }
         a {
           display: block;
-          font-size: 20px;
-          font-weight: 200;
+          font-size: 200%;
           padding: .4em 1.4em;
           color: black;
-          &.active, &:active {
+          &.active {
             color: $theme_red;
           }
         }

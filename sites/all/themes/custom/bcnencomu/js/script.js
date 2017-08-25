@@ -35,7 +35,7 @@ var config = {
       // responsive menu
       $('#page').before('<div class="mobile-menu"><button data-action="open-mobile-menu">Menu</button></div>');
       var $mobile_menu = $('.mobile-menu');
-      $mobile_menu.append($main_menu.find('> .inner > .content').html());
+      $mobile_menu.append($main_menu.find('> .content').html());
       $('button[data-action="open-mobile-menu"]').click(function (e) {
         $mobile_menu.toggleClass('opened');
       });
