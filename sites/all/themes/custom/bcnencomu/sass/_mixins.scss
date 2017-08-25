@@ -19,7 +19,8 @@
 
 // a narrow body
 %narrowbody {
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   max-width: $body_width;
   @media screen and (max-width: $body_width) {
     padding: 0 $page_horizontal_padding;
