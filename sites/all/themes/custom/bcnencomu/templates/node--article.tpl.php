@@ -68,9 +68,9 @@
     <?php } ?>
   </header>
   <div class="content">
-    <?php /*if (isset($image_gallery)){ ?>
+    <?php if (isset($image_gallery)){ ?>
       <?php print $image_gallery; ?>
-    <?php }*/ ?>
+    <?php } ?>
 
     <div class="body">
       <?php if (isset($node_body_html)) { ?>

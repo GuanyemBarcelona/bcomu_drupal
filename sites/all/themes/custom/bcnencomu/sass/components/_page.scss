@@ -881,15 +881,15 @@ article.node {
 
   // image gallery
   .image-gallery {
-    margin: 10px 0 20px;
+    max-width: $multimedia_width;
+    margin: 30px auto;
     .full-image {
       margin: 0 0 10px;
-      height: 584px;
       background: white;
       border: 3px solid #c0cedb;
       img {
-        width: auto;
-        margin: 0 auto;
+        width: 100%;
+        display: block;
       }
     }
     .thumb-list {
