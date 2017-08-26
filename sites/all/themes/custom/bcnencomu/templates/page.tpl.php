@@ -64,15 +64,15 @@
             <?php print render($page['content_bottom']) ?>
           </div> <!-- /#content-bottom -->
           <?php endif; ?>
-        </div>
-      </div> <!-- /content-inner /content -->
-      <?php if ($page['sidebar_first']): ?>
-        <aside id="sidebar-first" class="column sidebar first">
-          <div id="sidebar-first-inner" class="inner">
-            <?php print render($page['sidebar_first']); ?>
-          </div>
-        </aside> <!-- /sidebar-first -->
-      <?php endif; ?>
+        </div> <!-- /content-inner -->
+        <?php if ($page['sidebar_first']): ?>
+          <aside id="sidebar-first" class="column sidebar first">
+            <div id="sidebar-first-inner" class="inner">
+              <?php print render($page['sidebar_first']); ?>
+            </div>
+          </aside> <!-- /sidebar-first -->
+        <?php endif; ?>
+      </div> <!-- /content -->
     </div>
   </div> <!-- /main -->
   <?php if ($page['footer_top'] || $page['footer']): ?>
