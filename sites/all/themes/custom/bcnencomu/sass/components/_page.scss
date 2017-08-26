@@ -676,6 +676,7 @@ body.page-taxonomy-term #content-header h1 {
 /* categories terms list */
 .view-categories-terms-list {
   @extend %wrapper;
+  padding-top: 20px;
   margin-bottom: 10px;
   .item-list {
     > ul {
@@ -708,47 +709,6 @@ body.page-taxonomy-term #content-header h1 {
     }
   }
 }
-
-/*** forms ***/
-form {
-  max-width: 500px;
-}
-.view-filters {
-  margin-bottom: 30px;
-}
-.view-filters form {
-  max-width: none;
-}
-.filter-wrapper {
-  display: none;
-}
-.webform-component--legal p {
-  font-size: 1.2em;
-}
-.views-exposed-form .views-exposed-widget input[type="text"],
-.views-exposed-form .views-exposed-widget select {
-  width: 10em;
-}
-.views-exposed-form .views-exposed-widget input[type="text"] {
-  padding: .1em;
-}
-.views-exposed-form .views-exposed-widget .form-submit {
-  width: auto;
-  font-size: 1.2em;
-}
-
-/* accordions */
-.accordion {}
-.accordion > h3 {
-  color: $theme_red;
-}
-.accordion > h3:hover {
-  text-decoration: underline;
-}
-.accordion > h3 .fa {
-  margin-left: 10px;
-}
-.accordion > .content {}
 
 /*** nodes ***/
 /* typical detail */
@@ -882,7 +842,7 @@ article.node {
     .full-image {
       margin: 0 0 10px;
       background: white;
-      border: 3px solid #c0cedb;
+      border: 1px solid $theme_grey_light;
       img {
         width: 100%;
         display: block;
@@ -896,7 +856,7 @@ article.node {
         width: 139px;
         margin-right: 10px;
         cursor: pointer;
-        border: 1px solid #c0cedb;
+        border: 1px solid $theme_grey_light;
       }
     }
   }

@@ -111,6 +111,19 @@
   }
 }
 
+/* accordions */
+.accordion {
+  > h3 {
+    color: $theme_red;
+    &:hover {
+      text-decoration: underline;
+    }
+    .fa {
+      margin-left: 10px;
+    }
+  }
+}
+
 /**
  * Views filters
  */
