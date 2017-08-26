@@ -579,6 +579,12 @@ a[data-action="go-back"] {
 
 #content {
   min-height: 400px;
+  body.not-front & {
+    @extend %wrapper;
+    padding-bottom: 50px;
+    border-left: 1px solid $theme_grey_lighter;
+    border-right: 1px solid $theme_grey_lighter;
+  }
 }
 
 .region-content-top {
@@ -586,11 +592,7 @@ a[data-action="go-back"] {
 }
 
 .region-content {
-  > .inner {
-    @extend %wrapper;
-    border-left: 1px solid $theme_grey_lighter;
-    border-right: 1px solid $theme_grey_lighter;
-  }
+
 }
 
 /* Press block */
