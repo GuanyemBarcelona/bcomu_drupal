@@ -1,23 +1,4 @@
 /*********************
-* Layout
-**********************/
-
-#page.with-sidebar #sidebar-first {
-  padding: 40px 0 0;
-  width: 23%;
-  margin-right: 2%;
-  float: left;
-}
-#page.with-sidebar #content {
-  width: 75%;
-  margin-left: 0;
-  float: right;
-}
-#page.with-sidebar #content-inner {
-  padding-right: 0;
-}
-
-/*********************
 * General
 **********************/
 body.node-type-video #admin-menu, #block-block-2 {
@@ -76,6 +57,11 @@ body {
   z-index: 1;
   width: 100%;
   overflow: hidden;
+  &.with-sidebar {
+    #sidebar-first {
+
+    }
+  }
 }
 
 /*********************
@@ -545,46 +531,47 @@ a[data-action="go-back"] {
 }
 /* --- */
 /* region highlighted */
-.region-highlighted {}
-
-.menu-block-wrapper {
-  @extend %wrapper;
-  position: relative;
-  ul.menu {
-    width: 100%;
-    display: table;
-    table-layout: fixed;
-    border-left: 1px solid $theme_grey_lighter;
-    border-right: 1px solid $theme_grey_lighter;
-    li {
-      display: table-cell;
-      vertical-align: middle;
-      background: $theme_grey_lighter;
-      border-left: 1px solid white;
-      &:first-child {
-        border-left: none;
-      }
-      &.active-trail, &.active, &:hover {
-        background: white;
-        a {
-          color: $theme_red;
+.region-highlighted {
+  // main menu 2nd level
+  .menu-block-wrapper {
+    @extend %wrapper;
+    position: relative;
+    ul.menu {
+      width: 100%;
+      display: table;
+      table-layout: fixed;
+      border-left: 1px solid $theme_grey_lighter;
+      border-right: 1px solid $theme_grey_lighter;
+      li {
+        display: table-cell;
+        vertical-align: middle;
+        background: $theme_grey_lighter;
+        border-left: 1px solid white;
+        &:first-child {
+          border-left: none;
         }
-      }
-      &.active-trail > ul.menu {
-        display: table;
-      }
-      a {
-        display: block;
-        font-size: 160%;
-        padding: 13px;
-        text-align: center;
-        color: $theme_grey_darker;
-      }
-      ul.menu {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
+        &.active-trail, &.active, &:hover {
+          background: white;
+          a {
+            color: $theme_red;
+          }
+        }
+        &.active-trail > ul.menu {
+          display: table;
+        }
+        a {
+          display: block;
+          font-size: 160%;
+          padding: 13px;
+          text-align: center;
+          color: $theme_grey_darker;
+        }
+        ul.menu {
+          display: none;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
       }
     }
   }
