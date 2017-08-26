@@ -395,7 +395,7 @@ function bcnencomu_preprocess_node(&$vars) {
               }
             }
         	}
-        	if (isset($list_nid)) $vars['list_uri'] = gh_get_node_path_alias($list_nid);
+        	//if (isset($list_nid)) $vars['list_uri'] = gh_get_node_path_alias($list_nid);
         }
       }
       break;
