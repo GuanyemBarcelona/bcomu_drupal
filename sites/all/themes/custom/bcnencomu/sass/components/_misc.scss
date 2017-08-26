@@ -103,6 +103,39 @@
 }
 
 /**
+ * Tabs
+ */
+.tabs {
+  > .tab-nav {
+    > ul {
+      display: table;
+      width: 100%;
+      > li {
+        display: table-cell;
+        text-align: center;
+        &:first-child a {
+          border-left: none;
+        }
+        &.active a {
+          background: white;
+          font-weight: bold;
+          border-bottom: 1px solid white;
+        }
+        a {
+          display: block;
+          padding: 1em 0 .6em;
+          text-transform: uppercase;
+          font-size: 110%;
+          border-left: 1px solid $theme_grey_lighter;
+          border-bottom: 1px solid $theme_grey_lighter;
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+/**
  * Messages
  */
 .messages {
