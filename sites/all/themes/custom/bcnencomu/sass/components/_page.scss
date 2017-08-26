@@ -1680,7 +1680,6 @@ body.page-comment-reply form.comment-form {
 
 /* candidacies list */
 .view-candidacies-list {
-  @extend %narrowbody;
   margin-bottom: 50px;
   .item-list {
     > h3 {
@@ -1728,6 +1727,32 @@ body.page-comment-reply form.comment-form {
         a {
           color: black;
         }
+      }
+    }
+  }
+}
+
+/* offices list */
+.view-offices-list {
+  .item-list {
+    > h3 {
+      font-size: 300%;
+      margin-bottom: .5em;
+    }
+    > ul {
+      @include simple-column-container;
+    }
+    .views-row {
+      @include simple-column(3, 3%);
+      height: 100px;
+      .views-field-title {
+        font-size: 160%;
+        font-weight: bold;
+        margin-bottom: .3em;
+      }
+      .views-field-field-office-title {
+        font-size: 160%;
+        line-height: 1.5;
       }
     }
   }
