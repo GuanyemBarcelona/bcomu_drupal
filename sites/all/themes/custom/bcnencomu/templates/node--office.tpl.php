@@ -8,10 +8,6 @@
   <?php if (isset($title)){ ?>
   <header>
     <h1<?php print $title_attributes; ?>><?php print $title; ?></h1>
-
-    <?php if (isset($link_to_equip_bcomu)){ ?>
-      <?php print $link_to_equip_bcomu ?>
-    <?php } ?>
   </header>
   <?php } ?>
   <div class="content">
@@ -20,6 +16,10 @@
       hide($content['links']);
       print render($content);
      ?>
+
+    <?php if (isset($link_to_equip_bcomu)){ ?>
+        <?php print $link_to_equip_bcomu ?>
+    <?php } ?>
   </div>
   <?php } ?>
 </<?php print $tag; ?>> <!-- /node-->
