@@ -35,18 +35,17 @@
   <?php } else if ($view_mode == 'full') { ?>
   <?php /* ----------------- FULL DISPLAY ----------------- */ ?>
   <header>
-      <?php if (!$is_mapa_del_canvi){ ?>
-    <?php if (isset($share_links)){ ?>
-      <?php print $share_links; ?>
-    <?php } ?>
+      <?php if (isset($title)) { ?>
+          <h1><?php print $title; ?></h1>
       <?php } ?>
 
-    <?php if (isset($title)) { ?>
-    <h1><?php print $title; ?></h1>
-    <?php } ?>
-    <?php if (isset($lead)){ ?>
-    <h2 class="lead"><?php print $lead; ?></h2>
-    <?php } ?>
+      <?php /*if (!$is_mapa_del_canvi){ ?>
+      <aside class="info">
+          <?php if (isset($share_links)){ ?>
+              <?php print $share_links; ?>
+          <?php } ?>
+      </aside>
+      <?php }*/ ?>
   </header>
   <div class="content">
       <?php if ($is_mapa_del_canvi){ ?>
