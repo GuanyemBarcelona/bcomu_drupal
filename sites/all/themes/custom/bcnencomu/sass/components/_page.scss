@@ -600,11 +600,7 @@ a[data-action="go-back"] {
 }
 
 #content {
-  padding: 40px 0 0;
   min-height: 400px;
-  body.front &, body.node-type-post & {
-    padding-top: 0;
-  }
 }
 
 .region-content-top {
