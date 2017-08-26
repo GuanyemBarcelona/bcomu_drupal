@@ -55,13 +55,6 @@ body {
 #page {
   position: relative;
   z-index: 1;
-  width: 100%;
-  overflow: hidden;
-  &.with-sidebar {
-    #sidebar-first {
-
-    }
-  }
 }
 
 /*********************
@@ -585,14 +578,41 @@ a[data-action="go-back"] {
     border-left: 1px solid $theme_grey_lighter;
     border-right: 1px solid $theme_grey_lighter;
   }
-}
 
-.region-content-top {
-
-}
-
-.region-content {
-
+  /* sidebar first */
+  body.sidebar-first & {
+    position: relative;
+    #content-inner {
+      @extend %narrowbody;
+    }
+    #sidebar-first {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      width: 20%;
+      ul.menu {
+        li {
+          margin-bottom: 10px;
+          &.active-trail {
+            > a {
+              color: $theme_red;
+            }
+          }
+          a {
+            display: block;
+            font-size: 160%;
+            color: $theme_grey_light;
+            &:hover, &.active {
+              color: $theme_red;
+            }
+          }
+          ul {
+            padding: 10px 0 0 30px;
+          }
+        }
+      }
+    }
+  }
 }
 
 /* Press block */
@@ -1656,15 +1676,6 @@ body.page-comment-reply form.comment-form {
 }
 
 /* candidacies list */
-#block-views-candidacies2-block_1,
-#block-views-candidacies2-block_2,
-#block-views-candidacies2-block_4,
-#block-views-candidacies2-block_5,
-#block-views-candidacies2-block_6 {
-  > header {
-    @extend %narrowbody;
-  }
-}
 .view-candidacies-list {
   @extend %narrowbody;
   margin-bottom: 50px;
@@ -1674,8 +1685,9 @@ body.page-comment-reply form.comment-form {
       font-weight: 900;
       margin-bottom: .5em;
     }
-    > ul {
+    > ol, > ul {
       @include simple-column-container;
+      list-style: none;
     }
     .views-row {
       @include simple-column(3, 3%);
@@ -1849,9 +1861,7 @@ body.page-comment-reply form.comment-form {
 
 /* cronograma Qui Som */
 #page.cronograma-page #content {
-  margin-left: 0;
-  float: none;
-  width: auto;
+
 }
 #page.cronograma-page article > header h1 {
   opacity: 0;
