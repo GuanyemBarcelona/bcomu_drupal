@@ -436,24 +436,8 @@ header[role="banner"] {
 **********************/
 .region {}
 
-/* ajax call button */
-button[data-ajax-call] {
-  background: #111;
-}
-button[data-ajax-call][disabled] {
-  background: #333;
-}
-button[data-ajax-call][data-state="iddle"] .ajax-progress .throbber,
-button[data-ajax-call][data-state="finished"] .ajax-progress .throbber {
-  background-position: 0 0;
-}
-
-.icon {
-  @include iconize();
-}
-
 a[data-action="go-back"] {
-  font-size: 1.2em;
+  font-size: 120%;
   margin: 0 0 20px;
   text-transform: none;
   text-align: left;
@@ -720,6 +704,12 @@ article.node {
     // narrow tag elements
     p, ul, ol, h2, h3, h4, h5, h6 {
       @extend %narrowbody;
+    }
+
+    p {
+      a.btn {
+        font-size: 100%;
+      }
     }
 
     h2 {

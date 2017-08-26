@@ -108,14 +108,16 @@
 // buttons
 @mixin buttonize {
   display: inline-block;
-  font-size: 170%;
+  font-size: 180%;
+  min-width: 200px;
   color: white;
   text-align: center;
   font-weight: bold;
-  padding: 5px 10px;
+  padding: 10px 12px;
   background: $theme_red;
   border: none;
   transition: all .3s ease;
+  text-decoration: none;
   &:hover {
     opacity: .7;
   }

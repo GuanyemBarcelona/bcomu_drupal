@@ -97,6 +97,11 @@
 
 }
 
+// icons
+.icon {
+  @include iconize();
+}
+
 /**
  * Messages
  */
@@ -120,6 +125,19 @@
     }
     .fa {
       margin-left: 10px;
+    }
+  }
+}
+
+/* ajax call button */
+button[data-ajax-call] {
+  background: #111;
+  &[disabled] {
+    background: #333;
+  }
+  &[data-state="iddle"], &[data-state="finished"] {
+    .ajax-progress .throbber, {
+      background-position: 0 0;
     }
   }
 }
