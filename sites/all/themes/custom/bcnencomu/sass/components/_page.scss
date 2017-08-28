@@ -1694,6 +1694,49 @@ body.page-comment-reply form.comment-form {
   }
 }
 
+// documents view
+.view-documents {
+  @extend %narrowbody;
+  > .view-content {
+    > .item-list {
+      > h3 {
+        font-size: 300%;
+        line-height: 1.2;
+        margin-bottom: .5em;
+      }
+      > ul {
+        margin-bottom: 40px;
+      }
+    }
+  }
+
+  .views-row {
+    margin-bottom: 20px;
+    .views-field-title {
+      font-size: 180%;
+      font-weight: 900;
+      line-height: 1.33;
+      margin-bottom: 0;
+    }
+
+    .views-field-body {
+      p {
+        margin-bottom: 0;
+      }
+    }
+
+    .views-field-field-document {
+      .file-size {
+
+      }
+      a {
+        font-size: 160%;
+        color: $theme_red;
+      }
+    }
+  }
+}
+
 /* campaign agenda page */
 .view-display-id-agenda_page {}
 .view-display-id-agenda_page .view-filters {}
@@ -1821,52 +1864,6 @@ body.page-comment-reply form.comment-form {
 }
 .view-my-events .views-row .field-content {
   display: inline;
-}
-
-/**/
-.view-documents {
-  margin: 40px 0;
-}
-.view-documents > .view-content > .item-list > h3 {
-  font-size: 2.4em;
-  font-weight: 300;
-  margin-bottom: .5em;
-}
-.view-documents > .view-content > .item-list > ul {
-  padding-left: 20px;
-  list-style: square;
-}
-.view-documents .views-row {
-  margin-bottom: 20px;
-}
-.view-documents .views-row .views-field-title {
-  font-size: 1.8em;
-  font-weight: bold;
-  margin-bottom: .2em;
-}
-.view-documents .views-row .views-field-body p {
-  margin-bottom: .2em;
-}
-.view-documents .views-row .views-field-field-document {}
-.view-documents .views-row .views-field-field-document .file-size {
-  font-size: 1.2em;
-}
-.view-documents .views-row .views-field-field-document a {
-  cursor: pointer;
-  border: none;
-  margin: 0;
-  text-align: center;
-  line-height: 1;
-  font-size: 13px;
-  color: #3d3a3a;
-  background: #ececec;
-  width: auto;
-  display: inline-block;
-  padding: .4em 1em;
-}
-.views-field-edit-node {
-  margin-top: 5px;
-  font-size: 1.2em;
 }
 
 /* Grups als barris */
