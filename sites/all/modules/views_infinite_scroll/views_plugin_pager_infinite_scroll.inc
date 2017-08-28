@@ -85,7 +85,7 @@ class views_plugin_pager_infinite_scroll extends views_plugin_pager_full {
       ),
     );
     drupal_add_js($settings, array('type' => 'setting', 'scope' => JS_DEFAULT));
-    drupal_add_js(drupal_get_path('module', 'views_infinite_scroll') . '/views-infinite-scroll.js', array('scope' => 'footer'));
+    drupal_add_js(drupal_get_path('module', 'views_infinite_scroll') . '/views-infinite-scroll.js');
     return theme($pager_theme, array('text' => $this->options['text'], 'manual_load' => $this->options['manual_load']));
   }
 }
