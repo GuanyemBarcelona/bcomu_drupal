@@ -240,6 +240,11 @@ header[role="banner"] {
             display: block;
           }
         }
+        &.active-trail:hover {
+          .menu {
+            display: none;
+          }
+        }
         a {
           display: block;
           color: black;
