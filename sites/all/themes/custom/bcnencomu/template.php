@@ -214,12 +214,9 @@ function bcnencomu_preprocess_node(&$vars) {
 	// mapa del canvi
     $vars['is_mapa_del_canvi'] = _is_mapa_del_canvi_url();
 
-    // blog
-    $vars['is_blog'] = ($node_obj->nid == 5);
-
 	// entity title
     if ($vars['view_mode'] == 'full') {
-        if ($node_obj->nid == 29 || $node_obj->nid == 3 || $vars['is_blog'] || $vars['is_mapa_del_canvi']) { // home, calendar, blog, mapa del canvi
+        if ($node_obj->nid == 29 || $node_obj->nid == 3 || $vars['is_mapa_del_canvi']) { // home, calendar, mapa del canvi
             unset($vars['title']);
         } else {
             $entity_title = field_get_items('node', $node_obj, 'title_field');
@@ -279,7 +276,7 @@ function bcnencomu_preprocess_node(&$vars) {
 	}
 
   // share links
-  if ($vars['view_mode'] == 'full' && !$vars['is_blog']){
+  if ($vars['view_mode'] == 'full'){
     $vars['share_links'] = bcnencomu_render_share_links($node_obj->nid);
   }
 

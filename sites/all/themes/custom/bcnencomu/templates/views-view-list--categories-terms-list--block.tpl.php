@@ -17,6 +17,6 @@
     <?php foreach ($rows as $id => $row): ?>
       <li class="<?php print $classes_array[$id]; ?>"><?php print $row; ?></li>
     <?php endforeach; ?>
-    <li class="views-row all"><?php print l(t("All", array(), array('context' => 'All categories')), 'node/59'); ?></li>
+    <li class="views-row all"><?php print l(t("All", array(), array('context' => 'All categories')), 'sala-de-premsa'); ?></li>
   <?php print $list_type_suffix; ?>
 <?php print $wrapper_suffix; ?>
