@@ -111,19 +111,17 @@
 @mixin buttonize {
   display: inline-block;
   font-size: 180%;
-  color: white;
+  color: $theme_red;
   text-align: center;
   font-weight: bold;
   padding: 10px 12px;
-  background: $theme_red;
-  border: none;
+  background: white;
+  border: 2px solid $theme_red;
   transition: all .3s ease;
   text-decoration: none;
   &:hover {
-    opacity: .7;
-  }
-  &:active {
-    opacity: .5;
+    background-color: $theme_red;
+    color: white;
   }
 }
 
