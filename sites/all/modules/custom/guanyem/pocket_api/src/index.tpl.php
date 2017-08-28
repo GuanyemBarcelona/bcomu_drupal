@@ -1,6 +1,4 @@
-<div ng-app="bcomupocket" ng-controller="appCtrl" data-base-href="<?php print $base_path ?>">
-    <link rel="stylesheet" href="<?php print $base_path ?>/assets/css/styles.css">
-
+<div class="bcomupocket-app" ng-app="bcomupocket" ng-controller="appCtrl" data-base-href="<?php print $base_path ?>">
     <!-- Load Js libs -->
     <script src="<?php print $base_path ?>/bower_components/angular/angular.min.js"></script>
     <script src="<?php print $base_path ?>/bower_components/angular-route/angular-route.min.js"></script>

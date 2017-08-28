@@ -1,0 +1,196 @@
+/**
+ * @file
+ * Recull de premsa (Pocket) styles
+ *
+ */
+
+/*** Generic ***/
+.bcomupocket-app {
+  .image-fader {
+    &.ng-hide-add, &.ng-hide-remove {
+      transition: all linear 0.5s;
+      display: block !important;
+    }
+    &.ng-hide-add.ng-hide-add-active, &.ng-hide-remove {
+      opacity: 0;
+    }
+    &.ng-hide-add, &.ng-hide-remove.ng-hide-remove-active {
+      opacity: 1;
+    }
+  }
+
+  .loading-text {
+    z-index: 10;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    padding: 1em;
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+    background: rgba(255,255,255,.8);
+  }
+  .empty-list .loading-text {
+    position: static;
+  }
+
+  .search {
+    float: right;
+    margin-bottom: 20px;
+    input[type="text"]{
+      width: 200px;
+      height: 33px;
+      padding: .6em;
+      margin-right: 5px;
+      background: white;
+      font-size: 13px;
+    }
+    button[data-action="reset"] {
+      width: auto;
+      height: 33px;
+      padding: .5em 1em;
+      display: inline-block;
+    }
+  }
+
+  .tag-filters-list {
+    clear: both;
+    position: relative;
+    text-align: center;
+    margin: 30px 0 50px;
+    line-height: 35px;
+    &.open {
+      ul {
+        max-height: 1000px;
+      }
+    }
+    button[data-action="see-all-tags"] {
+      margin: 20px auto;
+    }
+    ul {
+      transition: max-height 0.8s ease-in-out;
+      max-height: 34px;
+      overflow: hidden;
+    }
+    .tag-filter {
+      display: inline-block;
+      line-height: 1.4;
+      margin-right: 14px;
+      a {
+        cursor: pointer;
+        font-size: 1.3em;
+        color: #3a3a3a;
+        padding: .4em 1em .5em;
+        background: white;
+        border: 1px solid #ececec;
+        border-radius: 15px;
+        transition: all 0.3s ease-in-out;
+        &:hover, &.active {
+          color: white;
+          background: #999;
+          border-color: #777;
+        }
+        &.active:hover {
+          text-decoration: line-through;
+        }
+        &.empty {
+          opacity: .3;
+          cursor: default;
+          &:hover {
+            color: #3a3a3a;
+            background: white;
+            border-color: #ececec;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*** The List ***/
+.pocketlist {
+  margin: 20px 0;
+  .pocketlist-items {
+    position: relative;
+    > ul {
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+      width: 102.5%;
+      left: -1.3%;
+    }
+  }
+  .pocketlist-item {
+    position: relative;
+    width: 23%;
+    padding: 12px 0 50px;
+    overflow: hidden;
+    margin: 0 1% 20px;
+    border: 1px solid #EEE;
+    @media all and (max-width: $mediumbig_screen_width){
+      width: 48%;
+    }
+    @media all and (max-width: $micro_screen_width){
+      @include one-columnize;
+    }
+    a {
+      transition: all linear .2s;
+      color: black;
+      &:hover {
+        color: $theme_red;
+      }
+    }
+    h3 {
+      padding: 0 15px;
+      font-weight: bold;
+      font-size: 17px;
+      margin-bottom: .6em;
+    }
+    .date {
+      font-size: 12px;
+      color: #777;
+      padding: 0 15px;
+      margin-bottom: .8em;
+    }
+    .image {}
+    .body {
+      padding: 0 15px;
+      p {
+        font-size: 13px;
+      }
+    }
+    .item-tags {
+      padding: 0 15px;
+      margin-top: 10px;
+      ul {
+        display: inline;
+      }
+      .tag {
+        @include separate-by-commas;
+        font-size: 13px;
+        display: inline;
+        a {
+          cursor: pointer;
+          color: #999;
+          &:hover, &.active {
+            color: $theme_red;
+          }
+          &.active:hover {
+            text-decoration: line-through;
+          }
+        }
+      }
+    }
+    .source-host {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      font-size: 12px;
+      color: #AAA;
+      margin-bottom: 0;
+    }
+  }
+}
+
