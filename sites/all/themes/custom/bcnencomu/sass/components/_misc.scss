@@ -55,51 +55,23 @@
 }
 
 /**
- * Pager.
+ * Pager (all pagers are infinite scroll)
  */
 
-/* A list of page numbers when more than 1 page of content is available. */
-.pager {
-  clear: both;
+.pager--infinite-scroll {
   margin-top: 30px;
   padding: 0;
   text-align: center;
-}
-%pager__item {
-  display: inline-block;
-  font-size: 15px;
-  text-align: center;
-  list-style-type: none;
-  background-image: none;
   a {
-    display: block;
-    padding: 5px;
+    @include buttonize;
+    width: 100%;
+    max-width: 400px;
   }
-}
-.pager-item {
-  @extend %pager__item;
-}
-.pager-current {
-  @extend %pager__item;
-  padding: 5px;
-  width: 29px;
-  height: 29px;
-  border-radius: 50%;
-}
-.pager-first,
-.pager-previous,
-.pager-next,
-.pager-last,
-.pager-ellipsis {
-  @extend %pager__item;
-}
-.pager-ellipsis {
-
 }
 
 // icons
 .icon {
-  @include iconize();
+  @include iconize;
 }
 
 /**
