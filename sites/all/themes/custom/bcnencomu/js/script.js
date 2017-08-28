@@ -9,18 +9,29 @@ var locale = {
     es: "Próximos puntos de verificación",
     en: "Next verification points"
   }
-}
+};
 var config = {
   LANGUAGE: 'ca',
   THEME_URL: '/sites/all/themes/custom/bcnencomu/',
-  DISTRICT_VERIFICATIONS_URI: '/async/verifications/'
+  DISTRICT_VERIFICATIONS_URI: '/async/verifications/',
+  MASONRY_SELECTORS: ['.view-frontpage', '.view-blog', '.view-articles', '.view-multimedia', '.view-albums', '.term-nodes']
 };
 
 (function($){
   Drupal.behaviors.views = {
     attach: function(context, settings) {
+      // calendar async behaviors
       if ($(context).is('.view-event-calendar')){
         scrollCalendarToFirstEvent();
+      }
+
+      // masonry views async behaviors
+      for (var i in config.MASONRY_SELECTORS){
+        var selector = config.MASONRY_SELECTORS[i];
+        if ($(context).is(selector)){
+          prepareMasonryLists($(selector));
+          break;
+        }
       }
     }
   };
@@ -313,13 +324,17 @@ var config = {
 
 	$(window).load(function(){
     // Masonry
-    $('.view-frontpage, .view-blog, .view-articles, .view-multimedia, .view-albums, .term-nodes').each(function(i){
+    prepareMasonryLists($(config.MASONRY_SELECTORS.join()));
+	});
+
+	function prepareMasonryLists(obj){
+    obj.each(function(i){
       $(this).addClass('with-masonry');
       $(this).masonry({
         itemSelector: '.node-teaser'
       });
-    })
-	});
+    });
+  }
 
   // bind action to image from gallery thumbnail click.
   // e could be an event or directly a jQuery object
