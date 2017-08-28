@@ -298,43 +298,50 @@ function bcnencomu_preprocess_node(&$vars) {
         }
       }
 			break;
-		case 'post': /********** BLOG POST **********/
+    case 'post': /********** BLOG POST **********/
     case 'press': /********** PRESS **********/
       $vars['theme_hook_suggestions'][] = 'node__article';
       $vars['classes_array'][] = 'node-post-like';
 
-			// date
-		  $vars['date'] = gh_get_date_array($node_obj->created, 'day', TRUE);
+        // date
+        $vars['date'] = gh_get_date_array($node_obj->created, 'day', TRUE);
 
-      // category
-      $category_field = 'field_post_category';
-      if ($vars['type'] == 'press'){
-        $category_field = 'field_press_category';
-      }
-      $category = field_view_field('node', $node_obj, $category_field, array('label' => 'hidden'));
-      $vars['category'] = render($category);
+        // category
+        $category_field = 'field_post_category';
+        if ($vars['type'] == 'press'){
+            $category_field = 'field_press_category';
+        }
+        $category = field_view_field('node', $node_obj, $category_field, array('label' => 'hidden'));
+        $vars['category'] = render($category);
 
-      // hashtag
-      $hashtag = field_get_items('node', $node_obj,'field_hashtag');
-      if (isset($hashtag[0]['safe_value'])){
-        $vars['hashtag'] = $hashtag[0]['safe_value'];
-      }
+        // hashtag
+        $hashtag = field_get_items('node', $node_obj,'field_hashtag');
+        if (isset($hashtag[0]['safe_value'])){
+            $vars['hashtag'] = $hashtag[0]['safe_value'];
+        }
 
-		  if ($vars['view_mode'] == 'full'){
-        // tags
-        $tags = field_view_field('node', $node_obj, 'field_tags', array('label' => 'hidden'));
-        $vars['tags'] = render($tags);
+        if ($vars['view_mode'] == 'teaser'){
+          // external url
+          $vars['is_external'] = false;
+          if (isset($vars['content']['field_link'])){
+              $vars['is_external'] = true;
+              $vars['node_url'] = $vars['content']['field_link']['#items'][0]['url'];
+          }
+        }else if ($vars['view_mode'] == 'full'){
+            // tags
+            $tags = field_view_field('node', $node_obj, 'field_tags', array('label' => 'hidden'));
+            $vars['tags'] = render($tags);
 
-		  	// node navigation
-		  	//$node_nav = bcnencomu_render_node_navigation($node_obj->nid);
-		  	//if ($node_nav !== FALSE) $vars['node_nav'] = $node_nav;
+            // node navigation
+            //$node_nav = bcnencomu_render_node_navigation($node_obj->nid);
+            //if ($node_nav !== FALSE) $vars['node_nav'] = $node_nav;
 
-		  	// lead
-		  	$lead = field_get_items('node', $node_obj, 'field_lead');
-		  	if (isset($lead[0]['safe_value'])){
+            // lead
+            $lead = field_get_items('node', $node_obj, 'field_lead');
+            if (isset($lead[0]['safe_value'])){
                 $vars['lead'] = $lead[0]['safe_value'];
             }
-		  }
+        }
 			break;
     case 'banner':
       $link = field_get_items('node', $node_obj,'field_link');
