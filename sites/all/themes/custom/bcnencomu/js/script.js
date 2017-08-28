@@ -313,9 +313,12 @@ var config = {
 
 	$(window).load(function(){
     // Masonry
-    $('.view-frontpage, .view-blog, .view-articles, .view-multimedia, .view-albums, .term-nodes').masonry({
-      itemSelector: '.node-teaser'
-    });
+    $('.view-frontpage, .view-blog, .view-articles, .view-multimedia, .view-albums, .term-nodes').each(function(i){
+      $(this).addClass('with-masonry');
+      $(this).masonry({
+        itemSelector: '.node-teaser'
+      });
+    })
 	});
 
   // bind action to image from gallery thumbnail click.

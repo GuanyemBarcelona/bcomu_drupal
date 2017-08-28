@@ -525,7 +525,7 @@ a[data-action="go-back"] {
     }
   }
 }
-/* --- */
+
 /* region highlighted */
 .region-highlighted {
   // main menu 2nd level
@@ -618,6 +618,20 @@ a[data-action="go-back"] {
   }
 }
 
+/* region content top */
+.region-content-top {
+  > .inner {
+    padding: 0 $page_horizontal_padding;
+  }
+}
+
+/* region content */
+.region-content {
+  > .inner {
+    padding: 0 $page_horizontal_padding;
+  }
+}
+
 /* Press block */
 #block-block-3 {
   padding: 18px 22px;
@@ -662,6 +676,14 @@ a[data-action="go-back"] {
   // hide category terms blocks
   #block-views-categories_terms_list-block {
     display: none;
+  }
+}
+
+// masonry views
+.view.with-masonry {
+  padding-bottom: 60px;
+  .view-content {
+    height: 100%;
   }
 }
 
