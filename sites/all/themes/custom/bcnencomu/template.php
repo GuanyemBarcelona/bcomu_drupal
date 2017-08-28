@@ -8,9 +8,6 @@ define('CALENDAR_NID', 3);
 define('ENCOMUMAP_NID', 1062);
 define('ENCOMU_FORM_NID', 1808);
 define('CRONOGRAMA_NID', 1875);
-define('ESPAIS_EIXOS_NID', 2037);
-define('ESPAIS_GRUPS_NID', 2054);
-define('ESPAIS_COMIS_NID', 2053);
 define('RELATEM_CANVI_TID', 584);
 define('INTERNACIONAL_TID', 588);
 define('EQUIP_BCOMU_NID', 1617);
@@ -397,17 +394,6 @@ function bcnencomu_preprocess_node(&$vars) {
       }
       break;
     case 'eix_tematic':
-      // back to list link
-      $espai_nids = array(
-        547 => ESPAIS_EIXOS_NID,
-        578 => ESPAIS_GRUPS_NID,
-        549 => ESPAIS_COMIS_NID,
-      );
-      $espai_type = field_get_items('node', $node_obj, 'field_space_bcomu');
-      if (!empty($espai_type)){
-        $espai_type_tid = $espai_type[0]['tid'];
-        $vars['back_link'] = l(t("Back to the list"), 'node/' . $espai_nids[$espai_type_tid], array('attributes' => array('data-action' => 'go-back')));
-      }
       $web_field = field_get_items('node', $node_obj, 'field_grup_web');
       if (!empty($web_field)){
         $vars['web_link'] = l(t("Visit our web"), $web_field[0]['url'], array('attributes' => array('rel' => 'external')));
@@ -425,7 +411,7 @@ function bcnencomu_preprocess_node(&$vars) {
       if ($vars['view_mode'] == 'full'){
         $destination = $node_obj->field_office_destination[LANGUAGE_NONE][0]['tid'];
         if ($destination == 431){ // destination: BComu
-          $vars['link_to_equip_bcomu'] = l('< ' . t("Back to the team"),'node/' . EQUIP_BCOMU_NID, ['attributes' => ['data-action' => 'back']]);
+          $vars['link_to_equip_bcomu'] = l(t("Back to the team"),'node/' . EQUIP_BCOMU_NID, ['attributes' => ['data-action' => 'back']]);
         }
       }
       break;
