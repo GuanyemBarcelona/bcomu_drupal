@@ -703,35 +703,14 @@ body.page-taxonomy-term #content-header h1 {
 /* categories terms list */
 .view-categories-terms-list {
   @extend %wrapper;
-  padding-top: 20px;
+  padding-top: 40px;
   margin-bottom: 10px;
-  .item-list {
-    > ul {
-      @extend %clearfix;
-    }
-  }
   .views-row {
-    float: left;
-    margin: 0 20px 20px 0;
+    @extend %tag;
     .all a {
       background: $theme_red;
       &.active {
         display: none;
-      }
-    }
-    a {
-      display: block;
-      font-size: 180%;
-      font-weight: 900;
-      color: $theme_red;
-      padding: .5em 1em .6em;
-      background: white;
-      border: 2px solid $theme_red;
-      transition: all 0.3s ease-in-out;
-      &:hover,
-      &.active {
-        color: white;
-        background: $theme_red;
       }
     }
   }

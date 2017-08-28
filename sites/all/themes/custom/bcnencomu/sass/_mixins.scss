@@ -29,6 +29,29 @@
   }
 }
 
+// tag from a tags list
+%tag {
+  display: inline-block;
+  height: 45px;
+  margin: 0 20px 20px 0;
+  a {
+    display: inline-block;
+    height: 100%;
+    font-size: 180%;
+    font-weight: 900;
+    color: $theme_red;
+    padding: 10px 12px;
+    background: white;
+    border: 2px solid $theme_red;
+    transition: all 0.3s ease-in-out;
+    &:hover,
+    &.active {
+      color: white;
+      background: $theme_red;
+    }
+  }
+}
+
 // Makes an element visually hidden, but accessible.
 // @see http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
 @mixin element-invisible {
