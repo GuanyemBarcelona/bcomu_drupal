@@ -616,6 +616,11 @@ a[data-action="go-back"] {
       }
     }
   }
+
+  // forms inside the content
+  form {
+    @extend %narrowbody;
+  }
 }
 
 /* region content top */
@@ -1126,7 +1131,7 @@ article.node {
     }
 
     .field-name-field-document {
-      
+
     }
 
     .field-name-field-eix-coordi {

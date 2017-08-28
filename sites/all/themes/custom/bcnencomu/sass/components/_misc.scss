@@ -111,6 +111,7 @@
  * Messages
  */
 .messages {
+  @extend %narrowbody;
   background-color: $theme_red;
   padding: 15px 20px;
   margin: 20px 0;
