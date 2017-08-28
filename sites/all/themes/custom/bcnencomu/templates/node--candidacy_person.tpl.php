@@ -19,7 +19,7 @@
     <h1><?php print $title; ?></h1>
   </header>
   <?php if (isset($list_uri)){ ?>
-  <a href="<?php print $list_uri; ?>" data-action="go-back"><i class="fa fa-chevron-circle-left"></i> <?php print t("Back to the candidacy list"); ?></a>
+  <a href="<?php print $list_uri; ?>" data-action="go-back"><?php print t("Back to the candidacy list"); ?></a>
   <?php } ?>
   <div class="content">
     <?php if (isset($youtube_uri) || isset($video_html)) { ?>
