@@ -1402,6 +1402,23 @@ body.page-comment-reply form.comment-form {
   }
 }
 
+// Related news block
+#block-views-related_posts-block {
+  padding: 0 $page_horizontal_padding;
+}
+.view-related-posts {
+  > .view-content {
+    > .item-list {
+      > ul {
+        @include simple-column-container;
+      }
+    }
+  }
+  .views-row {
+    @include simple-column(3, 2%);
+  }
+}
+
 /* content region block menu */
 .region-content .block-menu-block {
   margin: 20px 0;
