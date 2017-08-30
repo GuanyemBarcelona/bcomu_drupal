@@ -235,7 +235,6 @@ var config = {
         $row.find('.views-field').each(function(j){
           var $field = $(this);
           var sign = 1;
-          if ($row.hasClass('views-row-odd')) sign = -1;
           $field.filter('.views-field-field-image').addClass('animateme').attr({
             'data-when': 'enter',
             'data-from': .6,
@@ -248,28 +247,28 @@ var config = {
             'data-from': .6,
             'data-to': .1,
             'data-opacity': 0,
-            'data-translatex': -150 * sign
+            'data-translatex': 150 * sign
           });
           $field.filter('.views-field-title-field').addClass('animateme').attr({
             'data-when': 'enter',
             'data-from': .6,
             'data-to': .1,
             'data-opacity': 0,
-            'data-translatex': -200 * sign
+            'data-translatex': 200 * sign
           });
           $field.filter('.views-field-body').addClass('animateme').attr({
             'data-when': 'enter',
             'data-from': .6,
             'data-to': .1,
             'data-opacity': 0,
-            'data-translatex': -300 * sign
+            'data-translatex': 300 * sign
           });
           $field.filter('.views-field-field-link').addClass('animateme').attr({
             'data-when': 'enter',
             'data-from': .6,
             'data-to': .1,
             'data-opacity': 0,
-            'data-translatex': -350 * sign
+            'data-translatex': 350 * sign
           });
           $field.filter('.views-field-field-milestone-importance').find('span[data-value]').addClass('animateme').attr({
             'data-when': 'enter',
