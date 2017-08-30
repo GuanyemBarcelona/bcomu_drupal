@@ -13,6 +13,8 @@ var locale = {
 var config = {
   LANGUAGE: 'ca',
   THEME_URL: '/sites/all/themes/custom/bcnencomu/',
+  SCROLL_FIX_HEADER: 60, // pixels on which we shall fix the header
+  SCROLL_THRESHOLD: 50, // miliseconds
   DISTRICT_VERIFICATIONS_URI: '/async/verifications/',
   MASONRY_SELECTORS: ['.view-frontpage', '.view-blog', '.view-articles', '.view-multimedia', '.view-albums', '.term-nodes']
 };
@@ -39,6 +41,9 @@ var config = {
 	// ON READY
 	$(window).ready(function(){
 		config.LANGUAGE = $('html').attr('lang');
+
+    // prepare scroll
+    prepareScrollBehavior();
 
     // main menu
     var $main_menu = $('#block-system-main-menu');
@@ -326,6 +331,24 @@ var config = {
     // Masonry
     prepareMasonryLists($(config.MASONRY_SELECTORS.join()));
 	});
+
+  // ON SCROLL
+  $(window).scroll(debounce(onWindowScroll, config.SCROLL_THRESHOLD)); // for all events that trigger continuosly, we debounce the functions called, for a better performance
+
+  function onWindowScroll(e){
+    prepareScrollBehavior();
+  }
+
+  function prepareScrollBehavior(){
+    var scrollTop = $(this).scrollTop();
+
+    // fixed header check
+    if (scrollTop >= config.SCROLL_FIX_HEADER){
+      $('body').addClass('header-fixed');
+    }else{
+      $('body').removeClass('header-fixed');
+    }
+  }
 
 	function prepareMasonryLists(obj){
     obj.each(function(i){

@@ -63,6 +63,9 @@ body {
 .region-header-top {
   position: relative;
   height: 36px;
+  body.header-fixed & {
+    display: none;
+  }
 }
 
 /* language selector */
@@ -111,6 +114,7 @@ header[role="banner"] {
   position: relative;
   z-index: 10;
   height: $header-height;
+  background-color: white;
   box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.5);
   body.header-fixed & {
     position: fixed;
@@ -136,15 +140,17 @@ header[role="banner"] {
 #site-logo {
   position: absolute;
   bottom: 10px;
-  left: 0;
-  width: 210px;
+  left: $page_horizontal_padding;
+  width: 170px;
   margin-bottom: 0;
   z-index: 20;
+  body.header-fixed & {
+    width: 110px;
+  }
   a {
     display: block;
     width: 100%;
     height: 100%;
-    padding: 0 20px 0 14px;
   }
 }
 
