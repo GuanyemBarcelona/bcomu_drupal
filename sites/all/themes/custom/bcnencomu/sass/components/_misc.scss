@@ -360,6 +360,7 @@ input[type="checkbox"]:checked + label:after {}
  * Tables
  */
 table {
+  margin: 20px 0;
   border-top: 1px solid $theme_grey_lighter;
   border-left: 1px solid $theme_grey_lighter;
   td, th {
