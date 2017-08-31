@@ -430,11 +430,22 @@ header[role="banner"] {
 .region {}
 
 a[data-action="go-back"] {
-  font-size: 120%;
-  margin: 0 0 20px;
-  text-transform: none;
-  text-align: left;
-  width: 20em;
+  margin-bottom: 20px;
+  padding: 0;
+  background: none;
+  color: $theme_red;
+  font-weight: normal;
+  font-size: 160%;
+  border: none;
+  &:before {
+    content: "<";
+    margin-right: 10px;
+  }
+  &:hover {
+    background-color: transparent;
+    color: $theme_red;
+    text-decoration: underline;
+  }
 }
 
 /* social links */
@@ -1153,18 +1164,8 @@ article.node {
       font-size: 160%;
     }
 
-    [data-action="back"] {
+    [data-action="go-back"] {
       margin-top: 30px;
-      padding: 0;
-      background: none;
-      color: $theme_red;
-      font-weight: normal;
-      font-size: 160%;
-      border: none;
-      &:before {
-        content: "<";
-        margin-right: 10px;
-      }
     }
   }
 
@@ -1197,15 +1198,6 @@ article.node {
       .field-items {
         font-size: 160%;
       }
-    }
-  }
-
-  // measure detail
-  &.node-measure {
-    .field-type-taxonomy-term-reference {
-      margin: 0 0 .5em;
-      font-size: 170%;
-      line-height: 1.25;
     }
   }
 

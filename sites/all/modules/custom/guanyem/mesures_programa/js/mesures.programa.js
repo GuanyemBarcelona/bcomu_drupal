@@ -15,8 +15,8 @@ var programa_config = {
       $(this).fancybox(
         {
           'type': 'iframe',
-          'width': 800,
-          'height': 600
+          'width': '700px',
+          'height': '600px'
         }
       );
     });

@@ -2,7 +2,7 @@
 * Mesures Programa styles
 */
 
-#page.navega-programa-page {
+body.page-programa-navega {
   .block-views {
     > header {
       h1 {
@@ -11,19 +11,59 @@
     }
   }
 
-  .view-mesures-list {
-    margin-bottom: 50px;
-    > .view-content {
-      > .item-list {
-        > ul {
-          column-count: 3;
-          column-gap: 20px;
+  #content #content-inner {
+    @extend %narrowbody;
+  }
+}
+
+.view-mesures-list {
+  margin-bottom: 50px;
+  > .view-content {
+    > .item-list {
+      > ul {
+        column-count: 3;
+        column-gap: 20px;
+      }
+    }
+  }
+  .views-row {
+    margin-bottom: 8px;
+    .views-field-name-field, .views-field-name {
+      font-size: 160%;
+      line-height: 1.25;
+      a {
+        &:hover {
+          text-decoration: underline;
         }
       }
     }
-    .views-row {
-      margin-bottom: 8px;
-      .views-field-name-field, .views-field-name {
+  }
+}
+
+article.node-mesures-programa {
+  > header {
+    h1 {
+      margin-bottom: 0;
+    }
+    h2 {
+      font-size: 300%;
+      margin-bottom: 1em;
+    }
+  }
+  > .content {
+    section {
+      > header {
+        h2 {
+          font-size: 180%;
+          font-weight: 900;
+          margin-bottom: .4em;
+        }
+      }
+    }
+    .view {
+      margin-bottom: 50px;
+      .views-row {
+        margin-bottom: 8px;
         font-size: 160%;
         line-height: 1.25;
         a {
@@ -33,5 +73,27 @@
         }
       }
     }
+  }
+}
+
+article.node-measure {
+  @extend %narrowbody;
+  > header {
+    h1 {
+      font-size: 300%;
+    }
+    .info {
+      @extend %clearfix;
+      padding: 10px 0;
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+      margin-bottom: 15px;
+    }
+  }
+
+  .field-type-taxonomy-term-reference {
+    margin: 0 0 .5em;
+    font-size: 170%;
+    line-height: 1.25;
   }
 }

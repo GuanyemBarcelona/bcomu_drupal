@@ -9,10 +9,13 @@
   <?php } else if ($view_mode == 'full') { ?>
   <?php /* ----------------- FULL DISPLAY ----------------- */ ?>
   <header>
-    <?php if (isset($share_links)){ ?>
-      <?php print $share_links; ?>
-    <?php } ?>
     <h1><?php print $title; ?></h1>
+
+    <aside class="info">
+      <?php if (isset($share_links)){ ?>
+        <?php print $share_links; ?>
+      <?php } ?>
+    </aside>
   </header>
   <div class="content">
     <?php 

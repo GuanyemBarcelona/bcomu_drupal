@@ -83,6 +83,11 @@ function bcnencomu_preprocess_html(&$vars) {
 
   $vars['environment'] = variable_get('environment', 'dev');
 
+  // navega pel programa page
+  if (arg(0) == 'node' && arg(1) == NAVEGA_PROGRAMA_NID) {
+    $vars['classes_array'][] = 'page-programa-navega';
+  }
+
   // PAGE FORMATS
   // if is body, print just the contents of the body, without anything else (to use in async calls that also need the wrapping)
 	$vars['is_format_body'] = bcnencomu_is_format('body');
@@ -177,11 +182,6 @@ function bcnencomu_preprocess_page(&$vars, $hook) {
   if (arg(0) == 'node' && arg(1) == CRONOGRAMA_NID) {
     $vars['classes_array'][] = 'cronograma-page';
     $vars['page']['sidebar_first'] = FALSE;
-  }
-
-  // navega pel programa page
-  if (arg(0) == 'node' && arg(1) == NAVEGA_PROGRAMA_NID) {
-    $vars['classes_array'][] = 'navega-programa-page';
   }
 
   // mapa del canvi
@@ -424,7 +424,7 @@ function bcnencomu_preprocess_node(&$vars) {
       if ($vars['view_mode'] == 'full'){
         $destination = $node_obj->field_office_destination[LANGUAGE_NONE][0]['tid'];
         if ($destination == 431){ // destination: BComu
-          $vars['link_to_equip_bcomu'] = l(t("Back to the team"),'node/' . EQUIP_BCOMU_NID, ['attributes' => ['data-action' => 'back']]);
+          $vars['link_to_equip_bcomu'] = l(t("Back to the team"),'node/' . EQUIP_BCOMU_NID, ['attributes' => ['data-action' => 'go-back']]);
         }
       }
       break;
