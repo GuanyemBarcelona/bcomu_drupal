@@ -1333,6 +1333,21 @@ article.node {
       }
     }
   }
+
+  // video teaser
+  &.node-video {
+    > .image {
+      position: relative;
+      .icon-play {
+        @include iconize(-125px, 0, 3, 3);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -37px;
+        margin-top: -37px;
+      }
+    }
+  }
 }
 
 // Related news block
@@ -1416,51 +1431,6 @@ article.node {
       line-height: 1.25;
     }
   }
-}
-
-/* blog block */
-#block-views-blog-block {}
-.view-blog {}
-.view-blog .views-row {
-
-}
-
-/* video list */
-.view-multimedia {
-  margin-bottom: 40px;
-}
-.view-multimedia .views-row {}
-.node-video.node-teaser {}
-.node-video.node-teaser > .image {
-  position: relative;
-}
-.node-video.node-teaser > .image .icon-play {
-  @include iconize(-125px, 0, 3, 3);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -37px;
-  margin-top: -37px;
-}
-.node-video.node-teaser > .content {
-
-}
-.node-video.node-teaser > .content h2 {
-
-}
-.node-video.node-teaser > .content p {
-
-}
-
-/* photo album list */
-.view-albums {
-  margin-bottom: 40px;
-}
-
-/* article list */
-.view-articles {}
-.view-articles .views-row {
-
 }
 
 /* candidacies list */
