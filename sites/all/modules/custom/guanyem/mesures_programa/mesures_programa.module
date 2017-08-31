@@ -1,16 +1,10 @@
 <?php
+
 /**
  * Implements hook_menu().
  */
 function mesures_programa_menu() {
   $items = array();
-
-  /*$items['async/test/districtes/%'] = array(
-    'page callback' => 'mesures_programa_test_districtes',
-    'type' => MENU_CALLBACK,
-    'page arguments' => array(3),
-    'access arguments' => array('access content'),
-  );*/
 
   $items['programa/navega/model-ciutat/%'] = array(
     'page callback' => 'mesures_programa_render_citymodel_page',
@@ -48,17 +42,6 @@ function mesures_programa_menu() {
   return $items;
 }
 
-/*
-* Simple Test function for Districtes
-*/
-/*function mesures_programa_test_districtes($tid){
-  $response = array(
-    'districts' => _get_districts_with_measures($tid),
-  );
-  drupal_json_output($response);
-  drupal_exit();
-}*/
-
 /**
  * Implements hook_theme().
  */
@@ -91,8 +74,8 @@ function mesures_programa_render_citymodel_page($tid){
   $city_list = views_embed_view('measures_list_city', $slug, $tid);
   $district_list = views_embed_view('mesures_districtes_amb_mesures_model', $slug, $tid);
   $back_link = array(
-    'title' => t("Back to City model"),
-    'uri' => gh_get_node_path_alias(370),
+    'title' => t("Back to main list"),
+    'uri' => url('node/' . NAVEGA_PROGRAMA_NID),
   );
   return theme('citymodel_page', array('slug' => $slug, 'title' => 'City model', 'term_title' => $term_title, 'city_list' => $city_list, 'district_list' => $district_list, 'back_link' => $back_link));
 }
@@ -121,8 +104,8 @@ function mesures_programa_render_territory_page($district){
   $district_title = gh_get_taxonomy_name($district);
   $measure_list = views_embed_view('measures_list_district', $slug, $district);
   $back_link = array(
-    'title' => t("Back to Territorial areas"),
-    'uri' => gh_get_node_path_alias(371),
+    'title' => t("Back to main list"),
+    'uri' => url('node/' . NAVEGA_PROGRAMA_NID),
   );
   return theme('district_page', array('slug' => $slug, 'title' => 'District', 'district_title' => $district_title, 'measure_list' => $measure_list, 'back_link' => $back_link));
 }
@@ -136,8 +119,8 @@ function mesures_programa_render_topic_page($tid){
   $city_list = views_embed_view('measures_list_city', $slug, $tid);
   $district_list = views_embed_view('mesures_districtes_amb_mesures_model', $slug, $tid);
   $back_link = array(
-    'title' => t("Back to Thematic areas"),
-    'uri' => gh_get_node_path_alias(372),
+    'title' => t("Back to main list"),
+    'uri' => url('node/' . NAVEGA_PROGRAMA_NID),
   );
   return theme('citymodel_page', array('slug' => 'topic', 'title' => 'Topic', 'term_title' => $term_title, 'city_list' => $city_list, 'district_list' => $district_list, 'back_link' => $back_link));
 }

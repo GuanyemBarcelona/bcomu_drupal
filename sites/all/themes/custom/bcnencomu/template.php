@@ -11,6 +11,7 @@ define('CRONOGRAMA_NID', 1875);
 define('RELATEM_CANVI_TID', 584);
 define('INTERNACIONAL_TID', 588);
 define('EQUIP_BCOMU_NID', 1617);
+define('NAVEGA_PROGRAMA_NID', 369);
 
 // Auto-rebuild the theme registry during theme development.
 if (theme_get_setting('clear_registry')) {
@@ -176,6 +177,11 @@ function bcnencomu_preprocess_page(&$vars, $hook) {
   if (arg(0) == 'node' && arg(1) == CRONOGRAMA_NID) {
     $vars['classes_array'][] = 'cronograma-page';
     $vars['page']['sidebar_first'] = FALSE;
+  }
+
+  // navega pel programa page
+  if (arg(0) == 'node' && arg(1) == NAVEGA_PROGRAMA_NID) {
+    $vars['classes_array'][] = 'navega-programa-page';
   }
 
   // mapa del canvi

@@ -628,6 +628,13 @@ a[data-action="go-back"] {
     }
   }
 
+  // page programa advanced search
+  body.page-programa-navega-cerca & {
+    #content-inner {
+      max-width: none;
+    }
+  }
+
   // forms inside the content
   form {
     @extend %narrowbody;

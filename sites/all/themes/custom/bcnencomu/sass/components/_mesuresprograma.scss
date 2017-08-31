@@ -1,0 +1,37 @@
+/**
+* Mesures Programa styles
+*/
+
+#page.navega-programa-page {
+  .block-views {
+    > header {
+      h1 {
+        font-size: 300%;
+      }
+    }
+  }
+
+  .view-mesures-list {
+    margin-bottom: 50px;
+    > .view-content {
+      > .item-list {
+        > ul {
+          column-count: 3;
+          column-gap: 20px;
+        }
+      }
+    }
+    .views-row {
+      margin-bottom: 8px;
+      .views-field-name-field, .views-field-name {
+        font-size: 160%;
+        line-height: 1.25;
+        a {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
