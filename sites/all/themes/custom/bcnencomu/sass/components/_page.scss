@@ -787,7 +787,17 @@ article.node {
       }
 
       &.btn {
-        @include buttonize;
+        color: $theme_red;
+        text-decoration: none;
+        &:before {
+          @include iconize(-100px, -175px);
+          content: " ";
+          float: left;
+          margin-right: 5px;
+        }
+        &:hover {
+          text-decoration: underline;
+        }
       }
 
       &[data-action] {
