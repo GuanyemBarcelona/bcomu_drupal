@@ -170,7 +170,7 @@ button[data-ajax-call] {
     background: #333;
   }
   &[data-state="iddle"], &[data-state="finished"] {
-    .ajax-progress .throbber, {
+    .ajax-progress .throbber {
       background-position: 0 0;
     }
   }
