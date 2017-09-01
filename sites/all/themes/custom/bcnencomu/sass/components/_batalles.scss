@@ -1,0 +1,178 @@
+/**
+* Batalles / Prioritats styles
+*/
+
+// top menu
+.view-batalles-top-menu {
+  @extend %wrapper;
+  > .view-content {
+    > .item-list {
+      > ul {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+        border-left: 1px solid $theme_grey_lighter;
+        border-right: 1px solid $theme_grey_lighter;
+      }
+    }
+  }
+  .views-row {
+    display: table-cell;
+    vertical-align: middle;
+    border-left: 1px solid white;
+    &:first-child {
+      border-left: none;
+    }
+    &.active-trail > ul.menu {
+      display: table;
+    }
+    &.tid-679 {
+      a {
+        &.active, &:hover {
+          background-color: $theme_habitatge;
+        }
+      }
+    }
+    &.tid-680 {
+      a {
+        &.active, &:hover {
+          background-color: $theme_ciutatverda;
+        }
+      }
+    }
+    &.tid-681 {
+      a {
+        &.active, &:hover {
+          background-color: $theme_gestiopublica;
+        }
+      }
+    }
+    &.tid-682 {
+      a {
+        &.active, &:hover {
+          background-color: $theme_desigualtats;
+        }
+      }
+    }
+    &.tid-683 {
+      a {
+        &.active, &:hover {
+          background-color: $theme_novapolitica;
+        }
+      }
+    }
+    &.tid-684 {
+      a {
+        &.active, &:hover {
+          background-color: $theme_barris;
+        }
+      }
+    }
+    a {
+      display: block;
+      font-size: 160%;
+      padding: 13px;
+      text-align: center;
+      color: $theme_grey_darker;
+      background: $theme_grey_lighter;
+      &.active, &:hover {
+        color: black;
+      }
+    }
+    ul.menu {
+      display: none;
+    }
+  }
+}
+
+body.page-taxonomy-term-679, body.page-taxonomy-term-680, body.page-taxonomy-term-681, body.page-taxonomy-term-682, body.page-taxonomy-term-683, body.page-taxonomy-term-684 {
+  .region-content-top {
+    margin-bottom: 20px;
+    > .inner {
+      @extend %widerbody;
+      padding: 40px 0 80px;
+    }
+  }
+}
+
+body.page-taxonomy-term-679 .region-content-top {
+  background-color: $theme_habitatge;
+}
+body.page-taxonomy-term-680 .region-content-top {
+  background-color: $theme_ciutatverda;
+}
+body.page-taxonomy-term-681 .region-content-top {
+  background-color: $theme_gestiopublica;
+}
+body.page-taxonomy-term-682 .region-content-top {
+  background-color: $theme_desigualtats;
+}
+body.page-taxonomy-term-683 .region-content-top {
+  background-color: $theme_novapolitica;
+}
+body.page-taxonomy-term-684 .region-content-top {
+  background-color: $theme_barris;
+}
+
+// current fight
+.view-batalla-current {
+  .views-row {
+    .views-field-field-icon {
+      float: left;
+      margin-right: 10px;
+    }
+    .views-field-field-lead {
+      padding-top: 5px;
+      p {
+        font-size: 420%;
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 0;
+      }
+    }
+    .views-field-description {
+      clear: both;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid black;
+      p {
+        font-size: 240%;
+        line-height: 1.4;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// current fight's children
+.view-batalles-children {
+  margin-top: 40px;
+  > .view-content {
+    > .item-list {
+      > ul {
+        @extend %clearfix;
+      }
+    }
+  }
+  .views-row {
+    float: left;
+    width: 187px;
+    margin-right: 20px;
+    .views-field-field-icon {
+      margin-bottom: 5px;
+    }
+    .views-field-name {
+      font-size: 160%;
+      font-weight: bold;
+      line-height: 1.25;
+      margin-bottom: .3em;
+    }
+    .views-field-description {
+      p {
+        font-size: 160%;
+        line-height: 1.4;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

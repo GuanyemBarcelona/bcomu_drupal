@@ -64,12 +64,15 @@ $theme_grey_light: #9B9B9B;
 $theme_grey_dark: #777;
 $theme_grey_darker: #4A4A4A;
 $theme_red: #e65c56;
-$theme_purple: #de3dff;
-$theme_blue: #459bff;
-$theme_green: #65c200;
-$theme_yellow: #ffaf2c;
 $theme_error: #EE3333;
 $theme_success: #72C610;
+// batalles colors
+$theme_habitatge: #ffaf2c;
+$theme_ciutatverda: #65c200;
+$theme_gestiopublica: #459bff;
+$theme_desigualtats: #de3dff;
+$theme_novapolitica: $theme_red;
+$theme_barris: white;
 
 // color binding
 $link_color: $theme_red;
