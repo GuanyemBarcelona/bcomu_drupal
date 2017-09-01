@@ -39,8 +39,8 @@
       <?php print $page; ?>
     <?php } ?>
 
-    <?php print $page_bottom; ?>
     <?php print $scripts; ?>
+    <?php print $page_bottom; ?>
   </body>
 </html>
 <?php } else { ?>
