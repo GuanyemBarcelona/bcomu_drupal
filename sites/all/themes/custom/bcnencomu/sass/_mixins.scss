@@ -29,6 +29,16 @@
   }
 }
 
+// a wider body
+%widerbody {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $multimedia_width;
+  @media screen and (max-width: $multimedia_width) {
+    padding: 0 $page_horizontal_padding;
+  }
+}
+
 // tag from a tags list
 %tag {
   display: inline-block;

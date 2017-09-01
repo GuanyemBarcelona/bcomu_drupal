@@ -553,7 +553,6 @@ a[data-action="go-back"] {
   // main menu 2nd level
   .menu-block-wrapper {
     @extend %wrapper;
-    position: relative;
     ul.menu {
       width: 100%;
       display: table;
@@ -563,15 +562,14 @@ a[data-action="go-back"] {
       li {
         display: table-cell;
         vertical-align: middle;
-        background: $theme_grey_lighter;
         border-left: 1px solid white;
         &:first-child {
           border-left: none;
         }
         &.active-trail, &.active, &:hover {
-          background: white;
           a {
             color: $theme_red;
+            background: white;
           }
         }
         &.active-trail > ul.menu {
@@ -582,13 +580,11 @@ a[data-action="go-back"] {
           font-size: 160%;
           padding: 13px;
           text-align: center;
+          background: $theme_grey_lighter;
           color: $theme_grey_darker;
         }
         ul.menu {
           display: none;
-          position: absolute;
-          top: 0;
-          left: 0;
         }
       }
     }
@@ -821,13 +817,13 @@ article.node {
     }
 
     div img {
-      max-width: $multimedia_width;
-      margin: 0 auto 30px;
+      @extend %widerbody;
+      margin-bottom: 30px;
     }
 
     iframe {
-      max-width: $multimedia_width;
-      margin: 0 auto 30px;
+      @extend %widerbody;
+      margin-bottom: 30px;
       #page.calendar-page & {
         max-width: none;
       }
@@ -866,8 +862,9 @@ article.node {
     }
 
     blockquote {
-      max-width: $multimedia_width;
-      margin: 30px auto;
+      @extend %widerbody;
+      margin-top: 30px;
+      margin-bottom: 30px;
       p {
         max-width: 100%;
         font-size: 240%;
@@ -906,8 +903,9 @@ article.node {
 
   // image gallery
   .image-gallery {
-    max-width: $multimedia_width;
-    margin: 30px auto;
+    @extend %widerbody;
+    margin-top: 30px;
+    margin-bottom: 30px;
     .full-image {
       margin: 0 0 10px;
       background: white;
@@ -1053,8 +1051,8 @@ article.node {
   // post-like detail (blog post, press article...)
   &.node-post-like {
     > header {
-      max-width: $multimedia_width;
-      margin: 0 auto 30px;
+      @extend %widerbody;
+      margin-bottom: 30px;
       .hashtag {
         margin-bottom: 0;
         font-size: 180%;
@@ -1091,8 +1089,8 @@ article.node {
     }
     .bottom-info {
       @extend %clearfix;
-      max-width: $multimedia_width;
-      margin: 0 auto 30px;
+      @extend %widerbody;
+      margin-bottom: 30px;
       padding: 10px 0;
       border-top: 1px solid $theme_grey_light;
       border-bottom: 1px solid $theme_grey_light;
