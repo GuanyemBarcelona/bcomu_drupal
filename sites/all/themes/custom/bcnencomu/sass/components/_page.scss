@@ -748,8 +748,9 @@ body.page-taxonomy-term #content-header h1,
 
 /* categories terms list */
 .view-categories-terms-list {
-  @extend %wrapper;
   padding-top: 40px;
+  padding-left: $page_horizontal_padding;
+  padding-right: $page_horizontal_padding;
   margin-bottom: 10px;
   .views-row {
     @extend %tag;
