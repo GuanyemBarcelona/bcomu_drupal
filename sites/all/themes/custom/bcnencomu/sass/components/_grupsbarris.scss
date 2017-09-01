@@ -1,0 +1,218 @@
+/**
+* Grups als Barris page styles
+*/
+
+.view-grups-als-barris {
+  @extend %clearfix;
+  min-height: 421px;
+  position: relative;
+  margin-bottom: 40px;
+
+  // mapa
+  .barris-map {
+    position: absolute;
+    top: 0;
+    right: 50%;
+    z-index: 1;
+    margin-right: -229px;
+    width: 458px;
+    height: 421px;
+    background: url("../img/mapa_bcn_barris.png") no-repeat 0 0;
+    transition: all 0.6s ease-in-out;
+    &.clicked {
+      margin-right: 0;
+      right: 110px;
+    }
+    ul {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      list-style: none;
+      li {
+        position: absolute;
+        font-size: 140%;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        width: 85px;
+        text-align: center;
+        &:before {
+          @include iconize(-250px, 0, 2, 2);
+          position: absolute;
+          top: -47px;
+          left: 50%;
+          margin-left: -25px;
+          content: " ";
+          transition: all 0.3s ease-in-out;
+        }
+        &.active:before {
+          background-position: -250px -50px;
+        }
+        &[data-index="0"] {
+          top: 333px;
+          left: 195px;
+        }
+        &[data-index="1"] {
+          top: 276px;
+          left: 172px;
+        }
+        &[data-index="2"] {
+          top: 322px;
+          left: 95px;
+        }
+        &[data-index="3"] {
+          top: 221px;
+          left: 103px;
+        }
+        &[data-index="4"] {
+          top: 157px;
+          left: 149px;
+        }
+        &[data-index="5"] {
+          top: 221px;
+          left: 218px;
+        }
+        &[data-index="6"] {
+          top: 150px;
+          left: 265px;
+        }
+        &[data-index="7"] {
+          top: 189px;
+          left: 331px;
+        }
+        &[data-index="8"] {
+          top: 255px;
+          left: 323px;
+        }
+        &[data-index="9"] {
+          top: 322px;
+          left: 291px;
+        }
+      }
+    }
+  }
+
+  // verificacions box
+  .verificacions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    width: 290px;
+    padding: 8px;
+    background: rgb(255, 255, 255);
+    background: rgba(255, 255, 255, .7);
+    border: 2px solid $theme_red;
+    opacity: 0;
+    transition: all .6s ease;
+    &[data-visible="true"] {
+      opacity: 1;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    [data-action="close"] {
+      padding: 0;
+      font-size: 1em;
+      width: 16px;
+      height: 16px;
+      color: $theme_red;
+      background: none;
+      position: absolute;
+      top: 6px;
+      right: 6px;
+    }
+    > h3 {
+      font-size: 1.3em;
+      color: $theme_red;
+      text-transform: uppercase;
+      margin-bottom: .7em;
+    }
+    .view-district-verification {
+      .views-row {
+        margin-bottom: 5px;
+        overflow: hidden;
+        .views-field-field-date {
+          float: left;
+          width: 25%;
+          font-size: 120%;
+          line-height: 1.3;
+        }
+        .views-field-title {
+          float: left;
+          width: 73%;
+          font-size: 120%;
+          line-height: 1.3;
+          margin-bottom: .4em;
+        }
+      }
+    }
+  }
+
+  // grups list
+  > .view-content {
+    > .item-list {
+      > h3 {
+        font-size: 400%;
+      }
+    }
+    .views-row {
+      margin-bottom: 40px;
+      .views-field {
+        font-size: 160%;
+        line-height: 1.25;
+        margin-bottom: .5em;
+      }
+      .views-field-title {
+        font-size: 180%;
+        font-weight: 900;
+        margin-bottom: .2em;
+      }
+      .views-field-field-grup-meetings {
+        line-height: 1.5;
+      }
+      .views-field-field-grup-email, .views-field-field-grup-web, .views-field-field-grup-facebook, .views-field-field-grup-twitter, .views-field-field-grup-telegram {
+        position: relative;
+        padding-left: 30px;
+        &:before {
+          @include iconize(-25px, -25px);
+          position: absolute;
+          top: -3px;
+          left: 0;
+          content: " ";
+        }
+      }
+      .views-field-field-grup-email:before {
+        background-position: -25px -125px;
+      }
+      .views-field-field-grup-web:before {
+        background-position: -50px -125px;
+      }
+      .views-field-field-grup-facebook:before {
+        background-position: -75px -125px;
+      }
+      .views-field-field-grup-twitter:before {
+        background-position: -100px -125px;
+      }
+      .views-field-field-grup-telegram:before {
+        background-position: -125px -125px;
+      }
+    }
+  }
+  &.with-js > .view-content {
+    position: relative;
+    z-index: 2;
+    float: left;
+    width: 50%;
+    padding-right: 20px;
+    > .item-list {
+      display: none;
+      &.active {
+        display: block;
+      }
+      > h3 {
+        display: none;
+      }
+    }
+  }
+}
