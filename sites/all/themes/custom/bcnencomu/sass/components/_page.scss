@@ -653,11 +653,7 @@ a[data-action="go-back"] {
 }
 
 /* region content top */
-.region-content-top {
-  > .inner {
-    padding: 0 $page_horizontal_padding;
-  }
-}
+.region-content-top {}
 
 /* region content */
 .region-content {
@@ -1248,6 +1244,7 @@ article.node {
     @include simple-column-container;
     .views-row {
       @include simple-column(4, 2%);
+      padding-left: $page_horizontal_padding;
     }
   }
   .node {
@@ -1265,10 +1262,12 @@ article.node {
       font-size: 140%;
       font-weight: bold;
       word-break: break-word;
+      margin-bottom: .1em;
     }
     .summary {
       p {
         font-size: 140%;
+        line-height: 1.25;
         margin-bottom: 0;
       }
     }
