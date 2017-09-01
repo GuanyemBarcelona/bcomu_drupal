@@ -16,7 +16,7 @@ var config = {
   SCROLL_FIX_HEADER: 60, // pixels on which we shall fix the header
   SCROLL_THRESHOLD: 50, // miliseconds
   DISTRICT_VERIFICATIONS_URI: '/async/verifications/',
-  MASONRY_SELECTORS: ['.view-frontpage', '.view-blog', '.view-articles', '.view-multimedia', '.view-albums', '.term-nodes']
+  MASONRY_SELECTORS: ['.view-frontpage', '.view-blog', '.view-articles', '.view-taxonomy-term', '.view-multimedia', '.view-albums']
 };
 
 (function($){
