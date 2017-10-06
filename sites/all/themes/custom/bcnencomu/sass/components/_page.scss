@@ -603,9 +603,6 @@ a[data-action="go-back"] {
   /* sidebar first */
   body.sidebar-first & {
     position: relative;
-    #content-inner {
-      @extend %narrowbody;
-    }
     #sidebar-first {
       position: absolute;
       top: 30px;
@@ -1362,6 +1359,23 @@ article.node {
   padding: 0 $page_horizontal_padding;
 }
 .view-related-posts {
+  > .view-content {
+    > .item-list {
+      > ul {
+        @include simple-column-container;
+      }
+    }
+  }
+  .views-row {
+    @include simple-column(3, 2%);
+  }
+}
+
+// Axis news block
+#block-views-posts_eix-block {
+  padding: 0 $page_horizontal_padding;
+}
+.view-posts-eix {
   > .view-content {
     > .item-list {
       > ul {
