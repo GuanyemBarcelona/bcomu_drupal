@@ -816,7 +816,7 @@ article.node {
       }
     }
 
-    div img {
+    img, div img, p img {
       @extend %widerbody;
       margin-bottom: 30px;
     }
