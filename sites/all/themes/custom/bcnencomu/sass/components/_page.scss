@@ -592,7 +592,7 @@ a[data-action="go-back"] {
 }
 
 #content {
-  min-height: 400px;
+  min-height: 620px;
   body.not-front & {
     @extend %wrapper;
     padding-bottom: 50px;
