@@ -32,6 +32,12 @@
   @extend %element-invisible;
 }
 
+.file {
+  img {
+    display: inline-block;
+  }
+}
+
 /* primary tabs */
 .tabs.primary {
   @extend %clearfix;
