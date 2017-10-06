@@ -15,7 +15,7 @@ var config = {
   THEME_URL: '/sites/all/themes/custom/bcnencomu/',
   SCROLL_FIX_HEADER: 60, // pixels on which we shall fix the header
   SCROLL_THRESHOLD: 50, // miliseconds
-  DISTRICT_VERIFICATIONS_URI: '/async/verifications/',
+  //DISTRICT_VERIFICATIONS_URI: '/async/verifications/',
   MASONRY_SELECTORS: ['.view-frontpage', '.view-blog', '.view-articles', '.view-taxonomy-term', '.view-multimedia', '.view-albums, .view-posts-eix']
 };
 
@@ -287,14 +287,14 @@ var config = {
       $grups_barris.find('.view-content').before('<div class="barris-map"><ul></ul></div>');
       var $map = $grups_barris.find('.barris-map');
       // prepare verificacions box
-      $map.after('<div class="verificacions"><button data-action="close">X</button><h3>'+locale.DISTRICT_VERIFICATIONS_TITLE[config.LANGUAGE]+'</h3><div class="content"></div></div>');
+      /*$map.after('<div class="verificacions"><button data-action="close">X</button><h3>'+locale.DISTRICT_VERIFICATIONS_TITLE[config.LANGUAGE]+'</h3><div class="content"></div></div>');
       var $verificacions = $grups_barris.find('.verificacions');
       $verificacions.attr('data-visible', false);
       var $verificacions_content = $verificacions.find('> .content');
       $verificacions.find('[data-action="close"]').click(function(e){
         e.preventDefault();
         $verificacions.attr('data-visible', false);
-      });
+      });*/
       //---
       $grups_barris.find('.view-content > .item-list > h3').each(function(i){
         var tid = $(this).find('> span').attr('data-tid');
@@ -303,13 +303,13 @@ var config = {
       $map.find('li').click(function(e){
         var index = $(this).attr('data-index');
         var tid = $(this).attr('data-tid');
-        $verificacions_content.html('');
         $map.addClass('clicked');
         $map.find('li').removeClass('active');
         $(this).addClass('active');
         $grups_barris.find('.view-content > .item-list').removeClass('active');
         $grups_barris.find('.view-content > .item-list').eq(index).addClass('active');
         // get the verificacions events for this district
+        /*$verificacions_content.html('');
         $verificacions.attr('data-visible', false);
         $.ajax({
           url: config.DISTRICT_VERIFICATIONS_URI + tid
@@ -320,7 +320,7 @@ var config = {
           $verificacions_content.find('.views-field-title a').each(function(i){
             prepareEventLink($(this));
           })
-        });
+        });*/
         // ---
       });
     }
