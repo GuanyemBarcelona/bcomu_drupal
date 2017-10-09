@@ -1592,53 +1592,60 @@ section[id^="block-views-candidacies2-block"] {
 }
 
 /* campaign agenda page */
-.view-display-id-agenda_page {}
-.view-display-id-agenda_page .view-filters {}
-.view-campaign-agenda .view-filters .form-item-field-date-value-1-value-month,
-.view-campaign-agenda .view-filters .form-item-field-date-value-1-value-year {
-  display: none;
+.view-display-id-agenda_page {
+  .view-grouping {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid $theme_red;
+    > .view-grouping-header {
+      font-size: 270%;
+      color: #8ea7bf;
+      margin-bottom: 1em;
+    }
+    > .view-grouping-content {
+      > .item-list {
+        h3 {
+          font-size: 180%;
+          font-weight: normal;
+          text-transform: uppercase;
+          color: $theme_red;
+          margin-bottom: 1em;
+        }
+      }
+    }
+    .views-row {
+      margin-bottom: 20px;
+      font-size: 170%;
+      line-height: 1.25;
+      overflow: hidden;
+      .views-field-field-date {
+        float: left;
+        font-size: 120%;
+        margin: 0 20px 40px 0;
+      }
+      .views-field-title-field {
+        font-weight: bold;
+      }
+    }
+  }
+  &.view-campaign-agenda {
+    .view-filters {
+      .form-item-field-date-value-1-value-month,
+      .form-item-field-date-value-1-value-year {
+        display: none;
+      }
+    }
+  }
 }
-.view-display-id-agenda_page .view-grouping {
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 2px solid $theme_red;
-}
-.view-display-id-agenda_page .view-grouping > .view-grouping-header {
-  font-size: 2.7em;
-  color: #8ea7bf;
-  margin-bottom: 1em;
-}
-.view-display-id-agenda_page .view-grouping > .view-grouping-content {}
-.view-display-id-agenda_page .view-grouping > .view-grouping-content > .item-list {}
-.view-display-id-agenda_page .view-grouping > .view-grouping-content > .item-list h3 {
-  font-size: 1.8em;
-  font-weight: normal;
-  text-transform: uppercase;
-  color: $theme_red;
-  margin-bottom: 1em;
-}
-.view-display-id-agenda_page .views-row {
-  margin-bottom: 20px;
-  font-size: 1.7em;
-  line-height: 1.25;
-  overflow: hidden;
-}
-.view-display-id-agenda_page .views-row .views-field-field-date {
-  float: left;
-  font-size: 1.2em;
-  margin: 0 20px 40px 0;
-}
-.view-display-id-agenda_page .views-row .views-field-title-field {
-  font-weight: bold;
-}
-.view-display-id-agenda_page .views-row .views-field-field-venue {}
 
 /* calendar */
 .view-event-calendar {
   margin-bottom: 40px;
-}
-.view-event-calendar > header > h1 {
-  font-size: 1em;
+  > header {
+    > h1 {
+      font-size: 100%;
+    }
+  }
 }
 .calendar-calendar .month-view .full .inner .monthview, .calendar-calendar .week-view .full .inner .weekview, .calendar-calendar .day-view .full .inner .dayview {
   -webkit-border-radius: 0;
@@ -1696,28 +1703,28 @@ section[id^="block-views-candidacies2-block"] {
   font-size: 1.6em;
   font-weight: normal;
 }
-.view-my-events {}
-.view-my-events .view-content {}
-.view-my-events .views-row {
-  margin-bottom: 20px;
-}
-.view-my-events .views-row .views-field {
-  font-size: 1.4em;
-  margin-bottom: .4em;
-}
-.view-my-events .views-row .views-field-title {
-  font-size: 1.8em;
-  font-weight: bold;
-}
-.view-my-events .views-row .views-field-field-event-type {
-  text-transform: uppercase;
-  font-size: 1.3em;
-}
-.view-my-events .views-row .views-label {
-  color: #999;
-}
-.view-my-events .views-row .field-content {
-  display: inline;
+.view-my-events {
+  .views-row {
+    margin-bottom: 20px;
+    .views-field {
+      font-size: 140%;
+      margin-bottom: .4em;
+      &.views-field-title {
+        font-size: 180%;
+        font-weight: bold;
+      }
+      &.views-field-field-event-type {
+        text-transform: uppercase;
+        font-size: 130%;
+      }
+    }
+    .views-label {
+      color: #999;
+    }
+    .field-content {
+      display: inline;
+    }
+  }
 }
 
 /* search results */
