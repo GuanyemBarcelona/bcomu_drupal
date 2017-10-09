@@ -1194,6 +1194,9 @@ article.node {
 
   // event detail
   &.node-event {
+    > .content {
+      @extend %narrowbody;
+    }
     .field {
       margin: 0 0 .5em;
       font-size: 170%;
