@@ -1454,6 +1454,9 @@ article.node {
 }
 
 /* candidacies list */
+section[id^="block-views-candidacies2-block"] {
+  @extend %narrowbody;
+}
 .view-candidacies-list {
   margin-bottom: 50px;
   .item-list {
