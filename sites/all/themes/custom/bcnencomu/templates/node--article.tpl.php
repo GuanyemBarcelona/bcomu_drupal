@@ -3,15 +3,15 @@
   <?php if ($view_mode == 'teaser' || $view_mode == 'highlighted') { ?>
   <?php /* ----------------- TEASER DISPLAY ----------------- */ ?>
       <div class="content">
-        <?php if (isset($category)){ ?>
-        <?php print $category; ?>
-        <?php } ?>
-
         <a href="<?php print $node_url; ?>"<?php if($is_external){ ?> rel="external"<?php } ?>>
             <?php if (isset($teaser_image)){ ?>
                 <div class="image">
                     <?php print $teaser_image; ?>
                 </div>
+            <?php } ?>
+
+            <?php if (isset($category)){ ?>
+                <?php print $category; ?>
             <?php } ?>
 
             <h2><?php print $title; ?></h2>
