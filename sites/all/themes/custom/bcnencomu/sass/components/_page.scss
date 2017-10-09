@@ -595,19 +595,15 @@ a[data-action="go-back"] {
     border-right: 1px solid $theme_grey_lighter;
   }
   body.sidebar-first & {
-    @extend %clearfix;
-
-    #content-inner {
-      float: right;
-      width: 75%;
-      padding-right: $page_horizontal_padding;
-    }
+    position: relative;
   }
 
   /* sidebar first */
   #sidebar-first {
-    float: left;
-    width: 24%;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 20%;
     ul.menu {
       li {
         margin-bottom: 10px;
