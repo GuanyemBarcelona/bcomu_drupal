@@ -60,6 +60,16 @@
   }
 }
 
+/* View filters */
+.view-filters {
+  margin: 20px 0 40px;
+  #content & {
+    form {
+      max-width: none;
+    }
+  }
+}
+
 /**
  * Pager
  */
