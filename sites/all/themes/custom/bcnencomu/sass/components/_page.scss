@@ -268,7 +268,7 @@ header[role="banner"] {
             font-size: 160%;
           }
         }
-        &.active-trail a, a.active {
+        &.active-trail a, a.active, .menu li a.active {
           color: $theme_red;
         }
         .menu {
