@@ -3,7 +3,7 @@
 */
 
 // top menu
-.view-batalles-top-menu {
+#block-views-batalles_top_menu-block .view {
   @extend %wrapper;
   > .view-content {
     > .item-list {
