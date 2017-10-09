@@ -1451,6 +1451,15 @@ article.node {
       line-height: 1.25;
     }
   }
+  .view-footer {
+    border-top: 1px solid black;
+    a {
+      display: block;
+      font-size: 160%;
+      text-align: right;
+      padding: 10px 0;
+    }
+  }
 }
 
 /* candidacies list */
