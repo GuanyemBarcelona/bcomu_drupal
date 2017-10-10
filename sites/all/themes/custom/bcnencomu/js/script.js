@@ -4,6 +4,21 @@ var locale = {
     es: "Cargando...",
     en: "Loading..."
   },
+  VIDEO_VIEWS: {
+    ca: "visualitzacions",
+    es: "visualizaciones",
+    en: "views"
+  },
+  VIDEO_HD_AVAILABLE: {
+    ca: "Vídeo disponible en HD",
+    es: "Video disponible en HD",
+    en: "Video available in HD"
+  },
+  VIDEO_CC_AVAILABLE: {
+    ca: "Amb subtítols",
+    es: "Con subtítulos",
+    en: "Closed captioning"
+  },
   DISTRICT_VERIFICATIONS_TITLE: {
     ca: "Propers punts de verificació",
     es: "Próximos puntos de verificación",
@@ -12,7 +27,8 @@ var locale = {
 };
 var config = {
   LANGUAGE: 'ca',
-  THEME_URL: '/sites/all/themes/custom/bcnencomu/',
+  YOUTUBE_API_KEY: 'AIzaSyC_oxmNRn9OI3_SaRbHfFWJtTyeaiD24bY',
+  CACHED_DATA_TTL: 24*60*60*1000, // 24h
   SCROLL_FIX_HEADER: 60, // pixels on which we shall fix the header
   SCROLL_THRESHOLD: 50, // miliseconds
   //DISTRICT_VERIFICATIONS_URI: '/async/verifications/',
@@ -22,8 +38,9 @@ var config = {
 (function($){
   Drupal.behaviors.views = {
     attach: function(context, settings) {
-      // calendar async behaviors
-      if ($(context).is('.view-event-calendar')){
+      if ($(context).is('.view-multimedia')){
+        prepareAllVIdeos();
+      } else if ($(context).is('.view-event-calendar')){
         scrollCalendarToFirstEvent();
       }
 
@@ -41,6 +58,7 @@ var config = {
 	// ON READY
 	$(window).ready(function(){
 		config.LANGUAGE = $('html').attr('lang');
+    moment.locale(config.LANGUAGE);
 
     // prepare scroll
     prepareScrollBehavior();
@@ -419,6 +437,169 @@ var config = {
   }
 
 })(jQuery);
+
+// YouTube iframe Player API
+var tag = document.createElement('script');
+tag.src = 'https://www.youtube.com/iframe_api';
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+function _get_youtube_id_from_uri(url){
+  var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+  var match = url.match(regExp);
+  if (match && match[7].length==11){
+    return match[7];
+  }
+  return false;
+}
+
+// on YouTube iframe Player API Ready
+function onYouTubeIframeAPIReady() {
+  prepareAllVIdeos();
+}
+
+function prepareAllVIdeos() {
+  jQuery('[data-youtube-uri]').each(function (i) {
+    var $video = jQuery(this);
+    var html_id = $video.find('.video').attr('id');
+    var youtube_id = false;
+    var youtube_uri = jQuery(this).attr('data-youtube-uri');
+    if (typeof youtube_uri !== typeof undefined && youtube_uri !== false) {
+      youtube_id = _get_youtube_id_from_uri(youtube_uri);
+    }
+    if ($video.is('.node-teaser')) {
+      // --- teaser ---
+      // load image if has youtube_id
+      if (youtube_id !== false) {
+        // this returned data from the youtube API is cached through simpleStorage
+        var video_data_key = 'vid_' + youtube_id;
+        var video_data = simpleStorage.get(video_data_key);
+        if (typeof video_data === 'undefined') {
+          var youtube_data_uri = 'https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&key=' + config.YOUTUBE_API_KEY + '&id=' + youtube_id;
+          jQuery.ajax({
+            url: youtube_data_uri,
+            dataType: 'jsonp',
+            success: function (data) {
+              simpleStorage.set(video_data_key, data, {TTL: config.CACHED_DATA_TTL});
+              placeMetadataInVideoContainer(data, $video);
+            }
+          });
+        } else {
+          placeMetadataInVideoContainer(video_data, $video);
+        }
+      }
+      // open as overlay
+      $video.find('a').each(function (j) {
+        var href = jQuery(this).attr('href');
+        jQuery(this).attr('href', href + '?oasis=1');
+        jQuery(this).fancybox(
+          {
+            'type': 'iframe',
+            'width': 610,
+            'height': 500
+          }
+        );
+      });
+    } else if ($video.is('.node-slider')) {
+      // --- slider ---
+      var $play_btn = $video.find('a[data-action="play"]');
+      var $image = $video.find('> .image');
+      var $content = $video.find('> .content');
+      var video_heights = [557, 768]; // original, play mode
+      $play_btn.click(function (e) {
+        if (youtube_id !== false) {
+          e.preventDefault();
+          // stop the caroussel
+          /*var $carousel = $video.closest('.owl-carousel');
+          $carousel.trigger('autoplay.stop.owl');*/
+          var carousel = $video.closest('.owl-carousel').data('owlCarousel');
+          var current_item = carousel.currentItem;
+          carousel.stop();
+          carousel.reinit({autoPlay: false});
+          carousel.jumpTo(current_item);
+          // ---
+          /*$video.closest('.view-content').animate({
+          height: video_heights[1] + 'px'
+          }, 500, function() {
+
+          });*/
+          $play_btn.hide();
+          $image.hide();
+          $content.hide();
+          var slide_player_id = 'video-' + html_id;
+          $video.prepend('<div class="video" id="' + slide_player_id + '" />');
+          var player = new YT.Player(slide_player_id, {
+            width: '640',
+            height: '390',
+            videoId: youtube_id,
+            events: {
+              'onReady': onPlayerReady
+            }
+          });
+          // carousel events
+          /*var $carousel = $video.closest('.owl-carousel');
+          $carousel.on('to.owl.carousel', function(e) {
+          player.stopVideo();
+          });*/
+        }
+      });
+    } else if ($video.is('.node-full')) {
+      // --- full ---
+      if (youtube_id !== false) {
+        var player = new YT.Player(html_id, {
+          width: '640',
+          height: '390',
+          videoId: youtube_id,
+          events: {
+            'onReady': onPlayerReady
+          }
+        });
+      }
+    }
+  });
+}
+
+function placeMetadataInVideoContainer(data, $container) {
+  try {
+    var snippet = data.items[0].snippet;
+    var details = data.items[0].contentDetails;
+    var statistics = data.items[0].statistics;
+    $container.find('> .content h2').after('<aside class="info"></aside>');
+    var $info = $container.find('aside.info');
+    $container.find('> .content .summary').after('<aside class="features"></aside>');
+    var $features = $container.find('aside.features');
+  } catch (err) {
+    console.log(err);
+  }
+
+  // thumb
+  try {
+    var img_src = snippet.thumbnails.high.url;
+    var $link = $container.find('> .image a');
+    if ($link.find('img').length === 0) {
+      $link.append('<img src="' + img_src + '" />');
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+// converts ISO 8601 duration format to a human readable string
+function getTimeString(duration) {
+  var duration2 = moment.duration(duration);
+  var time = {};
+  time.hours = duration2.hours();
+  time.minutes = duration2.minutes();
+  time.seconds = duration2.seconds();
+  var time_str = (time.hours != 0) ? time.hours + ':' : '';
+  time_str += pad(time.minutes, 2) + ':';
+  time_str += pad(time.seconds, 2);
+  return time_str;
+}
+
+function onPlayerReady(e) {
+  e.target.playVideo();
+}
 
 // prepare the event links to open as overlay
 function prepareEventLink($obj){
