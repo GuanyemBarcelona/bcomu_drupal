@@ -125,10 +125,8 @@ body.page-taxonomy-term-684 .region-content-top {
     .views-field-field-icon {
       float: left;
       margin-right: 40px;
-      img {
-        width: auto;
-        height: 125px;
-      }
+      width: 133px;
+      height: 133px;
     }
     .views-field-field-lead {
       padding-top: 5px;
@@ -150,6 +148,14 @@ body.page-taxonomy-term-684 .region-content-top {
         margin-bottom: 0;
       }
     }
+    .views-field-edit-term {
+      a {
+        color: white;
+        padding: 3px 5px;
+        font-size: 120%;
+        background-color: $theme_red;
+      }
+    }
   }
 }
 
@@ -168,7 +174,7 @@ body.page-taxonomy-term-684 .region-content-top {
     width: 187px;
     margin-right: 20px;
     .views-field-field-icon {
-      margin-bottom: 5px;
+      margin-bottom: 20px;
     }
     .views-field-name {
       font-size: 160%;
@@ -181,6 +187,14 @@ body.page-taxonomy-term-684 .region-content-top {
         font-size: 160%;
         line-height: 1.4;
         margin-bottom: 0;
+      }
+    }
+    .views-field-edit-term {
+      a {
+        color: white;
+        padding: 3px 5px;
+        font-size: 120%;
+        background-color: $theme_red;
       }
     }
   }
@@ -235,9 +249,10 @@ body.page-taxonomy-term-684 .region-content-top {
         color: $theme_barris2;
       }
       .views-field-field-icon, .views-field-field-icon-on {
+        width: 200px;
         height: 200px;
         text-align: center;
-        margin-bottom: 20px;
+        margin: 0 auto 20px;
         img {
           display: inline-block;
         }
