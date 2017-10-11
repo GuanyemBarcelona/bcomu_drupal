@@ -1339,6 +1339,7 @@ article.node {
   &.node-video {
     > .image {
       position: relative;
+      margin-bottom: 10px;
       .icon-play {
         @include iconize(-125px, 0, 3, 3);
         position: absolute;
