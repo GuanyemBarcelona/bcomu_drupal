@@ -1381,6 +1381,14 @@ article.node {
   }
 }
 
+// Search form page
+form.search-form {
+  margin: 40px 0;
+  label {
+    display: none;
+  }
+}
+
 // Related news block
 #block-views-related_posts-block {
   padding: 0 $page_horizontal_padding;
