@@ -6,6 +6,14 @@
   <div class="content">
     <a href="<?php print $back_link['uri']; ?>" data-action="go-back"><?php print $back_link['title']; ?></a>
 
+    <div class="body">
+    <?php print $term_body; ?>
+    </div>
+
+    <div class="image">
+    <?php print $term_icon; ?>
+    </div>
+
     <section data-subtype="city">
       <header>
         <h2><?php print t("City measures", array(), array('context' => 'Mesures Programa')); ?></h2>

@@ -71,13 +71,18 @@ function mesures_programa_theme($existing, $type, $theme, $path) {
 function mesures_programa_render_citymodel_page($tid){
   $slug = 'citymodel';
   $term_title = gh_get_taxonomy_name($tid);
+  $term = taxonomy_term_load($tid);
+  $term_body_field = field_get_items('taxonomy_term', $term,'description_field');
+  $term_body = $term_body_field[0]['safe_value'];
+  $term_icon_field = field_get_items('taxonomy_term', $term,'field_icon'); kpr($term_icon[0]);
+  $term_icon = theme('image', array('path' => $term_icon_field[0]['uri']));
   $city_list = views_embed_view('measures_list_city', $slug, $tid);
   $district_list = views_embed_view('mesures_districtes_amb_mesures_model', $slug, $tid);
   $back_link = array(
     'title' => t("Back to main list"),
     'uri' => url('node/' . NAVEGA_PROGRAMA_NID),
   );
-  return theme('citymodel_page', array('slug' => $slug, 'title' => 'City model', 'term_title' => $term_title, 'city_list' => $city_list, 'district_list' => $district_list, 'back_link' => $back_link));
+  return theme('citymodel_page', array('slug' => $slug, 'title' => 'City model', 'term_title' => $term_title, 'term_body' => $term_body, 'term_icon' => $term_icon, 'city_list' => $city_list, 'district_list' => $district_list, 'back_link' => $back_link));
 }
 
 /**
