@@ -80,6 +80,28 @@ var config = {
       });
     }
 
+    // search block
+    var $search_block = $('#block-search-form');
+    if ($search_block.length){
+      var $form = $search_block.find('form');
+      var $txt = $search_block.find('input[type="text"]');
+      var $submitBtn = $search_block.find('input[type="submit"]');
+      $submitBtn.before('<button data-action="close">x</button>');
+      var $closeBtn = $search_block.find('[data-action="close"]');
+      var toggleSearch = function(e){
+        e.preventDefault();
+        $search_block.toggleClass('opened');
+        $txt.focus();
+      };
+      $txt.keypress(function(e) {
+        if (e.which === 13) {
+          $form.submit();
+        }
+      });
+      $submitBtn.click(toggleSearch);
+      $closeBtn.click(toggleSearch);
+    }
+
     // simple bar graph
     // [graph value=34]
     $('article.node .body p').each(function(i) {
