@@ -231,6 +231,9 @@ button[data-ajax-call] {
 .form-item {
   position: relative;
   margin-bottom: 20px;
+  .container-inline & {
+    margin-bottom: 0;
+  }
 }
 
 fieldset {
@@ -268,6 +271,10 @@ input[type="text"], input[type="password"], input[type="email"], textarea {
 input[type="text"], input[type="password"], input[type="email"], textarea, select {
     font-size: 260%;
     width: 100%;
+    .container-inline & {
+      font-size: 170%;
+      width: auto;
+    }
 }
 
 /* radios */
