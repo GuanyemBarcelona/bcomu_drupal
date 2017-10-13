@@ -1383,7 +1383,7 @@ article.node {
 
 // Search form page
 form.search-form {
-  margin: 40px 0;
+  padding: 40px 0;
   label {
     display: none;
   }
@@ -1763,19 +1763,23 @@ section[id^="block-views-candidacies2-block"] {
 
 /* search results */
 .search-results {
+  @extend %narrowbody;
   li {
     margin-bottom: 20px;
-  }
-  .search-snippet-info {
-    padding-left: 0;
-  }
-  p {
-    margin: 0 0 .5em;
-    font-size: 140%;
-  }
-  .content-type {
-    margin: 0;
-    font-style: italic;
+    h2 {
+      font-size: 170%;
+    }
+    .search-snippet-info {
+      padding-left: 0;
+      p {
+        margin: 0 0 .5em;
+        font-size: 140%;
+        &.content-type {
+          margin: 0;
+          font-style: italic;
+        }
+      }
+    }
   }
 }
 
