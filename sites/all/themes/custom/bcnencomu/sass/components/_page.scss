@@ -1256,13 +1256,13 @@ article.node {
   }
 }
 
-/* Home Highlighted */
+/* Home Information Channels (Top region) */
 #block-views-nodequeue_2-block {
   padding: 30px 0;
   border-bottom: 1px solid $theme_grey_light;
 }
 .view-nodequeue-2 {
-  .view-content {
+  .region-content-top & .view-content {
     @extend %wrapper;
     @include simple-column-container;
     .views-row {
@@ -1325,7 +1325,15 @@ article.node {
     width: 66.66%;
   }
 }
-.view-frontpage {}
+.view-frontpage {
+  .node-teaser {
+    > .content {
+      .image {
+        display: none;
+      }
+    }
+  }
+}
 .node-teaser {
   position: relative;
   width: 388px;
@@ -1344,6 +1352,7 @@ article.node {
       img {
         width: 100%;
       }
+
     }
     a {
       color: black;
@@ -1816,6 +1825,78 @@ footer[role="contentinfo"] {
   }
 }
 
+// footer top
+.region-footer-top {
+  background: $theme_red;
+  color: white;
+  padding: 20px 0;
+  a {
+    color: white;
+  }
+  > .inner {
+    @extend %wrapper;
+    @extend %clearfix;
+  }
+
+  .block {
+    > header {
+      h1 {
+        font-size: 180%;
+        margin-bottom: 0;
+        padding-bottom: .3em;
+        border-bottom: 1px solid white;
+      }
+    }
+  }
+
+  // Information Channels (Footer Top region)
+  #block-views-nodequeue_2-block_1 {
+    float: left;
+    width: 25%;
+    padding-right: 25px;
+  }
+  .view-nodequeue-2 {
+    padding-top: 20px;
+    .views-row {
+      margin-bottom: 30px;
+    }
+    .node {
+      a {
+        color: white;
+        &:hover {
+          color: white;
+        }
+      }
+    }
+  }
+
+  // Projects list
+  #block-views-nodequeue_4-block {
+    float: left;
+    width: 25%;
+    padding-right: 25px;
+  }
+  .view-nodequeue-4 {
+    .views-row {
+      padding: 10px 0 20px;
+      border-top: 1px solid white;
+      &.views-row-1 {
+        border-top: none;
+      }
+      .views-field-field-image {
+        margin-bottom: 15px;
+      }
+      .views-field-body {
+        p {
+          margin-bottom: 0;
+          font-size: 140%;
+          line-height: 1.25;
+        }
+      }
+    }
+  }
+}
+
 /*** footer bottom ***/
 .region-footer {
   @extend %clearfix;
@@ -1841,7 +1922,7 @@ footer[role="contentinfo"] {
       @extend %clearfix;
       li {
         float: left;
-        margin-right: 1em;
+        margin-right: 15px;
         a {
           display: block;
           font-size: 140%;
