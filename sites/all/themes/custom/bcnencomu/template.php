@@ -332,6 +332,7 @@ function bcnencomu_preprocess_node(&$vars) {
           if (isset($vars['content']['field_link'])){
               $vars['is_external'] = true;
               $vars['node_url'] = $vars['content']['field_link']['#items'][0]['url'];
+              $vars['classes_array'][] = 'with-external-link';
           }
         }else if ($vars['view_mode'] == 'full'){
             // tags

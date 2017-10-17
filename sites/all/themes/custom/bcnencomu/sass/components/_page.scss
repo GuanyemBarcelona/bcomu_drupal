@@ -1340,6 +1340,17 @@ article.node {
   padding: 5px 0 30px;
   margin-right: 2%;
   border-top: 1px solid $theme_grey_light;
+  &.with-external-link {
+    > .content {
+      &:before {
+        @include iconize(-125px, -175px, 1, 1);
+        content: "";
+        position: absolute;
+        top: 5px;
+        right: 0;
+      }
+    }
+  }
   > .content {
     .field-name-field-post-category, .field-name-field-press-category {
       font-size: 160%;
