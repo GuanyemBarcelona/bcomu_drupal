@@ -74,7 +74,9 @@ var config = {
       var $mobile_menu = $('.mobile-menu');
       var $main_menu_content = $main_menu.find('> .content');
       var $secondary_menu_content = $('#block-menu-menu-secondary-menu > .content');
-      $mobile_menu.append('<div class="menus-wrapper">' + home_link_html + $main_menu_content.html() + $secondary_menu_content.html() + '</div>');
+      var $social_networks_content = $('#block-bcnencomu-social_networks_links > .content');
+      var $locale_menu_content = $('#block-locale-language > .content');
+      $mobile_menu.append('<div class="menus-wrapper">' + home_link_html + $main_menu_content.html() + $secondary_menu_content.html() + $social_networks_content.html() + $locale_menu_content.html() + '</div>');
       $('button[data-action="open-mobile-menu"]').click(function (e) {
         $mobile_menu.toggleClass('opened');
       });
