@@ -1283,6 +1283,9 @@ article.node {
   padding: 30px 0;
   border-top: 1px solid $theme_grey_light;
   border-bottom: 1px solid $theme_grey_light;
+  @media screen and (max-width: $big_screen_width) {
+    padding-bottom: 0;
+  }
 }
 .view-nodequeue-2 {
   .region-content-top & .view-content {
@@ -1293,6 +1296,10 @@ article.node {
       padding-left: $page_horizontal_padding;
       @media screen and (max-width: $big_screen_width) {
         @include simple-column(2, 2%);
+        margin-bottom: 30px;
+      }
+      @media screen and (max-width: $small_screen_width) {
+        @include simple-column(1, 0);
       }
     }
   }
