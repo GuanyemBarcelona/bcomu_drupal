@@ -580,6 +580,9 @@ a[data-action="go-back"] {
   // main menu 2nd level
   .menu-block-wrapper {
     @extend %wrapper;
+    @media screen and (max-width: $mobile_menu_min_width) {
+      display: none;
+    }
     ul.menu {
       width: 100%;
       display: table;
