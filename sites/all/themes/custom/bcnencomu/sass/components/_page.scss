@@ -66,6 +66,9 @@ body {
   body.header-fixed & {
     display: none;
   }
+  @media screen and (max-width: $mobile_menu_min_width) {
+    display: none;
+  }
 }
 
 /* language selector */
@@ -105,10 +108,18 @@ body {
   position: absolute;
   top: 7px;
   right: 80px;
+  @media screen and (max-width: $mobile_menu_min_width) {
+    display: none;
+  }
 }
 
 body.header-fixed {
   padding-top: $header-fixed-height;
+}
+@media screen and (max-width: $mobile_menu_min_width) {
+  body {
+    padding-top: $header-fixed-height;
+  }
 }
 header[role="banner"] {
   position: relative;
@@ -117,6 +128,13 @@ header[role="banner"] {
   background-color: white;
   box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.5);
   body.header-fixed & {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: $header-fixed-height;
+  }
+  @media screen and (max-width: $mobile_menu_min_width) {
     position: fixed;
     width: 100%;
     top: 0;
@@ -147,6 +165,9 @@ header[role="banner"] {
   body.header-fixed & {
     width: 110px;
   }
+  @media screen and (max-width: $mobile_menu_min_width) {
+    width: 110px;
+  }
   a {
     display: block;
     width: 100%;
@@ -164,6 +185,9 @@ header[role="banner"] {
   width: 25px;
   height: 25px;
   transition: all 1s ease-in-out;
+  @media screen and (max-width: $mobile_menu_min_width) {
+    display: none;
+  }
   form {
     width: 300px;
     float: right;
@@ -210,6 +234,9 @@ header[role="banner"] {
 /* secondary menu */
 #block-menu-menu-secondary-menu {
   float: left;
+  @media screen and (max-width: $mobile_menu_min_width) {
+    display: none;
+  }
   nav > ul.menu {
     @extend %clearfix;
     > li {
