@@ -317,8 +317,9 @@ function bcnencomu_preprocess_node(&$vars) {
         if ($vars['type'] == 'press'){
             $category_field = 'field_press_category';
         }
-        $category = field_view_field('node', $node_obj, $category_field, array('label' => 'hidden'));
-        $vars['category'] = render($category);
+        if (isset($vars['content'][$category_field])){
+            $vars['category'] = $vars['content'][$category_field];
+        }
 
         // hashtag
         $hashtag = field_get_items('node', $node_obj,'field_hashtag');

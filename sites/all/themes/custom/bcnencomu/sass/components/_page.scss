@@ -1066,12 +1066,16 @@ article.node {
     > header {
       @extend %widerbody;
       margin-bottom: 30px;
-      .hashtag {
-        margin-bottom: 0;
+
+      time, .hashtag {
+        float: left;
+        margin: 0 15px 5px 0;
         font-size: 180%;
+        line-height: 1;
         color: $theme_grey_dark;
       }
       h1 {
+        clear: both;
         max-width: 100%;
         margin-bottom: .3em;
       }
@@ -1081,16 +1085,34 @@ article.node {
         border-top: 1px solid black;
         border-bottom: 1px solid black;
         margin-bottom: 15px;
-        .field-type-taxonomy-term-reference {
+        .categories {
+          @extend %clearfix;
           float: left;
-          font-size: 180%;
-          margin-right: 15px;
-        }
-        time {
-          float: left;
-          font-size: 180%;
-          color: $theme_grey_dark;
-          margin-right: 15px;
+          .field-type-taxonomy-term-reference, .field-type-entityreference {
+            float: left;
+            font-size: 180%;
+            color: $theme_red;
+            &:before {
+              content: "|";
+              float: left;
+              padding: 0 8px;
+              color: $theme_red;
+            }
+            &:first-child:before {
+              display: none;
+            }
+            .field-label {
+              font-weight: normal;
+            }
+            .field-items {
+              float: left;
+            }
+            a {
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
         }
       }
       .lead {
@@ -1354,9 +1376,7 @@ article.node {
   > .content {
     .field-name-field-post-category, .field-name-field-press-category {
       font-size: 160%;
-      a {
-        color: $theme_red;
-      }
+      color: $theme_red;
     }
     .image {
       margin-bottom: 10px;

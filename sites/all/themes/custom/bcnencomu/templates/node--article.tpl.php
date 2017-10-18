@@ -11,7 +11,7 @@
             <?php } ?>
 
             <?php if (isset($category)){ ?>
-                <?php print $category; ?>
+                <?php print render($category); ?>
             <?php } ?>
 
             <h2><?php print $title; ?></h2>
@@ -45,6 +45,8 @@
   <?php } else if ($view_mode == 'full') { ?>
   <?php /* ----------------- FULL DISPLAY ----------------- */ ?>
   <header>
+    <time datetime="<?php print $date['machine']; ?>"><?php print $date['human']; ?></time>
+
     <?php if (isset($hashtag)){ ?>
     <p class="hashtag"><?php print $hashtag; ?></p>
     <?php } ?>
@@ -52,11 +54,15 @@
     <h1><?php print $title; ?></h1>
 
     <aside class="info">
-        <?php if (isset($category)){ ?>
-            <?php print $category; ?>
-        <?php } ?>
+        <div class="categories">
+            <?php if (isset($category)){ ?>
+                <?php print render($category); ?>
+            <?php } ?>
 
-        <time datetime="<?php print $date['machine']; ?>"><?php print $date['human']; ?></time>
+            <?php print render($content['field_fight']); ?>
+
+            <?php print render($content['field_eix_tematic']); ?>
+        </div>
 
         <?php if (isset($share_links)){ ?>
             <?php print $share_links; ?>
