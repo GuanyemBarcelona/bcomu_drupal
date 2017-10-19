@@ -465,6 +465,9 @@ header[role="banner"] {
                 font-weight: normal;
                 color: $theme_grey_darker;
                 padding: 6px 10px;
+                &.active {
+                  color: $theme_red;
+                }
               }
               ul.menu {
                 border-top: none;
