@@ -99,7 +99,8 @@ body.page-taxonomy-term-679, body.page-taxonomy-term-680, body.page-taxonomy-ter
     margin-bottom: 20px;
     > .inner {
       @extend %widerbody;
-      padding: 40px 0 80px;
+      padding-top: 40px;
+      padding-bottom: 80px;
     }
   }
 }
@@ -144,6 +145,9 @@ body.page-taxonomy-term-684 .region-content-top {
         font-weight: 900;
         line-height: 1.1;
         margin-bottom: 0;
+        @media screen and (max-width: $mediumbig_screen_width) {
+          font-size: 320%;
+        }
       }
     }
     .views-field-description {
@@ -155,6 +159,9 @@ body.page-taxonomy-term-684 .region-content-top {
         font-size: 240%;
         line-height: 1.4;
         margin-bottom: 0;
+        @media screen and (max-width: $mediumbig_screen_width) {
+          font-size: 180%;
+        }
       }
     }
     .views-field-edit-term {
