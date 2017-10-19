@@ -1801,12 +1801,17 @@ form.search-form {
     }
 
     .views-field-field-document {
-      .file-size {
-
-      }
+      margin: 5px 0;
       a {
         font-size: 160%;
         color: $theme_red;
+        line-height: 2;
+        &:before {
+          @include iconize(-100px, -175px);
+          content: " ";
+          float: left;
+          margin-right: 5px;
+        }
       }
     }
   }
