@@ -1430,16 +1430,27 @@ article.node {
 #block-views-highlighted_agenda-agenda_block {
   float: right;
   width: 32.333%;
+  @media screen and (max-width: $mediumbig_screen_width) {
+    @include one-columnize;
+    max-width: 400px;
+  }
 }
 /* home posts */
 #block-views-frontpage-block_1 {
   #page.has-agenda & {
     float: left;
     width: 66.66%;
+    @media screen and (max-width: $mediumbig_screen_width) {
+      @include one-columnize;
+    }
   }
 }
 .view-frontpage {
   .node-teaser {
+    width: 48%;
+    @media screen and (max-width: $small_screen_width) {
+      width: 100%;
+    }
     > .content {
       .image {
         display: none;
