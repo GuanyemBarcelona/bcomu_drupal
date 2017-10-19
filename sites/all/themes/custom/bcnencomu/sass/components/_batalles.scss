@@ -279,6 +279,10 @@ body.page-taxonomy-term-684 .region-content-top {
         height: 200px;
         text-align: center;
         margin: 0 auto 20px;
+        @media screen and (max-width: $small_screen_width) {
+          width: 150px;
+          height: 150px;
+        }
         img {
           display: inline-block;
         }
