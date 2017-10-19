@@ -1980,6 +1980,12 @@ footer[role="contentinfo"] {
     float: left;
     width: 25%;
     padding-right: 25px;
+    @media screen and (max-width: $bigger_screen_width) {
+      width: 50%;
+    }
+    @media screen and (max-width: $small_screen_width) {
+      @include one-columnize;
+    }
   }
   .view-nodequeue-2 {
     padding-top: 20px;
@@ -2001,6 +2007,13 @@ footer[role="contentinfo"] {
     float: left;
     width: 25%;
     padding-right: 25px;
+    @media screen and (max-width: $bigger_screen_width) {
+      width: 50%;
+      padding-right: 0;
+    }
+    @media screen and (max-width: $small_screen_width) {
+      @include one-columnize;
+    }
   }
   .view-nodequeue-4 {
     .views-row {
