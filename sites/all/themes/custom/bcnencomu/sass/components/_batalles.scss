@@ -137,6 +137,10 @@ body.page-taxonomy-term-684 .region-content-top {
       margin-right: 40px;
       width: 133px;
       height: 133px;
+      @media screen and (max-width: $small_screen_width) {
+        float: none;
+        margin: 0 auto 20px;
+      }
     }
     .views-field-field-lead {
       padding-top: 5px;
