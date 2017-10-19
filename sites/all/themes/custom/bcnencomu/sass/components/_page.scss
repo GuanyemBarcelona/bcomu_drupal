@@ -705,6 +705,10 @@ a[data-action="go-back"] {
     top: 30px;
     left: 30px;
     width: 20%;
+    @media screen and (max-width: $bigger_screen_width) {
+      left: 5px;
+      width: 18%;
+    }
     @media screen and (max-width: $mobile_menu_min_width) {
       display: none;
     }
