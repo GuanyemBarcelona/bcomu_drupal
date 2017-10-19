@@ -1667,7 +1667,8 @@ form.search-form {
 }
 
 /* candidacies list */
-section[id^="block-views-candidacies2-block"] {
+//block-views-candidacies2-block_3
+[id^="block-views-candidacies"] {
   @extend %narrowbody;
 }
 .view-candidacies-list {
@@ -1685,6 +1686,15 @@ section[id^="block-views-candidacies2-block"] {
     .views-row {
       @include simple-column(3, 3%);
       height: 250px;
+      @media screen and (max-width: $small_screen_width) {
+        @include simple-column(2, 3%);
+        height: 55vw;
+      }
+      @media screen and (max-width: $micro_screen_width) {
+        @include simple-column(1, 0);
+        height: auto;
+        margin-bottom: 20px;
+      }
       &:hover {
         .views-field-field-candidacy-photo {
           a:before {
