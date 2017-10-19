@@ -21,7 +21,7 @@
   <?php } else if ($view_mode == 'highlighted') { ?>
 
     <?php if (isset($content['field_link'])){ ?>
-    <a href="<?php print $content['field_link']['#items'][0]['url']; ?>">
+    <a href="<?php print $content['field_link']['#items'][0]['url']; ?>"<?php if ($external_link){ ?> rel="external"<?php } ?>>
     <?php } ?>
 
       <h2><?php print $title; ?></h2>
