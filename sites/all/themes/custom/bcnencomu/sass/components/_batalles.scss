@@ -9,6 +9,7 @@
     > .item-list {
       > ul {
         display: flex;
+        align-items: stretch;
         border-left: 1px solid $theme_grey_lighter;
         border-right: 1px solid $theme_grey_lighter;
       }
@@ -66,9 +67,13 @@
         }
       }
     }
+    div {
+      height: 100%;
+    }
     a {
       display: block;
       font-size: 160%;
+      height: 100%;
       padding: 13px;
       text-align: center;
       color: $theme_grey_darker;
