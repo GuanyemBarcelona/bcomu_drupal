@@ -1,7 +1,5 @@
 <?php
 define('CANDIDACY_HEAD_NID', 162);
-define('CANDIDACY_COUNCIL_NID', 173);
-define('CANDIDACY_COUNCIL_JULY_NID', 1495);
 define('CANDIDACY_COORDINATION2015_NID', 1671);
 define('CANDIDACY_GUARANTEES2015_NID', 1673);
 define('CALENDAR_NID', 3);
@@ -288,20 +286,17 @@ function bcnencomu_preprocess_node(&$vars) {
 		case 'page': /********** PAGE **********/
 			if ($vars['view_mode'] == 'full'){
         // Candidacies pages
-        if (in_array($node_obj->nid, array(CANDIDACY_HEAD_NID, CANDIDACY_COUNCIL_NID, CANDIDACY_COUNCIL_JULY_NID))){
+        /*if (in_array($node_obj->nid, array(CANDIDACY_HEAD_NID, CANDIDACY_COUNCIL_JULY_NID))){
           $vars['theme_hook_suggestions'][] = 'node__candidacies';
           $vars['classes_array'][] = 'node-page-candidacies';
           if ($node_obj->nid == CANDIDACY_HEAD_NID){
             // head
             $vars['candidacies_list'] = views_embed_view('candidacies', 'block');
-          }else if ($node_obj->nid == CANDIDACY_COUNCIL_NID){
-            // council March 2015
-            $vars['candidacies_list'] = views_embed_view('candidacies', 'block_1');
           }else if ($node_obj->nid == CANDIDACY_COUNCIL_JULY_NID){
             // council July 2015
             $vars['candidacies_list'] = views_embed_view('candidacies2', 'block');
           }
-        }
+        }*/
       }
 			break;
     case 'post': /********** BLOG POST **********/
@@ -387,22 +382,22 @@ function bcnencomu_preprocess_node(&$vars) {
         	if ($type_tid == 63){
         		$list_nid = CANDIDACY_HEAD_NID; // Head
         	}else{
-        		// july first date: the starting date of the July 2015 council candidacy
-        		$july2015_candidacy_date = mktime(0,0,0,7,1,2015);
-            // types for the september internal candidacies (coordination, which englobes management nd representatives, and guarantees)
-            $coordination_sept2015_tids = array(460, 461);
-            $guarantees_sept2015_tid = 462;
-        		if ($node_obj->created < $july2015_candidacy_date){
-        			$list_nid = CANDIDACY_COUNCIL_NID; // Council March 2015
-        		}else{
-              if ($type_tid == $guarantees_sept2015_tid){
-                $list_nid = CANDIDACY_GUARANTEES2015_NID; // Guarantees September 2015
-              }else if (in_array($type_tid, $coordination_sept2015_tids)){
-                $list_nid = CANDIDACY_COORDINATION2015_NID; // Coordination September 2015
-              }else{
-                $list_nid = CANDIDACY_COUNCIL_JULY_NID; // Council July 2015
-              }
-            }
+                /*// july first date: the starting date of the July 2015 council candidacy
+                $july2015_candidacy_date = mktime(0,0,0,7,1,2015);
+                // types for the september internal candidacies (coordination, which englobes management nd representatives, and guarantees)
+                $coordination_sept2015_tids = array(460, 461);
+                $guarantees_sept2015_tid = 462;
+                if ($node_obj->created < $july2015_candidacy_date){
+                    $list_nid = CANDIDACY_COUNCIL_NID; // Council March 2015
+                }else{
+                  if ($type_tid == $guarantees_sept2015_tid){
+                    $list_nid = CANDIDACY_GUARANTEES2015_NID; // Guarantees September 2015
+                  }else if (in_array($type_tid, $coordination_sept2015_tids)){
+                    $list_nid = CANDIDACY_COORDINATION2015_NID; // Coordination September 2015
+                  }else{
+                    $list_nid = CANDIDACY_COUNCIL_JULY_NID; // Council July 2015
+                  }
+                }*/
         	}
         	//if (isset($list_nid)) $vars['list_uri'] = gh_get_node_path_alias($list_nid);
         }
