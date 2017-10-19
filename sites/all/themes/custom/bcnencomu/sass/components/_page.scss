@@ -1453,6 +1453,10 @@ article.node {
   padding: 5px 0 30px;
   margin-right: 2%;
   border-top: 1px solid $theme_grey_light;
+  @media screen and (max-width: $micro_screen_width) {
+    width: 100%;
+    margin-right: 0;
+  }
   &.with-external-link {
     > .content {
       &:before {
