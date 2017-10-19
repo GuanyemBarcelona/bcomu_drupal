@@ -755,6 +755,9 @@ a[data-action="go-back"] {
 .region-content {
   > .inner {
     padding: 0 $page_horizontal_padding;
+    @media screen and (max-width: $page_inner_maxwidth) {
+      padding: 0;
+    }
   }
 
   /* content region block menu */
@@ -925,6 +928,12 @@ article.node {
     img, div img, p img {
       @extend %widerbody;
       margin-bottom: 30px;
+      @media screen and (max-width: $page_inner_maxwidth) {
+        padding: 0;
+      }
+      @media screen and (max-width: $big_screen_width) {
+        max-width: 100%;
+      }
     }
 
     iframe {
