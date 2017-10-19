@@ -656,14 +656,11 @@ a[data-action="go-back"] {
       display: none;
     }
     ul.menu {
-      width: 100%;
-      display: table;
-      table-layout: fixed;
+      display: flex;
       border-left: 1px solid $theme_grey_lighter;
       border-right: 1px solid $theme_grey_lighter;
       li {
-        display: table-cell;
-        vertical-align: middle;
+        flex-grow: 1;
         border-left: 1px solid white;
         &:first-child {
           border-left: none;
@@ -675,7 +672,7 @@ a[data-action="go-back"] {
           }
         }
         &.active-trail > ul.menu {
-          display: table;
+          display: flex;
         }
         a {
           display: block;

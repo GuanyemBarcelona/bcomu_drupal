@@ -8,17 +8,15 @@
   > .view-content {
     > .item-list {
       > ul {
-        width: 100%;
-        display: table;
-        table-layout: fixed;
+        display: flex;
         border-left: 1px solid $theme_grey_lighter;
         border-right: 1px solid $theme_grey_lighter;
       }
     }
   }
   .views-row {
-    display: table-cell;
-    vertical-align: middle;
+    flex-grow: 1;
+    background: $theme_grey_lighter;
     border-left: 1px solid white;
     &:first-child {
       border-left: none;
@@ -74,7 +72,6 @@
       padding: 13px;
       text-align: center;
       color: $theme_grey_darker;
-      background: $theme_grey_lighter;
       &.active, &:hover {
         color: black;
       }
