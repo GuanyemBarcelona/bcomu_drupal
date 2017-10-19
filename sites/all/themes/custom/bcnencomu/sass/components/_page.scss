@@ -1937,11 +1937,15 @@ form.search-form {
   border-radius: 0;
   padding: .3em .5em;
   background: none;
-}
-.view .date-nav-wrapper .date-prev a, .view .date-nav-wrapper .date-next a {
-  margin: 0;
-  font-size: 1.6em;
-  font-weight: normal;
+  @media screen and (max-width: $big_screen_width) {
+    position: static;
+    text-align: center;
+  }
+  a {
+    margin: 0;
+    font-size: 1.6em;
+    font-weight: normal;
+  }
 }
 .view-my-events {
   .views-row {
