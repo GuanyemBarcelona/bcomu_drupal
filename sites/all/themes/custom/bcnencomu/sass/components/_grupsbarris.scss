@@ -23,6 +23,13 @@
       margin-right: 0;
       right: 110px;
     }
+    @media screen and (max-width: $big_screen_width) {
+      &, &.clicked {
+        @include one-columnize;
+        width: 458px;
+        height: 421px;
+      }
+    }
     ul {
       position: relative;
       width: 100%;
@@ -203,8 +210,11 @@
     position: relative;
     z-index: 2;
     float: left;
-    width: 50%;
+    width: 45%;
     padding-right: 20px;
+    @media screen and (max-width: $big_screen_width) {
+      @include one-columnize;
+    }
     > .item-list {
       display: none;
       &.active {
