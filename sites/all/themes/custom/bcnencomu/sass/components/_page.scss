@@ -309,12 +309,6 @@ header[role="banner"] {
           &:hover {
             color: $theme_red;
           }
-          @media screen and (max-width: $huge_screen_width) {
-            padding: 12px 16px;
-          }
-          @media screen and (max-width: $bigger_screen_width) {
-            font-size: 160%;
-          }
         }
         &.active-trail a, a.active, .menu li a.active {
           color: $theme_red;
