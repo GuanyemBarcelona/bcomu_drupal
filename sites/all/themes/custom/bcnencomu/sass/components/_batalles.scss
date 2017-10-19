@@ -200,7 +200,7 @@ body.page-taxonomy-term-684 .region-content-top {
   }
 }
 
-/* Home Batalles */
+// Home Batalles
 #block-views-batalles_home-block {
   padding: 60px 0;
   > header {
@@ -212,6 +212,9 @@ body.page-taxonomy-term-684 .region-content-top {
       @media screen and (max-width: $mediumbig_screen_width) {
         font-size: 320%;
       }
+      @media screen and (max-width: $small_screen_width) {
+        margin-bottom: 60px;
+      }
     }
   }
 }
@@ -222,6 +225,13 @@ body.page-taxonomy-term-684 .region-content-top {
     .views-row {
       @include simple-column(3, 4%);
       margin-bottom: 140px;
+      @media screen and (max-width: $big_screen_width) {
+        @include simple-column(2, 4%);
+      }
+      @media screen and (max-width: $small_screen_width) {
+        @include simple-column(1, 0);
+        margin-bottom: 70px;
+      }
       &:hover {
         .views-field-field-icon {
           display: none;
