@@ -1578,6 +1578,13 @@ form.search-form {
   }
   .views-row {
     @include simple-column(3, 2%);
+    @media screen and (max-width: $mediumbig_screen_width) {
+      @include simple-column(1, 0);
+      max-width: 480px;
+    }
+    .node-teaser {
+      width: 100%;
+    }
   }
 }
 
