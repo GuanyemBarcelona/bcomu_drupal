@@ -949,6 +949,9 @@ article.node {
       padding-left: 0;
       font-size: $base-font-size;
       line-height: $base-line-height;
+      @media screen and (max-width: $medium_screen_width) {
+        font-size: $base-font-size-smaller;
+      }
       p {
         font-size: 100%;
         margin-bottom: 0;
@@ -974,6 +977,7 @@ article.node {
     ol {
       list-style-type: decimal;
       margin-bottom: 20px;
+      padding-left: 15px;
     }
 
     blockquote {
@@ -1222,6 +1226,9 @@ article.node {
         line-height: 1.4;
         font-weight: normal;
         margin-bottom: 1em;
+        @media screen and (max-width: $mediumbig_screen_width) {
+          font-size: 180%;
+        }
       }
     }
     .bottom-info {
