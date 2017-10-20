@@ -1855,6 +1855,21 @@ form.search-form {
   }
 }
 
+// subscription form
+#webform-client-form-294 {
+  .webform-component--legal {
+    p {
+      font-size: 120%;
+      line-height: 1.33;
+      color: $theme_grey_darker;
+      a {
+        color: $theme_grey_darker;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
 /* campaign agenda page */
 .view-display-id-agenda_page {
   .view-grouping {
