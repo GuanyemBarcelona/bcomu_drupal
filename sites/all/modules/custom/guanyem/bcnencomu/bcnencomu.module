@@ -288,6 +288,12 @@ function bcnencomu_render_share_links($nid) {
   $current_url = gh_get_absolute_path() . gh_get_node_path_alias($nid);
   $final_list = array();
   $social_links = array(
+    'watsapp' => array(
+      'name' => 'Watsapp',
+      'share_url' => 'https://api.whatsapp.com/send?text=',
+      'label' => t("Share"),
+      'description' => t("Share on Watsapp"),
+    ),
     'telegram' => array(
       'name' => 'Telegram',
       'share_url' => 'https://telegram.me/share/url?url=',
