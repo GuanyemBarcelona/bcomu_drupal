@@ -230,9 +230,20 @@ button[data-ajax-call] {
 
 .form-item {
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   .container-inline & {
     margin-bottom: 0;
+  }
+
+  .form-item {
+    margin-bottom: 10px;
+  }
+
+  .description {
+    font-size: 140%;
+    line-height: 1.25;
+    padding: .3em 0;
+    color: $theme_grey_dark;
   }
 }
 
@@ -249,14 +260,15 @@ legend {
 }
 
 label {
-  margin-bottom: .4em;
-  font-size: 170%;
-  font-weight: normal;
+  margin-bottom: .3em;
+  font-size: 180%;
+  font-weight: bold;
 }
 
 /* buttons */
 a[data-action], input[type="submit"], input[type="button"], button {
   @include buttonize;
+  width: 100%;
 }
 
 input[type="submit"][disabled], input[type="button"][disabled] {
@@ -264,17 +276,21 @@ input[type="submit"][disabled], input[type="button"][disabled] {
 }
 
 input[type="text"], input[type="password"], input[type="email"], textarea {
-    padding: 10px;
+    padding: 15px;
     border: 1px solid $theme_grey_light;
 }
 
 input[type="text"], input[type="password"], input[type="email"], textarea, select {
-    font-size: 260%;
+    font-size: 160%;
     width: 100%;
     .container-inline & {
-      font-size: 170%;
       width: auto;
     }
+}
+
+select {
+  height: 53px;
+  background-color: white;
 }
 
 /* radios */
@@ -289,6 +305,7 @@ input[type="radio"]:checked + label {
     display: block;
     padding-left: 30px;
     cursor: pointer;
+    font-weight: normal;
 }
     /* shape */
     input[type="radio"]:not(:checked) + label:before,
@@ -352,6 +369,7 @@ input[type="checkbox"]:checked + label {
     display: block;
     padding-left: 30px;
     cursor: pointer;
+    font-weight: normal;
 }
     /* shape */
     input[type="checkbox"]:not(:checked) + label:before,
