@@ -1397,7 +1397,7 @@ article.node {
   }
 }
 // generic Information Channels list
-.view-nodequeue-2 {
+.view-nodequeue-2, .view-nodequeue-5 {
   .region-content-top & .view-content {
     @extend %wrapper;
     @include simple-column-container;
@@ -1553,7 +1553,8 @@ article.node {
 }
 
 // Information Channels: Full page
-#block-views-nodequeue_2-block_2 {
+#block-views-nodequeue_2-block_2 {}
+.view-display-id-block_2 {
   .view-content {
     @extend %narrowbody;
     @include simple-column-container;
@@ -1564,6 +1565,17 @@ article.node {
       @media screen and (max-width: $micro_screen_width) {
         @include simple-column(1, 0);
       }
+    }
+  }
+}
+
+// SomComuns Information Channels
+#block-views-nodequeue_5-block {}
+.view-nodequeue-5 {
+  .view-content {
+    @extend %narrowbody;
+    .views-row {
+      margin-bottom: 40px;
     }
   }
 }
