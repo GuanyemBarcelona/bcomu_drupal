@@ -138,7 +138,7 @@ function bcnencomu_preprocess_page(&$vars, $hook) {
 
 	// must show title
 	$vars['must_show_title'] = FALSE;
-	if ((arg(0) == 'node' && arg(1) == 'add')){
+	if ((arg(0) == 'node' && arg(1) == 'add') || arg(0) === 'grup-barri'){
 		$vars['must_show_title'] = TRUE;
 	}
 
