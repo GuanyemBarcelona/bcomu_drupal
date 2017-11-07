@@ -256,51 +256,6 @@ var config = {
         });
       });
     }
-
-    // Grups als barris page
-    var $grups_barris = $('.view-grups-als-barris');
-    if ($grups_barris.length){
-      $grups_barris.addClass('with-js');
-      $grups_barris.find('.view-content').before('<div class="barris-map"><ul></ul></div>');
-      var $map = $grups_barris.find('.barris-map');
-      // prepare verificacions box
-      /*$map.after('<div class="verificacions"><button data-action="close">X</button><h3>'+locale.DISTRICT_VERIFICATIONS_TITLE[config.LANGUAGE]+'</h3><div class="content"></div></div>');
-      var $verificacions = $grups_barris.find('.verificacions');
-      $verificacions.attr('data-visible', false);
-      var $verificacions_content = $verificacions.find('> .content');
-      $verificacions.find('[data-action="close"]').click(function(e){
-        e.preventDefault();
-        $verificacions.attr('data-visible', false);
-      });*/
-      //---
-      $grups_barris.find('.view-content > .item-list > h3').each(function(i){
-        var tid = $(this).find('> span').attr('data-tid');
-        $map.find('ul').append('<li data-index="'+i+'" data-tid="'+tid+'">'+$(this).text()+'</li>');
-      });
-      $map.find('li').click(function(e){
-        var index = $(this).attr('data-index');
-        var tid = $(this).attr('data-tid');
-        $map.addClass('clicked');
-        $map.find('li').removeClass('active');
-        $(this).addClass('active');
-        $grups_barris.find('.view-content > .item-list').removeClass('active');
-        $grups_barris.find('.view-content > .item-list').eq(index).addClass('active');
-        // get the verificacions events for this district
-        /*$verificacions_content.html('');
-        $verificacions.attr('data-visible', false);
-        $.ajax({
-          url: config.DISTRICT_VERIFICATIONS_URI + tid
-        })
-        .done(function(data){
-          $verificacions.attr('data-visible', true);
-          $verificacions_content.html(data);
-          $verificacions_content.find('.views-field-title a').each(function(i){
-            prepareEventLink($(this));
-          })
-        });*/
-        // ---
-      });
-    }
 	});
 
 	$(window).load(function(){
