@@ -1,103 +1,14 @@
 /**
 * Grups als Barris page styles
 */
+body.page-grup-barri {
+  #content-inner {
+    @extend %narrowbody;
+    padding: 30px 0;
+  }
+}
 
 .view-grups-als-barris {
-  @extend %clearfix;
-  min-height: 421px;
-  position: relative;
-  margin-bottom: 40px;
-
-  // mapa
-  .barris-map {
-    position: absolute;
-    top: 0;
-    right: 50%;
-    z-index: 1;
-    margin-right: -229px;
-    width: 458px;
-    height: 421px;
-    background: url("../img/mapa_bcn_barris.png") no-repeat 0 0;
-    transition: all 0.6s ease-in-out;
-    &.clicked {
-      margin-right: 0;
-      right: 110px;
-    }
-    @media screen and (max-width: $big_screen_width) {
-      &, &.clicked {
-        @include one-columnize;
-        width: 458px;
-        height: 421px;
-      }
-    }
-    ul {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      list-style: none;
-      li {
-        position: absolute;
-        font-size: 140%;
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-        width: 85px;
-        text-align: center;
-        &:before {
-          @include iconize(-250px, 0, 2, 2);
-          position: absolute;
-          top: -47px;
-          left: 50%;
-          margin-left: -25px;
-          content: " ";
-          transition: all 0.3s ease-in-out;
-        }
-        &.active:before {
-          background-position: -250px -50px;
-        }
-        &[data-index="0"] {
-          top: 333px;
-          left: 195px;
-        }
-        &[data-index="1"] {
-          top: 276px;
-          left: 172px;
-        }
-        &[data-index="2"] {
-          top: 322px;
-          left: 95px;
-        }
-        &[data-index="3"] {
-          top: 221px;
-          left: 103px;
-        }
-        &[data-index="4"] {
-          top: 157px;
-          left: 149px;
-        }
-        &[data-index="5"] {
-          top: 221px;
-          left: 218px;
-        }
-        &[data-index="6"] {
-          top: 150px;
-          left: 265px;
-        }
-        &[data-index="7"] {
-          top: 189px;
-          left: 331px;
-        }
-        &[data-index="8"] {
-          top: 255px;
-          left: 323px;
-        }
-        &[data-index="9"] {
-          top: 322px;
-          left: 291px;
-        }
-      }
-    }
-  }
 
   // verificacions box
   .verificacions {
@@ -203,25 +114,6 @@
       }
       .views-field-field-grup-telegram:before {
         background-position: -125px -125px;
-      }
-    }
-  }
-  &.with-js > .view-content {
-    position: relative;
-    z-index: 2;
-    float: left;
-    width: 45%;
-    padding-right: 20px;
-    @media screen and (max-width: $big_screen_width) {
-      @include one-columnize;
-    }
-    > .item-list {
-      display: none;
-      &.active {
-        display: block;
-      }
-      > h3 {
-        display: none;
       }
     }
   }
