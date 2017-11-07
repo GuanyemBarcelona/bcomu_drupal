@@ -81,6 +81,7 @@ html {
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
   color: $body_color;
   background: $body_background;
   font-size: 62.5%;
