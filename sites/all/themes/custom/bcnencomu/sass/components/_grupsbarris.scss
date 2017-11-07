@@ -2,13 +2,14 @@
 * Grups als Barris page styles
 */
 body.page-grup-barri {
-  #content-inner {
+  /*#content-inner {
     @extend %narrowbody;
     padding: 30px 0;
-  }
+  }*/
 }
 
 .view-grups-als-barris {
+  @extend %narrowbody;
 
   // verificacions box
   .verificacions {
