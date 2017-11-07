@@ -196,9 +196,9 @@ function pocket_api_get_new_pockets($since = false){
 function pocket_api_save_pocket_item($data){
   $fields = array(
     'created' => REQUEST_TIME,
-    'has_image' => intval($data->has_image),
     'time_added' => intval($data->time_added),
   );
+  if (isset($data->has_image)) $fields['has_image'] = intval($data->has_image);
   if (isset($data->item_id)) $fields['item_id'] = intval($data->item_id);
   if (isset($data->given_url)){
     $fields['given_url'] = $data->given_url;
