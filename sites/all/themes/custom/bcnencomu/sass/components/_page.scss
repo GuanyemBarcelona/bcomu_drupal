@@ -1373,6 +1373,10 @@ article.node {
 /* Home: carroussel */
 #block-views-nodequeue_1-block {}
 .view-nodequeue-1 {
+  @extend %wrapper;
+  @media screen and (max-width: $page_inner_maxwidth) {
+    padding: 0;
+  }
   .view-content {
     .node-slider {
       position: relative;
