@@ -1571,7 +1571,6 @@ article.node {
     @include simple-column-container;
     .views-row {
       @include simple-column(2, 2%);
-      padding-left: $page_horizontal_padding;
       margin-bottom: 40px;
       @media screen and (max-width: $micro_screen_width) {
         @include simple-column(1, 0);
