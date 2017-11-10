@@ -109,23 +109,22 @@
     > ul {
       display: flex;
       flex-wrap: wrap;
-      position: relative;
-      width: 102.5%;
-      left: -1.3%;
     }
   }
   .pocketlist-item {
     position: relative;
-    width: 23%;
+    width: 33.33%;
+    padding: 10px;
     overflow: hidden;
-    padding: 5px 0 30px;
-    margin: 0 1% 20px;
-    border-top: 1px solid $theme_grey_light;
-    @media all and (max-width: $mediumbig_screen_width){
-      width: 48%;
+    @media screen and (max-width: $big_screen_width) {
+      width: 50%;
     }
-    @media all and (max-width: $micro_screen_width){
-      @include one-columnize;
+    @media screen and (max-width: $small_screen_width) {
+      width: 100%;
+    }
+    > .content {
+      padding: 5px 0 30px;
+      border-top: 1px solid $theme_grey_light;
     }
     a {
       transition: all linear .2s;

@@ -1496,13 +1496,17 @@ article.node {
 }
 .node-teaser {
   position: relative;
-  width: 388px;
-  padding: 5px 0 30px;
-  margin-right: 2%;
-  border-top: 1px solid $theme_grey_light;
-  @media screen and (max-width: $micro_screen_width) {
+  width: 33.33%;
+  padding: 10px;
+  @media screen and (max-width: $big_screen_width) {
+    width: 50%;
+  }
+  @media screen and (max-width: $small_screen_width) {
     width: 100%;
-    margin-right: 0;
+  }
+  > .content {
+    padding: 5px 0 30px;
+    border-top: 1px solid $theme_grey_light;
   }
   &.with-external-link {
     > .content {
@@ -1510,8 +1514,8 @@ article.node {
         @include iconize(-125px, -175px, 1, 1);
         content: "";
         position: absolute;
-        top: 5px;
-        right: 0;
+        top: 15px;
+        right: 10px;
       }
       h2 {
         padding-right: 23px;
