@@ -180,17 +180,18 @@ header[role="banner"] {
 
 #block-search-form {
   position: absolute;
-  bottom: 10px;
+  bottom: 16px;
   right: 10px;
   z-index: 2;
   width: 25px;
-  height: 25px;
+  height: 35px;
   transition: all 1s ease-in-out;
   @media screen and (max-width: $mobile_menu_min_width) {
     display: none;
   }
   form {
     width: 300px;
+    padding-top: 10px;
     float: right;
   }
   input[type="text"] {
@@ -203,7 +204,7 @@ header[role="banner"] {
   input[type="submit"], [data-action="close"] {
     @include iconize();
     position: absolute;
-    top: -2px;
+    top: 10px;
     right: 3px;
     min-width: 0;
     border: none;
@@ -1470,7 +1471,8 @@ article.node {
 /* home highlighted agenda */
 #block-views-highlighted_agenda-agenda_block {
   float: right;
-  width: 32.333%;
+  width: 33.33%;
+  padding-left: 10px;
   @media screen and (max-width: $mediumbig_screen_width) {
     @include one-columnize;
     max-width: 400px;
