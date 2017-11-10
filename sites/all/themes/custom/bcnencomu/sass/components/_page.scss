@@ -1497,7 +1497,7 @@ article.node {
 .node-teaser {
   position: relative;
   width: 33.33%;
-  padding: 10px;
+  padding: 0 10px;
   @media screen and (max-width: $big_screen_width) {
     width: 50%;
   }
