@@ -14,8 +14,13 @@
 %wrapper {
   margin: 0 auto;
   max-width: $page_inner_maxwidth;
+}
+
+// add horizontal air if screen is narrower than wrapper width
+%below-wrapper-horizontal-air {
   @media screen and (max-width: $page_inner_maxwidth) {
-    padding: 0 $page_horizontal_padding;
+    padding-left: $page_horizontal_padding;
+    padding-right: $page_horizontal_padding;
   }
 }
 

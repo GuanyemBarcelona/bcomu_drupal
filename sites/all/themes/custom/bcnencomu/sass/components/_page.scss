@@ -149,6 +149,7 @@ header[role="banner"] {
   }
   > .inner {
     @extend %wrapper;
+    @extend %below-wrapper-horizontal-air;
     @extend %clearfix;
     position: relative;
     height: 100%;
@@ -760,9 +761,6 @@ a[data-action="go-back"] {
   }
   > .inner {
     padding: 0 $page_horizontal_padding;
-    @media screen and (max-width: $page_inner_maxwidth) {
-      padding: 0;
-    }
   }
 
   /* content region block menu */
@@ -2090,6 +2088,7 @@ footer[role="contentinfo"] {
   }
   > .inner {
     @extend %wrapper;
+    @extend %below-wrapper-horizontal-air;
     @extend %clearfix;
   }
 
@@ -2173,6 +2172,7 @@ footer[role="contentinfo"] {
   background: $theme_grey_darker;
   > .inner {
     @extend %wrapper;
+    @extend %below-wrapper-horizontal-air;
   }
   p {
     color: white;
