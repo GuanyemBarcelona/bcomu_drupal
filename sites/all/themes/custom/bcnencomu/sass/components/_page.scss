@@ -753,6 +753,11 @@ a[data-action="go-back"] {
 
 /* region content */
 .region-content {
+  #page.with-sidebar & {
+    @media screen and (min-width: $mobile_menu_min_width) {
+      min-height: 620px;
+    }
+  }
   > .inner {
     padding: 0 $page_horizontal_padding;
     @media screen and (max-width: $page_inner_maxwidth) {
