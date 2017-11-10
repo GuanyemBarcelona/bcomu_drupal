@@ -271,9 +271,6 @@ header[role="banner"] {
   width: 100%;
   bottom: 0;
   left: 210px;
-  @media screen and (max-width: $mediumbig_screen_width) {
-
-  }
   @media screen and (max-width: $mobile_menu_min_width) {
     display: none;
   }
@@ -318,12 +315,12 @@ header[role="banner"] {
         .menu {
           display: none;
           position: absolute;
-          top: 51px;
+          top: 55px;
           left: 0;
-          padding: 10px 0;
+          padding: 0 0 10px;
           width: 250px;
           background: white;
-          box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.5);
+          box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.5);
           li {
             float: none;
             padding: 0;
