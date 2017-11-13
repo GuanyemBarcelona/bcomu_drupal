@@ -897,6 +897,10 @@ article.node {
       font-size: 300%;
       line-height: 1.2;
       margin-bottom: .5em;
+      padding-top: .5em;
+      &:first-child {
+        padding-top: 0;
+      }
       @media screen and (max-width: $medium_screen_width) {
         font-size: 240%;
       }
@@ -907,6 +911,10 @@ article.node {
       font-weight: 900;
       line-height: 1.33;
       margin-bottom: .5em;
+      padding-top: .5em;
+      &:first-child {
+        padding-top: 0;
+      }
       @media screen and (max-width: $medium_screen_width) {
         font-size: 160%;
       }
