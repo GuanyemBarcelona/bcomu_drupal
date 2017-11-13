@@ -298,6 +298,14 @@ header[role="banner"] {
             display: none;
           }
         }
+        body.header-fixed &.active-trail:hover {
+          .menu {
+            display: block;
+            .menu {
+              display: none;
+            }
+          }
+        }
         a {
           display: block;
           color: black;
