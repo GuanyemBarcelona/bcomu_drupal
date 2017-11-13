@@ -908,6 +908,7 @@ article.node {
       border-bottom: 1px solid $theme_red;
       &:hover {
         color: $theme_red;
+        text-decoration: none;
       }
 
       &.btn {
@@ -918,9 +919,6 @@ article.node {
           content: " ";
           float: left;
           margin-right: 5px;
-        }
-        &:hover {
-          text-decoration: underline;
         }
       }
 
