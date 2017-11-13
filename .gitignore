@@ -14,9 +14,6 @@
 # Ignore dependencies
 node_modules
 
-# Ignore folder where drupal core files are installed through composer
-/core
-
 # Ignore translations
 /sites/*/translations
 
