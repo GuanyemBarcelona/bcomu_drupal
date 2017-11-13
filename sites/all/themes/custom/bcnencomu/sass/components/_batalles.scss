@@ -10,8 +10,6 @@
       > ul {
         display: flex;
         align-items: stretch;
-        border-left: 1px solid $theme_grey_lighter;
-        border-right: 1px solid $theme_grey_lighter;
         @media screen and (max-width: $small_screen_width) {
           display: block;
         }

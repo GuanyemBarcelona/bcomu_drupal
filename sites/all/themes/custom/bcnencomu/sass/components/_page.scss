@@ -649,7 +649,12 @@ a[data-action="go-back"] {
   }
 }
 
-/* region highlighted */
+// Highlighted
+#highlighted {
+  @extend %wrapper;
+  border-left: 1px solid $theme_grey_lighter;
+  border-right: 1px solid $theme_grey_lighter;
+}
 .region-highlighted {
   // main menu 2nd level
   .menu-block-wrapper {
@@ -662,8 +667,6 @@ a[data-action="go-back"] {
     }
     ul.menu {
       display: flex;
-      border-left: 1px solid $theme_grey_lighter;
-      border-right: 1px solid $theme_grey_lighter;
       li {
         flex-grow: 1;
         border-left: 1px solid white;
@@ -696,13 +699,11 @@ a[data-action="go-back"] {
 }
 
 #content {
+  @extend %wrapper;
+  border-left: 1px solid $theme_grey_lighter;
+  border-right: 1px solid $theme_grey_lighter;
   min-height: 620px;
-  body.not-front & {
-    @extend %wrapper;
-    padding-bottom: 50px;
-    border-left: 1px solid $theme_grey_lighter;
-    border-right: 1px solid $theme_grey_lighter;
-  }
+  padding-bottom: 50px;
   body.sidebar-first & {
     position: relative;
   }
@@ -1476,6 +1477,8 @@ article.node {
 /*** Home Content bottom ***/
 .region-content-bottom {
   @extend %wrapper;
+  padding-left: $page_horizontal_padding;
+  padding-right: $page_horizontal_padding;
   #page.has-agenda & {
     @extend %clearfix;
   }
