@@ -191,7 +191,10 @@ body.page-taxonomy-term-684 .region-content-top {
   .views-row {
     float: left;
     width: 187px;
-    margin-right: 20px;
+    margin-left: 20px;
+    &:first-child {
+      margin-left: 0;
+    }
     .views-field-field-icon {
       margin-bottom: 20px;
     }
