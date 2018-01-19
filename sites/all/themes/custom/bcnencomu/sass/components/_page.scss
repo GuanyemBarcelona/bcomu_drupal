@@ -288,6 +288,17 @@ header[role="banner"] {
         @media screen and (max-width: $huge_screen_width) {
           margin-right: 7px;
         }
+        &#item-participa {
+          margin-left: 12px;
+          padding-top: 10px;
+          a {
+            padding: 5px 16px 6px;
+            border: 1px solid $theme_grey_lighter;
+            &:hover {
+              border-color: $theme_red;
+            }
+          }
+        }
         &:hover {
           .menu {
             display: block;
