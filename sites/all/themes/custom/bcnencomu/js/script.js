@@ -27,7 +27,7 @@ var locale = {
 };
 var config = {
   LANGUAGE: 'ca',
-  YOUTUBE_API_KEY: 'AIzaSyC_oxmNRn9OI3_SaRbHfFWJtTyeaiD24bY',
+  YOUTUBE_API_KEY: 'AIzaSyDdi9PF1O_S7tFUJASw8JC4e2V_C8WWn9Y',
   CACHED_DATA_TTL: 24*60*60*1000, // 24h
   SCROLL_FIX_HEADER: 60, // pixels on which we shall fix the header
   SCROLL_THRESHOLD: 50, // miliseconds
