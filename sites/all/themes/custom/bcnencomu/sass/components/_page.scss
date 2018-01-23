@@ -1512,6 +1512,7 @@ article.node {
     @extend %clearfix;
   }
 }
+
 /* home highlighted agenda */
 #block-views-highlighted_agenda-agenda_block {
   float: right;
@@ -1522,6 +1523,7 @@ article.node {
     max-width: 400px;
   }
 }
+
 /* home posts */
 #block-views-frontpage-block_1 {
   #page.has-agenda & {
@@ -1545,6 +1547,8 @@ article.node {
     }
   }
 }
+
+// node teaser
 .node-teaser {
   position: relative;
   width: 33.33%;
