@@ -243,8 +243,6 @@ function bcnencomu_preprocess_node(&$vars) {
 	$images = field_get_items('node', $node_obj, 'field_images'); // multiple images
   if (isset($image[0]['uri'])){
     $teaser_uri = $image[0]['uri'];
-  }else if (isset($images[0]['uri'])){
-    $teaser_uri = $images[0]['uri'];
   }
 	if ($vars['view_mode'] == 'teaser'){
     if (isset($teaser_uri)){
