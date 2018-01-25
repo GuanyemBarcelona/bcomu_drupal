@@ -149,9 +149,6 @@ var config = {
       window.open($(this).attr('href'));
 	  });
 
-    // microprestecs menu "Call us" link
-    $('article#node-284, article#node-285, article#node-290, article#node-292').find('.body a.btn.special').prepend('<i class="fa fa-phone"></i>');
-
     // share links
     prepareShareLinks();
 
