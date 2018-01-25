@@ -42,6 +42,39 @@
     }
   }
 }
+.slick-arrow {
+  font-size: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  width: 25px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  left: -50px;
+  margin-top: -25px;
+  &:hover {
+    background: none;
+  }
+  &:before {
+    @include iconize(-150px, -175px, 1, 2);
+    content: " ";
+  }
+  &.slick-disabled {
+    opacity: .1;
+    cursor: default;
+  }
+  &.slick-next {
+    left: auto;
+    right: -50px;
+    &:before {
+      background-position: -175px -175px;
+    }
+  }
+  span {
+    display: none;
+  }
+}
 
 /* Socicon */
 [data-icon]:before {
