@@ -1540,20 +1540,6 @@ article.node {
     @media screen and (max-width: $small_screen_width) {
       width: 100%;
     }
-    &.node-banner {
-      > .content {
-        .image {
-          // show banner teaser images, even in home
-          display: block;
-        }
-      }
-    }
-    > .content {
-      .image {
-        // hide teaser images in Home
-        display: none;
-      }
-    }
   }
 }
 
