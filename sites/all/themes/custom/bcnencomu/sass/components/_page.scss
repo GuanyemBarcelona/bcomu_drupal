@@ -119,6 +119,10 @@ body.header-fixed {
 @media screen and (max-width: $mobile_menu_min_width) {
   body {
     padding-top: $header-fixed-height;
+
+    &.node-type-event {
+      padding-top: 0;
+    }
   }
 }
 header[role="banner"] {
@@ -1402,7 +1406,7 @@ article.node {
       p {
         margin: 0;
         font-size: 1em;
-        line-height: 1;
+        line-height: inherit;
       }
     }
   }
