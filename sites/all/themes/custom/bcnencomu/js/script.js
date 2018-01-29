@@ -158,8 +158,9 @@ var config = {
       // page scrolls until first event
       scrollCalendarToFirstEvent();
     }
+
     // open event links as overlay
-    $('div.single-day div.weekview .views-field-title a, div.single-day div.weekview .views-field-field-date a, .view-calendar-agenda .views-row .views-field-title-field a').each(function(i){
+    $('.view-display-id-agenda_page .views-row .views-field-title-field a, .view-display-id-agenda_block .views-row .views-field-title-field a, div.single-day div.weekview .views-field-title a, div.single-day div.weekview .views-field-field-date a, .view-calendar-agenda .views-row .views-field-title-field a').each(function(i){
       prepareEventLink($(this));
     });
 
