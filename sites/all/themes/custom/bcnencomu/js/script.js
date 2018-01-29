@@ -152,15 +152,41 @@ var config = {
     // share links
     prepareShareLinks();
 
-    // Calendar: page scrolls until first event
+    // Calendar view
     var $calendar = $('.calendar-calendar');
     if ($calendar.length){
+      // page scrolls until first event
       scrollCalendarToFirstEvent();
     }
     // open event links as overlay
     $('div.single-day div.weekview .views-field-title a, div.single-day div.weekview .views-field-field-date a, .view-calendar-agenda .views-row .views-field-title-field a').each(function(i){
       prepareEventLink($(this));
     });
+
+    // Calendar Search view
+    var $calendar_search = $('.view-agenda');
+    if ($calendar_search.length){
+      // scroll body to the event that has current date or is the next to come, or the last one
+      var max_top = 0;
+      var item_found = false;
+      var today = moment();
+      $calendar_search.find('.views-row').each(function(i){
+        var item_top = $(this).offset().top;
+        if (item_top > max_top) max_top = item_top;
+        var machine_date = $(this).find('.views-field-field-date-2').text();
+        machine_date = moment(machine_date.trim());
+        if (machine_date.isSameOrAfter(today)){
+          item_found = true;
+          max_top -= (100 + config.SCROLL_FIX_HEADER);
+          return false;
+        }
+      });
+      if (item_found){
+        $('html').animate({
+          scrollTop: max_top
+        }, 1000);
+      }
+    }
 
     // Home Slider
     $('.view-nodequeue-1 .view-content').slick({
