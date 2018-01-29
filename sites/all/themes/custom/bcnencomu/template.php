@@ -459,6 +459,17 @@ function bcnencomu_block_view_alter(&$data, $block) {
 }
 
 /**
+ * Implements template_preprocess_date_display_single()
+ */
+function bcnencomu_preprocess_date_display_single(&$vars) {
+  // Fix duplicate timestamps when outputting an ISO 8601 format.
+  // https://www.drupal.org/project/date/issues/736828
+  if (in_array($vars['dates']['format'], ['c', 'O', 'P'])) {
+    $vars['timezone'] = '';
+  }
+}
+
+/**
  * Return a themed breadcrumb trail.
  *
  * @param $breadcrumb

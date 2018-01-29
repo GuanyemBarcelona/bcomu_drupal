@@ -173,8 +173,8 @@ var config = {
       $calendar_search.find('.views-row').each(function(i){
         var item_top = $(this).offset().top;
         if (item_top > max_top) max_top = item_top;
-        var machine_date = $(this).find('.views-field-field-date-2').text();
-        machine_date = moment(machine_date.trim());
+        var machine_date = $(this).find('.views-field-field-date-2').text().trim();
+        machine_date = moment(machine_date);
         if (machine_date.isSameOrAfter(today)){
           item_found = true;
           max_top -= (100 + config.SCROLL_FIX_HEADER);
