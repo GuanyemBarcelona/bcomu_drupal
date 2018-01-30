@@ -65,8 +65,10 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
       break;
     case 'event_node_form':
       global $user;
+      // add form validation
+      $form['#validate'][] = 'bcnencomu_add_event_form_validate';
+      // disable additional_settings vertical tabs and hide some fields
       if (in_array('calendari', $user->roles)){
-        // disable additional_settings vertical tabs and hide some fields
         $form['additional_settings']['#type'] = 'fieldset';
         $form['options']['#collapsible'] = false;
         $form['options']['#collapsed'] = false;
@@ -79,6 +81,31 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
       }
       break;
   }
+}
+
+/**
+ * Add event form validation
+ */
+function bcnencomu_add_event_form_validate($form, &$form_state)
+{
+  // valid start and end hours
+  $hour_fields = ['field_hour_end'];
+  foreach ($hour_fields as $hour_field){
+    $hour_field_value = $form_state['values'][$hour_field][LANGUAGE_NONE][0]['value'];
+    if (!empty($hour_field_value)){
+      if (!_check_correct_hour($hour_field_value)){
+        form_set_error($hour_field, t("The format for this hour is not correct. Check below the field to know what format it is expecting."));
+      }
+    }
+  }
+}
+
+/**
+ * Check correct hour format
+ */
+function _check_correct_hour($hour)
+{
+  return preg_match('/(2[0-3]|[01][0-9]):([0-5][0-9])/', $hour);
 }
 
 /**
