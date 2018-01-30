@@ -423,6 +423,21 @@ function bcnencomu_preprocess_node(&$vars) {
         }
       }
       break;
+    case 'event':
+      if ($vars['view_mode'] == 'full'){
+        $date_field = $node_obj->field_date[LANGUAGE_NONE][0];
+        $date = new \DateObject($date_field['value'], 'UTC');
+        $tz = new \DateTimeZone($date_field['timezone']);
+        $date->setTimezone($tz);
+        $hour_start = $date->format('G:i');
+        $hour_range = $hour_start;
+        if (!empty($node_obj->field_hour_end)){
+          $hour_end = $node_obj->field_hour_end[LANGUAGE_NONE][0]['safe_value'];
+          $hour_range .= ' - ' . $hour_end;
+        }
+        $vars['hour_range'] = $hour_range;
+      }
+      break;
 	}
 }
 
