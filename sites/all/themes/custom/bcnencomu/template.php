@@ -437,6 +437,11 @@ function bcnencomu_preprocess_node(&$vars) {
           $hour_range .= ' - ' . $hour_end;
         }
         $vars['hour_range'] = $hour_range;
+
+        // event has image
+        if (isset($vars['content']['field_image'])){
+          $vars['classes_array'][] = 'with-image';
+        }
       }
       break;
 	}

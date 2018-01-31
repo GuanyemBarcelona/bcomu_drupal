@@ -1417,7 +1417,7 @@ article.node {
       padding-left: 20px;
     }
 
-    .content-fields {
+    &.with-image .content-fields {
       float: left;
       width: 50%;
     }
