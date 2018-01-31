@@ -401,7 +401,7 @@ function bcnencomu_preprocess_node(&$vars) {
         }
       }
       break;
-    case 'eix_tematic':
+    case 'eix_tematic': /********** EIX TEMATIC **********/
       $web_field = field_get_items('node', $node_obj, 'field_grup_web');
       if (!empty($web_field)){
         $vars['web_link'] = l(t("Visit our web"), $web_field[0]['url'], array('attributes' => array('rel' => 'external')));
@@ -423,7 +423,7 @@ function bcnencomu_preprocess_node(&$vars) {
         }
       }
       break;
-    case 'event':
+    case 'event': /********** EVENT **********/
       if ($vars['view_mode'] == 'full'){
         $date_field = $node_obj->field_date[LANGUAGE_NONE][0];
         $date = new \DateObject($date_field['value'], 'UTC');
