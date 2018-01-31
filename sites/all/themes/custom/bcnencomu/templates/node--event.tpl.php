@@ -11,19 +11,15 @@
   </header>
   <?php } ?>
   <div class="content">
-    <?php
-      hide($content['field_date']);
-      hide($content['field_hour_end']);
-      print render($content['field_date']);
-      ?>
-      <div class="field field-hour-range field-label-inline clearfix">
-        <div class="field-label"><?php print t("Hour"); ?>:&nbsp;</div>
-        <div class="field-items">
-          <div class="field-item even">
-            <?php print $hour_range; ?>
-          </div>
+    <?php print render($content['field_date']); ?>
+    <div class="field field-hour-range field-label-inline clearfix">
+      <div class="field-label"><?php print t("Hour"); ?>:&nbsp;</div>
+      <div class="field-items">
+        <div class="field-item even">
+          <?php print $hour_range; ?>
         </div>
       </div>
+    </div>
     <?php print render($content); ?>
   </div>
   <?php } ?>
