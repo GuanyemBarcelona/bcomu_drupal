@@ -425,6 +425,7 @@ function bcnencomu_preprocess_node(&$vars) {
       break;
     case 'event': /********** EVENT **********/
       if ($vars['view_mode'] == 'full'){
+        // show the hour range: start hour - end hour
         $date_field = $node_obj->field_date[LANGUAGE_NONE][0];
         $date = new \DateObject($date_field['value'], 'UTC');
         $tz = new \DateTimeZone($date_field['timezone']);
