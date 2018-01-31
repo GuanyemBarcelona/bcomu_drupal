@@ -11,16 +11,26 @@
   </header>
   <?php } ?>
   <div class="content">
-    <?php print render($content['field_date']); ?>
-    <div class="field field-hour-range field-label-inline clearfix">
-      <div class="field-label"><?php print t("Hour"); ?>:&nbsp;</div>
-      <div class="field-items">
-        <div class="field-item even">
-          <?php print $hour_range; ?>
+    <?php if (isset($content['field_image'])){ ?>
+      <div class="image">
+        <?php print render($content['field_image']); ?>
+      </div>
+    <?php } ?>
+
+    <div class="content-fields">
+      <?php print render($content['field_date']); ?>
+
+      <div class="field field-hour-range field-label-inline clearfix">
+        <div class="field-label"><?php print t("Hour"); ?>:&nbsp;</div>
+        <div class="field-items">
+          <div class="field-item even">
+            <?php print $hour_range; ?>
+          </div>
         </div>
       </div>
+
+      <?php print render($content); ?>
     </div>
-    <?php print render($content); ?>
   </div>
   <?php } ?>
 </<?php print $tag; ?>> <!-- /node-->

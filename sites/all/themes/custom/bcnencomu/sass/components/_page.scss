@@ -1398,6 +1398,7 @@ article.node {
   &.node-event {
     > .content {
       @extend %narrowbody;
+      @extend %clearfix;
     }
     .field {
       margin: 0 0 .5em;
@@ -1408,6 +1409,17 @@ article.node {
         font-size: 1em;
         line-height: inherit;
       }
+    }
+
+    .image {
+      float: right;
+      width: 50%;
+      padding-left: 20px;
+    }
+
+    .content-fields {
+      float: left;
+      width: 50%;
     }
   }
 
