@@ -424,12 +424,14 @@ function bcnencomu_preprocess_node(&$vars) {
       }
       break;
     case 'event': /********** EVENT **********/
+      // create a Date object with the proper timezoned date
+      $date_field = $node_obj->field_date[LANGUAGE_NONE][0];
+      $date = new \DateObject($date_field['value'], 'UTC');
+      $tz = new \DateTimeZone($date_field['timezone']);
+      $date->setTimezone($tz);
+
       if ($vars['view_mode'] == 'full'){
         // show the hour range: start hour - end hour
-        $date_field = $node_obj->field_date[LANGUAGE_NONE][0];
-        $date = new \DateObject($date_field['value'], 'UTC');
-        $tz = new \DateTimeZone($date_field['timezone']);
-        $date->setTimezone($tz);
         $hour_start = $date->format('G:i');
         $hour_range = $hour_start;
         if (!empty($node_obj->field_hour_end)){
