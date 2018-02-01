@@ -424,13 +424,9 @@ function bcnencomu_preprocess_node(&$vars) {
       }
       break;
     case 'event': /********** EVENT **********/
-      // create a Date object with the proper timezoned date
-      $date_field = $node_obj->field_date[LANGUAGE_NONE][0];
-      $date = new \DateObject($date_field['value'], 'UTC');
-      $tz = new \DateTimeZone($date_field['timezone']);
-      $date->setTimezone($tz);
-
       if ($vars['view_mode'] == 'full'){
+        $date = bcnencomu_convert_datefield_to_dateobject($node_obj->field_date[LANGUAGE_NONE][0]);
+
         // show the hour range: start hour - end hour
         $hour_start = $date->format('G:i');
         $hour_range = $hour_start;
@@ -444,9 +440,52 @@ function bcnencomu_preprocess_node(&$vars) {
         if (isset($vars['content']['field_image'])){
           $vars['classes_array'][] = 'with-image';
         }
+
+        // add to calendar button data
+        $event_data = bcnencomu_prepare_event_data($node_obj, $date);
+        $vars['addtocalendar_button'] = bcnencomu_render_addtocalendar_button($event_data);
       }
       break;
 	}
+}
+
+function bcnencomu_convert_datefield_to_dateobject($date_field) {
+  $date = new \DateObject($date_field['value'], 'UTC');
+  $tz = new \DateTimeZone($date_field['timezone']);
+  return $date->setTimezone($tz);
+}
+
+function bcnencomu_prepare_event_data($event_node, $date){
+  $date_field = $event_node->field_date[LANGUAGE_NONE][0];
+
+  $event_data = [
+    'id' => $event_node->nid,
+    'start_date' => $date->format('Ymd\THis'),
+    'timezone' => $date->getTimezone()->getName(),
+    'title' => $event_node->title,
+  ];
+
+  $event_data['end_date'] = $event_data['start_date'];
+  if (!empty($event_node->field_hour_end)){
+    $hour_end = $event_node->field_hour_end[LANGUAGE_NONE][0]['safe_value'];
+    $start_date = strtotime($date_field['value']);
+    $start_date_without_time = date('Ymd', $start_date);
+    $event_data['end_date'] = $start_date_without_time . 'T' . str_replace(':', '', $hour_end) . '00';
+  }
+
+  $event_data['location'] = '';
+  $venue_field = field_get_items('node', $event_node, 'field_venue');
+  if ($venue_field){
+    $event_data['location'] = $venue_field[0]['safe_value'];
+  }
+
+  $event_data['description'] = '';
+  $body_field = field_get_items('node', $event_node, 'body');
+  if ($body_field){
+    $event_data['description'] = $body_field[0]['safe_value'];
+  }
+
+  return $event_data;
 }
 
 function bcnencomu_preprocess_comment(&$vars) {
@@ -463,6 +502,21 @@ function bcnencomu_preprocess_taxonomy_term(&$vars) {
   // candidacies council district
   if ($vars['vid'] == 6){
     $vars['list_uri'] = gh_get_node_path_alias(CANDIDACY_COUNCIL_NID);
+  }
+}
+
+/**
+ * Preprocess theme function to print a single record from a row, with fields.
+ */
+function bcnencomu_preprocess_views_view_fields(&$vars) {
+  switch ($vars['view']->name){
+    case 'agenda': // calendar search view
+      // add to calendar button
+      $node_obj = $vars['row']->_field_data['nid']['entity'];
+      $date = bcnencomu_convert_datefield_to_dateobject($node_obj->field_date[LANGUAGE_NONE][0]);
+      $event_data = bcnencomu_prepare_event_data($node_obj, $date);
+      $vars['addtocalendar_button'] = bcnencomu_render_addtocalendar_button($event_data);
+      break;
   }
 }
 

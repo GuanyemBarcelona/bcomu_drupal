@@ -30,6 +30,10 @@
       </div>
 
       <?php print render($content); ?>
+
+      <?php if (isset($addtocalendar_button)){ ?>
+        <?php print $addtocalendar_button; ?>
+      <?php } ?>
     </div>
   </div>
   <?php } ?>

@@ -1785,6 +1785,28 @@ form.search-form {
   }
 }
 
+// add to calendar feature
+a[data-action="add-to-calendar-open"] {
+  display: block;
+  font-size: 14px;
+  font-weight: normal;
+  border-width: 1px;
+  padding: 4px;
+  width: 170px;
+}
+.add-to-calendar-popup {
+  width: 400px;
+  > h2 {
+    margin-bottom: 1em;
+    text-align: center;
+  }
+  [data-action="add-to-calendar"] {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
 /* candidacies list */
 //block-views-candidacies2-block_3
 [id^="block-views-candidacies"] {
@@ -1963,6 +1985,7 @@ form.search-form {
       margin-bottom: 1em;
     }
     > .view-grouping-content {
+      max-width: $multimedia_width;
       > .item-list {
         h3 {
           font-size: 180%;
@@ -1988,6 +2011,9 @@ form.search-form {
       }
       .views-field-field-date-2 {
         display: none;
+      }
+      a[data-action="add-to-calendar-open"] {
+        float: right;
       }
     }
   }

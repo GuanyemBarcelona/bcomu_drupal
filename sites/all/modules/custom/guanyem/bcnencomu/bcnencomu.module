@@ -212,6 +212,11 @@ function bcnencomu_theme($existing, $type, $theme, $path) {
       'variables' => array('links' => array()),
       'template' => 'theme/node_nav',
     ),
+    'addtocalendar_button' => array(
+      'path' => drupal_get_path('module', 'bcnencomu'),
+      'variables' => array('data' => []),
+      'template' => 'theme/addtocalendar_button',
+    ),
   );
 }
 
@@ -389,6 +394,35 @@ function bcnencomu_render_image_gallery($images_field, $style_name, $show_thumbn
     if (count($images) > 0) return theme('image_gallery', array('images' => $images, 'thumbs' => $show_thumbnails));
   }
   return FALSE;
+}
+
+/**
+* Renders an Add to calendar button, with a popup region
+*/
+function bcnencomu_render_addtocalendar_button($event_data) {
+  $data = [
+    'id' => $event_data['id'],
+    'services' => [],
+  ];
+
+  // google calendar service
+  $google_calendar_uri = 'https://calendar.google.com/calendar/r/eventedit';
+  $google_dates = $event_data['start_date'] . '/' . $event_data['end_date'];
+  $google_calendar_params = [
+    'dates' => $google_dates,
+    'ctz' => $event_data['timezone'],
+    'text' => $event_data['title'],
+    'location' => $event_data['location'],
+    'details' => strip_tags($event_data['description']),
+  ];
+  $google_service = [
+    'slug' => 'google',
+    'name' => 'Google Calendar',
+    'uri' => url($google_calendar_uri, ['query' => $google_calendar_params]),
+  ];
+  $data['services'][] = $google_service;
+
+  return theme('addtocalendar_button', array('data' => $data));
 }
 
 /**
