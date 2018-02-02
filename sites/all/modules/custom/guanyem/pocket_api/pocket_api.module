@@ -54,12 +54,6 @@ function pocket_api_menu() {
     'access arguments' => array('access content'),
   );
 
-  $items['comuns-premsa'] = array(
-    'page callback' => 'pocket_api_render_list',
-    'type' => MENU_NORMAL_ITEM,
-    'access arguments' => array('access content'),
-  );
-
   $items['admin/pocket/recreate'] = array(
     'title' => 'Recreate the Pocket list',
     'description' => 'Recreate the Pocket list if some pockets were removed from the original Pocket list at getpocket.com.',
@@ -69,6 +63,33 @@ function pocket_api_menu() {
   );
 
   return $items;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function pocket_api_block_info() {
+  $blocks[POCKET_API_SLUG . '_app'] = array(
+    'info'=> POCKET_API_SLUG . ': App',
+    'cache' => DRUPAL_CACHE_PER_ROLE, //Default
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ *
+ * Prepares the contents of the block.
+ */
+function pocket_api_block_view($delta = '') {
+  $block = array();
+  switch($delta){
+    case POCKET_API_SLUG . '_app':
+      $block['subject'] = '';
+      $block['content'] = pocket_api_render_app();
+      break;
+  }
+  return $block;
 }
 
 /*
@@ -92,7 +113,7 @@ function pocket_api_test($type){
  */
 function pocket_api_theme($existing, $type, $theme, $path) {
   return array(
-    'pocket_list' => array(
+    'pocket_app' => array(
       'path' => drupal_get_path('module', POCKET_API_SLUG),
       'variables' => array(),
       'template' => 'src/index',
@@ -100,10 +121,12 @@ function pocket_api_theme($existing, $type, $theme, $path) {
   );
 }
 
-function pocket_api_render_list(){
-  // renders the AngularJS app
+/**
+ * Renders the AngularJS app
+ */
+function pocket_api_render_app(){
   $base_path = base_path() . drupal_get_path('module', POCKET_API_SLUG) . '/src';
-  return theme('pocket_list', array('base_path' => $base_path));
+  return theme('pocket_app', array('base_path' => $base_path));
 }
 
 function pocket_api_get_list_part($count = 24, $offset = 0){
