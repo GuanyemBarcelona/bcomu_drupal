@@ -1,0 +1,3 @@
+# Ignore processed assets, will be processed in the server with gulp
+*
+!.gitignore
