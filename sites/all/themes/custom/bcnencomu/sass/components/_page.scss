@@ -925,6 +925,10 @@ article.node {
     // narrow tag elements
     p, ul, ol, h2, h3, h4, h5, h6 {
       @extend %narrowbody;
+      #page.mapa-del-canvi & {
+        margin-left: 0;
+        margin-right: 0;
+      }
     }
 
     p {
@@ -1182,13 +1186,21 @@ article.node {
   #page.mapa-del-canvi & {
     > .content {
       position: relative;
+      @media screen and (max-width: $medium_screen_width) {
+        padding-bottom: 20px;
+      }
     }
     .logo-bcomu {
       position: absolute;
       top: 0;
       right: 0;
-      width: 150px;
+      max-width: 150px;
       display: block;
+      @media screen and (max-width: $medium_screen_width) {
+        position: static;
+        float: right;
+        margin-bottom: 20px;
+      }
     }
     .body {
       p {
