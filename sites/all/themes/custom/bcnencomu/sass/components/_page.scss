@@ -1723,6 +1723,36 @@ form.search-form {
   }
 }
 
+// subscription blocks
+.subscribe-block {
+  position: relative;
+  float: left;
+  width: 320px;
+  height: 340px;
+  margin: 0 20px;
+  border: 1px solid $theme_grey_lighter;
+  > header {
+    padding: 20px;
+    h1 {
+      font-size: 220%;
+    }
+  }
+  > .content {
+    padding: 0 20px 20px;
+    .mj-w-button {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      width: 150px;
+      margin-left: -75px;
+      .mj-w-button-content {
+        @include buttonize;
+        width: 100%;
+      }
+    }
+  }
+}
+
 /* Calendar agenda */
 #block-views-calendar_agenda-agenda_block {}
 .view-display-id-agenda_block {
