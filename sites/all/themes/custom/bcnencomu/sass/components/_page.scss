@@ -807,6 +807,7 @@ body.maintenance-page {
     }
   }
   > .inner {
+    @extend %clearfix;
     padding: 0 $page_horizontal_padding;
   }
 
@@ -1729,7 +1730,7 @@ form.search-form {
   float: left;
   width: 320px;
   height: 340px;
-  margin: 0 20px;
+  margin: 0 20px 20px;
   border: 1px solid $theme_grey_lighter;
   > header {
     padding: 20px;
