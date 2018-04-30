@@ -11,10 +11,18 @@
 /scripts
 /themes
 
-# Ignore dependencies
-node_modules
+# Ignore vendor files, will use composer
+/vendor
 
-# Ignore translations
+# Ignore folder where drupal core files are installed through composer
+/core
+
+# Ignore contrib modules, contrib themes, libraries and translations
+/sites/*/modules/*
+!/sites/*/modules/custom
+/sites/*/themes/*
+!/sites/*/themes/custom
+/sites/*/libraries
 /sites/*/translations
 
 # Ignore configuration files that may contain sensitive information.
@@ -26,5 +34,4 @@ node_modules
 /sites/*/private
 
 # Other
-/manuals
 /.idea

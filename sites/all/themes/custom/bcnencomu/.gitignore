@@ -1,0 +1,5 @@
+# ignore deploy modules
+/node_modules/
+
+# Ignore processed assets, will be processed in the server with gulp
+/css/
