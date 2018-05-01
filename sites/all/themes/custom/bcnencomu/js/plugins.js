@@ -8,9 +8,6 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 
 /**
  * Helper methods
- * @Author: Omitsis SL
- * @Author URI: http://www.omitsis.com
- *
 **/
 // get number with 'size' leading zeros
 function pad(num, size) {
@@ -52,9 +49,6 @@ function debounce(fn, delay) {
 	 * @params
 	 *   Object options: options for the instance
 	 * @return void
-	 * @Author: Omitsis SL
-	 * @Author URI: http://www.omitsis.com
-	 *
 	**/
 	GrouppedTabs = function(options){
 		this.selector = options.selector;
