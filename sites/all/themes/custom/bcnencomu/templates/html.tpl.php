@@ -19,7 +19,7 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'UA-59488092-1');
+        gtag('config', 'UA-59488092-1', {'anonymize_ip': true});
       </script>
     <?php // End: Google Analytics code ?>
     <?php } ?>
