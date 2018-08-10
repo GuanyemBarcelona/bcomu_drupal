@@ -59,11 +59,6 @@
             <?php print render($page['content']) ?>
           </div> <!-- /#content-area -->
           <?php //print $feed_icons; ?>
-          <?php if ($page['content_bottom']): ?>
-          <div id="content-bottom">
-            <?php print render($page['content_bottom']) ?>
-          </div> <!-- /#content-bottom -->
-          <?php endif; ?>
         </div> <!-- /content-inner -->
         <?php if ($page['sidebar_first']): ?>
           <aside id="sidebar-first" class="column sidebar first">
@@ -71,6 +66,11 @@
               <?php print render($page['sidebar_first']); ?>
             </div>
           </aside> <!-- /sidebar-first -->
+        <?php endif; ?>
+        <?php if ($page['content_bottom']): ?>
+          <div id="content-bottom">
+            <?php print render($page['content_bottom']) ?>
+          </div> <!-- /#content-bottom -->
         <?php endif; ?>
       </div> <!-- /content -->
     </div>
