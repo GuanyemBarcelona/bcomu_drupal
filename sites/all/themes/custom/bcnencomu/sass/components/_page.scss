@@ -2045,7 +2045,7 @@ a[data-action="add-to-calendar-open"] {
       margin-bottom: 1em;
     }
     > .view-grouping-content {
-      max-width: $multimedia_width;
+      @extend %widerbody;
       > .item-list {
         h3 {
           font-size: 180%;

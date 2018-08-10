@@ -4,8 +4,7 @@
 
 #page.cronograma-page {
   article.node {
-    max-width: $multimedia_width;
-    margin: 0 auto;
+    @extend %widerbody;
     > header h1 {
       max-width: none;
       opacity: 0;
@@ -41,8 +40,8 @@
 }
 
 .view-cronograma-quisom {
-  max-width: $multimedia_width;
-  margin: 0 auto 40px;
+  @extend %widerbody;
+  margin-bottom: 40px;
   position: relative;
   &:before {
     position: absolute;
