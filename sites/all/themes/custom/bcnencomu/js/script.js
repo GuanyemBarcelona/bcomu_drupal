@@ -30,9 +30,8 @@ var config = {
   YOUTUBE_API_KEY: 'AIzaSyDdi9PF1O_S7tFUJASw8JC4e2V_C8WWn9Y',
   CACHED_DATA_TTL: 24*60*60*1000, // 24h
   SCROLL_FIX_HEADER: 60, // pixels on which we shall fix the header
-  SCROLL_THRESHOLD: 50, // miliseconds
+  SCROLL_THRESHOLD: 50 // miliseconds
   //DISTRICT_VERIFICATIONS_URI: '/async/verifications/',
-  MASONRY_SELECTORS: ['.view-frontpage', '.view-blog', '.view-articles', '.view-taxonomy-term', '.view-multimedia', '.view-albums, .view-posts-eix']
 };
 
 (function($){
@@ -42,15 +41,6 @@ var config = {
         prepareAllVIdeos();
       } else if ($(context).is('.view-event-calendar')){
         scrollCalendarToFirstEvent();
-      }
-
-      // masonry views async behaviors
-      for (var i in config.MASONRY_SELECTORS){
-        var selector = config.MASONRY_SELECTORS[i];
-        if ($(context).is(selector)){
-          prepareMasonryLists($(selector));
-          break;
-        }
       }
     }
   };
@@ -294,11 +284,6 @@ var config = {
     }
 	});
 
-	$(window).load(function(){
-    // Masonry
-    prepareMasonryLists($(config.MASONRY_SELECTORS.join()));
-	});
-
   // ON SCROLL
   $(window).scroll(debounce(onWindowScroll, config.SCROLL_THRESHOLD)); // for all events that trigger continuosly, we debounce the functions called, for a better performance
 
@@ -315,15 +300,6 @@ var config = {
     }else{
       $('body').removeClass('header-fixed');
     }
-  }
-
-	function prepareMasonryLists(obj){
-    obj.each(function(i){
-      $(this).addClass('with-masonry');
-      $(this).masonry({
-        itemSelector: '.node-teaser'
-      });
-    });
   }
 
   // bind action to image from gallery thumbnail click.

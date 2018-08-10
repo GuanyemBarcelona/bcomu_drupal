@@ -9,7 +9,6 @@
   "dependencies": {
     "@fancyapps/fancybox": "^3.1.20",
     "html5shiv": "afarkas/html5shiv",
-    "masonry-layout": "^4.2.0",
     "moment": "^2.18.1",
     "simplestorage.js": "^0.2.1",
     "slick-carousel": "^1.7.1"
