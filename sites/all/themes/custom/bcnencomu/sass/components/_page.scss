@@ -1446,6 +1446,107 @@ article.node {
 }
 /**************/
 
+// teasers list
+.teaser-list-view {
+  &.view-frontpage {
+    .view-content {
+      .views-row {
+        width: 49%;
+        @media screen and (max-width: $small_screen_width) {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .view-content {
+    > .item-list {
+      > ul {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+    }
+    .views-row {
+      width: 32%;
+      @media screen and (max-width: $big_screen_width) {
+        width: 49%;
+      }
+      @media screen and (max-width: $small_screen_width) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// node teaser
+.node-teaser {
+  position: relative;
+  &.with-external-link {
+    > .content {
+      &:before {
+        @include iconize(-125px, -175px, 1, 1);
+        content: "";
+        position: absolute;
+        top: 5px;
+        right: 10px;
+      }
+      h2 {
+        padding-right: 23px;
+      }
+    }
+  }
+  > .content {
+    padding: 5px 0 30px;
+    border-top: 1px solid $theme_grey_light;
+    .field-name-field-post-category, .field-name-field-press-category {
+      font-size: 160%;
+      color: $theme_red;
+    }
+    .image {
+      margin-bottom: 10px;
+      img {
+        width: 100%;
+      }
+    }
+    a {
+      color: black;
+      &:hover {
+        color: $theme_red;
+      }
+    }
+    h2 {
+      font-size: 180%;
+      font-weight: bold;
+      margin-bottom: .4em;
+      word-break: break-word;
+    }
+    .summary {
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // video teaser
+  &.node-video {
+    .image {
+      position: relative;
+      margin-bottom: 10px;
+      .icon-play {
+        @include iconize(-125px, 0, 3, 3);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -37px;
+        margin-top: -37px;
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
 /* Home: carroussel */
 #block-views-nodequeue_1-block {}
 .view-nodequeue-1 {
@@ -1560,93 +1661,6 @@ article.node {
     width: 66.66%;
     @media screen and (max-width: $mediumbig_screen_width) {
       @include one-columnize;
-    }
-  }
-}
-.view-frontpage {
-  .node-teaser {
-    width: 50%;
-    @media screen and (max-width: $small_screen_width) {
-      width: 100%;
-    }
-  }
-}
-
-// node teaser
-.node-teaser {
-  position: relative;
-  width: 33.33%;
-  padding: 0 10px;
-  @media screen and (max-width: $big_screen_width) {
-    width: 50%;
-  }
-  @media screen and (max-width: $small_screen_width) {
-    width: 100%;
-  }
-  > .content {
-    padding: 5px 0 30px;
-    border-top: 1px solid $theme_grey_light;
-  }
-  &.with-external-link {
-    > .content {
-      &:before {
-        @include iconize(-125px, -175px, 1, 1);
-        content: "";
-        position: absolute;
-        top: 5px;
-        right: 10px;
-      }
-      h2 {
-        padding-right: 23px;
-      }
-    }
-  }
-  > .content {
-    .field-name-field-post-category, .field-name-field-press-category {
-      font-size: 160%;
-      color: $theme_red;
-    }
-    .image {
-      margin-bottom: 10px;
-      img {
-        width: 100%;
-      }
-    }
-    a {
-      color: black;
-      &:hover {
-        color: $theme_red;
-      }
-    }
-    h2 {
-      font-size: 180%;
-      font-weight: bold;
-      margin-bottom: .4em;
-      word-break: break-word;
-    }
-    .summary {
-      p {
-        margin-bottom: 0;
-      }
-    }
-  }
-
-  // video teaser
-  &.node-video {
-    .image {
-      position: relative;
-      margin-bottom: 10px;
-      .icon-play {
-        @include iconize(-125px, 0, 3, 3);
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-left: -37px;
-        margin-top: -37px;
-      }
-      img {
-        width: 100%;
-      }
     }
   }
 }
