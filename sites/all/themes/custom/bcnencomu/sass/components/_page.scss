@@ -720,20 +720,24 @@ a[data-action="go-back"] {
   min-height: 620px;
   padding-bottom: 50px;
   body.sidebar-first & {
-    position: relative;
+    @extend %clearfix;
+
+    #content-inner {
+      float: right;
+      width: 75%;
+      @media screen and (max-width: $small_screen_width) {
+        float: none;
+        width: 100%;
+        padding-left: $page_horizontal_padding;
+      }
+    }
   }
 
   /* sidebar first */
   #sidebar-first {
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    width: 20%;
-    @media screen and (max-width: $bigger_screen_width) {
-      left: 5px;
-      width: 18%;
-    }
-    @media screen and (max-width: $mobile_menu_min_width) {
+    width: 25%;
+    padding: 30px 0 20px 20px;
+    @media screen and (max-width: $small_screen_width) {
       display: none;
     }
     ul.menu {
@@ -756,13 +760,6 @@ a[data-action="go-back"] {
           padding: 10px 0 0 30px;
         }
       }
-    }
-  }
-
-  // page programa advanced search
-  body.page-programa-navega-cerca & {
-    #content-inner {
-      max-width: none;
     }
   }
 
@@ -871,14 +868,6 @@ body.maintenance-page {
   // hide category terms blocks
   #block-views-categories_terms_list-block {
     display: none;
-  }
-}
-
-// masonry views
-.view.with-masonry {
-  padding-bottom: 60px;
-  .view-content {
-    height: 100%;
   }
 }
 
@@ -1377,8 +1366,6 @@ article.node {
 
   // espai (old eix tematic) detail
   &.node-eix-tematic {
-    @extend %narrowbody;
-
     .field {
       margin-top: 20px;
       .field-label {
@@ -1633,13 +1620,19 @@ article.node {
   }
 }
 
-/*** Home Content bottom ***/
-.region-content-bottom {
-  @extend %wrapper;
+// content bottom
+#content-bottom {
+  clear: both;
   padding-left: $page_horizontal_padding;
   padding-right: $page_horizontal_padding;
-  #page.has-agenda & {
-    @extend %clearfix;
+}
+
+/*** Home Content bottom ***/
+body.front {
+  .region-content-bottom {
+    > .inner {
+      @extend %clearfix;
+    }
   }
 }
 
@@ -1679,6 +1672,11 @@ article.node {
       }
     }
   }
+}
+
+// videos list
+.view-multimedia {
+  margin-top: 30px;
 }
 
 // SomComuns Information Channels
@@ -1868,10 +1866,6 @@ a[data-action="add-to-calendar-open"] {
 }
 
 /* candidacies list */
-//block-views-candidacies2-block_3
-[id^="block-views-candidacies"] {
-  @extend %narrowbody;
-}
 .view-candidacies-list {
   margin-bottom: 50px;
   .item-list {
@@ -1881,19 +1875,19 @@ a[data-action="add-to-calendar-open"] {
       margin-bottom: .5em;
     }
     > ol, > ul {
-      @include simple-column-container;
+      display: flex;
+      flex-wrap: wrap;
       list-style: none;
     }
     .views-row {
-      @include simple-column(3, 3%);
-      height: 250px;
+      width: 20%;
+      margin-bottom: 20px;
+      padding: 0 5px;
       @media screen and (max-width: $small_screen_width) {
-        @include simple-column(2, 3%);
-        height: 55vw;
+        width: 50%;
       }
       @media screen and (max-width: $micro_screen_width) {
-        @include simple-column(1, 0);
-        height: auto;
+        width: 100%;
         margin-bottom: 20px;
       }
       &:hover {

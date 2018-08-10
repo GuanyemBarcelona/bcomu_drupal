@@ -10,10 +10,6 @@ body.page-programa-navega {
       }
     }
   }
-
-  #content #content-inner {
-    @extend %narrowbody;
-  }
 }
 
 .view-mesures-list {
@@ -41,6 +37,7 @@ body.page-programa-navega {
 }
 
 article.node-mesures-programa {
+  @extend %narrowbody;
   > header {
     h1 {
       margin-bottom: 0;
