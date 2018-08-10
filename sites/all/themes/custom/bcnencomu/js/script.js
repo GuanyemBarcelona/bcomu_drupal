@@ -453,7 +453,7 @@ function prepareAllVIdeos() {
     } else if ($video.is('.node-slider')) {
       // --- slider ---
       var $play_btn = $video.find('a[data-action="play"]');
-      var $image = $video.find('> .image');
+      var $image = $video.find('.image');
       var $content = $video.find('> .content');
       var video_heights = [557, 768]; // original, play mode
       $play_btn.click(function (e) {
@@ -525,7 +525,7 @@ function placeMetadataInVideoContainer(data, $container) {
   // thumb
   try {
     var img_src = snippet.thumbnails.medium.url;
-    var $link = $container.find('> .image a');
+    var $link = $container.find('.image a');
     if ($link.find('img').length === 0) {
       $link.append('<img src="' + img_src + '" />');
     }

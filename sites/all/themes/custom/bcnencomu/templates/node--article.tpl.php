@@ -4,17 +4,17 @@
   <?php /* ----------------- TEASER DISPLAY ----------------- */ ?>
       <div class="content">
         <a href="<?php print $node_url; ?>"<?php if($is_external){ ?> rel="external"<?php } ?>>
-            <?php if (isset($teaser_image)){ ?>
-                <div class="image">
-                    <?php print $teaser_image; ?>
-                </div>
-            <?php } ?>
-
             <?php if (isset($category)){ ?>
                 <?php print render($category); ?>
             <?php } ?>
 
             <h2><?php print $title; ?></h2>
+
+            <?php if (isset($teaser_image)){ ?>
+              <div class="image">
+                <?php print $teaser_image; ?>
+              </div>
+            <?php } ?>
 
             <?php if (isset($node_body_summary_html)){ ?>
             <div class="summary">

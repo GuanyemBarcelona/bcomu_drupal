@@ -2,16 +2,16 @@
 <<?php print $tag; ?> id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"<?php if (isset($youtube_uri)){ ?> data-youtube-uri="<?php print $youtube_uri; ?>"<?php } ?>>
   <?php if ($view_mode == 'teaser' || $view_mode == 'highlighted') { ?>
   <?php /* ----------------- TEASER DISPLAY ----------------- */ ?>
-  <div class="image">
-    <a href="<?php print $node_url; ?>">
-      <i class="icon icon-play"></i>
-      <?php if (isset($teaser_image)){ ?>
-      <?php print $teaser_image; ?>
-      <?php } ?>
-    </a>
-  </div>
   <div class="content">
     <h2><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
+    <div class="image">
+      <a href="<?php print $node_url; ?>">
+        <i class="icon icon-play"></i>
+        <?php if (isset($teaser_image)){ ?>
+          <?php print $teaser_image; ?>
+        <?php } ?>
+      </a>
+    </div>
     <?php if (isset($node_body_summary_html)){ ?>
     <div class="summary">
       <p><?php print $node_body_summary_html; ?></p>

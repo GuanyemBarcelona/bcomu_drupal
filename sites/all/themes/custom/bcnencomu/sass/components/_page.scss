@@ -1633,7 +1633,7 @@ article.node {
 
   // video teaser
   &.node-video {
-    > .image {
+    .image {
       position: relative;
       margin-bottom: 10px;
       .icon-play {
