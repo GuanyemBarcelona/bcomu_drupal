@@ -196,7 +196,7 @@ var config = {
       infinite: false,
       autoplay: false,
       slidesToShow: 4,
-      slidesToScroll: 4,
+      slidesToScroll: 1,
       variableWidth: true,
       dots: false,
       arrows: true,
