@@ -524,7 +524,7 @@ function placeMetadataInVideoContainer(data, $container) {
 
   // thumb
   try {
-    var img_src = snippet.thumbnails.high.url;
+    var img_src = snippet.thumbnails.medium.url;
     var $link = $container.find('> .image a');
     if ($link.find('img').length === 0) {
       $link.append('<img src="' + img_src + '" />');
