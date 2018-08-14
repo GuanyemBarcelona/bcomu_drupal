@@ -292,17 +292,6 @@ header[role="banner"] {
         @media screen and (max-width: $huge_screen_width) {
           margin-right: 7px;
         }
-        &#item-participa {
-          margin-left: 12px;
-          padding-top: 10px;
-          a {
-            padding: 5px 16px 6px;
-            border: 1px solid $theme_grey_lighter;
-            &:hover {
-              border-color: $theme_red;
-            }
-          }
-        }
         &:hover {
           .menu {
             display: block;
@@ -362,6 +351,36 @@ header[role="banner"] {
             }
           }
         }
+      }
+    }
+  }
+}
+
+// CTA Participa close to the main menu
+.cta-mainmenu-participa {
+  position: absolute;
+  bottom: 11px;
+  left: 930px;
+  @media screen and (max-width: $mobile_menu_min_width) {
+    display: none;
+  }
+  p {
+    font-size: 100%;
+    line-height: 1;
+    margin-bottom: 0;
+    a {
+      display: block;
+      color: black;
+      font-size: 180%;
+      font-weight: bold;
+      padding: 5px 16px 6px;
+      border: 1px solid $theme_grey_lighter;
+      &:hover {
+        border-color: $theme_red;
+      }
+      transition: all .3s ease;
+      &:hover {
+        color: $theme_red;
       }
     }
   }
