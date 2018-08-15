@@ -149,6 +149,19 @@ var config = {
       scrollCalendarToFirstEvent();
     }
 
+    // candidates open as overlay
+    $('.view-candidacies-list .views-row a').each(function (i) {
+      var href = $(this).attr('href');
+      $(this).attr('href', href + '?oasis=1');
+      $(this).fancybox(
+        {
+          'type': 'iframe',
+          'width': 600,
+          'height': 500
+        }
+      );
+    });
+
     // open event links as overlay
     $('.view-display-id-agenda_page .views-row .views-field-title-field a, .view-display-id-agenda_block .views-row .views-field-title-field a, div.single-day div.weekview .views-field-title a, div.single-day div.weekview .views-field-field-date a, .view-calendar-agenda .views-row .views-field-title-field a').each(function(i){
       prepareEventLink($(this));
