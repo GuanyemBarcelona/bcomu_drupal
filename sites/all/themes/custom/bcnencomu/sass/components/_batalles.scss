@@ -3,96 +3,45 @@
 */
 
 // top menu
-#block-views-batalles_top_menu-block .view {
-  @extend %wrapper;
-  > .view-content {
-    > .item-list {
-      > ul {
-        display: flex;
-        align-items: stretch;
-        @media screen and (max-width: $small_screen_width) {
-          display: block;
-        }
-      }
-    }
-  }
-  .views-row {
-    flex-grow: 1;
-    background: $theme_grey_lighter;
-    border-left: 1px solid white;
-    &:first-child {
-      border-left: none;
-    }
-    &.active-trail > ul.menu {
-      display: table;
+.region-highlighted .menu-block-wrapper ul.menu li {
+  &.active-trail, &.active, &:hover {
+    a {
+      color: black;
     }
     &.tid-679 {
       a {
-        &.active, &:hover {
-          background-color: $theme_habitatge;
-        }
+        background-color: $theme_habitatge;
       }
     }
     &.tid-680 {
       a {
-        &.active, &:hover {
-          background-color: $theme_ciutatverda;
-        }
+        background-color: $theme_ciutatverda;
       }
     }
     &.tid-681 {
       a {
-        &.active, &:hover {
-          background-color: $theme_gestiopublica;
-        }
+        background-color: $theme_gestiopublica;
       }
     }
     &.tid-682 {
       a {
-        &.active, &:hover {
-          background-color: $theme_desigualtats;
-        }
+        background-color: $theme_desigualtats;
       }
     }
     &.tid-683 {
       a {
-        &.active, &:hover {
-          background-color: $theme_novapolitica;
-        }
+        background-color: $theme_novapolitica;
       }
     }
     &.tid-684 {
       a {
-        &.active, &:hover {
-          background-color: $theme_barris;
-        }
+        background-color: $theme_barris;
       }
-    }
-    @media screen and (max-width: $small_screen_width) {
-      border-left: none;
-      border-bottom: 1px solid white;
-    }
-    div {
-      height: 100%;
-    }
-    a {
-      display: block;
-      font-size: 160%;
-      height: 100%;
-      padding: 13px;
-      text-align: center;
-      color: $theme_grey_darker;
-      &.active, &:hover {
-        color: black;
-      }
-    }
-    ul.menu {
-      display: none;
     }
   }
 }
 
-body.page-taxonomy-term-679, body.page-taxonomy-term-680, body.page-taxonomy-term-681, body.page-taxonomy-term-682, body.page-taxonomy-term-683, body.page-taxonomy-term-684 {
+body.page-taxonomy-term-679, body.page-taxonomy-term-680, body.page-taxonomy-term-681, body.page-taxonomy-term-682, body.page-taxonomy-term-683, body.page-batalla-accions-als-barris {
   .region-content-top {
     margin-bottom: 20px;
     > .inner {
@@ -124,7 +73,7 @@ body.page-taxonomy-term-682 .region-content-top {
 body.page-taxonomy-term-683 .region-content-top {
   background-color: $theme_novapolitica;
 }
-body.page-taxonomy-term-684 .region-content-top {
+body.page-batalla-accions-als-barris .region-content-top {
   background-color: $theme_barris;
 }
 
