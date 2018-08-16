@@ -138,6 +138,22 @@ body.page-batalla-accions-als-barris .region-content-top {
       }
     }
   }
+  .slick-slider {
+    .slick-arrow {
+      left: -50px;
+      @media screen and (max-width: $big_screen_width) {
+        left: 0;
+        background: rgba(255, 255, 255, .4);
+      }
+      &.slick-next {
+        left: auto;
+        right: -50px;
+        @media screen and (max-width: $big_screen_width) {
+          right: 0;
+        }
+      }
+    }
+  }
   .views-row {
     float: left;
     width: 187px;
