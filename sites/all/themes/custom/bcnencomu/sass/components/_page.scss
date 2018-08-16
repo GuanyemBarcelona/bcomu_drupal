@@ -1880,7 +1880,13 @@ a[data-action="add-to-calendar-open"] {
 
 /* candidacies list */
 .view-candidacies-list {
+  clear: both;
   margin-bottom: 50px;
+  &.view-display-id-block_6 {
+    .item-list {
+      float: left;
+    }
+  }
   .item-list {
     > h3 {
       font-size: 180%;
@@ -1888,21 +1894,14 @@ a[data-action="add-to-calendar-open"] {
       margin-bottom: .5em;
     }
     > ol, > ul {
-      display: flex;
-      flex-wrap: wrap;
+      @extend %clearfix;
       list-style: none;
     }
     .views-row {
-      width: 20%;
+      float: left;
+      width: 190px;
       margin-bottom: 20px;
       padding: 0 5px;
-      @media screen and (max-width: $small_screen_width) {
-        width: 50%;
-      }
-      @media screen and (max-width: $micro_screen_width) {
-        width: 100%;
-        margin-bottom: 20px;
-      }
       &:hover {
         .views-field-field-candidacy-photo {
           a:before {
@@ -1912,6 +1911,8 @@ a[data-action="add-to-calendar-open"] {
       }
       .views-field-field-candidacy-photo {
         margin-bottom: 5px;
+        height: 180px;
+        overflow: hidden;
         a {
           display: block;
           position: relative;
