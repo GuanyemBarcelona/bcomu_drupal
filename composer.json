@@ -72,6 +72,7 @@
         "drupal/views_infinite_scroll": "^2.1",
         "drupal/webform": "4.17",
         "drupal/webform_localization": "^4.11",
-        "drupal/xmlsitemap": "^2.3"
+        "drupal/xmlsitemap": "^2.3",
+        "drupal/twitter": "5.x-dev"
     }
 }

@@ -1,11 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "3c22fdad03f8610fd0f4eea3d5a1c113",
-    "content-hash": "77cbc0150d7575b2879d65d5e5cd4cea",
+    "content-hash": "c9c7cb8a0f8fe1d448a0a295136e7d4f",
     "packages": [
         {
             "name": "composer/installers",
@@ -125,7 +124,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2017-12-29 09:13:20"
+            "time": "2017-12-29T09:13:20+00:00"
         },
         {
             "name": "drupal/admin_menu",
@@ -244,7 +243,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/admin_views"
             },
-            "time": "2016-12-08 10:14:02"
+            "time": "2016-12-08T10:14:02+00:00"
         },
         {
             "name": "drupal/adminimal_admin_menu",
@@ -295,7 +294,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/adminimal_admin_menu"
             },
-            "time": "2018-03-12 10:39:56"
+            "time": "2018-03-12T10:39:56+00:00"
         },
         {
             "name": "drupal/adminimal_theme",
@@ -340,7 +339,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/adminimal_theme"
             },
-            "time": "2016-12-28 01:26:30"
+            "time": "2016-12-28T01:26:30+00:00"
         },
         {
             "name": "drupal/auto_nodetitle",
@@ -394,7 +393,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/auto_nodetitle"
             },
-            "time": "2018-04-29 15:06:27"
+            "time": "2018-04-29T15:06:27+00:00"
         },
         {
             "name": "drupal/better_exposed_filters",
@@ -449,7 +448,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/better_exposed_filters"
             },
-            "time": "2017-10-25 17:02:23"
+            "time": "2017-10-25T17:02:23+00:00"
         },
         {
             "name": "drupal/block_class",
@@ -538,7 +537,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/block_class"
             },
-            "time": "2018-02-28 03:52:36"
+            "time": "2018-02-28T03:52:36+00:00"
         },
         {
             "name": "drupal/calendar",
@@ -599,7 +598,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/calendar"
             },
-            "time": "2017-11-30 09:56:14"
+            "time": "2017-11-30T09:56:14+00:00"
         },
         {
             "name": "drupal/ckeditor",
@@ -681,7 +680,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/ckeditor"
             },
-            "time": "2018-04-19 08:14:50"
+            "time": "2018-04-19T08:14:50+00:00"
         },
         {
             "name": "drupal/ctools",
@@ -769,7 +768,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/ctools"
             },
-            "time": "2018-02-26 23:05:14"
+            "time": "2018-02-26T23:05:14+00:00"
         },
         {
             "name": "drupal/date",
@@ -861,7 +860,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/date"
             },
-            "time": "2018-01-16 18:58:43"
+            "time": "2018-01-16T18:58:43+00:00"
         },
         {
             "name": "drupal/date_api",
@@ -1083,7 +1082,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/devel"
             },
-            "time": "2018-04-17 23:17:41"
+            "time": "2018-04-17T23:17:41+00:00"
         },
         {
             "name": "drupal/drupal",
@@ -1189,7 +1188,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/drupal"
             },
-            "time": "2018-04-25 17:20:26"
+            "time": "2018-04-25T17:20:26+00:00"
         },
         {
             "name": "drupal/email",
@@ -1235,7 +1234,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/email"
             },
-            "time": "2014-04-10 12:41:03"
+            "time": "2014-04-10T12:41:03+00:00"
         },
         {
             "name": "drupal/entity",
@@ -1293,7 +1292,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/entity"
             },
-            "time": "2018-02-14 14:53:14"
+            "time": "2018-02-14T14:53:14+00:00"
         },
         {
             "name": "drupal/entity_token",
@@ -1601,7 +1600,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/entityreference"
             },
-            "time": "2017-08-16 14:49:30"
+            "time": "2017-08-16T14:49:30+00:00"
         },
         {
             "name": "drupal/epsacrop",
@@ -1791,7 +1790,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/field_group"
             },
-            "time": "2017-11-03 23:28:49"
+            "time": "2017-11-03T23:28:49+00:00"
         },
         {
             "name": "drupal/file_entity",
@@ -1950,7 +1949,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/filter_harmonizer"
             },
-            "time": "2015-08-03 23:19:08"
+            "time": "2015-08-03T23:19:08+00:00"
         },
         {
             "name": "drupal/honeypot",
@@ -1992,7 +1991,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/honeypot"
             },
-            "time": "2018-02-27 04:36:48"
+            "time": "2018-02-27T04:36:48+00:00"
         },
         {
             "name": "drupal/i18n",
@@ -2133,7 +2132,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/i18n"
             },
-            "time": "2018-04-14 16:49:46"
+            "time": "2018-04-14T16:49:46+00:00"
         },
         {
             "name": "drupal/i18n_string",
@@ -2433,7 +2432,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/imageapi_optimize"
             },
-            "time": "2017-07-03 05:57:44"
+            "time": "2017-07-03T05:57:44+00:00"
         },
         {
             "name": "drupal/imce",
@@ -2475,7 +2474,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/imce"
             },
-            "time": "2017-07-12 21:41:58"
+            "time": "2017-07-12T21:41:58+00:00"
         },
         {
             "name": "drupal/invisimail",
@@ -2529,7 +2528,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/invisimail"
             },
-            "time": "2015-02-12 19:53:34"
+            "time": "2015-02-12T19:53:34+00:00"
         },
         {
             "name": "drupal/jquery_update",
@@ -2599,7 +2598,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/jquery_update"
             },
-            "time": "2015-10-20 22:18:12"
+            "time": "2015-10-20T22:18:12+00:00"
         },
         {
             "name": "drupal/l10n_update",
@@ -2649,7 +2648,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/l10n_update"
             },
-            "time": "2017-11-12 11:44:30"
+            "time": "2017-11-12T11:44:30+00:00"
         },
         {
             "name": "drupal/libraries",
@@ -2703,7 +2702,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/libraries"
             },
-            "time": "2016-11-13 14:03:48"
+            "time": "2016-11-13T14:03:48+00:00"
         },
         {
             "name": "drupal/link",
@@ -2785,7 +2784,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/link"
             },
-            "time": "2018-04-25 19:58:17"
+            "time": "2018-04-25T19:58:17+00:00"
         },
         {
             "name": "drupal/media",
@@ -2888,7 +2887,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/media"
             },
-            "time": "2018-04-25 16:51:20"
+            "time": "2018-04-25T16:51:20+00:00"
         },
         {
             "name": "drupal/menu_attributes",
@@ -2942,7 +2941,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/menu_attributes"
             },
-            "time": "2016-07-02 22:53:35"
+            "time": "2016-07-02T22:53:35+00:00"
         },
         {
             "name": "drupal/menu_block",
@@ -3000,7 +2999,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/menu_block"
             },
-            "time": "2017-07-08 20:57:45"
+            "time": "2017-07-08T20:57:45+00:00"
         },
         {
             "name": "drupal/menu_views",
@@ -3047,7 +3046,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/menu_views"
             },
-            "time": "2018-01-25 22:58:57"
+            "time": "2018-01-25T22:58:57+00:00"
         },
         {
             "name": "drupal/metatag",
@@ -3113,7 +3112,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/metatag"
             },
-            "time": "2018-04-11 13:48:32"
+            "time": "2018-04-11T13:48:32+00:00"
         },
         {
             "name": "drupal/module_filter",
@@ -3163,7 +3162,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/module_filter"
             },
-            "time": "2017-06-09 17:24:42"
+            "time": "2017-06-09T17:24:42+00:00"
         },
         {
             "name": "drupal/multiblock",
@@ -3217,7 +3216,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/multiblock"
             },
-            "time": "2017-01-19 09:54:43"
+            "time": "2017-01-19T09:54:43+00:00"
         },
         {
             "name": "drupal/nodequeue",
@@ -3278,7 +3277,88 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/nodequeue"
             },
-            "time": "2017-08-16 14:18:49"
+            "time": "2017-08-16T14:18:49+00:00"
+        },
+        {
+            "name": "drupal/oauth",
+            "version": "dev-3.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/oauth",
+                "reference": "e1558f5c9ae6d31159c8c89bfa6cee0cfed82326"
+            },
+            "require": {
+                "drupal/drupal": "~7.0"
+            },
+            "require-dev": {
+                "drupal/oauth_common": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "7.x-3.3+1-dev",
+                    "datestamp": "1486359484",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/7/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "juampynr",
+                    "homepage": "https://www.drupal.org/user/682736"
+                }
+            ],
+            "homepage": "https://www.drupal.org/project/oauth",
+            "support": {
+                "source": "http://cgit.drupalcode.org/oauth"
+            },
+            "time": "2017-02-06T05:36:28+00:00"
+        },
+        {
+            "name": "drupal/oauth_common",
+            "version": "dev-3.x",
+            "require": {
+                "drupal/drupal": "~7.0",
+                "drupal/oauth": "self.version"
+            },
+            "type": "metapackage",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "7.x-3.3+1-dev",
+                    "datestamp": "1486359484",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/7/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "juampynr",
+                    "homepage": "https://www.drupal.org/user/682736"
+                }
+            ],
+            "description": "Provides OAuth functionality",
+            "homepage": "https://www.drupal.org/project/oauth",
+            "support": {
+                "source": "http://cgit.drupalcode.org/oauth"
+            }
         },
         {
             "name": "drupal/pathauto",
@@ -3333,7 +3413,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/pathauto"
             },
-            "time": "2016-08-30 16:59:38"
+            "time": "2016-08-30T16:59:38+00:00"
         },
         {
             "name": "drupal/prev_next",
@@ -3398,7 +3478,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/prev_next"
             },
-            "time": "2016-01-29 13:05:12"
+            "time": "2016-01-29T13:05:12+00:00"
         },
         {
             "name": "drupal/rules",
@@ -3449,7 +3529,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/rules"
             },
-            "time": "2017-12-14 15:35:15"
+            "time": "2017-12-14T15:35:15+00:00"
         },
         {
             "name": "drupal/smtp",
@@ -3514,7 +3594,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/smtp"
             },
-            "time": "2017-07-05 18:28:31"
+            "time": "2017-07-05T18:28:31+00:00"
         },
         {
             "name": "drupal/title",
@@ -3635,7 +3715,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/token"
             },
-            "time": "2017-04-27 21:50:21"
+            "time": "2017-04-27T21:50:21+00:00"
         },
         {
             "name": "drupal/transliteration",
@@ -3685,7 +3765,87 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/transliteration"
             },
-            "time": "2018-04-13 03:08:23"
+            "time": "2018-04-13T03:08:23+00:00"
+        },
+        {
+            "name": "drupal/twitter",
+            "version": "dev-5.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/twitter",
+                "reference": "916f64be44440fd24cb13f692d2a2bbcec3f8e35"
+            },
+            "require": {
+                "drupal/drupal": "*",
+                "drupal/entity": "*",
+                "drupal/oauth_common": "*"
+            },
+            "require-dev": {
+                "drupal/oauth_api-oauth": "*",
+                "drupal/views": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-5.x": "5.x-dev"
+                },
+                "drupal": {
+                    "version": "7.x-5.11+15-dev",
+                    "datestamp": "1530911021",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/7/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "DamienMcKenna",
+                    "homepage": "https://www.drupal.org/user/108450"
+                },
+                {
+                    "name": "Kristen Pol",
+                    "homepage": "https://www.drupal.org/user/8389"
+                },
+                {
+                    "name": "andrey.troeglazov",
+                    "homepage": "https://www.drupal.org/user/3145389"
+                },
+                {
+                    "name": "daniel_rose",
+                    "homepage": "https://www.drupal.org/user/2835699"
+                },
+                {
+                    "name": "eaton",
+                    "homepage": "https://www.drupal.org/user/16496"
+                },
+                {
+                    "name": "juampynr",
+                    "homepage": "https://www.drupal.org/user/682736"
+                },
+                {
+                    "name": "michaek",
+                    "homepage": "https://www.drupal.org/user/251668"
+                },
+                {
+                    "name": "walkah",
+                    "homepage": "https://www.drupal.org/user/1531"
+                },
+                {
+                    "name": "xurizaemon",
+                    "homepage": "https://www.drupal.org/user/76026"
+                }
+            ],
+            "description": "Adds integration with the Twitter microblogging service.",
+            "homepage": "https://www.drupal.org/project/twitter",
+            "support": {
+                "source": "http://cgit.drupalcode.org/twitter"
+            },
+            "time": "2018-07-06T21:24:00+00:00"
         },
         {
             "name": "drupal/variable",
@@ -3751,7 +3911,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/variable"
             },
-            "time": "2014-04-11 17:56:33"
+            "time": "2014-04-11T17:56:33+00:00"
         },
         {
             "name": "drupal/views",
@@ -4025,7 +4185,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/views_infinite_scroll"
             },
-            "time": "2017-08-18 02:02:05"
+            "time": "2017-08-18T02:02:05+00:00"
         },
         {
             "name": "drupal/webform",
@@ -4179,7 +4339,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/webform_localization"
             },
-            "time": "2018-04-15 19:07:03"
+            "time": "2018-04-15T19:07:03+00:00"
         },
         {
             "name": "drupal/xmlsitemap",
@@ -4256,14 +4416,15 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/xmlsitemap"
             },
-            "time": "2017-11-16 12:06:47"
+            "time": "2017-11-16T12:06:47+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/prev_next": 20
+        "drupal/prev_next": 20,
+        "drupal/twitter": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
