@@ -18,6 +18,9 @@
     outline: none;
   }
 }
+.slick-list {
+  z-index: 1;
+}
 .slick-dots {
   position: relative;
   top: -25px;
@@ -51,8 +54,9 @@
   height: 50px;
   position: absolute;
   top: 50%;
-  left: -50px;
+  left: 0;
   margin-top: -25px;
+  z-index: 2;
   &:hover {
     background: none;
   }
@@ -66,7 +70,7 @@
   }
   &.slick-next {
     left: auto;
-    right: -50px;
+    right: 0;
     &:before {
       background-position: -175px -175px;
     }
