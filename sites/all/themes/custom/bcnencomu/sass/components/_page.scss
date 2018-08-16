@@ -1571,29 +1571,53 @@ article.node {
   }
 }
 
-/* Home Information Channels (Top region) */
-#block-views-nodequeue_2-block {
-  padding: 30px 0;
-  border-top: 1px solid $theme_grey_light;
-  border-bottom: 1px solid $theme_grey_light;
-  @media screen and (max-width: $big_screen_width) {
-    padding-bottom: 0;
-  }
-}
 // generic Information Channels list
-.view-nodequeue-2, .view-nodequeue-5 {
-  .region-content-top & .view-content {
-    @extend %wrapper;
-    @include simple-column-container;
-    .views-row {
-      @include simple-column(4, 2%);
-      padding-left: $page_horizontal_padding;
-      @media screen and (max-width: $big_screen_width) {
-        @include simple-column(2, 2%);
-        margin-bottom: 30px;
+.info-channels-list {
+  // Home Top
+  &.view-canals-informacio-home-footer.view-display-id-block {
+    padding: 30px 0;
+    border-top: 1px solid $theme_grey_light;
+    border-bottom: 1px solid $theme_grey_light;
+    @media screen and (max-width: $big_screen_width) {
+      padding-bottom: 0;
+    }
+
+    .view-content {
+      @extend %wrapper;
+      @include simple-column-container;
+      .views-row {
+        @include simple-column(4, 2%);
+        padding-left: $page_horizontal_padding;
+        @media screen and (max-width: $big_screen_width) {
+          @include simple-column(2, 2%);
+          margin-bottom: 30px;
+        }
+        @media screen and (max-width: $small_screen_width) {
+          @include simple-column(1, 0);
+        }
       }
-      @media screen and (max-width: $small_screen_width) {
-        @include simple-column(1, 0);
+    }
+  }
+  // Full page
+  &.view-nodequeue-2 {
+    .view-content {
+      @extend %narrowbody;
+      @include simple-column-container;
+      .views-row {
+        @include simple-column(2, 2%);
+        margin-bottom: 40px;
+        @media screen and (max-width: $micro_screen_width) {
+          @include simple-column(1, 0);
+        }
+      }
+    }
+  }
+  // Som Comuns
+  &.view-nodequeue-5 {
+    .view-content {
+      @extend %narrowbody;
+      .views-row {
+        margin-bottom: 40px;
       }
     }
   }
@@ -1671,36 +1695,9 @@ body.front {
   }
 }
 
-// Information Channels: Full page
-#block-views-nodequeue_2-block_2 {}
-.view-nodequeue-2 {
-  .view-content {
-    @extend %narrowbody;
-    @include simple-column-container;
-    .views-row {
-      @include simple-column(2, 2%);
-      margin-bottom: 40px;
-      @media screen and (max-width: $micro_screen_width) {
-        @include simple-column(1, 0);
-      }
-    }
-  }
-}
-
 // videos list
 .view-multimedia {
   margin-top: 30px;
-}
-
-// SomComuns Information Channels
-#block-views-nodequeue_5-block {}
-.view-nodequeue-5 {
-  .view-content {
-    @extend %narrowbody;
-    .views-row {
-      margin-bottom: 40px;
-    }
-  }
 }
 
 // Search form page
@@ -2271,7 +2268,7 @@ footer[role="contentinfo"] {
   }
 
   // Information Channels (Footer Top region)
-  #block-views-nodequeue_2-block_1 {
+  .view-canals-informacio-home-footer {
     float: left;
     width: 25%;
     padding-right: 25px;
@@ -2281,9 +2278,11 @@ footer[role="contentinfo"] {
     @media screen and (max-width: $small_screen_width) {
       @include one-columnize;
     }
-  }
-  .view-nodequeue-2 {
-    padding-top: 20px;
+
+    .view-content {
+      padding-top: 20px;
+    }
+
     .views-row {
       margin-bottom: 40px;
     }
