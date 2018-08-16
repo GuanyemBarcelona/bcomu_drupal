@@ -70,6 +70,12 @@ var config = {
       $('button[data-action="open-mobile-menu"]').click(function (e) {
         $mobile_menu.toggleClass('opened');
       });
+
+      // deploy submenus on clicking a mother link
+      $mobile_menu.find('nav > ul > li > a').click(function(e){
+        e.preventDefault();
+        $(this).parent().toggleClass('open');
+      });
     }
 
     // search block

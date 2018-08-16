@@ -471,7 +471,7 @@ header[role="banner"] {
           ul {
             display: none;
           }
-          &.active-trail {
+          &.active-trail, &.open {
             ul {
               display: block;
             }
