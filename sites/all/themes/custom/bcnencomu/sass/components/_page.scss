@@ -1492,6 +1492,18 @@ article.node {
   > .content {
     padding: 5px 0 30px;
     border-top: 1px solid $theme_grey_light;
+    a {
+      color: black;
+      &:hover {
+        color: $theme_red;
+
+        .image {
+          img {
+            opacity: .8;
+          }
+        }
+      }
+    }
     .field-name-field-post-category, .field-name-field-press-category {
       font-size: 160%;
       color: $theme_red;
@@ -1500,12 +1512,6 @@ article.node {
       margin-bottom: 10px;
       img {
         width: 100%;
-      }
-    }
-    a {
-      color: black;
-      &:hover {
-        color: $theme_red;
       }
     }
     h2 {
