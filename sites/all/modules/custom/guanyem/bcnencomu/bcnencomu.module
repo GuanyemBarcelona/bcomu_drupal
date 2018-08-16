@@ -18,6 +18,12 @@ function bcnencomu_init() {
 function bcnencomu_menu() {
   $items = array();
 
+  $items['whatsapp'] = array(
+    'page callback' => 'bcnencomu_whatsapp_redirect',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access content'),
+  );
+
   $items['async/test/%'] = array(
     'page callback' => 'bcnencomu_test',
     'type' => MENU_CALLBACK,
@@ -218,6 +224,14 @@ function bcnencomu_theme($existing, $type, $theme, $path) {
       'template' => 'theme/addtocalendar_button',
     ),
   );
+}
+
+/**
+ * Redirect to whatsapp link
+ */
+function bcnencomu_whatsapp_redirect(){
+  header('HTTP/1.1 301 Moved Permanently');
+  header('Location: http://bit.ly/2gbaBXU');
 }
 
 /*
