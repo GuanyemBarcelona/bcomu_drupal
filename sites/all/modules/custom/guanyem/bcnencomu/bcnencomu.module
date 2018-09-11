@@ -124,6 +124,9 @@ function bcnencomu_node_view($node, $view_mode) {
     switch ($node->type){
       case 'post':
         $path = 'blog';
+        if (!empty($node->field_authors)) {
+          $path = 'opinio';
+        }
         break;
       case 'press':
         $path = 'sala-de-premsa';
