@@ -824,6 +824,7 @@ body.maintenance-page {
   }
   > .inner {
     @extend %clearfix;
+    position: relative;
     padding: 0 $page_horizontal_padding;
   }
 
