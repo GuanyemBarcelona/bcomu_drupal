@@ -329,19 +329,19 @@ function bcnencomu_preprocess_node(&$vars) {
               $vars['classes_array'][] = 'with-external-link';
           }
         }else if ($vars['view_mode'] == 'full'){
-            // tags
-            $tags = field_view_field('node', $node_obj, 'field_tags', array('label' => 'hidden'));
-            $vars['tags'] = render($tags);
+          // tags
+          $tags = field_view_field('node', $node_obj, 'field_tags', array('label' => 'hidden'));
+          $vars['tags'] = render($tags);
 
-            // node navigation
-            //$node_nav = bcnencomu_render_node_navigation($node_obj->nid);
-            //if ($node_nav !== FALSE) $vars['node_nav'] = $node_nav;
+          // node navigation
+          //$node_nav = bcnencomu_render_node_navigation($node_obj->nid);
+          //if ($node_nav !== FALSE) $vars['node_nav'] = $node_nav;
 
-            // lead
-            $lead = field_get_items('node', $node_obj, 'field_lead');
-            if (isset($lead[0]['safe_value'])){
-                $vars['lead'] = $lead[0]['safe_value'];
-            }
+          // lead
+          $lead = field_get_items('node', $node_obj, 'field_lead');
+          if (isset($lead[0]['safe_value'])){
+              $vars['lead'] = $lead[0]['safe_value'];
+          }
         }
 			break;
     case 'banner':
