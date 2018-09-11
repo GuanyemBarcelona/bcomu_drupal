@@ -1277,7 +1277,7 @@ article.node {
       @extend %widerbody;
       margin-bottom: 30px;
 
-      time, .hashtag {
+      time, .hashtag, .field-name-field-opinion-publish-date {
         float: left;
         margin: 0 15px 5px 0;
         font-size: 180%;
@@ -1332,6 +1332,52 @@ article.node {
         margin-bottom: 1em;
         @media screen and (max-width: $mediumbig_screen_width) {
           font-size: 180%;
+        }
+      }
+    }
+    > .content {
+      position: relative;
+
+      .body {
+        @extend %widerbody;
+        @extend %clearfix;
+      }
+
+      // authors
+      .field-name-field-authors {
+        float: left;
+        width: 190px;
+        margin-right: 30px;
+        > .field-items {
+          > .field-item {
+            margin-bottom: 10px;
+          }
+        }
+        .node-author.node-teaser {
+          > .content {
+            border: none;
+            padding: 0;
+          }
+          .field-name-field-image {
+            width: 80px;
+            img {
+              width: 100%;
+              margin-bottom: 0;
+            }
+          }
+          h2 {
+            font-size: 160%;
+          }
+          .field-name-body {
+             p {
+               margin-bottom: 0;
+               font-size: 120%;
+             }
+          }
+        }
+
+        & + .field-body {
+          float: right;
         }
       }
     }
