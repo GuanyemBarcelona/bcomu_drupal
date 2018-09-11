@@ -918,15 +918,26 @@ body.page-taxonomy-term #content-header h1,
   position: absolute;
   top: 40px;
   right: $page_horizontal_padding;
+  @media screen and (max-width: $bigger_screen_width) {
+    position: static;
+    top: auto;
+    right: auto;
+    max-width: $body_width;
+  }
   > .content {
+    width: 180px;
+    height: 180px;
+    @media screen and (max-width: $bigger_screen_width) {
+      margin: 0 auto;
+    }
     p {
+      height: 100%;
       margin-bottom: 0;
       font-size: 100%;
       a {
         display: table-cell;
         vertical-align: middle;
         padding: 10px;
-        width: 180px;
         height: 180px;
         text-align: center;
         font-size: 120%;
