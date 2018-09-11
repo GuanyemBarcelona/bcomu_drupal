@@ -56,7 +56,7 @@
     <aside class="info">
         <div class="categories">
             <?php if (isset($category)){ ?>
-                <?php print render($category); ?>
+              <?php print render($category); ?>
             <?php } ?>
 
             <?php print render($content['field_fight']); ?>
@@ -65,7 +65,7 @@
         </div>
 
         <?php if (isset($share_links)){ ?>
-            <?php print $share_links; ?>
+          <?php print $share_links; ?>
         <?php } ?>
     </aside>
 
@@ -80,22 +80,22 @@
 
     <div class="body">
       <?php if (isset($node_body_html)) { ?>
-      <?php print $node_body_html; ?>
+        <?php print $node_body_html; ?>
       <?php } ?>
     </div>
 
-      <aside class="bottom-info">
-          <?php if (isset($tags)){ ?>
-              <?php print $tags; ?>
-          <?php } ?>
+    <aside class="bottom-info">
+        <?php if (isset($tags)){ ?>
+          <?php print $tags; ?>
+        <?php } ?>
 
-          <?php if (isset($share_links)){ ?>
-              <?php print $share_links; ?>
-          <?php } ?>
-      </aside>
+        <?php if (isset($share_links)){ ?>
+          <?php print $share_links; ?>
+        <?php } ?>
+    </aside>
 
     <?php if (isset($node_nav)){ ?>
-    <?php print $node_nav; ?>
+      <?php print $node_nav; ?>
     <?php } ?>
   </div>
   <?php } ?>
