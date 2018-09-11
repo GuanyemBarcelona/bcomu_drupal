@@ -342,6 +342,9 @@ function bcnencomu_preprocess_node(&$vars) {
           if (isset($lead[0]['safe_value'])){
               $vars['lead'] = $lead[0]['safe_value'];
           }
+
+          // Opinion post
+          $vars['is_opinion'] = isset($vars['content']['field_authors']);
         }
 			break;
     case 'banner':
