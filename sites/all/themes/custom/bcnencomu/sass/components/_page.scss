@@ -1588,6 +1588,55 @@ article.node {
   }
 }
 
+// opinion list
+.view-opinion {
+  padding-top: 40px;
+  .views-row {
+    position: relative;
+    padding: 10px 0 50px 100px;
+    border-top: 1px solid $theme_grey_light;
+
+    .views-field-field-image {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      width: 80px;
+    }
+
+    .views-field-title {
+      font-size: 160%;
+      line-height: 1;
+      color: $theme_red;
+      margin-bottom: .3em;
+    }
+
+    .views-field-field-opinion-publish-date {
+      font-size: 160%;
+      color: $theme_grey_light;
+      position: absolute;
+      top: 10px;
+      right: 0;
+      line-height: 1;
+    }
+
+    .views-field-title-field {
+      font-size: 180%;
+      font-weight: bold;
+      margin-bottom: .4em;
+      word-break: break-word;
+      a {
+        color: black;
+      }
+    }
+
+    .views-field-body {
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
 /* Home: carroussel */
 #block-views-nodequeue_1-block {}
 .view-nodequeue-1 {
