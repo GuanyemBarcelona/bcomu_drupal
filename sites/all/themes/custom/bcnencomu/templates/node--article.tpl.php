@@ -45,7 +45,11 @@
   <?php } else if ($view_mode == 'full') { ?>
   <?php /* ----------------- FULL DISPLAY ----------------- */ ?>
   <header>
-    <time datetime="<?php print $date['machine']; ?>"><?php print $date['human']; ?></time>
+    <?php if (!$is_opinion) { ?>
+      <time datetime="<?php print $date['machine']; ?>"><?php print $date['human']; ?></time>
+    <?php } else { ?>
+      <?php print render($content['field_opinion_publish_date']); ?>
+    <?php } ?>
 
     <?php if (isset($hashtag)){ ?>
     <p class="hashtag"><?php print $hashtag; ?></p>
@@ -79,8 +83,14 @@
     <?php } ?>
 
     <div class="body">
+      <?php if ($is_opinion) { ?>
+        <?php print render($content['field_authors']); ?>
+      <?php } ?>
+
       <?php if (isset($node_body_html)) { ?>
-        <?php print $node_body_html; ?>
+        <div class="field-body">
+          <?php print $node_body_html; ?>
+        </div>
       <?php } ?>
     </div>
 
