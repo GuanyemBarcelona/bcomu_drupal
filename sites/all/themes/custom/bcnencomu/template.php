@@ -449,6 +449,11 @@ function bcnencomu_preprocess_node(&$vars) {
         $vars['addtocalendar_button'] = bcnencomu_render_addtocalendar_button($event_data);
       }
       break;
+    case 'author': /********** AUTHOR **********/
+      if ($vars['view_mode'] == 'full'){
+        $vars['author_posts'] = views_embed_view('opinion_by_author', 'block_1', $node_obj->nid);
+      }
+      break;
 	}
 }
 

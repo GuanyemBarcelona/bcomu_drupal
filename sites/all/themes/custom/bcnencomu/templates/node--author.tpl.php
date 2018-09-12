@@ -14,11 +14,17 @@
   <?php } else if ($view_mode == 'full') { ?>
   <?php /* ----------------- FULL DISPLAY ----------------- */ ?>
   <div class="content">
-    <?php print render($content['field_image']); ?>
+    <div class="column-left">
+      <?php print render($content['field_image']); ?>
 
-    <h1><?php print $title; ?></h1>
+      <h1><?php print $title; ?></h1>
 
-    <?php print render($content['body']); ?>
+      <?php print render($content['body']); ?>
+    </div>
+
+    <div class="column-right">
+      <?php print $author_posts; ?>
+    </div>
   </div>
   <?php } ?>
 </<?php print $tag; ?>> <!-- /node-->
