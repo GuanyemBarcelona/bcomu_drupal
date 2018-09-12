@@ -1524,6 +1524,52 @@ article.node {
       margin-bottom: 20px;
     }
   }
+
+  // author detail
+  &.node-author {
+    > .content {
+      @extend %clearfix;
+      .column-left {
+        float: left;
+        width: 33%;
+        padding-top: 20px;
+        padding-right: 20px;
+        border-top: 1px solid $theme_grey_light;
+        @media screen and (max-width: $big_screen_width) {
+          width: 49%;
+        }
+        @media screen and (max-width: $small_screen_width) {
+          width: 100%;
+        }
+
+        .field-name-field-image {
+          margin-bottom: 15px;
+        }
+
+        h1 {
+          font-size: 240%;
+          margin-bottom: .2em;
+        }
+
+        .field-name-body {
+          p {
+            font-size: 240%;
+          }
+        }
+      }
+
+      .column-right {
+        float: right;
+        width: 65%;
+        @media screen and (max-width: $big_screen_width) {
+          width: 49%;
+        }
+        @media screen and (max-width: $small_screen_width) {
+          width: 100%;
+        }
+      }
+    }
+  }
 }
 /**************/
 
@@ -1634,8 +1680,8 @@ article.node {
   }
 }
 
-// opinion list
-.view-opinion {
+// opinion lists
+.view-opinion, .view-opinion-by-author {
   padding-top: 40px;
   .views-row {
     position: relative;
@@ -1668,7 +1714,7 @@ article.node {
     .views-field-title-field {
       font-size: 180%;
       font-weight: bold;
-      margin-bottom: .4em;
+      margin-bottom: .5em;
       word-break: break-word;
       a {
         color: black;
@@ -1679,6 +1725,23 @@ article.node {
       p {
         margin-bottom: 0;
       }
+    }
+  }
+}
+.view-opinion-by-author {
+  padding-top: 0;
+  .views-row {
+    padding-left: 0;
+    width: 49%;
+    @media screen and (max-width: $big_screen_width) {
+      width: 100%;
+    }
+
+    .views-field-field-opinion-publish-date {
+      top: 14px;
+    }
+    .views-field-title-field {
+      padding-right: 88px;
     }
   }
 }
