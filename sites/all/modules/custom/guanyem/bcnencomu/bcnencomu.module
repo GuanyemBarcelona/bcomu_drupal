@@ -131,7 +131,10 @@ function bcnencomu_node_view($node, $view_mode) {
       case 'press':
         $path = 'sala-de-premsa';
         $menu_name = 'menu-secondary-menu';
-        break;  
+        break;
+      case 'author':
+        $path = 'opinio';
+        break;
     }
     if (isset($path)) menu_tree_set_path($menu_name, $path);
   }
