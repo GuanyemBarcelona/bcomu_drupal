@@ -1547,14 +1547,14 @@ article.node {
         flex-wrap: wrap;
       }
     }
-    .views-row {
-      width: 32%;
-      @media screen and (max-width: $big_screen_width) {
-        width: 49%;
-      }
-      @media screen and (max-width: $small_screen_width) {
-        width: 100%;
-      }
+  }
+  .views-row {
+    width: 32%;
+    @media screen and (max-width: $big_screen_width) {
+      width: 49%;
+    }
+    @media screen and (max-width: $small_screen_width) {
+      width: 100%;
     }
   }
 }
