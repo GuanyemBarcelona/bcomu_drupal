@@ -1540,6 +1540,7 @@ article.node {
         }
         @media screen and (max-width: $small_screen_width) {
           width: 100%;
+          margin-bottom: 30px;
         }
 
         .field-name-field-image {
@@ -1552,9 +1553,16 @@ article.node {
         }
 
         .field-name-body {
+          margin-bottom: 8px;
           p {
             font-size: 240%;
+            margin-bottom: 0;
           }
+        }
+
+        .field-name-field-twitter-user {
+          font-size: 240%;
+          color: $theme_red;
         }
       }
 

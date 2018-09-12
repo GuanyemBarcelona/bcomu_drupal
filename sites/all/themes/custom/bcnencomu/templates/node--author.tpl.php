@@ -20,6 +20,8 @@
       <h1><?php print $title; ?></h1>
 
       <?php print render($content['body']); ?>
+
+      <?php print render($content['field_twitter_user']); ?>
     </div>
 
     <div class="column-right">
