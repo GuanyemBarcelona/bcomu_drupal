@@ -81,7 +81,6 @@ body.page-batalla-accions-als-barris .region-content-top {
 .view-batalla-current {
   .views-row {
     .views-field-field-icon {
-      display: none;
       float: left;
       margin-right: 20px;
       width: 133px;
@@ -91,16 +90,14 @@ body.page-batalla-accions-als-barris .region-content-top {
         margin: 0 auto 20px;
       }
     }
-    .views-field-field-lead {
+    .views-field-name {
       padding-top: 5px;
-      p {
-        font-size: 420%;
-        font-weight: 900;
-        line-height: 1.1;
-        margin-bottom: 0;
-        @media screen and (max-width: $mediumbig_screen_width) {
-          font-size: 320%;
-        }
+      font-size: 420%;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 0;
+      @media screen and (max-width: $mediumbig_screen_width) {
+        font-size: 320%;
       }
     }
     .views-field-description-field {
