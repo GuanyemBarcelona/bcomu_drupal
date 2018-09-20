@@ -217,67 +217,90 @@ body.page-batalla-accions-als-barris .region-content-top {
   }
   .view-content {
     @extend %wrapper;
-    @include simple-column-container;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     .views-row {
-      @include simple-column(3, 4%);
-      margin-bottom: 80px;
-      @media screen and (max-width: $big_screen_width) {
-        @include simple-column(2, 4%);
+      display: table;
+      width: 190px;
+      height: 190px;
+      padding: 5px 10px;
+      margin: 0 10px 80px;
+      border: 2px solid black;
+      border-radius: 50%;
+      @media screen and (max-width: $huge_screen_width) {
+        width: 170px;
+        height: 170px;
         margin-bottom: 50px;
       }
-      @media screen and (max-width: $small_screen_width) {
-        @include simple-column(1, 0);
+      @media screen and (max-width: $big_screen_width) {
         margin-bottom: 20px;
       }
       &:hover {
-        .views-field-field-icon {
+        .views-field-name-field {
           display: none;
         }
-        .views-field-field-icon-on {
-          display: block;
+        .views-field-field-lead {
+          display: table-cell;
         }
       }
-      &.tid-679:hover .views-field-field-lead a {
-        color: $theme_habitatge;
+      &.tid-679 {
+        border-color: $theme_habitatge;
+        &:hover {
+          background-color: $theme_habitatge;
+        }
       }
-      &.tid-680:hover .views-field-field-lead a {
-        color: $theme_ciutatverda;
+      &.tid-680 {
+        border-color: $theme_ciutatverda;
+        &:hover {
+          background-color: $theme_ciutatverda;
+        }
       }
-      &.tid-681:hover .views-field-field-lead a {
-        color: $theme_gestiopublica;
+      &.tid-681 {
+        border-color: $theme_gestiopublica;
+        &:hover {
+          background-color: $theme_gestiopublica;
+        }
       }
-      &.tid-682:hover .views-field-field-lead a {
-        color: $theme_desigualtats;
+      &.tid-682 {
+        border-color: $theme_desigualtats;
+        &:hover {
+          background-color: $theme_desigualtats;
+        }
       }
-      &.tid-683:hover .views-field-field-lead a {
-        color: $theme_novapolitica;
+      &.tid-683 {
+        border-color: $theme_novapolitica;
+        &:hover {
+          background-color: $theme_novapolitica;
+        }
       }
-      &.tid-684:hover .views-field-field-lead a {
-        color: $theme_barris2;
+      &.tid-684 {
+        border-color: $theme_barris2;
+        &:hover {
+          background-color: $theme_barris2;
+        }
       }
-      .views-field-field-icon, .views-field-field-icon-on {
-        width: 177px;
-        height: 177px;
+      .views-field-name-field {
+        display: table-cell;
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
         text-align: center;
-        margin: 0 auto 10px;
-        @media screen and (max-width: $small_screen_width) {
-          width: 150px;
-          height: 150px;
-        }
-        img {
-          display: inline-block;
-        }
-      }
-      .views-field-field-icon-on {
-        display: none;
-      }
-      .views-field-field-lead {
-        text-align: center;
-        font-size: 180%;
+        font-size: 240%;
         font-weight: bold;
         line-height: 1.25;
-        max-width: 300px;
-        margin: 0 auto;
+        a {
+          color: black;
+        }
+      }
+      .views-field-field-lead {
+        display: none;
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+        text-align: center;
+        font-size: $base-font-size;
+        line-height: $base-line-height;
         a {
           color: black;
         }
