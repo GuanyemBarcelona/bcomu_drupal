@@ -263,6 +263,9 @@ var config = {
       });
     }
 
+    // home batalles: change last link
+    $('.view-batalles-home .view-content .views-row.tid-684 .views-field-field-lead a').attr('href', '/' + config.LANGUAGE + '/batalla/ciutat-dels-barris');
+
     // accordions inside article body, the html of each collapsible group is like:
     // .group
     //   h3
