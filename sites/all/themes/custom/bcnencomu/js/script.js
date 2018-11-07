@@ -61,7 +61,7 @@ var config = {
       var $home_link = $('#site-logo a');
       var home_link_html = '';
       if ($home_link.length) home_link_html = '<a href="' + $home_link.attr('href') + '" class="home-link extra-mobile-link">'+$home_link.attr('title')+'</a>';
-      var $participa_link = $('.cta-mainmenu-participa a');
+      var $participa_link = $('.cta-mainmenu-participa .content a');
       var participa_link_html = '';
       if ($participa_link.length) participa_link_html = '<a href="' + $participa_link.attr('href') + '" class="participa-link extra-mobile-link">'+$participa_link.text()+'</a>';
       console.log(participa_link_html);
