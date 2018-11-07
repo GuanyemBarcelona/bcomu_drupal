@@ -451,7 +451,7 @@ header[role="banner"] {
     background: white;
     box-shadow: -5px 0 50px 0 rgba(0, 0, 0, 0.31);
     transition: all 1s ease;
-    .home-link {
+    .extra-mobile-link {
       display: block;
       font-size: 180%;
       font-weight: bold;
@@ -512,17 +512,17 @@ header[role="banner"] {
           }
         }
       }
-      & + nav {
-        ul.menu {
-          padding: 10px 0;
-          li {
-            border-bottom: none;
-            a {
-              font-size: 160%;
-              font-weight: normal;
-              color: $theme_grey_darker;
-              padding: 6px 10px;
-            }
+    }
+    .participa-link + nav {
+      ul.menu {
+        padding: 10px 0;
+        li {
+          border-bottom: none;
+          a {
+            font-size: 160%;
+            font-weight: normal;
+            color: $theme_grey_darker;
+            padding: 6px 10px;
           }
         }
       }

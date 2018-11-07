@@ -60,13 +60,17 @@ var config = {
       $('#page').before('<div class="mobile-menu"><button data-action="open-mobile-menu">Menu</button></div>');
       var $home_link = $('#site-logo a');
       var home_link_html = '';
-      if ($home_link.length) home_link_html = '<a href="' + $home_link.attr('href') + '" class="home-link">'+$home_link.attr('title')+'</a>';
+      if ($home_link.length) home_link_html = '<a href="' + $home_link.attr('href') + '" class="home-link extra-mobile-link">'+$home_link.attr('title')+'</a>';
+      var $participa_link = $('.cta-mainmenu-participa a');
+      var participa_link_html = '';
+      if ($participa_link.length) participa_link_html = '<a href="' + $participa_link.attr('href') + '" class="participa-link extra-mobile-link">'+$participa_link.text()+'</a>';
+      console.log(participa_link_html);
       var $mobile_menu = $('.mobile-menu');
       var $main_menu_content = $main_menu.find('> .content');
       var $secondary_menu_content = $('#block-menu-menu-secondary-menu > .content');
       var $social_networks_content = $('#block-bcnencomu-social_networks_links > .content');
       var $locale_menu_content = $('#block-locale-language > .content');
-      $mobile_menu.append('<div class="menus-wrapper">' + home_link_html + $main_menu_content.html() + $secondary_menu_content.html() + $social_networks_content.html() + $locale_menu_content.html() + '</div>');
+      $mobile_menu.append('<div class="menus-wrapper">' + home_link_html + $main_menu_content.html() + participa_link_html + $secondary_menu_content.html() + $social_networks_content.html() + $locale_menu_content.html() + '</div>');
       $('button[data-action="open-mobile-menu"]').click(function (e) {
         $mobile_menu.toggleClass('opened');
       });
@@ -225,7 +229,7 @@ var config = {
 
     // tags icon
     $('article.node-post-like > .content .info .field-name-field-tags .field-items').prepend('<i class="fa fa-tags"></i>');
-    
+
     // media gallery
     var $image_gallery = $('article .image-gallery');
     if ($image_gallery.length){
@@ -295,7 +299,7 @@ var config = {
               }else{
                 $title.append('<i class="fa fa-chevron-down"></i>');
               }
-              
+
             }else{ // another sibling group
               $title.parent().removeClass('open');
               $content.slideUp(anim_speed);
