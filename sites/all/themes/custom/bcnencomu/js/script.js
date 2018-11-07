@@ -76,9 +76,13 @@ var config = {
       });
 
       // deploy submenus on clicking a mother link
-      $mobile_menu.find('nav > ul > li > a').click(function(e){
-        e.preventDefault();
-        $(this).parent().toggleClass('open');
+      $mobile_menu.find('nav > ul > li').each(function(i){
+        if ($(this).find('ul').length) {
+          $(this).find('> a').click(function(e){
+            e.preventDefault();
+            $(this).parent().toggleClass('open');
+          });
+        }
       });
     }
 
