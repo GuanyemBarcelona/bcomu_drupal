@@ -86,6 +86,14 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
         $form['author']['#access'] = false;
       }
       break;
+    case 'candidacy_person_node_form':
+      // Districts only visible if Tipus: Representants Districtes
+      $form['field_candidacy_district']['#states'] = array(
+        'visible' => array(
+          ':input[name^="field_candidacy_type['.LANGUAGE_NONE.']"]' => array('value' => '489'),
+        ),
+      );
+      break;
   }
 }
 
