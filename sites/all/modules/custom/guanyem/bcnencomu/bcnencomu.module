@@ -93,6 +93,12 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
           ':input[name="field_candidacy_type['.LANGUAGE_NONE.']"]' => array('value' => '489'),
         ),
       );
+
+      // hide some fields
+      $hidden_fields = array('field_youtube_url');
+      foreach ($hidden_fields as $field) {
+        $form[$field]['#access'] = false;
+      }
       break;
   }
 }
