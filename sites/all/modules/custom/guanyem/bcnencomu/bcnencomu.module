@@ -87,6 +87,15 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
       }
       break;
     case 'candidacy_person_node_form':
+      // fields non visible and non editable to non admins
+      if (!user_access('bypass node access')) {
+        $unavailable_fields = array('field_candidacy_head');
+        foreach ($unavailable_fields as $field_name) {
+          $form[$field_name]['#disabled'] = true;
+          $form[$field_name]['#access'] = false;
+        }
+      }
+
       // hide some fields
       $hidden_fields = array('field_youtube_url');
       foreach ($hidden_fields as $field_name) {
