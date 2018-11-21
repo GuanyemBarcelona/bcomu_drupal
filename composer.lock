@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9c7cb8a0f8fe1d448a0a295136e7d4f",
+    "content-hash": "ff8e2e14fce8f7695f5aa5378d4341f8",
     "packages": [
         {
             "name": "composer/installers",
@@ -1187,8 +1187,7 @@
             "homepage": "https://www.drupal.org/project/drupal",
             "support": {
                 "source": "http://cgit.drupalcode.org/drupal"
-            },
-            "time": "2018-04-25T17:20:26+00:00"
+            }
         },
         {
             "name": "drupal/email",
@@ -2785,6 +2784,108 @@
                 "source": "http://cgit.drupalcode.org/link"
             },
             "time": "2018-04-25T19:58:17+00:00"
+        },
+        {
+            "name": "drupal/maxlength",
+            "version": "dev-3.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/maxlength",
+                "reference": "9bbeb4b49ad624e38cd68e0d11514456b73ab080"
+            },
+            "require": {
+                "drupal/drupal": "~7.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "7.x-3.2-beta2+4-dev",
+                    "datestamp": "1437512339",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/7/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Aron Novak",
+                    "homepage": "https://www.drupal.org/user/61864"
+                },
+                {
+                    "name": "Schnitzel",
+                    "homepage": "https://www.drupal.org/user/643820"
+                },
+                {
+                    "name": "a_c_m",
+                    "homepage": "https://www.drupal.org/user/195063"
+                },
+                {
+                    "name": "artur.thiessen",
+                    "homepage": "https://www.drupal.org/user/2390554"
+                },
+                {
+                    "name": "barneytech",
+                    "homepage": "https://www.drupal.org/user/669922"
+                },
+                {
+                    "name": "claudiu_cristea",
+                    "homepage": "https://www.drupal.org/user/2623935"
+                },
+                {
+                    "name": "dawehner",
+                    "homepage": "https://www.drupal.org/user/99340"
+                },
+                {
+                    "name": "derhasi",
+                    "homepage": "https://www.drupal.org/user/83474"
+                },
+                {
+                    "name": "frjo",
+                    "homepage": "https://www.drupal.org/user/5546"
+                },
+                {
+                    "name": "hefox",
+                    "homepage": "https://www.drupal.org/user/426416"
+                },
+                {
+                    "name": "jm.federico",
+                    "homepage": "https://www.drupal.org/user/509892"
+                },
+                {
+                    "name": "k4v",
+                    "homepage": "https://www.drupal.org/user/744246"
+                },
+                {
+                    "name": "mariano73",
+                    "homepage": "https://www.drupal.org/user/1324866"
+                },
+                {
+                    "name": "mariuss",
+                    "homepage": "https://www.drupal.org/user/28539"
+                },
+                {
+                    "name": "sanduhrs",
+                    "homepage": "https://www.drupal.org/user/28074"
+                },
+                {
+                    "name": "vasi1186",
+                    "homepage": "https://www.drupal.org/user/342104"
+                }
+            ],
+            "description": "Limit the number of characters in textfields and textareas and shows the amount of characters left.",
+            "homepage": "https://www.drupal.org/project/maxlength",
+            "support": {
+                "source": "http://cgit.drupalcode.org/maxlength"
+            },
+            "time": "2015-07-21T20:50:18+00:00"
         },
         {
             "name": "drupal/media",
