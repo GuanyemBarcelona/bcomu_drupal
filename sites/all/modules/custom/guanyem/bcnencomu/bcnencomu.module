@@ -87,18 +87,18 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
       }
       break;
     case 'candidacy_person_node_form':
+      // hide some fields
+      $hidden_fields = array('field_youtube_url');
+      foreach ($hidden_fields as $field_name) {
+        $form[$field_name]['#access'] = false;
+      }
+
       // Districts only visible if Tipus: Representants Districtes
       $form['field_candidacy_district']['#states'] = array(
         'visible' => array(
           ':input[name^="field_candidacy_type['.LANGUAGE_NONE.']"]' => array('value' => '489'),
         ),
       );
-
-      // hide some fields
-      $hidden_fields = array('field_youtube_url');
-      foreach ($hidden_fields as $field) {
-        $form[$field]['#access'] = false;
-      }
       break;
   }
 }
