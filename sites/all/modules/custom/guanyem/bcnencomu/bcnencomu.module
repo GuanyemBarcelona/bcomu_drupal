@@ -89,7 +89,7 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
     case 'candidacy_person_node_form':
       // fields non visible and non editable to non admins
       if (!user_access('bypass node access')) {
-        $unavailable_fields = array('field_candidacy_head', 'field_candidacy_type', 'field_candidacy_district');
+        $unavailable_fields = array('field_candidacy_head');
         foreach ($unavailable_fields as $field_name) {
           $form[$field_name]['#disabled'] = true;
           $form[$field_name]['#access'] = false;
@@ -101,6 +101,23 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
       foreach ($hidden_fields as $field_name) {
         $form[$field_name]['#access'] = false;
       }
+
+      // Year only visible if Elections type is not Organ
+      $form['field_year']['#states'] = array(
+        'visible' => array(
+          ':input[name^="field_elections_type['.LANGUAGE_NONE.']"]' => array(
+            array('value' => '831'),
+            array('value' => '832')
+          ),
+        ),
+      );
+
+      // Organ only visible if Elections type is Organ
+      $form['field_candidacy_type']['#states'] = array(
+        'visible' => array(
+          ':input[name^="field_elections_type['.LANGUAGE_NONE.']"]' => array('value' => '830'),
+        ),
+      );
 
       // Districts only visible if Tipus: Representants Districtes
       $form['field_candidacy_district']['#states'] = array(
