@@ -293,6 +293,17 @@ select {
   background-color: white;
 }
 
+// file upload
+input[type="file"] {
+  font-size: 160%;
+}
+.form-managed-file {
+  .form-submit {
+    width: auto;
+    margin-left: 10px;
+  }
+}
+
 /* radios */
 input[type="radio"]:not(:checked),
 input[type="radio"]:checked {
