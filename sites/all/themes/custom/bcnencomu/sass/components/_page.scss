@@ -1155,15 +1155,11 @@ article.node {
 
   // tables
   table {
-    margin: 0 0 30px;
-    border-left: 1px solid $theme_red;
-    border-bottom: 1px solid $theme_red;
     th, td {
-      font-size: 1.2em;
-      padding: .6em .8em;
-      border-right: 1px solid $theme_red;
+      font-size: $base-font-size;
+      padding: .8em;
       p {
-        font-size: 1em;
+        font-size: 100%;
         margin-bottom: 0;
       }
     }
@@ -1172,6 +1168,11 @@ article.node {
       background: $theme_red;
       color: white;
       font-weight: 700;
+    }
+    td {
+      td {
+        font-size: 100%;
+      }
     }
   }
 
