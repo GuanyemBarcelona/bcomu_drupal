@@ -247,6 +247,20 @@ button[data-ajax-call] {
   }
 }
 
+.filter-wrapper {
+  padding: 0;
+  margin-bottom: 30px;
+  .filter-help {
+    display: none;
+  }
+  .filter-guidelines {
+    padding: 0;
+    font-size: 140%;
+    line-height: 1.25;
+    color: $theme_grey_dark;
+  }
+}
+
 fieldset {
   border: none;
   padding: 0;
