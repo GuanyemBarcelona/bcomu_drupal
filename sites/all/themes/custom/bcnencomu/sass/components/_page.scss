@@ -52,6 +52,13 @@ body {
   }
 }
 
+.narrowbody {
+  @extend %narrowbody;
+}
+.widerbody {
+  @extend %widerbody;
+}
+
 #page {
   position: relative;
   z-index: 1;
