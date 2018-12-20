@@ -243,13 +243,27 @@ button[data-ajax-call] {
     font-size: 140%;
     line-height: 1.25;
     padding: .3em 0;
+    color: $body_color;
+  }
+  .counter {
     color: $theme_grey_dark;
+  }
+}
+
+.text-format-wrapper {
+  margin-bottom: 30px;
+
+  .description {
+    margin-top: 0;
+    font-size: 140%;
+    line-height: 1.25;
+    padding: .3em 0;
+    color: $body_color;
   }
 }
 
 .filter-wrapper {
   padding: 0;
-  margin-bottom: 30px;
   .filter-help {
     display: none;
   }
