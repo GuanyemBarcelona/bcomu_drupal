@@ -108,6 +108,13 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
         ),
       );
 
+      // Capabilities only visible if Elections type is European
+      $form['field_candidacy_capabilities']['#states'] = array(
+        'visible' => array(
+          ':input[name^="field_elections_type['.LANGUAGE_NONE.']"]' => array('value' => '832'),
+        ),
+      );
+
       // Year only visible if Elections type is not Organ
       $form['field_year']['#states'] = array(
         'visible' => array(
