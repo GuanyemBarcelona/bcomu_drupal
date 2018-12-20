@@ -101,6 +101,13 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
         $form[$field_name]['#access'] = false;
       }
 
+      // Voluntat de confeccionar equip govern only visible if Elections type is Municipal
+      $form['field_candidacy_govern_team']['#states'] = array(
+        'visible' => array(
+          ':input[name^="field_elections_type['.LANGUAGE_NONE.']"]' => array('value' => '831'),
+        ),
+      );
+
       // Year only visible if Elections type is not Organ
       $form['field_year']['#states'] = array(
         'visible' => array(
