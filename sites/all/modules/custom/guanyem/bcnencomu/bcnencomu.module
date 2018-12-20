@@ -92,7 +92,6 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
         $unavailable_fields = array('field_candidacy_head', 'field_elections_type', 'field_year', 'field_candidacy_type', 'field_candidacy_district');
         foreach ($unavailable_fields as $field_name) {
           $form[$field_name]['#disabled'] = true;
-          $form[$field_name]['#access'] = false;
         }
       }
 
