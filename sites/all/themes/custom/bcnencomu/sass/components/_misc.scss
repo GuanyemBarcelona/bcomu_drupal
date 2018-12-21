@@ -259,6 +259,12 @@ button[data-ajax-call] {
   .fieldset-description {
     @extend %formdescription;
   }
+
+  .form-type-managed-file {
+    label {
+      display: none;
+    }
+  }
 }
 
 .filter-wrapper {
