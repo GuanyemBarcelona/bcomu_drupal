@@ -65,6 +65,14 @@
   }
 }
 
+// form item description
+%formdescription {
+  font-size: 140%;
+  line-height: 1.25;
+  padding: .3em 0;
+  color: $body_color;
+}
+
 // pager item
 %pager__item {
   display: inline-block;

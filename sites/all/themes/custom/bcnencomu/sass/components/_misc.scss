@@ -227,7 +227,6 @@ button[data-ajax-call] {
 /**
  * Forms
  */
-
 .form-item {
   position: relative;
   margin-bottom: 30px;
@@ -240,10 +239,7 @@ button[data-ajax-call] {
   }
 
   .description, .counter {
-    font-size: 140%;
-    line-height: 1.25;
-    padding: .3em 0;
-    color: $body_color;
+    @extend %formdescription;
   }
   .counter {
     color: $theme_grey_dark;
@@ -255,10 +251,13 @@ button[data-ajax-call] {
 
   .description {
     margin-top: 0;
-    font-size: 140%;
-    line-height: 1.25;
-    padding: .3em 0;
-    color: $body_color;
+    @extend %formdescription;
+  }
+}
+
+.fieldset-wrapper {
+  .fieldset-description {
+    @extend %formdescription;
   }
 }
 
