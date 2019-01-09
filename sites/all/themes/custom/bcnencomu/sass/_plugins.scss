@@ -23,6 +23,7 @@
 }
 .slick-dots {
   position: relative;
+  z-index: 2;
   top: -25px;
   text-align: center;
   height: 0;
