@@ -64,7 +64,6 @@ var config = {
       var $participa_link = $('.cta-mainmenu-participa .content a');
       var participa_link_html = '';
       if ($participa_link.length) participa_link_html = '<a href="' + $participa_link.attr('href') + '" class="participa-link extra-mobile-link">'+$participa_link.text()+'</a>';
-      console.log(participa_link_html);
       var $mobile_menu = $('.mobile-menu');
       var $main_menu_content = $main_menu.find('> .content');
       var $secondary_menu_content = $('#block-menu-menu-secondary-menu > .content');
