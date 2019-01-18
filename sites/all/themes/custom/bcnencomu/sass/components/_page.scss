@@ -2632,6 +2632,7 @@ footer[role="contentinfo"] {
   }
 
   [data-action="close"] {
+    z-index: 2;
     background: none;
     padding: 0;
     border: none;
