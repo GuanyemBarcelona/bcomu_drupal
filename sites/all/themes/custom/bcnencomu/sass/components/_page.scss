@@ -2617,3 +2617,70 @@ footer[role="contentinfo"] {
   float: left;
   width: 33%;
 }
+
+// whatsapp message
+.whatsapp-message {
+  display: none;
+  z-index: 200;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #089312;
+  body.with-whatsapp-message & {
+    display: block;
+  }
+
+  [data-action="close"] {
+    background: none;
+    padding: 0;
+    border: none;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 25px;
+    &:before {
+      @include iconize(0, -225px, 1, 1);
+      content: " ";
+    }
+    span {
+      display: none;
+    }
+  }
+
+  > .content {
+    @extend %wrapper;
+    padding: 20px 100px 20px 55px;
+    position: relative;
+
+    [data-icon] {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      color: white;
+      font-size: 360%;
+    }
+
+    p {
+      color: white;
+      margin-bottom: 0;
+      font-size: 180%;
+      font-weight: bold;
+
+      a {
+        color: white;
+      }
+    }
+
+    a.btn {
+      position: absolute;
+      top: 30px;
+      right: 0;
+      color: white;
+      font-size: 180%;
+      font-weight: bold;
+      border: 2px solid white;
+      padding: 5px 10px;
+    }
+  }
+}

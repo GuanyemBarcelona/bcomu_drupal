@@ -205,6 +205,29 @@ var config = {
       }
     }
 
+    // whatsapp message
+    var $whatsapp_message = $('.whatsapp-message');
+    if ($whatsapp_message.length) {
+      var wapp_cookie_name = 'wapp-message-closed';
+      var wapp_cookie = getCookie(wapp_cookie_name);
+      var close_wapp_message = function() {
+        setCookie(wapp_cookie_name, 1, 30);
+        $whatsapp_message.slideUp(300);
+        $('#page').css({'padding-top': 0});
+      };
+      if (!wapp_cookie) {
+        $whatsapp_message.prepend('<button data-action="close"><span>x</span></button>');
+        $whatsapp_message.find('.content').prepend('<i data-icon data-social-network="watsapp"></i>');
+        var $close_btn = $whatsapp_message.find('[data-action="close"]');
+        $whatsapp_message.prependTo('#page');
+        $('body').addClass('with-whatsapp-message');
+        $('#page').css({'padding-top': $whatsapp_message.height()});
+        $whatsapp_message.on('click', 'a, [data-action="close"]', function(e){
+          close_wapp_message();
+        });
+      }
+    }
+
     // Home Slider
     $('.view-nodequeue-1 .view-content').slick({
       infinite: false,
