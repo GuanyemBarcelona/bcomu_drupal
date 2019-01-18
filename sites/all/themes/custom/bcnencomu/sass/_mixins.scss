@@ -192,5 +192,5 @@
   display: block;
   width: (25px * $block_width);
   height: (25px * $block_height);
-  background: url("../img/sprite.png") no-repeat $left $top;
+  background: url("../img/sprite.png?" + $sprite_version) no-repeat $left $top;
 }
