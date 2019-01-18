@@ -2650,8 +2650,14 @@ footer[role="contentinfo"] {
 
   > .content {
     @extend %wrapper;
-    padding: 20px 100px 20px 55px;
+    padding: 20px 155px 20px 55px;
     position: relative;
+    @media screen and (max-width: $page_inner_maxwidth) {
+      padding-left: 75px;
+    }
+    @media screen and (max-width: $small_screen_width) {
+      padding: 20px 20px 20px 75px;
+    }
 
     [data-icon] {
       position: absolute;
@@ -2659,6 +2665,9 @@ footer[role="contentinfo"] {
       left: 0;
       color: white;
       font-size: 360%;
+      @media screen and (max-width: $page_inner_maxwidth) {
+        left: 20px;
+      }
     }
 
     p {
@@ -2681,6 +2690,16 @@ footer[role="contentinfo"] {
       font-weight: bold;
       border: 2px solid white;
       padding: 5px 10px;
+      @media screen and (max-width: $page_inner_maxwidth) {
+        right: 20px;
+      }
+      @media screen and (max-width: $small_screen_width) {
+        @include one-columnize;
+        display: block;
+        width: 150px;
+        margin: 20px 0 0;
+        padding: 5px 10px;
+      }
     }
   }
 }
