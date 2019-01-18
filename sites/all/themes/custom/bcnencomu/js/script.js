@@ -222,7 +222,7 @@ var config = {
         $whatsapp_message.prependTo('#page');
         $('body').addClass('with-whatsapp-message');
         $('#page').css({'padding-top': $whatsapp_message.height()});
-        $whatsapp_message.on('click', 'a, [data-action="close"]', function(e){
+        $close_btn.on('click', function(e){
           close_wapp_message();
         });
       }
