@@ -290,7 +290,7 @@ function bcnencomu_theme($existing, $type, $theme, $path) {
  */
 function bcnencomu_whatsapp_redirect(){
   header('HTTP/1.1 301 Moved Permanently');
-  header('Location: http://bit.ly/2gbaBXU');
+  header('Location: https://wa.me/34622665234?text=ALTA');
 }
 
 /*
