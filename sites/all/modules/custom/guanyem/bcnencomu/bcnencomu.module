@@ -24,6 +24,12 @@ function bcnencomu_menu() {
     'access arguments' => array('access content'),
   );
 
+  $items['participa'] = array(
+    'page callback' => 'bcnencomu_participa_redirect',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access content'),
+  );
+
   $items['async/test/%'] = array(
     'page callback' => 'bcnencomu_test',
     'type' => MENU_CALLBACK,
@@ -292,6 +298,14 @@ function bcnencomu_whatsapp_redirect(){
   header('HTTP/1.1 301 Moved Permanently');
   $message = "Afegeix-me al Whatsapp de Barcelona en Comú";
   header('Location: https://wa.me/34622665234?text=' . urlencode($message));
+}
+
+/**
+ * Redirect to Web Campanya
+ */
+function bcnencomu_participa_redirect(){
+  header('HTTP/1.1 301 Moved Permanently');
+  header('Location: http://ada2019.barcelona');
 }
 
 /*
