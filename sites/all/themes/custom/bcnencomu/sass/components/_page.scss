@@ -1345,10 +1345,12 @@ article.node {
 
         p {
           font-size: 1em;
-          margin-bottom: 1em;
+          margin-bottom: .7em;
+          padding-top: .7em;
           border-top: 1px solid black;
 
           &:first-child {
+            padding-top: 0;
             border-top: none;
           }
         }
