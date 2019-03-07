@@ -1342,6 +1342,12 @@ article.node {
         line-height: 1.4;
         font-weight: normal;
         margin-bottom: 1em;
+
+        p {
+          font-size: 1em;
+          line-height: 1;
+        }
+
         @media screen and (max-width: $mediumbig_screen_width) {
           font-size: 180%;
         }
