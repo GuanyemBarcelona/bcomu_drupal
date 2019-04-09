@@ -128,15 +128,25 @@ body.page-batalla-ciutat-dels-barris .region-content-top {
 .view-batalles-children {
   margin-top: 40px;
   .views-row {
+    @extend %clearfix;
     position: relative;
     margin-bottom: 60px;
     padding-left: 215px;
-    @extend %clearfix;
+    @media screen and (max-width: $small_screen_width) {
+      padding-left: 0;
+    }
+
     .views-field-field-icon {
       position: absolute;
       top: 0;
       left: 0;
       width: 185px;
+      @media screen and (max-width: $small_screen_width) {
+        @include one-columnize;
+        img {
+          margin: 0 auto;
+        }
+      }
     }
     .views-field-name-field {
       font-size: 240%;
