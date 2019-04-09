@@ -149,15 +149,20 @@ function bcnencomu_preprocess_page(&$vars, $hook)
 
   // taxonomy page
   if (arg(0) == 'taxonomy' && arg(1) == 'term' && is_numeric(arg(2))) {
-    $vars['page']['content']['system_main']['nodes']['#prefix'] = '<div class="term-nodes">';
-    $vars['page']['content']['system_main']['nodes']['#suffix'] = '</div>';
-    // relatem el canvi page class
-    if (arg(2) == RELATEM_CANVI_TID) {
-      $vars['classes_array'][] = 'page-relatem-canvi';
-    }
-    // internacional page class
-    if (arg(2) == INTERNACIONAL_TID) {
-      $vars['classes_array'][] = 'page-internacional';
+    $currentAlias = gh_get_current_alias();
+    if ($currentAlias[0] === 'batalla') {
+      unset($vars['page']['content']['system_main']);
+    } else {
+      $vars['page']['content']['system_main']['nodes']['#prefix'] = '<div class="term-nodes">';
+      $vars['page']['content']['system_main']['nodes']['#suffix'] = '</div>';
+      // relatem el canvi page class
+      if (arg(2) == RELATEM_CANVI_TID) {
+        $vars['classes_array'][] = 'page-relatem-canvi';
+      }
+      // internacional page class
+      if (arg(2) == INTERNACIONAL_TID) {
+        $vars['classes_array'][] = 'page-internacional';
+      }
     }
   }
 
