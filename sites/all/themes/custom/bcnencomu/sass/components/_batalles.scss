@@ -58,23 +58,24 @@ body.page-taxonomy-term-684 {
   }
 }
 
+$batalles_gradient_height: 400px;
 body.page-taxonomy-term-679 .region-content-top {
-  background-image: linear-gradient($theme_habitatge, white);
+  background-image: linear-gradient($theme_habitatge, white $batalles_gradient_height);
 }
 body.page-taxonomy-term-680 .region-content-top {
-  background-image: linear-gradient($theme_ciutatverda, white);
+  background-image: linear-gradient($theme_ciutatverda, white $batalles_gradient_height);
 }
 body.page-taxonomy-term-681 .region-content-top {
-  background-image: linear-gradient($theme_gestiopublica, white);
+  background-image: linear-gradient($theme_gestiopublica, white $batalles_gradient_height);
 }
 body.page-taxonomy-term-682 .region-content-top {
-  background-image: linear-gradient($theme_desigualtats, white);
+  background-image: linear-gradient($theme_desigualtats, white $batalles_gradient_height);
 }
 body.page-taxonomy-term-683 .region-content-top {
-  background-image: linear-gradient($theme_novapolitica, white);
+  background-image: linear-gradient($theme_novapolitica, white $batalles_gradient_height);
 }
 body.page-batalla-ciutat-dels-barris .region-content-top {
-  background-image: linear-gradient($theme_barris, white);
+  background-image: linear-gradient($theme_barris, white $batalles_gradient_height);
 }
 
 // current fight
@@ -127,21 +128,26 @@ body.page-batalla-ciutat-dels-barris .region-content-top {
 .view-batalles-children {
   margin-top: 40px;
   .views-row {
-    margin-bottom: 30px;
+    position: relative;
+    margin-bottom: 60px;
+    padding-left: 215px;
     @extend %clearfix;
     .views-field-field-icon {
-      float: left;
-      margin: 0 30px 0 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 185px;
     }
     .views-field-name-field {
-      font-size: 200%;
+      font-size: 240%;
       font-weight: bold;
       line-height: 1.25;
+      letter-spacing: -0.33px;
       margin-bottom: .3em;
     }
     .views-field-description-field {
       p {
-        font-size: 160%;
+        font-size: 180%;
         line-height: 1.4;
         margin-bottom: 0;
       }
