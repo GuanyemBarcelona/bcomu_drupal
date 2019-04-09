@@ -1,4 +1,5 @@
 # ignore deploy modules
+package-lock.json
 /node_modules/
 
 # Ignore processed assets, will be processed in the server with gulp
