@@ -232,19 +232,6 @@ var config = {
       arrows: false
     });
 
-    // batalles detail children slider
-    $('.view-batalles-children .item-list > ul').slick({
-      infinite: false,
-      autoplay: false,
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      variableWidth: true,
-      dots: false,
-      arrows: true,
-      prevArrow: '<button type="button" class="slick-prev"><span>&lt;</span></button>',
-      nextArrow: '<button type="button" class="slick-next"><span>&gt;</span></button>'
-    });
-
     // tags icon
     $('article.node-post-like > .content .info .field-name-field-tags .field-items').prepend('<i class="fa fa-tags"></i>');
 
