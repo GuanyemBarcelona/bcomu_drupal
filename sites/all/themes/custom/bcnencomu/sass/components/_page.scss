@@ -2107,6 +2107,28 @@ a[data-action="add-to-calendar-open"] {
   }
 }
 
+// la brigada
+#page.brigada-faq {
+  article.node .body {
+    position: relative;
+    padding-right: 400px;
+    @media screen and (max-width: $mediumbig_screen_width) {
+      padding-right: 0;
+    }
+
+    img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 390px;
+      @media screen and (max-width: $mediumbig_screen_width) {
+        @include one-columnize;
+        max-width: 300px;
+      }
+    }
+  }
+}
+
 /* candidacies list */
 .view-candidacies-list {
   clear: both;
