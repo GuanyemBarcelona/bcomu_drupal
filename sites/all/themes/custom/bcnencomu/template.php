@@ -166,6 +166,13 @@ function bcnencomu_preprocess_page(&$vars, $hook)
     }
   }
 
+  // slug class
+  if (isset($vars['node'])) {
+    if (isset($vars['node']->field_slug[LANGUAGE_NONE][0]['safe_value'])) {
+      $vars['classes_array'][] = $vars['node']->field_slug[LANGUAGE_NONE][0]['safe_value'];
+    }
+  }
+
   // calendar page
   if (arg(0) == 'node' && arg(1) == CALENDAR_NID) {
     $vars['classes_array'][] = 'calendar-page';
