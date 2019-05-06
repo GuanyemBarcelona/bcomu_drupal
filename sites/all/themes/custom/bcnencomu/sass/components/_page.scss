@@ -382,12 +382,10 @@ header[role="banner"] {
       font-weight: bold;
       padding: 5px 16px 6px;
       border: 1px solid $theme_grey_lighter;
-      &:hover {
-        border-color: $theme_red;
-      }
       transition: all .3s ease;
       &:hover {
         color: $theme_red;
+        border-color: $theme_red;
       }
     }
   }
