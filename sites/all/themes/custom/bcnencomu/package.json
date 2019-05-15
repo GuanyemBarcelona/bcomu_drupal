@@ -8,13 +8,13 @@
   },
   "dependencies": {
     "@fancyapps/fancybox": "^3.1.20",
-    "html5shiv": "afarkas/html5shiv",
+    "html5shiv": "github:afarkas/html5shiv",
     "moment": "^2.18.1",
     "simplestorage.js": "^0.2.1",
     "slick-carousel": "^1.7.1"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0"
