@@ -1,5 +1,6 @@
 {
   "name": "pocket-bcomu",
+  "description": "App made in AngularJS that shows contents from the Pocket API.",
   "version": "1.0.6",
   "license": "MIT",
   "engines": {
