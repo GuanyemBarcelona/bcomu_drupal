@@ -121,16 +121,6 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
         ),
       );
 
-      // Year only visible if Elections type is not Organ
-      $form['field_year']['#states'] = array(
-        'visible' => array(
-          ':input[name^="field_elections_type['.LANGUAGE_NONE.']"]' => array(
-            array('value' => '831'),
-            array('value' => '832')
-          ),
-        ),
-      );
-
       // Organ only visible if Elections type is Organ
       $form['field_candidacy_type']['#states'] = array(
         'visible' => array(
@@ -138,10 +128,10 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
         ),
       );
 
-      // Districts only visible if Tipus: Representants Districtes
+      // Districts only visible if Tipus is Representants Districtes or Conseller/a
       $form['field_candidacy_district']['#states'] = array(
         'visible' => array(
-          ':input[name^="field_candidacy_type['.LANGUAGE_NONE.']"]' => array('value' => '489'),
+          ':input[name^="field_candidacy_type['.LANGUAGE_NONE.']"]' => array(array('value' => '489'), array('value' => '64')),
         ),
       );
       break;
