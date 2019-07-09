@@ -331,14 +331,22 @@ var config = {
         '161,324,213,324,220,329,228,327,213,344,212,374,270,432,237,463,150,471,139,514,66,517,16,462,15,376,58,410,101,412,145,373,158,370,155,342',
         '196,19,122,59,123,102,147,122,148,151,172,154,193,182,189,215,191,237,208,236,206,272,249,313,284,327,284,303,303,287,302,262,294,255,295,219,282,225,282,189,296,176,259,131,264,43'
       ];
-      var image_map_html = '<img src="'+config.THEME_URI+'/img/mapa_districtes.png" usemap="#image-map">';
+      var image_map_html = '<div class="image-map-container"><h3></h3><img src="'+config.THEME_URI+'/img/mapa_districtes.png" usemap="#image-map">';
       image_map_html += '<map name="image-map">';
       $districts.each(function(i){
         var $link = $(this).find('.views-field-name a');
         image_map_html += '<area target="" alt="" title="'+$link.text()+'" href="'+$link.attr('href')+'" coords="'+map_district_coords[i]+'" shape="poly">';
       });
-      image_map_html += '</map>';
+      image_map_html += '</map></div>';
       $district_map.append(image_map_html);
+      var $district_title = $district_map.find('.image-map-container > h3');
+      $district_map.find('area').hover(
+          function() {
+            $district_title.text($(this).attr('title'));
+          }, function() {
+            $district_title.text('');
+          }
+      );
     }
 	});
 

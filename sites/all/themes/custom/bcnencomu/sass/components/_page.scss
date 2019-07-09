@@ -2224,6 +2224,19 @@ a[data-action="add-to-calendar-open"] {
   .view-content {
     display: none;
   }
+
+  .image-map-container {
+    @extend %narrowbody;
+    position: relative;
+
+    > h3 {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      font-size: 240%;
+      text-align: right;
+    }
+  }
 }
 
 /* offices list */
