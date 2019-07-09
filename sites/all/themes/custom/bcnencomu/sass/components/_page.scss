@@ -2204,13 +2204,21 @@ a[data-action="add-to-calendar-open"] {
 }
 
 // Candidacies conselleres 2019
+body.page-conselleres-2019 {
+  #content-header h1 {
+    @extend %widerbody;
+  }
+}
 .view-candidacies4 {
+  > header {
+    @extend %widerbody;
+  }
   .view-content {
+    @extend %widerbody;
     > .item-list {
       > h3 {
-        @extend %narrowbody;
         p {
-          font-size: 14px;
+          font-size: 16px;
           font-weight: normal;
           padding-top: 1em;
         }
@@ -2226,7 +2234,7 @@ a[data-action="add-to-calendar-open"] {
   }
 
   .image-map-container {
-    @extend %narrowbody;
+    @extend %widerbody;
     position: relative;
 
     > h3 {
