@@ -1897,6 +1897,17 @@ article.node {
   }
 }
 
+// Districtes conselleres Map
+.view-districtes-consellers {
+  .view-content {
+    display: none;
+  }
+
+  > img {
+    margin: 30px auto;
+  }
+}
+
 // content bottom
 #content-bottom {
   clear: both;
@@ -2197,6 +2208,22 @@ a[data-action="add-to-calendar-open"] {
         overflow: hidden;
         a {
           color: black;
+        }
+      }
+    }
+  }
+}
+
+// Candidacies conselleres 2019
+.view-candidacies4 {
+  .view-content {
+    > .item-list {
+      > h3 {
+        @extend %narrowbody;
+        p {
+          font-size: 14px;
+          font-weight: normal;
+          padding-top: 1em;
         }
       }
     }
