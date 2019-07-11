@@ -2231,11 +2231,29 @@ body.page-conselleres-2019 {
 .view-districtes-consellers {
   .view-content {
     display: none;
+
+    @media screen and (max-width: $medium_screen_width) {
+      display: block;
+    }
+
+    .views-row {
+      .views-field-name {
+        a {
+          display: block;
+          font-size: 200%;
+          padding: .5em 0;
+        }
+      }
+    }
   }
 
   .image-map-container {
     @extend %widerbody;
     position: relative;
+
+    @media screen and (max-width: $medium_screen_width) {
+      display: none;
+    }
 
     > h3 {
       position: absolute;
@@ -2243,6 +2261,10 @@ body.page-conselleres-2019 {
       right: 0;
       font-size: 240%;
       text-align: right;
+    }
+
+    img {
+      max-width: none;
     }
   }
 }
