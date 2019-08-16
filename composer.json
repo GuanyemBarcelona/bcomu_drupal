@@ -74,6 +74,7 @@
         "drupal/webform_localization": "^4.11",
         "drupal/xmlsitemap": "^2.3",
         "drupal/twitter": "5.x-dev",
-        "drupal/maxlength": "^3.2"
+        "drupal/maxlength": "^3.2",
+        "drupal/backup_migrate": "^3.6"
     }
 }
