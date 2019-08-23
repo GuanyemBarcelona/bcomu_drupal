@@ -1,0 +1,5 @@
+name = Barcelona En Comú - Civi CRM API
+description = API for the BComú website - Civi CRM connection
+core = 7.x
+package = Guanyem
+dependencies[] = gh

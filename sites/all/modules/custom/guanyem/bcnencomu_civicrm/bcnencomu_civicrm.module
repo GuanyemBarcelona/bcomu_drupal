@@ -1,0 +1,281 @@
+<?php
+
+/**
+ * Implements hook_form_alter().
+ */
+function bcnencomu_civicrm_form_alter(&$form, &$form_state, $form_id)
+{
+  $config = variable_get('civicrm_form_ids');
+
+  if (!is_null($config) && isset($config['contacte_form'])) {
+    switch ($form_id) {
+      case $config['contacte_form']:
+        $form['#submit'][] = 'bcnencomu_civicrm_contacte_submit';
+        break;
+    }
+  } else {
+    $messages[] = 'The settings file is not properly configured, please read the README file in the module.';
+    watchdog(basename(__FILE__, '.module'), $messages[], [], WATCHDOG_ERROR);
+  }
+}
+
+/**
+ * On Contact form submit, create a contact entity
+ */
+function bcnencomu_civicrm_contacte_submit($form, &$form_state)
+{
+  $submittedData = $form_state['input']['submitted'];
+
+  if (!is_null($submittedData) && !empty($submittedData)) {
+    if ($submittedData['accept_legal_terms']['yes'] === 'yes') {
+      if ($submittedData['agree_receive_info']['yes'] === 'yes') {
+        _send_contact_data($submittedData);
+      }
+    }
+  }
+}
+
+/**
+ * Send the data to the CIVI CRM API
+ */
+function _send_contact_data($data = [])
+{
+  $config = variable_get('civicrm_api');
+  $messages = [];
+  $variables = [];
+
+  // Check config vars
+  if (!is_null($config) && isset($config['endpoint'])) {
+    $postData = [
+      'version' => 3,
+      'api_key' => $config['apikey'],
+      'key' => $config['key'],
+      'json' => 1
+    ];
+
+    // --- Duplicate contact check request ---
+    $checkData = $postData;
+    $checkData['entity'] = 'Contact';
+    $checkData['action'] = 'duplicatecheck';
+    $checkData['dedupe_rule_id'] = 8;
+    $checkData['match'] = [
+      'contact_type' => 'Individual',
+      'first_name' => $data['firstname'],
+      'last_name' => $data['lastname'],
+      'email' => $data['email'],
+    ];
+
+    $responseCheck = drupal_http_request($config['endpoint'], _get_post_options($checkData));
+
+    if (strtoupper($responseCheck->status_message) === 'OK') {
+      $responseCheckData = json_decode($responseCheck->data);
+      if ($responseCheckData->is_error == 0) {
+        // Check OK
+
+        // flags for contact values that changed
+        $activistaChanged = false;
+        $inscritChanged = false;
+        $seguidorChanged = false;
+
+        if ($responseCheckData->values) {
+          // if response has values, this contact is a duplicate
+          $contactId = reset($responseCheckData->values)->id;
+
+          //--- Other entity check requests ---
+
+          // check if not yet Activista
+          $checkActivistaData = $postData;
+          $checkActivistaData['entity'] = 'Membership';
+          $checkActivistaData['action'] = 'get';
+          $checkActivistaData['contact_id'] = $contactId;
+          $checkActivistaData['membership_type_id'] = "Activista";
+          $responseCheck = drupal_http_request($config['endpoint'], _get_post_options($checkActivistaData));
+          if (strtoupper($responseCheck->status_message) === 'OK') {
+            $responseCheckData = json_decode($responseCheck->data);
+            if ($responseCheckData->is_error == 0) {
+              if (!$responseCheckData->values) {
+                // if response has no values, this contact is not yet Activista
+                $activistaChanged = true;
+              }
+            } else {
+              $messages[] = ['text' => $responseCheckData->error_message];
+            }
+          } else {
+            $messages[] = ['text' => 'There was some error checking if contact is Activista.'];
+          }
+
+          // check if not yet Inscrit
+          $checkInscritData = $postData;
+          $checkInscritData['entity'] = 'Membership';
+          $checkInscritData['action'] = 'get';
+          $checkInscritData['contact_id'] = $contactId;
+          $checkInscritData['membership_type_id'] = "Inscrit";
+          $checkInscritData['status_id'] = ['IN' => ["Pending", "Current", "Verificat"]];
+          $responseCheck = drupal_http_request($config['endpoint'], _get_post_options($checkInscritData));
+          if (strtoupper($responseCheck->status_message) === 'OK') {
+            $responseCheckData = json_decode($responseCheck->data);
+            if ($responseCheckData->is_error == 0) {
+              if (!$responseCheckData->values) {
+                // if response has no values, this contact is not yet Inscrit
+                $inscritChanged = true;
+              }
+            } else {
+              $messages[] = ['text' => $responseCheckData->error_message];
+            }
+          } else {
+            $messages[] = ['text' => 'There was some error checking if contact is Inscrit.'];
+          }
+
+          // check if not yet Seguidor
+          $checkSeguidorData = $postData;
+          $checkSeguidorData['entity'] = 'Membership';
+          $checkSeguidorData['action'] = 'get';
+          $checkSeguidorData['contact_id'] = $contactId;
+          $checkSeguidorData['membership_type_id'] = "Activista";
+          $responseCheck = drupal_http_request($config['endpoint'], _get_post_options($checkSeguidorData));
+          if (strtoupper($responseCheck->status_message) === 'OK') {
+            $responseCheckData = json_decode($responseCheck->data);
+            if ($responseCheckData->is_error == 0) {
+              if (!$responseCheckData->values) {
+                // if response has no values, this contact is not yet Seguidor
+                $seguidorChanged = true;
+              }
+            } else {
+              $messages[] = ['text' => $responseCheckData->error_message];
+            }
+          } else {
+            $messages[] = ['text' => 'There was some error checking if contact is Seguidor.'];
+          }
+        }
+
+        // --- Create contact request ---
+        $createData = $postData;
+        $createData['entity'] = 'Contact';
+        $createData['action'] = 'create';
+        $createData['contact_type'] = 'Individual';
+        if (isset($contactId)) {
+          // contact already existed
+          $createData['id'] = $contactId;
+        } else {
+          // contact did not exist, creating as new
+          $createData['first_name'] = $data['firstname'];
+          $createData['last_name'] = $data['lastname'];
+          $createData['api.Email.create'] = [
+            'is_primary' => 1,
+            'email' => $data['email'],
+          ];
+        }
+
+        // set preferred language
+        $language = 'ca';
+        $allowedLanguages = ['ca', 'es'];
+        $submitted_url = explode('/', $data['submit_url']);
+        if (isset($submitted_url[3])) {
+          $language = $submitted_url[3];
+          if (in_array($language, $allowedLanguages)) {
+            $createData['preferred_language'] = $language . '_ES';
+          }
+        }
+
+        // set newsletter subscriptions
+        $newsletterOption = array_search($language, $allowedLanguages);
+        if ($newsletterOption !== false) {
+          $createData['custom_113'] = [$newsletterOption+1];
+        }
+
+        // if contact is not a duplicate or if its values/entities have changed, create them
+        if (!isset($contactId) || $seguidorChanged) {
+          // only set Seguidor if not Activista nor Inscrit
+          if (!$activistaChanged && !$inscritChanged) {
+            $createData['api.Membership.create'] = [
+              'membership_type_id' => "Seguidor",
+              'status_id' => "Verificat",
+              'is_override' => 1
+            ];
+          }
+        }
+
+        // make the final create request
+        $response = drupal_http_request($config['endpoint'], _get_post_options($createData));
+
+        if (strtoupper($response->status_message) === 'OK') {
+          $responseData = json_decode($response->data);
+          if ($responseData->is_error == 0) {
+            // Contact created correctly
+            $contactId = $responseData->id;
+            $messages[] = ['text' => 'The Contact was sent and received correctly in the CIVI CRM.', 'severity' => WATCHDOG_INFO];
+
+            // Now we'll assign the activities to this contact:
+            // Update Communication Preferences
+            $ActivityData = $postData;
+            $ActivityData['entity'] = 'Activity';
+            $ActivityData['action'] = 'create';
+            $ActivityData['activity_type_id'] = "Update_Communication_Preferences";
+            $ActivityData['status_id'] = "Completed";
+            $ActivityData['source_contact_id'] = $contactId;
+            $ActivityData['target_contact_id'] = $contactId;
+            $responseActivity = drupal_http_request($config['endpoint'], _get_post_options($ActivityData));
+            if (strtoupper($responseActivity->status_message) === 'OK') {
+              $responseActivityData = json_decode($responseActivity->data);
+              if ($responseActivityData->is_error == 0) {
+                $messages[] = ['text' => 'Update_Communication_Preferences activity correctly created.', 'severity' => WATCHDOG_INFO];
+              } else {
+                $messages[] = ['text' => $responseActivityData->error_message];
+              }
+            } else {
+              $messages[] = ['text' => 'There was some error creating the Update_Communication_Preferences activity.'];
+            }
+
+            // SLA Acceptance
+            $ActivityData['activity_type_id'] = "SLA Acceptance";
+            $responseActivity = drupal_http_request($config['endpoint'], _get_post_options($ActivityData));
+            if (strtoupper($responseActivity->status_message) === 'OK') {
+              $responseActivityData = json_decode($responseActivity->data);
+              if ($responseActivityData->is_error == 0) {
+                $messages[] = ['text' => 'SLA Acceptance activity correctly created.', 'severity' => WATCHDOG_INFO];
+              } else {
+                $messages[] = ['text' => $responseActivityData->error_message];
+              }
+            } else {
+              $messages[] = ['text' => 'There was some error creating the SLA Acceptance activity.'];
+            }
+          } else {
+            $messages[] = ['text' => $responseData->error_message];
+          }
+        } else {
+          $messages[] = ['text' => 'There was some error in the creation of the contact.'];
+        }
+      } else {
+        $messages[] = ['text' => $responseCheckData->error_message];
+      }
+    } else {
+      $messages[] = ['text' => 'There was some error checking the possible duplicate of the contact.'];
+    }
+  } else {
+    $messages[] = ['text' => 'The settings file is not properly configured, please read the README file in the module.'];
+  }
+
+  if (!empty($messages)) {
+    foreach ($messages as $message) {
+      $severity = is_null($message['severity'])? WATCHDOG_ERROR : $message['severity'];
+      watchdog(basename(__FILE__, '.module'), $message['text'], $variables, $severity);
+    }
+  }
+}
+
+function _get_post_options($data)
+{
+  return [
+    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+    'method' => 'POST',
+    'data' => http_build_query($data),
+    'context' => stream_context_create(array(
+      'ssl' => array(
+        'verify_peer' => FALSE,
+        'verify_depth' => 5,
+        'allow_self_signed' => TRUE,
+        'verify_peer_name' => FALSE,
+      )
+    ))
+  ];
+}
