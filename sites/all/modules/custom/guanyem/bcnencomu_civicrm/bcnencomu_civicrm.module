@@ -232,7 +232,8 @@ function _send_contact_data($data = [], $form_id)
           $createData['custom_113'] = [$newsletterOption+1];
         }
 
-        // if contact is not a duplicate or if its values/entities have changed, create them
+        // if contact is not a duplicate or if its values/entities have changed, create them:
+        // Seguidor membership
         if (!isset($contactId) || $seguidorChanged) {
           // only set Seguidor if not Activista nor Inscrit
           if (!$activistaChanged && !$inscritChanged) {
@@ -243,6 +244,7 @@ function _send_contact_data($data = [], $form_id)
             ];
           }
         }
+        // phone
         if (!isset($contactId) || $phoneChanged) {
           $createData['api.Phone.create'] = [
             'is_primary' => 1,
