@@ -264,14 +264,14 @@ function _send_contact_data($data = [], $form_id)
 
             // Now we'll assign the activities to this contact:
             // Update Communication Preferences
-            $ActivityData = $postData;
-            $ActivityData['entity'] = 'Activity';
-            $ActivityData['action'] = 'create';
-            $ActivityData['activity_type_id'] = "Update_Communication_Preferences";
-            $ActivityData['status_id'] = "Completed";
-            $ActivityData['source_contact_id'] = $contactId;
-            $ActivityData['target_contact_id'] = $contactId;
-            $responseActivity = drupal_http_request($apiConfig['endpoint'], _get_post_options($ActivityData));
+            $activityData = $postData;
+            $activityData['entity'] = 'Activity';
+            $activityData['action'] = 'create';
+            $activityData['activity_type_id'] = "Update_Communication_Preferences";
+            $activityData['status_id'] = "Completed";
+            $activityData['source_contact_id'] = $contactId;
+            $activityData['target_contact_id'] = $contactId;
+            $responseActivity = drupal_http_request($apiConfig['endpoint'], _get_post_options($activityData));
             if (strtoupper($responseActivity->status_message) === 'OK') {
               $responseActivityData = json_decode($responseActivity->data);
               if ($responseActivityData->is_error == 0) {
@@ -284,8 +284,8 @@ function _send_contact_data($data = [], $form_id)
             }
 
             // SLA Acceptance
-            $ActivityData['activity_type_id'] = "SLA Acceptance";
-            $responseActivity = drupal_http_request($apiConfig['endpoint'], _get_post_options($ActivityData));
+            $activityData['activity_type_id'] = "SLA Acceptance";
+            $responseActivity = drupal_http_request($apiConfig['endpoint'], _get_post_options($activityData));
             if (strtoupper($responseActivity->status_message) === 'OK') {
               $responseActivityData = json_decode($responseActivity->data);
               if ($responseActivityData->is_error == 0) {
