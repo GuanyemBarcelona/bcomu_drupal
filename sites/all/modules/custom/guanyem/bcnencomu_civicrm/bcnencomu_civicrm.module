@@ -239,16 +239,19 @@ function _send_contact_data($data = [], $form_id)
         }
 
         // if contact is not a duplicate or if its values/entities have changed, create them:
-        // Activista membership
-        if (!isset($contactId) || $activistaChanged) {
-          if (isset($data['participation_type'])) {
-            if ($data['participation_type']['activist'] == 'activist') {
-              $createData['api.Membership.create'] = [
-                'membership_type_id' => "Activista",
-                'status_id' => "Interessat",
-                'is_override' => 1
-              ];
-            }
+        // participation type memberships
+        if (isset($data['participation_type'])) {
+          switch ($data['participation_type']) {
+            case 'activist':
+              // Activista membership
+              if (!isset($contactId) || $activistaChanged) {
+                $createData['api.Membership.create'] = [
+                  'membership_type_id' => "Activista",
+                  'status_id' => "Interessat",
+                  'is_override' => 1
+                ];
+              }
+              break;
           }
         }
         if ($form_id == $formIdsConfig['contacte_form']) {
