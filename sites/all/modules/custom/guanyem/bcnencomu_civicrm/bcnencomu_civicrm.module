@@ -227,9 +227,13 @@ function _send_contact_data($data = [], $form_id)
         }
 
         // set newsletter subscriptions
-        $newsletterOption = array_search($language, $allowedLanguages);
-        if ($newsletterOption !== false) {
-          $createData['custom_113'] = [$newsletterOption+1];
+        if (isset($data['agree_receive_info'])) {
+          if ($data['agree_receive_info']['yes'] === 'yes') {
+            $newsletterOption = array_search($language, $allowedLanguages);
+            if ($newsletterOption !== false) {
+              $createData['custom_113'] = [$newsletterOption+1];
+            }
+          }
         }
 
         // if contact is not a duplicate or if its values/entities have changed, create them:
