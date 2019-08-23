@@ -245,11 +245,13 @@ function _send_contact_data($data = [], $form_id)
           }
         }
         // phone
-        if (!isset($contactId) || $phoneChanged) {
-          $createData['api.Phone.create'] = [
-            'is_primary' => 1,
-            'phone' => $data['phone'],
-          ];
+        if (isset($data['phone'])) {
+          if (!isset($contactId) || $phoneChanged) {
+            $createData['api.Phone.create'] = [
+              'is_primary' => 1,
+              'phone' => $data['phone'],
+            ];
+          }
         }
 
         // make the final create request
