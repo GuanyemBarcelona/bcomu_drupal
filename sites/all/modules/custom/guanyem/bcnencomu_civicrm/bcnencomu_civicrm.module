@@ -237,7 +237,6 @@ function _send_contact_data($data = [], $form_id)
         // set preferred language
         $language = 'ca';
         $allowedLanguages = ['ca', 'es'];
-        $newsletterOption = array_search($language, $allowedLanguages);
         $submitted_url = explode('/', $data['submit_url']);
         if (isset($submitted_url[3])) {
           $language = $submitted_url[3];
@@ -247,11 +246,12 @@ function _send_contact_data($data = [], $form_id)
         }
 
         // set newsletter subscriptions:
+        $languageIndex = array_search($language, $allowedLanguages);
         // checkbox agree_receive_info
         if (isset($data['agree_receive_info'])) {
           if ($data['agree_receive_info']['yes'] === 'yes') {
-            if ($newsletterOption !== false) {
-              $createData['custom_113'] = [$newsletterOption+1];
+            if ($languageIndex !== false) {
+              $createData['custom_113'] = [$languageIndex+1];
             }
           }
         }
