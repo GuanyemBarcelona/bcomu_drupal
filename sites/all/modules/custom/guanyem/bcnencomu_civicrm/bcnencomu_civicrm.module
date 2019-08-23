@@ -228,7 +228,8 @@ function _send_contact_data($data = [], $form_id)
           }
         }
 
-        // set newsletter subscriptions
+        // set newsletter subscriptions:
+        // checkbox agree_receive_info
         if (isset($data['agree_receive_info'])) {
           if ($data['agree_receive_info']['yes'] === 'yes') {
             $newsletterOption = array_search($language, $allowedLanguages);
