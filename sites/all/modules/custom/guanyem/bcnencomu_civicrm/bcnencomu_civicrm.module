@@ -175,25 +175,27 @@ function _send_contact_data($data = [], $form_id)
             $messages[] = ['text' => 'There was some error checking if contact is Inscrit.'];
           }
 
-          // check if not yet Seguidor
-          $checkSeguidorData = $postData;
-          $checkSeguidorData['entity'] = 'Membership';
-          $checkSeguidorData['action'] = 'get';
-          $checkSeguidorData['contact_id'] = $contactId;
-          $checkSeguidorData['membership_type_id'] = "Activista";
-          $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkSeguidorData));
-          if (strtoupper($responseCheck->status_message) === 'OK') {
-            $responseCheckData = json_decode($responseCheck->data);
-            if ($responseCheckData->is_error == 0) {
-              if (!$responseCheckData->values) {
-                // if response has no values, this contact is not yet Seguidor
-                $seguidorChanged = true;
+          if ($form_id == $formIdsConfig['contacte_form']) {
+            // check if not yet Seguidor
+            $checkSeguidorData = $postData;
+            $checkSeguidorData['entity'] = 'Membership';
+            $checkSeguidorData['action'] = 'get';
+            $checkSeguidorData['contact_id'] = $contactId;
+            $checkSeguidorData['membership_type_id'] = "Activista";
+            $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkSeguidorData));
+            if (strtoupper($responseCheck->status_message) === 'OK') {
+              $responseCheckData = json_decode($responseCheck->data);
+              if ($responseCheckData->is_error == 0) {
+                if (!$responseCheckData->values) {
+                  // if response has no values, this contact is not yet Seguidor
+                  $seguidorChanged = true;
+                }
+              } else {
+                $messages[] = ['text' => $responseCheckData->error_message];
               }
             } else {
-              $messages[] = ['text' => $responseCheckData->error_message];
+              $messages[] = ['text' => 'There was some error checking if contact is Seguidor.'];
             }
-          } else {
-            $messages[] = ['text' => 'There was some error checking if contact is Seguidor.'];
           }
         }
 
