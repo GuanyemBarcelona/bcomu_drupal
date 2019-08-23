@@ -274,7 +274,7 @@ function _send_contact_data($data = [], $form_id)
               break;
           }
         }
-        if ($form_id == $formIdsConfig['contacte_form']) {
+        if ($form_id != $formIdsConfig['participa_form']) {
           // Seguidor membership
           if (!isset($contactId) || $seguidorChanged) {
             // only set Seguidor if not Activista nor Inscrit
