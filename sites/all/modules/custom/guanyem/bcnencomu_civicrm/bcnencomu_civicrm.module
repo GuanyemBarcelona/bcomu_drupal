@@ -20,7 +20,7 @@ function bcnencomu_civicrm_form_alter(&$form, &$form_state, $form_id)
 }
 
 /**
- * On Contact form submit, create a contact entity
+ * On Contact form submit
  */
 function bcnencomu_civicrm_contacte_submit($form, &$form_state)
 {
@@ -29,7 +29,7 @@ function bcnencomu_civicrm_contacte_submit($form, &$form_state)
   if (!is_null($submittedData) && !empty($submittedData)) {
     if ($submittedData['accept_legal_terms']['yes'] === 'yes') {
       if ($submittedData['agree_receive_info']['yes'] === 'yes') {
-        _send_contact_data($submittedData);
+        _send_contact_data($submittedData, $form['#form_id']);
       }
     }
   }
@@ -38,18 +38,19 @@ function bcnencomu_civicrm_contacte_submit($form, &$form_state)
 /**
  * Send the data to the CIVI CRM API
  */
-function _send_contact_data($data = [])
+function _send_contact_data($data = [], $form_id)
 {
-  $config = variable_get('civicrm_api');
   $messages = [];
-  $variables = [];
 
   // Check config vars
-  if (!is_null($config) && isset($config['endpoint'])) {
+  $apiConfig = variable_get('civicrm_api');
+  $formIdsConfig = variable_get('civicrm_form_ids');
+
+  if (!is_null($apiConfig) && !is_null($formIdsConfig)) {
     $postData = [
       'version' => 3,
-      'api_key' => $config['apikey'],
-      'key' => $config['key'],
+      'api_key' => $apiConfig['apikey'],
+      'key' => $apiConfig['key'],
       'json' => 1
     ];
 
@@ -65,7 +66,7 @@ function _send_contact_data($data = [])
       'email' => $data['email'],
     ];
 
-    $responseCheck = drupal_http_request($config['endpoint'], _get_post_options($checkData));
+    $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkData));
 
     if (strtoupper($responseCheck->status_message) === 'OK') {
       $responseCheckData = json_decode($responseCheck->data);
@@ -89,7 +90,7 @@ function _send_contact_data($data = [])
           $checkActivistaData['action'] = 'get';
           $checkActivistaData['contact_id'] = $contactId;
           $checkActivistaData['membership_type_id'] = "Activista";
-          $responseCheck = drupal_http_request($config['endpoint'], _get_post_options($checkActivistaData));
+          $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkActivistaData));
           if (strtoupper($responseCheck->status_message) === 'OK') {
             $responseCheckData = json_decode($responseCheck->data);
             if ($responseCheckData->is_error == 0) {
@@ -111,7 +112,7 @@ function _send_contact_data($data = [])
           $checkInscritData['contact_id'] = $contactId;
           $checkInscritData['membership_type_id'] = "Inscrit";
           $checkInscritData['status_id'] = ['IN' => ["Pending", "Current", "Verificat"]];
-          $responseCheck = drupal_http_request($config['endpoint'], _get_post_options($checkInscritData));
+          $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkInscritData));
           if (strtoupper($responseCheck->status_message) === 'OK') {
             $responseCheckData = json_decode($responseCheck->data);
             if ($responseCheckData->is_error == 0) {
@@ -132,7 +133,7 @@ function _send_contact_data($data = [])
           $checkSeguidorData['action'] = 'get';
           $checkSeguidorData['contact_id'] = $contactId;
           $checkSeguidorData['membership_type_id'] = "Activista";
-          $responseCheck = drupal_http_request($config['endpoint'], _get_post_options($checkSeguidorData));
+          $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkSeguidorData));
           if (strtoupper($responseCheck->status_message) === 'OK') {
             $responseCheckData = json_decode($responseCheck->data);
             if ($responseCheckData->is_error == 0) {
@@ -196,7 +197,7 @@ function _send_contact_data($data = [])
         }
 
         // make the final create request
-        $response = drupal_http_request($config['endpoint'], _get_post_options($createData));
+        $response = drupal_http_request($apiConfig['endpoint'], _get_post_options($createData));
 
         if (strtoupper($response->status_message) === 'OK') {
           $responseData = json_decode($response->data);
@@ -214,7 +215,7 @@ function _send_contact_data($data = [])
             $ActivityData['status_id'] = "Completed";
             $ActivityData['source_contact_id'] = $contactId;
             $ActivityData['target_contact_id'] = $contactId;
-            $responseActivity = drupal_http_request($config['endpoint'], _get_post_options($ActivityData));
+            $responseActivity = drupal_http_request($apiConfig['endpoint'], _get_post_options($ActivityData));
             if (strtoupper($responseActivity->status_message) === 'OK') {
               $responseActivityData = json_decode($responseActivity->data);
               if ($responseActivityData->is_error == 0) {
@@ -228,7 +229,7 @@ function _send_contact_data($data = [])
 
             // SLA Acceptance
             $ActivityData['activity_type_id'] = "SLA Acceptance";
-            $responseActivity = drupal_http_request($config['endpoint'], _get_post_options($ActivityData));
+            $responseActivity = drupal_http_request($apiConfig['endpoint'], _get_post_options($ActivityData));
             if (strtoupper($responseActivity->status_message) === 'OK') {
               $responseActivityData = json_decode($responseActivity->data);
               if ($responseActivityData->is_error == 0) {
@@ -258,7 +259,7 @@ function _send_contact_data($data = [])
   if (!empty($messages)) {
     foreach ($messages as $message) {
       $severity = is_null($message['severity'])? WATCHDOG_ERROR : $message['severity'];
-      watchdog(basename(__FILE__, '.module'), $message['text'], $variables, $severity);
+      watchdog(basename(__FILE__, '.module'), $message['text'], [], $severity);
     }
   }
 }
