@@ -238,6 +238,13 @@ function _send_contact_data($data = [], $form_id)
           }
         }
 
+        // set district
+        if (isset($data['district'])) {
+          if (intval($data['district']) && $data['district'] >= 1 && $data['district'] <= 10) {
+            $createData['custom_111'] = $data['district'];
+          }
+        }
+
         // if contact is not a duplicate or if its values/entities have changed, create them:
         // participation type memberships
         if (isset($data['participation_type'])) {
