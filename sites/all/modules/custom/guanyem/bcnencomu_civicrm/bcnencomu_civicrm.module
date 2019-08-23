@@ -15,6 +15,9 @@ function bcnencomu_civicrm_form_alter(&$form, &$form_state, $form_id)
       case $config['participa_form']:
         $form['#submit'][] = 'bcnencomu_civicrm_participa_submit';
         break;
+      case $config['butlletins_form']:
+        $form['#submit'][] = 'bcnencomu_civicrm_butlletins_submit';
+        break;
     }
   } else {
     $messages[] = 'The settings file is not properly configured, please read the README file in the module.';
@@ -42,6 +45,20 @@ function bcnencomu_civicrm_contacte_submit($form, &$form_state)
  * On Participa form submit
  */
 function bcnencomu_civicrm_participa_submit($form, &$form_state)
+{
+  $submittedData = $form_state['input']['submitted'];
+
+  if (!is_null($submittedData) && !empty($submittedData)) {
+    if ($submittedData['accept_legal_terms']['yes'] === 'yes') {
+      _send_contact_data($submittedData, $form['#form_id']);
+    }
+  }
+}
+
+/**
+ * On Butlletins form submit
+ */
+function bcnencomu_civicrm_butlletins_submit($form, &$form_state)
 {
   $submittedData = $form_state['input']['submitted'];
 
