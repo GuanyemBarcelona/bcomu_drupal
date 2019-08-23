@@ -308,14 +308,15 @@ function _send_contact_data($data = [], $form_id)
             $messages[] = ['text' => 'The Contact was sent and received correctly in the CIVI CRM.', 'severity' => WATCHDOG_INFO];
 
             // Now we'll assign the activities to this contact:
-            // Update Communication Preferences
             $activityData = $postData;
             $activityData['entity'] = 'Activity';
             $activityData['action'] = 'create';
-            $activityData['activity_type_id'] = "Update_Communication_Preferences";
             $activityData['status_id'] = "Completed";
             $activityData['source_contact_id'] = $contactId;
             $activityData['target_contact_id'] = $contactId;
+
+            // Update Communication Preferences
+            $activityData['activity_type_id'] = "Update_Communication_Preferences";
             $responseActivity = drupal_http_request($apiConfig['endpoint'], _get_post_options($activityData));
             if (strtoupper($responseActivity->status_message) === 'OK') {
               $responseActivityData = json_decode($responseActivity->data);
