@@ -14,8 +14,10 @@
     "slick-carousel": "^1.7.1"
   },
   "devDependencies": {
+    "cssnano": "^4.1.10",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^3.1.0",
+    "gulp-postcss": "^8.0.0",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0"
   },
