@@ -42,7 +42,7 @@ $databases = array (
     'default' => 
     array (
       'database' => 'DB_NAME',
-      'username' => 'DB_NAME',
+      'username' => 'DB_USER',
       'password' => 'DB_PASSWORD',
       'host' => 'localhost',
       'port' => '',
