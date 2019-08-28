@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b2eec595f0f09548cc6feda5ffd7424",
+    "content-hash": "7167033de86258fd6713f713d29cece9",
     "packages": [
         {
             "name": "composer/installers",
@@ -1712,19 +1712,14 @@
         },
         {
             "name": "drupal/eu_cookie_compliance",
-            "version": "1.23.0",
+            "version": "dev-1.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/eu-cookie-compliance.git",
-                "reference": "7.x-1.23"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/eu_cookie_compliance-7.x-1.23.zip",
-                "reference": "7.x-1.23",
-                "shasum": "9dc83bf18926c614da3240791e49382ad243d5b8"
+                "reference": "817400cd30f88ee23e8d644b5b27e917972ef66b"
             },
             "require": {
+                "drupal/ctools": "*",
                 "drupal/drupal": "~7.0"
             },
             "type": "drupal-module",
@@ -1733,11 +1728,11 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "7.x-1.23",
-                    "datestamp": "1521960484",
+                    "version": "7.x-1.30+2-dev",
+                    "datestamp": "1563996786",
                     "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -1790,8 +1785,9 @@
             "description": "This module aims at making the web site compliant with the EU cookie regulation.",
             "homepage": "https://www.drupal.org/project/eu_cookie_compliance",
             "support": {
-                "source": "http://cgit.drupalcode.org/eu_cookie_compliance"
-            }
+                "source": "https://git.drupalcode.org/project/eu_cookie_compliance"
+            },
+            "time": "2019-07-27T17:22:33+00:00"
         },
         {
             "name": "drupal/field_group",

@@ -36,7 +36,7 @@
         "drupal/entityconnect": "^2.0",
         "drupal/entityreference": "^1.4",
         "drupal/epsacrop": "^2.4",
-        "drupal/eu_cookie_compliance": "1.23",
+        "drupal/eu_cookie_compliance": "^1.31",
         "drupal/field_group": "^1.5",
         "drupal/file_entity": "^2.25",
         "drupal/filter_harmonizer": "^1.4",
