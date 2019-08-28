@@ -246,6 +246,18 @@ button[data-ajax-call] {
   }
 }
 
+.webform-confirmation {
+  padding-top: 50px;
+
+  p, h2, h3, h4 {
+    @extend %narrowbody;
+  }
+
+  & + .links {
+    display: none;
+  }
+}
+
 .text-format-wrapper {
   margin-bottom: 30px;
 
