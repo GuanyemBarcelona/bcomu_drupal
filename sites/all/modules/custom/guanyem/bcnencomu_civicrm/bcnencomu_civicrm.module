@@ -20,8 +20,8 @@ function bcnencomu_civicrm_form_alter(&$form, &$form_state, $form_id)
         break;
     }
   } else {
-    $messages[] = 'The settings file is not properly configured, please read the README file in the module.';
-    watchdog(basename(__FILE__, '.module'), $messages[], [], WATCHDOG_ERROR);
+    $message = 'The settings file is not properly configured, please read the README file in the module.';
+    watchdog(basename(__FILE__, '.module'), $message, [], WATCHDOG_ERROR);
   }
 }
 
