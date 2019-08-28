@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1a94f0595b212eb7fba2f691d5308cd7",
+    "content-hash": "8b2eec595f0f09548cc6feda5ffd7424",
     "packages": [
         {
             "name": "composer/installers",
@@ -240,7 +240,7 @@
             "description": "Replaces all system object management pages in Drupal core with real views.",
             "homepage": "https://www.drupal.org/project/admin_views",
             "support": {
-                "source": "http://cgit.drupalcode.org/admin_views"
+                "source": "https://git.drupalcode.org/project/admin_views"
             },
             "time": "2016-12-08T10:14:02+00:00"
         },
