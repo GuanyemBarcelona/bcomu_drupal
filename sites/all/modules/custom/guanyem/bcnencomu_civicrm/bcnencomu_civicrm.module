@@ -352,20 +352,18 @@ function _send_contact_data($data = [], $form_id)
             $activityData['target_contact_id'] = $contactId;
 
             // Update Communication Preferences
-            if (isset($data['agree_receive_info'])) {
-              if ($data['agree_receive_info']['yes'] === 'yes') {
-                $activityData['activity_type_id'] = "Update_Communication_Preferences";
-                $responseActivity = drupal_http_request($apiConfig['endpoint'], _get_post_options($activityData));
-                if (strtoupper($responseActivity->status_message) === 'OK') {
-                  $responseActivityData = json_decode($responseActivity->data);
-                  if ($responseActivityData->is_error == 0) {
-                    $messages[] = ['text' => 'Update_Communication_Preferences activity correctly created.', 'severity' => WATCHDOG_INFO];
-                  } else {
-                    $messages[] = ['text' => $responseActivityData->error_message];
-                  }
+            if ($agreeReceiveInfo) {
+              $activityData['activity_type_id'] = "Update_Communication_Preferences";
+              $responseActivity = drupal_http_request($apiConfig['endpoint'], _get_post_options($activityData));
+              if (strtoupper($responseActivity->status_message) === 'OK') {
+                $responseActivityData = json_decode($responseActivity->data);
+                if ($responseActivityData->is_error == 0) {
+                  $messages[] = ['text' => 'Update_Communication_Preferences activity correctly created.', 'severity' => WATCHDOG_INFO];
                 } else {
-                  $messages[] = ['text' => 'There was some error creating the Update_Communication_Preferences activity.'];
+                  $messages[] = ['text' => $responseActivityData->error_message];
                 }
+              } else {
+                $messages[] = ['text' => 'There was some error creating the Update_Communication_Preferences activity.'];
               }
             }
 
