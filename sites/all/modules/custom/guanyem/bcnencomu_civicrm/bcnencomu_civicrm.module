@@ -106,6 +106,7 @@ function _send_contact_data($data = [], $form_id)
         // Check OK
 
         // flags for contact values that changed
+        $agreeReceiveInfo = false;
         $phoneChanged = false;
         $activistaChanged = false;
         $inscritChanged = false;
@@ -232,6 +233,13 @@ function _send_contact_data($data = [], $form_id)
           ];
         }
 
+        // checkbox agree_receive_info
+        if (isset($data['agree_receive_info'])) {
+          if ($data['agree_receive_info']['yes'] === 'yes') {
+            $agreeReceiveInfo = true;
+          }
+        }
+
         // set preferred language
         $language = 'ca';
         $allowedLanguages = ['ca', 'es'];
@@ -245,12 +253,9 @@ function _send_contact_data($data = [], $form_id)
 
         // set newsletter subscriptions:
         $languageIndex = array_search($language, $allowedLanguages);
-        // checkbox agree_receive_info
-        if (isset($data['agree_receive_info'])) {
-          if ($data['agree_receive_info']['yes'] === 'yes') {
-            if ($languageIndex !== false) {
-              $createData['custom_113'] = [$languageIndex+1];
-            }
+        if ($agreeReceiveInfo) {
+          if ($languageIndex !== false) {
+            $createData['custom_113'] = [$languageIndex+1];
           }
         }
         // checkboxes communication_type
