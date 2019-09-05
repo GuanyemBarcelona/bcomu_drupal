@@ -34,9 +34,7 @@ function bcnencomu_civicrm_contacte_submit($form, &$form_state)
 
   if (!is_null($submittedData) && !empty($submittedData)) {
     if ($submittedData['accept_legal_terms']['yes'] === 'yes') {
-      if ($submittedData['agree_receive_info']['yes'] === 'yes') {
-        _send_contact_data($submittedData, $form['#form_id']);
-      }
+      _send_contact_data($submittedData, $form['#form_id']);
     }
   }
 }
