@@ -298,7 +298,7 @@ function _send_contact_data($data = [], $form_id)
             // Inscrit membership
             if (!isset($contactId) || $inscritChanged) {
               // only set Inscrit if not Activista
-              if ($activistaChanged) {
+              if (!$activistaChanged) {
                 $createData['api.Membership.create.2'] = [
                   'membership_type_id' => "Inscrit",
                   'status_id' => "Pending",
