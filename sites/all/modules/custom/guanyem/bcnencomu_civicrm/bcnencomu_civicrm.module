@@ -284,8 +284,9 @@ function _send_contact_data($data = [], $form_id)
         // if contact is not a duplicate or if its values/entities have changed, create them:
         // participation type memberships
         if (isset($data['participation_type'])) {
+          // if Activist option:
           if ($data['participation_type']['activist'] === 'activist') {
-            // Activista membership
+            // make Activista membership
             if (!isset($contactId) || $activistaChanged) {
               $createData['api.Membership.create'] = [
                 'membership_type_id' => "Activista",
@@ -294,8 +295,9 @@ function _send_contact_data($data = [], $form_id)
               ];
             }
           }
-          if ($data['participation_type']['member'] === 'member') {
-            // Inscrit membership
+          // if Activist or Member option:
+          if ($data['participation_type']['activist'] === 'activist' || $data['participation_type']['member'] === 'member') {
+            // make Inscrit membership
             if (!isset($contactId) || $inscritChanged) {
               // only set Inscrit if not Activista
               if (!$activistaChanged) {
