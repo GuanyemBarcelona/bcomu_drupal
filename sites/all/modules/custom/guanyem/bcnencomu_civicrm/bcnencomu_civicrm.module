@@ -257,7 +257,7 @@ function _send_contact_data($data = [], $form_id)
             $createData['custom_113'] = [$languageIndex+1];
           }
         }
-        // checkboxes communication_type
+        // communication type checkboxes
         if (isset($data['communication_type'])) {
           $newsletterOptions = [];
           if ($data['communication_type']['newsletter'] === 'newsletter') {
