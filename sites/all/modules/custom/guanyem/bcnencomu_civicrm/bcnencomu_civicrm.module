@@ -308,14 +308,11 @@ function _send_contact_data($data = [], $form_id)
           if ($data['participation_type']['activist'] === 'activist' || $data['participation_type']['member'] === 'member') {
             // make Inscrit membership
             if (!isset($contactId) || $inscritChanged) {
-              // only set Inscrit if not Activista
-              if (!$activistaChanged) {
-                $createData['api.Membership.create.2'] = [
-                  'membership_type_id' => "Inscrit",
-                  'status_id' => "Pending",
-                  'is_override' => 1
-                ];
-              }
+              $createData['api.Membership.create.2'] = [
+                'membership_type_id' => "Inscrit",
+                'status_id' => "Pending",
+                'is_override' => 1
+              ];
             }
           }
         }
