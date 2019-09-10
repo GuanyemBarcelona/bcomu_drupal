@@ -282,6 +282,14 @@ function _send_contact_data($data = [], $form_id)
           }
         }
 
+        // set neighbourhood
+        for ($i = 1; $i <= $maxDistricts; $i++) {
+          $neighbourhood_key = 'neighbourhood_' . $i;
+          if (isset($data[$neighbourhood_key])) {
+            $createData['custom_115'] = $data[$neighbourhood_key];
+          }
+        }
+
         // if contact is not a duplicate or if its values/entities have changed, create them:
         // participation type memberships
         if (isset($data['participation_type'])) {
