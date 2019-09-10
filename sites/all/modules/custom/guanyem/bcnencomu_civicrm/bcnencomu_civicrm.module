@@ -91,11 +91,9 @@ function _send_contact_data($data = [], $form_id)
     $checkData = $postData;
     $checkData['entity'] = 'Contact';
     $checkData['action'] = 'duplicatecheck';
-    $checkData['dedupe_rule_id'] = 8;
+    $checkData['dedupe_rule_id'] = 4;
     $checkData['match'] = [
       'contact_type' => 'Individual',
-      'first_name' => $data['firstname'],
-      'last_name' => $data['lastname'],
       'email' => $data['email'],
     ];
 
