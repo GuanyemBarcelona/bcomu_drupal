@@ -73,6 +73,7 @@ function bcnencomu_civicrm_butlletins_submit($form, &$form_state)
 function _send_contact_data($data = [], $form_id)
 {
   $messages = [];
+  $maxDistricts = 10;
 
   // Check config vars
   $apiConfig = variable_get('civicrm_api');
@@ -276,7 +277,7 @@ function _send_contact_data($data = [], $form_id)
 
         // set district
         if (isset($data['district'])) {
-          if (intval($data['district']) && $data['district'] >= 1 && $data['district'] <= 10) {
+          if (intval($data['district']) && $data['district'] >= 1 && $data['district'] <= $maxDistricts) {
             $createData['custom_111'] = $data['district'];
           }
         }
