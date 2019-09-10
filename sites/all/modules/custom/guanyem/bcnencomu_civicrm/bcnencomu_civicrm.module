@@ -232,7 +232,7 @@ function _send_contact_data($data = [], $form_id)
           ];
         }
 
-        // checkbox agree_receive_info
+        // Agree receive info checkbox
         if (isset($data['agree_receive_info'])) {
           if ($data['agree_receive_info']['yes'] === 'yes') {
             $agreeReceiveInfo = true;
