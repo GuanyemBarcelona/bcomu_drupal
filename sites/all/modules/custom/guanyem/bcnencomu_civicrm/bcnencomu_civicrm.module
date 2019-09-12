@@ -7,16 +7,12 @@ function bcnencomu_civicrm_form_alter(&$form, &$form_state, $form_id)
 {
   $config = variable_get('civicrm_form_ids');
 
-  if (!is_null($config) && isset($config['contacte_form'])) {
+  if (!is_null($config) && isset($config['contacte_form']) && isset($config['participa_form']) && isset($config['butlletins_form'])) {
     switch ($form_id) {
       case $config['contacte_form']:
-        $form['#submit'][] = 'bcnencomu_civicrm_contacte_submit';
-        break;
       case $config['participa_form']:
-        $form['#submit'][] = 'bcnencomu_civicrm_participa_submit';
-        break;
       case $config['butlletins_form']:
-        $form['#submit'][] = 'bcnencomu_civicrm_butlletins_submit';
+        $form['#submit'][] = 'bcnencomu_civicrm_form_submit';
         break;
     }
   } else {
@@ -26,37 +22,9 @@ function bcnencomu_civicrm_form_alter(&$form, &$form_state, $form_id)
 }
 
 /**
- * On Contact form submit
+ * On form submit
  */
-function bcnencomu_civicrm_contacte_submit($form, &$form_state)
-{
-  $submittedData = $form_state['input']['submitted'];
-
-  if (!is_null($submittedData) && !empty($submittedData)) {
-    if ($submittedData['accept_legal_terms']['yes'] === 'yes') {
-      _send_contact_data($submittedData, $form['#form_id']);
-    }
-  }
-}
-
-/**
- * On Participa form submit
- */
-function bcnencomu_civicrm_participa_submit($form, &$form_state)
-{
-  $submittedData = $form_state['input']['submitted'];
-
-  if (!is_null($submittedData) && !empty($submittedData)) {
-    if ($submittedData['accept_legal_terms']['yes'] === 'yes') {
-      _send_contact_data($submittedData, $form['#form_id']);
-    }
-  }
-}
-
-/**
- * On Butlletins form submit
- */
-function bcnencomu_civicrm_butlletins_submit($form, &$form_state)
+function bcnencomu_civicrm_form_submit($form, &$form_state)
 {
   $submittedData = $form_state['input']['submitted'];
 
