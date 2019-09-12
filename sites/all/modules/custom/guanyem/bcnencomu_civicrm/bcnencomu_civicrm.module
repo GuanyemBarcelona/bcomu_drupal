@@ -260,7 +260,7 @@ function _send_contact_data($data = [], $form_id)
           }
         }
         $currentSubscriptions = [];
-        if (isset($oldContactData->custom_113)) {
+        if (!empty($oldContactData->custom_113)) {
           $currentSubscriptions = $oldContactData->custom_113;
         }
         $finalSubscriptions = array_merge($currentSubscriptions, $newSubscriptions);
