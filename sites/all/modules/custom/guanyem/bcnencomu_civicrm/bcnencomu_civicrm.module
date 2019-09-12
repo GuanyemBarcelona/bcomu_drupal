@@ -271,8 +271,11 @@ function _send_contact_data($data = [], $form_id)
 
         // set district
         if (isset($data['district'])) {
-          if (intval($data['district']) && $data['district'] >= 1 && $data['district'] <= $maxDistricts) {
-            $createData['custom_111'] = $data['district'];
+          if (empty($oldContactData->custom_111)) {
+            // if district not yet set
+            if (intval($data['district']) && $data['district'] >= 1 && $data['district'] <= $maxDistricts) {
+              $createData['custom_111'] = $data['district'];
+            }
           }
         }
 
@@ -280,7 +283,10 @@ function _send_contact_data($data = [], $form_id)
         for ($i = 1; $i <= $maxDistricts; $i++) {
           $neighbourhood_key = 'neighbourhood_' . $i;
           if (isset($data[$neighbourhood_key])) {
-            $createData['custom_115'] = $data[$neighbourhood_key];
+            if (empty($oldContactData->custom_115)) {
+              // if neighbourhood not yet set
+              $createData['custom_115'] = $data[$neighbourhood_key];
+            }
           }
         }
 
