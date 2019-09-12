@@ -72,8 +72,8 @@ function _send_contact_data($data = [], $form_id)
       if ($responseCheckData->is_error == 0) {
         // Check OK
 
-        // current subscriptions
-        $currentSubscriptions = [];
+        // old contact data
+        $oldContactData = new stdClass();
 
         // flags for contact values that changed
         $agreeReceiveInfo = false;
@@ -88,26 +88,25 @@ function _send_contact_data($data = [], $form_id)
 
           //--- Other entity check requests ---
 
-          // check current subscriptions
-          if (isset($data['agree_receive_info']) || isset($data['communication_type'])) {
-            $checkSubscriptionsData = $postData;
-            $checkSubscriptionsData['entity'] = 'Contact';
-            $checkSubscriptionsData['action'] = 'get';
-            $checkSubscriptionsData['id'] = $contactId;
-            $checkSubscriptionsData['return'] = ['custom_113'];
-            $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkSubscriptionsData));
-            if (strtoupper($responseCheck->status_message) === 'OK') {
-              $subscriptionsData = json_decode($responseCheck->data);
-              if ($subscriptionsData->is_error == 0) {
-                if (isset($subscriptionsData->values->$contactId->custom_113)) {
-                  $currentSubscriptions = $subscriptionsData->values->$contactId->custom_113;
-                }
-              } else {
-                $messages[] = ['text' => $subscriptionsData->error_message];
+          // check some current data
+          $checkCurrentData = $postData;
+          $checkCurrentData['entity'] = 'Contact';
+          $checkCurrentData['action'] = 'get';
+          $checkCurrentData['id'] = $contactId;
+          // getting Subscriptions, District and Neighbourhood
+          $checkCurrentData['return'] = ['custom_113', 'custom_111', 'custom_115'];
+          $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkCurrentData));
+          if (strtoupper($responseCheck->status_message) === 'OK') {
+            $currentData = json_decode($responseCheck->data);
+            if ($currentData->is_error == 0) {
+              if (isset($currentData->values->$contactId)) {
+                $oldContactData = $currentData->values->$contactId;
               }
             } else {
-              $messages[] = ['text' => 'There was some error checking the existence of the subscriptions.'];
+              $messages[] = ['text' => $currentData->error_message];
             }
+          } else {
+            $messages[] = ['text' => 'There was some error checking the existence of some current contact data.'];
           }
 
           // check if phone is new
@@ -259,6 +258,10 @@ function _send_contact_data($data = [], $form_id)
           if ($data['communication_type']['press'] === 'press') {
             $newSubscriptions[] = 3;
           }
+        }
+        $currentSubscriptions = [];
+        if (isset($oldContactData->custom_113)) {
+          $currentSubscriptions = $oldContactData->custom_113;
         }
         $finalSubscriptions = array_merge($currentSubscriptions, $newSubscriptions);
         $finalSubscriptions = array_unique($finalSubscriptions);
