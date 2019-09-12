@@ -104,6 +104,9 @@ function _send_contact_data($data = [], $form_id)
       if ($responseCheckData->is_error == 0) {
         // Check OK
 
+        // current subscriptions
+        $currentSubscriptions = [];
+
         // flags for contact values that changed
         $agreeReceiveInfo = false;
         $phoneChanged = false;
@@ -116,6 +119,28 @@ function _send_contact_data($data = [], $form_id)
           $contactId = reset($responseCheckData->values)->id;
 
           //--- Other entity check requests ---
+
+          // check current subscriptions
+          if (isset($data['agree_receive_info']) || isset($data['communication_type'])) {
+            $checkSubscriptionsData = $postData;
+            $checkSubscriptionsData['entity'] = 'Contact';
+            $checkSubscriptionsData['action'] = 'get';
+            $checkSubscriptionsData['id'] = $contactId;
+            $checkSubscriptionsData['return'] = ['custom_113'];
+            $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkSubscriptionsData));
+            if (strtoupper($responseCheck->status_message) === 'OK') {
+              $subscriptionsData = json_decode($responseCheck->data);
+              if ($subscriptionsData->is_error == 0) {
+                if (isset($subscriptionsData->values->$contactId->custom_113)) {
+                  $currentSubscriptions = $subscriptionsData->values->$contactId->custom_113;
+                }
+              } else {
+                $messages[] = ['text' => $subscriptionsData->error_message];
+              }
+            } else {
+              $messages[] = ['text' => 'There was some error checking the existence of the subscriptions.'];
+            }
+          }
 
           // check if phone is new
           if (isset($data['phone'])) {
@@ -251,26 +276,28 @@ function _send_contact_data($data = [], $form_id)
         }
 
         // set newsletter subscriptions:
+        $newSubscriptions = [];
         $languageIndex = array_search($language, $allowedLanguages);
         if ($agreeReceiveInfo) {
           if ($languageIndex !== false) {
-            $createData['custom_113'] = [$languageIndex+1];
+            $newSubscriptions[] = $languageIndex+1;
           }
         }
         // communication type checkboxes
         if (isset($data['communication_type'])) {
-          $newsletterOptions = [];
           if ($data['communication_type']['newsletter'] === 'newsletter') {
             if ($languageIndex !== false) {
-              $newsletterOptions[] = $languageIndex+1;
+              $newSubscriptions[] = $languageIndex+1;
             }
           }
           if ($data['communication_type']['press'] === 'press') {
-            $newsletterOptions[] = 3;
+            $newSubscriptions[] = 3;
           }
-          if (!empty($newsletterOptions)) {
-            $createData['custom_113'] = $newsletterOptions;
-          }
+        }
+        $finalSubscriptions = array_merge($currentSubscriptions, $newSubscriptions);
+        $finalSubscriptions = array_unique($finalSubscriptions);
+        if (!empty($finalSubscriptions)) {
+          $createData['custom_113'] = $finalSubscriptions;
         }
 
         // set district
