@@ -346,7 +346,7 @@ function _send_contact_data($data = [], $form_id)
           if ($agreeReceiveInfo) {
             if (!isset($contactId) || $seguidorChanged) {
               // only set Seguidor if not Activista nor Inscrit
-              if (!$activistaChanged && !$inscritChanged) {
+              if ($activistaChanged && $inscritChanged) {
                 $createData['api.Membership.create.3'] = [
                   'membership_type_id' => "Seguidor",
                   'status_id' => "Verificat",
