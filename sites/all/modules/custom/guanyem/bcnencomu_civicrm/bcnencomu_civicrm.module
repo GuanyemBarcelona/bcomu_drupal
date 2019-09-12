@@ -215,27 +215,25 @@ function _send_contact_data($data = [], $form_id)
             $messages[] = ['text' => 'There was some error checking if contact is Inscrit.'];
           }
 
-          if ($form_id == $formIdsConfig['contacte_form']) {
-            // check if not yet Seguidor
-            $checkSeguidorData = $postData;
-            $checkSeguidorData['entity'] = 'Membership';
-            $checkSeguidorData['action'] = 'get';
-            $checkSeguidorData['contact_id'] = $contactId;
-            $checkSeguidorData['membership_type_id'] = "Seguidor";
-            $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkSeguidorData));
-            if (strtoupper($responseCheck->status_message) === 'OK') {
-              $responseCheckData = json_decode($responseCheck->data);
-              if ($responseCheckData->is_error == 0) {
-                if (!$responseCheckData->values) {
-                  // if response has no values, this contact is not yet Seguidor
-                  $seguidorChanged = true;
-                }
-              } else {
-                $messages[] = ['text' => $responseCheckData->error_message];
+          // check if not yet Seguidor
+          $checkSeguidorData = $postData;
+          $checkSeguidorData['entity'] = 'Membership';
+          $checkSeguidorData['action'] = 'get';
+          $checkSeguidorData['contact_id'] = $contactId;
+          $checkSeguidorData['membership_type_id'] = "Seguidor";
+          $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkSeguidorData));
+          if (strtoupper($responseCheck->status_message) === 'OK') {
+            $responseCheckData = json_decode($responseCheck->data);
+            if ($responseCheckData->is_error == 0) {
+              if (!$responseCheckData->values) {
+                // if response has no values, this contact is not yet Seguidor
+                $seguidorChanged = true;
               }
             } else {
-              $messages[] = ['text' => 'There was some error checking if contact is Seguidor.'];
+              $messages[] = ['text' => $responseCheckData->error_message];
             }
+          } else {
+            $messages[] = ['text' => 'There was some error checking if contact is Seguidor.'];
           }
         }
 
@@ -341,18 +339,16 @@ function _send_contact_data($data = [], $form_id)
             }
           }
         }
-        if ($form_id != $formIdsConfig['participa_form']) {
-          // Seguidor membership
-          if ($agreeReceiveInfo) {
-            if (!isset($contactId) || $seguidorChanged) {
-              // only set Seguidor if not Activista nor Inscrit
-              if ($activistaChanged && $inscritChanged) {
-                $createData['api.Membership.create.3'] = [
-                  'membership_type_id' => "Seguidor",
-                  'status_id' => "Verificat",
-                  'is_override' => 1
-                ];
-              }
+        // Seguidor membership
+        if ($form_id == $formIdsConfig['butlletins_form'] || ($form_id == $formIdsConfig['contacte_form'] && $agreeReceiveInfo)) {
+          if (!isset($contactId) || $seguidorChanged) {
+            // only set Seguidor if not Activista nor Inscrit
+            if (!isset($contactId) || ($activistaChanged && $inscritChanged)) {
+              $createData['api.Membership.create.3'] = [
+                'membership_type_id' => "Seguidor",
+                'status_id' => "Verificat",
+                'is_override' => 1
+              ];
             }
           }
         }
