@@ -413,6 +413,19 @@ function _send_contact_data($data = [], $form_id)
   }
 }
 
+/**
+ * returns true if already subscribed to the generic newsletter (in any language: options 1 or 2)
+ */
+function _subscribed_already_to_newsletter($currentSubscriptions)
+{
+  $newsletterOptions = [1, 2];
+  foreach ($newsletterOptions as $option) {
+    if (in_array($option, $currentSubscriptions)) return true;
+  }
+
+  return false;
+}
+
 function _get_post_options($data)
 {
   return [
