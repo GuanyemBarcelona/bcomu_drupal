@@ -247,14 +247,14 @@ function _send_contact_data($data = [], $form_id)
         }
         $newSubscriptions = [];
         $languageIndex = array_search($language, $allowedLanguages);
-        if ($agreeReceiveInfo) {
+        if ($agreeReceiveInfo && !_subscribed_already_to_newsletter($currentSubscriptions)) {
           if ($languageIndex !== false) {
             $newSubscriptions[] = $languageIndex+1;
           }
         }
         // communication type checkboxes
         if (isset($data['communication_type'])) {
-          if ($data['communication_type']['newsletter'] === 'newsletter') {
+          if ($data['communication_type']['newsletter'] === 'newsletter' && !_subscribed_already_to_newsletter($currentSubscriptions)) {
             if ($languageIndex !== false) {
               $newSubscriptions[] = $languageIndex+1;
             }
