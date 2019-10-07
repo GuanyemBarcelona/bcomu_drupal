@@ -75,6 +75,8 @@
         "drupal/backup_migrate": "^3.6",
         "drupal/views_bulk_operations": "^3.5",
         "drupal/admin_views": "^1.6",
-        "drupal/views": "^3.23"
+        "drupal/views": "^3.23",
+        "drupal/captcha": "^1.6",
+        "drupal/recaptcha": "^2.3"
     }
 }
