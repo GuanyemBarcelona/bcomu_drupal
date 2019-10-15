@@ -442,3 +442,8 @@ function _get_post_options($data)
     ))
   ];
 }
+
+function _remove_whitespace($string)
+{
+  return preg_replace('/\s+/', '', $string);
+}
