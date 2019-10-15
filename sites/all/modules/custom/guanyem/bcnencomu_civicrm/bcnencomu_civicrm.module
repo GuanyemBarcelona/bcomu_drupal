@@ -115,18 +115,19 @@ function _send_contact_data($data = [], $form_id)
             $checkPhoneData['entity'] = 'Phone';
             $checkPhoneData['action'] = 'get';
             $checkPhoneData['contact_id'] = $contactId;
-            $checkPhoneData['phone'] = $data['phone'];
+            $checkPhoneData['phone'] = _remove_whitespace($data['phone']);
             $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkPhoneData));
             if (strtoupper($responseCheck->status_message) === 'OK') {
               $responseCheckData = json_decode($responseCheck->data);
               if ($responseCheckData->is_error == 0) {
                 if (!$responseCheckData->values) {
-                  // if response has no values, this contact did not have this phone yet
+                  // if response has no values, this contact did not have a phone yet
                   $phoneChanged = true;
                 } else {
                   // this contact already had a phone
                   $oldPhone = reset($responseCheckData->values)->phone;
-                  if ($oldPhone != $data['phone']) {
+                  $oldPhone = _remove_whitespace($oldPhone);
+                  if ($oldPhone != $checkPhoneData['phone']) {
                     // and the new one is different
                     $phoneChanged = true;
                   }
@@ -337,7 +338,7 @@ function _send_contact_data($data = [], $form_id)
           if (!isset($contactId) || $phoneChanged) {
             $createData['api.Phone.create'] = [
               'is_primary' => 1,
-              'phone' => $data['phone'],
+              'phone' => _remove_whitespace($data['phone']),
             ];
           }
         }
