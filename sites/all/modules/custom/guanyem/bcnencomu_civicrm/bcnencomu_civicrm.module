@@ -359,6 +359,13 @@ function _send_contact_data($data = [], $form_id)
             $contactId = $responseData->id;
             $messages[] = ['text' => 'The Contact was sent and received correctly in the CIVI CRM.', 'severity' => WATCHDOG_INFO];
 
+            // Send email if form is Participa
+            if ($form_id === $formIdsConfig['participa_form']) {
+              $emailKey = 'activista';
+              if (is_null($data['participation_type']['activist'])) $emailKey = 'elcomu';
+              drupal_mail('bcnencomu_civicrm', $emailKey, $data['email'], language_default());
+            }
+
             // Now we'll assign the activities to this contact:
             $activityData = $postData;
             $activityData['entity'] = 'Activity';
@@ -417,6 +424,51 @@ function _send_contact_data($data = [], $form_id)
       $severity = is_null($message['severity'])? WATCHDOG_ERROR : $message['severity'];
       watchdog(basename(__FILE__, '.module'), $message['text'], [], $severity);
     }
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function bcnencomu_civicrm_mail($key, &$message, $params)
+{
+  switch ($key) {
+    case 'activista':
+      $message['subject'] = 'Gràcies per inscriure’t a Barcelona En Comú';
+      $message['body'][] = '
+<p>Hola! </p>
+<p>Gràcies per voler formar part de Barcelona En Comú. T’expliquem com i quins passos s’han
+  de donar:</p>
+<p>Si vols ser <strong><span style="color: #ff0000;">ACTIVISTA</span></strong>,
+  només cal que vinguis a una de les <strong>trobades&nbsp;obertes de benvinguda per a nous activistes</strong> que
+  fem periòdicament, on expliquem els espais de participació que existeixen en l’organització, les campanyes on pots
+  col·laborar i les fites més importants per a la mobilització ciutadana. Aniràs rebent invitacions de sessions en
+  el teu correu electrònic.</p>
+<blockquote><p>Els activistes estan implicats en el
+    dia a dia de l’organització i poden participar en els Plenaris de BComú i prendre part de les deliberacions i
+    decisions més estratègiques i operatives de l’organització.</p></blockquote>
+<p><br>A més, també pots ser&nbsp;<span style="color: #ff0000;"><strong>membre de EL COMÚ</strong></span>&nbsp;si
+  vens a <strong>verificar la teva identitat presencialment</strong>, aportant el teu DNI/NIE/Passaport o algun
+  document que acrediti la teva residència a Barcelona en el nostre local al carrer Marina, 131, baixos. De dilluns
+  a divendres de 10 a 20h.</p>
+<blockquote><p>El Comú és l’espai més ampli de BComú
+    per poder participar en les grans decisions de l’organització i la ciutat: primàries a llistes electorals,
+    acords de govern, programes electorals, etc. Com a mínim una vegada l’any es pot convocar una Assemblea del Comú
+    i també altres tipus d’actes i activitats obertes en què poden participar.</p></blockquote>
+<p><strong>Tenim més poder del que ens han fet creure!</strong></p>
+';
+      break;
+    case 'elcomu':
+      $message['subject'] = 'Gràcies per inscriure’t a Barcelona En Comú';
+      $message['body'][] = '
+<p>Hola!</p>
+<p>Gràcies per voler estar inscrit i <strong>ser membre de El Comú</strong>, l’espai més ampli de Barcelona En Comú per poder participar en les grans decisions de l’organització i la ciutat: primàries a llistes electorals, acords de govern, programes electorals, etc. Com a mínim una vegada l’any es pot convocar una Assemblea del Comú i també altres tipus d’actes i activitats obertes en què poden participar.</p>
+<p>Per inscriure-t’hi, has de venir a la nostra seu a <strong>verificar-te presencialment</strong>, aportant el teu DNI/NIE/Passaport o algun document que acrediti la teva residència a Barcelona:</p>
+<blockquote><p><strong>Carrer Marina, 131 ( L1 Marina- L2 Monumental)</strong><br><strong>De dilluns a divendres de 10 a 20h</strong></p>
+</blockquote><p>Benvingut/da i fins aviat!</p>
+';
+      break;
+
   }
 }
 
