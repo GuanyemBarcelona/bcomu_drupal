@@ -77,6 +77,7 @@
         "drupal/admin_views": "^1.6",
         "drupal/views": "^3.23",
         "drupal/captcha": "^1.6",
-        "drupal/recaptcha": "^2.3"
+        "drupal/recaptcha": "^2.3",
+        "drupal/htmlmail": "^2.71"
     }
 }
