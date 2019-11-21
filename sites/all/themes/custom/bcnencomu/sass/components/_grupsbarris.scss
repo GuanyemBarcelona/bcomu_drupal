@@ -90,7 +90,7 @@ body.page-grup-barri {
       .views-field-field-grup-meetings {
         line-height: 1.5;
       }
-      .views-field-field-grup-email, .views-field-field-grup-web, .views-field-field-grup-facebook, .views-field-field-grup-twitter, .views-field-field-grup-telegram {
+      .views-field-field-grup-email, .views-field-field-grup-web, .views-field-field-grup-facebook, .views-field-field-grup-twitter, .views-field-field-grup-instagram, .views-field-field-grup-telegram {
         position: relative;
         padding-left: 30px;
         &:before {
@@ -113,8 +113,11 @@ body.page-grup-barri {
       .views-field-field-grup-twitter:before {
         background-position: -100px -125px;
       }
-      .views-field-field-grup-telegram:before {
+      .views-field-field-grup-instagram:before {
         background-position: -125px -125px;
+      }
+      .views-field-field-grup-telegram:before {
+        background-position: -150px -125px;
       }
     }
   }
