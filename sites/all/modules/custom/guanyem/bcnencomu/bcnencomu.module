@@ -282,6 +282,13 @@ function bcnencomu_theme($existing, $type, $theme, $path) {
 }
 
 /**
+ * Temporary redirect to a specific url
+ */
+function bcnencomu_temporary_redirect($url) {
+  drupal_goto($url, [], 307);
+}
+
+/**
  * Redirect to whatsapp link
  */
 function bcnencomu_whatsapp_redirect(){
