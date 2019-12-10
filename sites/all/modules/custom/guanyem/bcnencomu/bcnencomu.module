@@ -25,8 +25,9 @@ function bcnencomu_menu() {
   );
 
   $items['participa'] = array(
-    'page callback' => 'bcnencomu_participa_redirect',
+    'page callback' => 'bcnencomu_temporary_redirect',
     'type' => MENU_CALLBACK,
+    'page arguments' => array('node/3132'),
     'access arguments' => array('access content'),
   );
 
