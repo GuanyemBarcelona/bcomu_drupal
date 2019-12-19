@@ -21,6 +21,14 @@ function bcnencomu_menu() {
   $items['whatsapp'] = array(
     'page callback' => 'bcnencomu_whatsapp_redirect',
     'type' => MENU_CALLBACK,
+    'page arguments' => array('34622665234'),
+    'access arguments' => array('access content'),
+  );
+
+  $items['whatsap'] = array(
+    'page callback' => 'bcnencomu_whatsapp_redirect',
+    'type' => MENU_CALLBACK,
+    'page arguments' => array('34693594386'),
     'access arguments' => array('access content'),
   );
 
@@ -299,10 +307,10 @@ function bcnencomu_temporary_redirect($url) {
 /**
  * Redirect to whatsapp link
  */
-function bcnencomu_whatsapp_redirect(){
+function bcnencomu_whatsapp_redirect($telephone){
   header('HTTP/1.1 301 Moved Permanently');
   $message = "Afegeix-me al Whatsapp de Barcelona en Comú";
-  header('Location: https://wa.me/34622665234?text=' . urlencode($message));
+  header('Location: https://wa.me/' . $telephone . '?text=' . urlencode($message));
 }
 
 /**
