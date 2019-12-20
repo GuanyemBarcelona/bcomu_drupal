@@ -2203,8 +2203,8 @@ a[data-action="add-to-calendar-open"] {
   }
 }
 
-// Candidacies conselleres 2019
-body.page-conselleres-2019 {
+// Candidacies conselleres 2019 or Carrecs Interns 2019
+body.page-conselleres-2019, body.page-carrecs-interns {
   #content-header h1 {
     @extend %widerbody;
   }
