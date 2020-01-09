@@ -81,6 +81,7 @@ function _send_contact_data($data = [], $form_id)
         $activistaChanged = false;
         $inscritChanged = false;
         $seguidorChanged = false;
+        $addressChanged = false;
 
         if ($responseCheckData->values) {
           // if response has values, this contact is a duplicate
@@ -107,6 +108,56 @@ function _send_contact_data($data = [], $form_id)
             }
           } else {
             $messages[] = ['text' => 'There was some error checking the existence of some current contact data.'];
+          }
+
+          // check if district and neighbourhood are new
+          if (isset($data['district'])) {
+            $checkDistrictData = $postData;
+            $checkDistrictData['entity'] = 'Address';
+            $checkDistrictData['action'] = 'get';
+            $checkDistrictData['contact_id'] = $contactId;
+            $checkDistrictData['is_primary'] = 1;
+            $checkDistrictData['return'] = ['custom_118', 'custom_119'];
+            $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkDistrictData));
+            if (strtoupper($responseCheck->status_message) === 'OK') {
+              $responseCheckData = json_decode($responseCheck->data);
+              if ($responseCheckData->is_error == 0) {
+                if (!$responseCheckData->values) {
+                  // if response has no values, this contact did not have a primary address yet
+                  $addressChanged = true;
+                } else {
+                  // this contact already had a primary address
+                  $oldAddress = reset($responseCheckData->values);
+                  if (!isset($oldAddress->custom_118)) {
+                    // but has no district
+                    $addressChanged = true;
+                  } else {
+                    if ($oldAddress->custom_118 != $data['district']) {
+                      // and the new one is different
+                      $addressChanged = true;
+                    }
+                  }
+                  if (!isset($oldAddress->custom_119)) {
+                    // but has no neighbourhood
+                    $addressChanged = true;
+                  } else {
+                    for ($i = 1; $i <= $maxDistricts; $i++) {
+                      $neighbourhood_key = 'neighbourhood_' . $i;
+                      if (isset($data[$neighbourhood_key])) {
+                        if ($oldAddress->custom_119 != $data[$neighbourhood_key]) {
+                          // and the new one is different
+                          $addressChanged = true;
+                        }
+                      }
+                    }
+                  }
+                }
+              } else {
+                $messages[] = ['text' => $responseCheckData->error_message];
+              }
+            } else {
+              $messages[] = ['text' => 'There was some error checking the existence of the address.'];
+            }
           }
 
           // check if phone is new
@@ -276,27 +327,23 @@ function _send_contact_data($data = [], $form_id)
           $createData['custom_113'] = $finalSubscriptions;
         }
 
-        // set district
+        // set district and neighbourhood
         if (isset($data['district'])) {
-          if (empty($oldContactData->custom_111)) {
-            // if district not yet set
-            if (intval($data['district']) && $data['district'] >= 1 && $data['district'] <= $maxDistricts) {
-              $createData['custom_111'] = $data['district'];
-            }
-          }
-        }
+          if (!isset($contactId) || $addressChanged) {
+            $newAddress = [
+              'is_primary' => 1,
+              'location_type_id' => 'Inici',
+              'custom_118' => _remove_whitespace($data['district']),
+            ];
 
-        // set neighbourhood
-        for ($i = 1; $i <= $maxDistricts; $i++) {
-          $neighbourhood_key = 'neighbourhood_' . $i;
-          if (isset($data[$neighbourhood_key])) {
-            if (empty($oldContactData->custom_115)) {
-              // if neighbourhood not yet set
-              if (empty($oldContactData->custom_111) || $oldContactData->custom_111 == $data['district']) {
-                // if district not yet set or if it has not changed
-                $createData['custom_115'] = $data[$neighbourhood_key];
+            for ($i = 1; $i <= $maxDistricts; $i++) {
+              $neighbourhood_key = 'neighbourhood_' . $i;
+              if (isset($data[$neighbourhood_key])) {
+                $newAddress['custom_119'] = _remove_whitespace($data[$neighbourhood_key]);
               }
             }
+
+            $createData['api.Address.create'] = $newAddress;
           }
         }
 
