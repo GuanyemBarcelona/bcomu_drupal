@@ -93,8 +93,8 @@ function _send_contact_data($data = [], $form_id)
           $checkCurrentData['entity'] = 'Contact';
           $checkCurrentData['action'] = 'get';
           $checkCurrentData['id'] = $contactId;
-          // getting Subscriptions, District and Neighbourhood
-          $checkCurrentData['return'] = ['custom_113', 'custom_111', 'custom_115'];
+          // getting Subscriptions
+          $checkCurrentData['return'] = ['custom_113'];
           $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkCurrentData));
           if (strtoupper($responseCheck->status_message) === 'OK') {
             $currentData = json_decode($responseCheck->data);
