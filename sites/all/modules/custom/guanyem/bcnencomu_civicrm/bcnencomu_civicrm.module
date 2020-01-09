@@ -421,7 +421,8 @@ function _send_contact_data($data = [], $form_id)
 
   if (!empty($messages)) {
     foreach ($messages as $message) {
-      $severity = is_null($message['severity'])? WATCHDOG_ERROR : $message['severity'];
+      $severity = WATCHDOG_ERROR;
+      if (isset($message['severity'])) $severity = $message['severity'];
       watchdog(basename(__FILE__, '.module'), $message['text'], [], $severity);
     }
   }
