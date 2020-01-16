@@ -347,6 +347,15 @@ function _send_contact_data($data = [], $form_id)
           }
         }
 
+        // interest
+        $params = drupal_get_query_parameters();
+        if (isset($params['interes'])) {
+          $interest = intval($params['interes']);
+          if (is_int($interest)) {
+            $createData['custom_122'] = $interest;
+          }
+        }
+
         // if contact is not a duplicate or if its values/entities have changed, create them:
         // participation type memberships
         if (isset($data['participation_type'])) {
