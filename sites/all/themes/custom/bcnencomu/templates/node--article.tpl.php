@@ -89,6 +89,10 @@
 
       <?php if (isset($node_body_html)) { ?>
         <div class="field-body">
+        <?php if (isset($source_info_text)) { ?>
+          <p class="opinion-article-info"><?php print $source_info_text ?></p>
+        <?php } ?>
+
           <?php print $node_body_html; ?>
         </div>
       <?php } ?>

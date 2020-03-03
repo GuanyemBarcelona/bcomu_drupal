@@ -369,6 +369,17 @@ function bcnencomu_preprocess_node(&$vars)
 
         // Opinion post
         $vars['is_opinion'] = isset($vars['content']['field_authors']);
+        // opinion source
+        if (isset($vars['content']['field_source'])) {
+          $source_name = $vars['content']['field_source'][0]['#markup'];
+          $source_link = '#';
+          if (isset($vars['content']['field_opinion_url'])) $source_link = $vars['content']['field_opinion_url'][0]['#element']['url'];
+          $source_date_field = $vars['content']['field_opinion_publish_date']['#items'][0];
+          $source_date = bcnencomu_convert_datefield_to_dateobject($source_date_field);
+          $source_date = $source_date->format('d-m-Y');
+          $source_info_text = t('Article published originally at <a href="@link" target="_blank">@medium</a> on @date', array('@medium' => $source_name, '@link' => $source_link, '@date' => $source_date));
+          $vars['source_info_text'] = $source_info_text;
+        }
       }
       break;
     case 'banner':
