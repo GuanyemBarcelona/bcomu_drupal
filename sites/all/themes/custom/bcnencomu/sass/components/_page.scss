@@ -1619,10 +1619,7 @@ article.node {
   &.view-frontpage {
     .view-content {
       .views-row {
-        width: 49%;
-        @media screen and (max-width: $small_screen_width) {
-          width: 100%;
-        }
+        width: 100%;
       }
     }
   }
@@ -1928,9 +1925,28 @@ body.front {
 #block-views-frontpage-block_1 {
   #page.has-agenda & {
     float: left;
-    width: 66.66%;
+    width: 33.33%;
     @media screen and (max-width: $mediumbig_screen_width) {
       @include one-columnize;
+    }
+  }
+}
+
+// home opinion
+#block-views-opinion-block_1 {
+  #page.has-agenda & {
+    float: left;
+    width: 33.33%;
+    padding-left: 10px;
+    @media screen and (max-width: $mediumbig_screen_width) {
+      @include one-columnize;
+    }
+  }
+
+  .view-opinion {
+    padding-top: 0;
+    .views-row {
+      width: 100%;
     }
   }
 }
