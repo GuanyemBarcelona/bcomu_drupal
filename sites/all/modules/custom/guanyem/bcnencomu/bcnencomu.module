@@ -1,6 +1,5 @@
 <?php
 define('SITE_ID', 'bcnencomu');
-define('BCNENCOMU_TWITTER_USER', 'Guanyem');
 
 /**
  *  Implementation of hook_init().
@@ -358,10 +357,7 @@ function bcnencomu_render_creativecommons() {
 * Renders the Twitter timeline
 */
 function bcnencomu_render_twitter_timeline() {
-  $variables = array(
-    'app_user' => BCNENCOMU_TWITTER_USER,
-  );
-  return theme('twitter_timeline', $variables);
+  return theme('twitter_timeline');
 }
 
 /*
