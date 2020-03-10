@@ -2349,11 +2349,21 @@ body.page-conselleres-2019, body.page-carrecs-interns {
 
   .views-row {
     margin-bottom: 20px;
+
     .views-field-title {
       font-size: 180%;
       font-weight: 900;
       line-height: 1.33;
       margin-bottom: 0;
+
+      a {
+        &:before {
+          @include iconize(-100px, -175px);
+          content: " ";
+          float: left;
+          margin-right: 5px;
+        }
+      }
     }
 
     .views-field-body {
