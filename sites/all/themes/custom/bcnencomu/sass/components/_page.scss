@@ -1794,12 +1794,27 @@ article.node {
   .view-content {
     .node-slider {
       position: relative;
-      > .image {
+      .image {
+        > a {
+          display: block;
+        }
         img {
           width: 100%;
+
+          &.mobile-image {
+            display: none;
+          }
+
+          @media screen and (max-width: $micro_screen_width) {
+            display: none;
+
+            &.mobile-image {
+              display: block;
+            }
+          }
         }
       }
-      > .video {
+      .video {
         iframe {
           width: 100%;
         }
@@ -2611,9 +2626,9 @@ footer[role="contentinfo"] {
 
 // footer top
 .region-footer-top {
-  background: $theme_red;
+  background: $twitter_dark_color;
   color: white;
-  padding: 20px 0;
+  padding: 30px 0 20px;
   a {
     color: white;
   }
@@ -2621,34 +2636,34 @@ footer[role="contentinfo"] {
     @extend %wrapper;
     @extend %below-wrapper-horizontal-air;
     @extend %clearfix;
-  }
 
-  .block {
-    > header {
-      h1 {
-        font-size: 180%;
-        margin-bottom: 0;
-        padding-bottom: .3em;
-        border-bottom: 1px solid white;
+    > .block {
+      float: left;
+      width: 25%;
+      padding-right: 25px;
+
+      @media screen and (max-width: $bigger_screen_width) {
+        width: 50%;
+      }
+      @media screen and (max-width: $small_screen_width) {
+        @include one-columnize;
+      }
+
+      > header {
+        padding: 0;
+        h1 {
+          font-size: 180%;
+          margin-bottom: 0;
+          padding-bottom: .3em;
+          border-bottom: 1px solid white;
+        }
       }
     }
   }
 
   // Information Channels (Footer Top region)
   .view-canals-informacio-home-footer {
-    float: left;
-    width: 25%;
-    padding-right: 25px;
-    @media screen and (max-width: $bigger_screen_width) {
-      width: 50%;
-    }
-    @media screen and (max-width: $small_screen_width) {
-      @include one-columnize;
-    }
-
-    .view-content {
-      padding-top: 20px;
-    }
+    padding-top: 10px;
 
     .views-row {
       margin-bottom: 40px;
@@ -2664,18 +2679,7 @@ footer[role="contentinfo"] {
   }
 
   // Projects list
-  #block-views-nodequeue_4-block {
-    float: left;
-    width: 25%;
-    padding-right: 25px;
-    @media screen and (max-width: $bigger_screen_width) {
-      width: 50%;
-      padding-right: 0;
-    }
-    @media screen and (max-width: $small_screen_width) {
-      @include one-columnize;
-    }
-  }
+  #block-views-nodequeue_4-block {}
   .view-nodequeue-4 {
     .views-row {
       padding: 10px 0 20px;
