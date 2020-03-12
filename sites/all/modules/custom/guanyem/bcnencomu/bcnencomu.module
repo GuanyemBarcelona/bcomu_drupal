@@ -247,6 +247,7 @@ function bcnencomu_block_view($delta = '') {
       $block['content'] = bcnencomu_render_creativecommons();
       break;
     case 'twitter_timeline':
+      $block['subject'] = 'Twitter @bcnencomu';
       $block['content'] = bcnencomu_render_twitter_timeline();
       break;
   }
@@ -280,7 +281,6 @@ function bcnencomu_theme($existing, $type, $theme, $path) {
     ),
     'twitter_timeline' => array(
       'path' => drupal_get_path('module', 'bcnencomu'),
-      'variables' => array('app_user' => ''),
       'template' => 'theme/twitter_timeline',
     ),
     'node_nav' => array(
