@@ -306,9 +306,8 @@ function bcnencomu_temporary_redirect($url) {
 /**
  * Redirect to whatsapp link
  */
-function bcnencomu_whatsapp_redirect($telephone){
+function bcnencomu_whatsapp_redirect($telephone, $message = "Afegeix-me al Whatsapp de Barcelona en Comú"){
   header('HTTP/1.1 301 Moved Permanently');
-  $message = "Afegeix-me al Whatsapp de Barcelona en Comú";
   header('Location: https://wa.me/' . $telephone . '?text=' . urlencode($message));
 }
 
