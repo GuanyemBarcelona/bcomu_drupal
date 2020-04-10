@@ -31,6 +31,13 @@ function bcnencomu_menu() {
     'access arguments' => array('access content'),
   );
 
+  $items['bot'] = array(
+    'page callback' => 'bcnencomu_whatsapp_redirect',
+    'type' => MENU_CALLBACK,
+    'page arguments' => array('34931071275', 'Hola'),
+    'access arguments' => array('access content'),
+  );
+
   $items['participa'] = array(
     'page callback' => 'bcnencomu_temporary_redirect',
     'type' => MENU_CALLBACK,
