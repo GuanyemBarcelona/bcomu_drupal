@@ -264,6 +264,10 @@ function bcnencomu_preprocess_node(&$vars)
   $images = field_get_items('node', $node_obj, 'field_images'); // multiple images
   if (isset($image[0]['uri'])) {
     $teaser_uri = $image[0]['uri'];
+    $mobile_image = field_get_items('node', $node_obj, 'field_image_mobile'); // mobile image
+    if (isset($mobile_image[0]['uri'])) {
+      $mobile_thumb_uri = $mobile_image[0]['uri'];
+    }
   }
   if ($vars['view_mode'] == 'teaser') {
     if (isset($teaser_uri)) {
@@ -275,6 +279,9 @@ function bcnencomu_preprocess_node(&$vars)
     if (isset($teaser_uri)) {
       $teaser_style = 'slider_home';
       $vars['teaser_image'] = theme('image_style', array('path' => $teaser_uri, 'style_name' => $teaser_style));
+      if (isset($mobile_thumb_uri)) {
+        $vars['mobile_image'] = theme('image', array('path' => $mobile_thumb_uri, 'attributes' => array('class' => 'mobile-image')));
+      }
     }
   } else if ($vars['view_mode'] == 'highlighted') {
     if (isset($teaser_uri)) {

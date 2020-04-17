@@ -230,7 +230,15 @@ var config = {
       speed: 1000,
       pauseOnHover: true,
       dots: true,
-      arrows: false
+      arrows: false,
+      responsive: [
+        {
+          breakpoint: 480,
+          settings: {
+            dots: false
+          }
+        }
+      ]
     });
 
     // tags icon

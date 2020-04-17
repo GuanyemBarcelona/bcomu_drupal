@@ -7,13 +7,22 @@
     <div class="image">
       <?php if (empty($content['field_link'])){ ?>
       <?php print $teaser_image; ?> <?php // if does not have a link, print just the image ?>
+      <?php if (isset($mobile_image)){ ?>
+        <?php print $mobile_image; ?>
+      <?php } ?>
       <?php }else{ ?>               <?php // else ?>
       <?php if (!$hide_button){ ?>  <?php //   if we must show a button, print the image and the button ?>
       <?php print $teaser_image; ?>
+      <?php if (isset($mobile_image)){ ?>
+        <?php print $mobile_image; ?>
+      <?php } ?>
       <?php print render($content['field_link']); ?>
       <?php }else{ ?>               <?php //   else, print a linked image ?>
       <a href="<?php print $content['field_link']['#items'][0]['url']; ?>"<?php if ($external_link){ ?> rel="external"<?php } ?>>
         <?php print $teaser_image; ?>
+        <?php if (isset($mobile_image)){ ?>
+          <?php print $mobile_image; ?>
+        <?php } ?>
       </a>
       <?php } ?>
       <?php } ?>
