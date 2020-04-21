@@ -82,6 +82,23 @@ function bcnencomu_preprocess_html(&$vars)
   );
   drupal_add_html_head($meta_globalsign_domain_verification, 'meta_globalsign_domain_verification');
 
+  // if node of type Office, add noindex meta
+  if (arg(0) === 'node') {
+    if ($vars['page']['content']['system_main']['nodes'][arg(1)]['body']['#bundle'] === 'office') {
+      $meta_noindex = array(
+        '#type' => 'html_tag',
+        '#tag' => 'meta',
+        '#attributes' => array(
+          'content' => 'noindex',
+          'name' => 'robots',
+        ),
+      );
+      drupal_add_html_head($meta_noindex, 'meta_noindex');
+    }
+  }
+
+
+  // environment
   $vars['environment'] = variable_get('environment', 'dev');
 
   // navega pel programa page
