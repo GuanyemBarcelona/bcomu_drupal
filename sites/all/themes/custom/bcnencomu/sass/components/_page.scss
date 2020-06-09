@@ -1620,11 +1620,21 @@ article.node {
 
 // teasers list
 .teaser-list-view {
+  position: relative;
+
   &.view-frontpage {
     .view-content {
       .views-row {
         width: 100%;
       }
+    }
+  }
+  > header {
+    position: absolute;
+    top: -30px;
+    right: 10px;
+    > a {
+      font-size: 140%;
     }
   }
   .view-content {
@@ -2061,8 +2071,17 @@ form.search-form {
 /* Calendar agenda */
 #block-views-calendar_agenda-agenda_block {}
 .view-display-id-agenda_block {
+  position: relative;
   .view-empty {
     padding: 15px 0;
+  }
+  > header {
+    position: absolute;
+    top: -30px;
+    right: 10px;
+    > a {
+      font-size: 140%;
+    }
   }
   .views-row {
     @extend %clearfix;
