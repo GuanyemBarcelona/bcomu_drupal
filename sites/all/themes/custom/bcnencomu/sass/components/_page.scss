@@ -1756,6 +1756,10 @@ article.node {
       word-break: break-word;
       a {
         color: black;
+
+        &:hover {
+          color: $theme_red;
+        }
       }
     }
 
