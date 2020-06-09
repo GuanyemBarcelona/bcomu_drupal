@@ -1411,6 +1411,10 @@ article.node {
 
         & + .field-body {
           float: right;
+
+          blockquote p {
+            max-width: $body_width;
+          }
         }
       }
     }
