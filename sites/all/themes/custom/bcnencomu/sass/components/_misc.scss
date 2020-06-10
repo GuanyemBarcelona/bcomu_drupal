@@ -202,7 +202,17 @@ button[data-ajax-call] {
         input, select {
           padding: 5px;
           font-size: 160%;
-          height: 26px;
+          height: 35px;
+        }
+
+        .form-type-date-select {
+          .date-padding {
+            display: flex;
+
+            .form-type-select {
+              margin: 0 10px 0 0;
+            }
+          }
         }
       }
     }

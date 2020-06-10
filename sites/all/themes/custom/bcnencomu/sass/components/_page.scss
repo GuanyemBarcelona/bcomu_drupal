@@ -863,6 +863,32 @@ body.maintenance-page {
   }
 }
 
+// home posts
+#block-views-frontpage-block_1 {
+  float: left;
+  width: 33.33%;
+  @media screen and (max-width: $small_screen_width) {
+    @include one-columnize;
+  }
+}
+
+// home opinion
+#block-views-opinion-block_1 {
+  float: left;
+  width: 33.33%;
+  padding-left: 10px;
+  @media screen and (max-width: $small_screen_width) {
+    @include one-columnize;
+  }
+
+  .view-opinion {
+    padding-top: 0;
+    .views-row {
+      width: 100%;
+    }
+  }
+}
+
 /* Press block */
 #block-block-3 {
   padding-top: 40px;
@@ -1939,50 +1965,6 @@ article.node {
   }
 }
 
-/*** Home Content bottom ***/
-body.front {
-  .region-content-bottom {
-    > .inner {
-      @extend %clearfix;
-    }
-  }
-}
-
-/* home highlighted agenda */
-#block-views-highlighted_agenda-agenda_block {
-
-}
-
-/* home posts */
-#block-views-frontpage-block_1 {
-  #page.has-agenda & {
-    float: left;
-    width: 33.33%;
-    @media screen and (max-width: $mediumbig_screen_width) {
-      @include one-columnize;
-    }
-  }
-}
-
-// home opinion
-#block-views-opinion-block_1 {
-  #page.has-agenda & {
-    float: left;
-    width: 33.33%;
-    padding-left: 10px;
-    @media screen and (max-width: $mediumbig_screen_width) {
-      @include one-columnize;
-    }
-  }
-
-  .view-opinion {
-    padding-top: 0;
-    .views-row {
-      width: 100%;
-    }
-  }
-}
-
 // videos list
 .view-multimedia {
   margin-top: 30px;
@@ -2067,10 +2049,16 @@ form.search-form {
   }
 }
 
-/* Calendar agenda */
-#block-views-calendar_agenda-agenda_block {}
-.view-display-id-agenda_block {
+// Agenda
+.agenda-home {
+  padding-top: 50px;
+  > header {
+    padding: 0 $page_horizontal_padding;
+  }
+}
+.view-agenda {
   position: relative;
+  border-bottom: 1px solid black;
   .view-empty {
     padding: 15px 0;
   }
@@ -2083,69 +2071,106 @@ form.search-form {
     }
   }
   .views-row {
-    @extend %clearfix;
+    height: 112px;
     border-top: 1px solid black;
-    &.views-row-odd {
-      .date-group {
-        background-color: $theme_grey_dark;
-      }
-    }
-    .date-group { /* this div is created through script.js */
-      float: left;
-      width: 25%;
-      height: 97px;
-      overflow: hidden;
-      padding: 10px 0;
-      text-align: center;
-      background-color: rgba($theme_grey_dark, .75);
+    display: flex;
+
+    &:hover {
+      background-color: $theme_red;
       color: white;
-    }
-    .views-field-field-date-1 {
-      font-weight: 900;
-      font-size: 420%;
-      line-height: 1;
-    }
-    .views-field-field-date-2 {
-      text-transform: uppercase;
-      font-size: 160%;
-      line-height: 1;
-      margin-bottom: .2em;
-    }
-    .views-field-field-date {
-      font-size: 160%;
-      line-height: 1;
-      font-weight: bold;
-    }
-    > .content { /* this div is created through script.js */
-      float: left;
-      width: 75%;
-      height: 97px;
-      overflow: hidden;
-      padding: 15px 20px;
-    }
-    .views-field-field-venue, .views-field-field-transport-tube {
-      font-size: 160%;
-      line-height: 1.25;
-      color: $theme_grey_light;
-    }
-    .views-field-field-venue {
-      &:before {
-        content: '#';
-        margin-right: 3px;
+
+      .column {
+        .views-field {
+          &.views-field-field-url-streaming, &.views-field-field-need-enroll {
+            color: white;
+          }
+
+          &.views-field-field-url-streaming {
+            .field-content {
+              &:before {
+                background-color: white;
+              }
+            }
+          }
+
+          &.views-field-title-field, &.views-field-edit-node {
+            a {
+              color: white;
+            }
+          }
+        }
       }
     }
-    .views-field-title-field {
-      margin-top: .1em;
-      font-size: 160%;
-      line-height: 1.25;
-    }
-  }
-  .view-footer {
-    border-top: 1px solid black;
-    a {
-      display: block;
-      font-size: 160%;
-      padding: 10px 0;
+
+    .column { // these column divs are created through script.js
+      width: 20%;
+      height: 100%;
+      position: relative;
+      padding: 0 $page_horizontal_padding;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      &.column-title {
+        width: 60%;
+      }
+
+      .views-field {
+        font-size: $base-font-size;
+        margin-bottom: .2em;
+
+        &.views-field-title-field {
+          font-size: 220%;
+          line-height: 1.3;
+        }
+
+        &.views-field-field-date {
+          font-weight: bold;
+        }
+
+        &.views-field-field-date-1 {
+          .hour-end {
+            &:before {
+              content: "–";
+              padding-right: 5px;
+            }
+          }
+        }
+
+        &.views-field-field-district {
+          font-weight: bold;
+        }
+
+        &.views-field-field-is-online {
+          font-weight: bold;
+        }
+
+        &.views-field-field-url-streaming {
+          color: $theme_red;
+
+          .field-content {
+            &:before {
+              content: "";
+              display: inline-block;
+              width: 12px;
+              height: 12px;
+              background-color: $theme_red;
+              border-radius: 50%;
+              margin-right: 8px;
+            }
+          }
+        }
+
+        &.views-field-field-need-enroll {
+          color: $theme_red;
+        }
+
+        &.views-field-edit-node {
+          position: absolute;
+          top: 40%;
+          right: 10px;
+        }
+      }
     }
   }
 }
@@ -2153,7 +2178,7 @@ form.search-form {
 // add to calendar feature
 a[data-action="add-to-calendar-open"] {
   display: block;
-  font-size: 14px;
+  font-size: 140%;
   font-weight: normal;
   border-width: 1px;
   padding: 4px;
@@ -2440,60 +2465,6 @@ body.page-conselleres-2019, body.page-carrecs-interns {
       a {
         color: $theme_grey_darker;
         text-decoration: underline;
-      }
-    }
-  }
-}
-
-/* campaign agenda page */
-.view-display-id-agenda_page {
-  .view-grouping {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid $theme_red;
-    > .view-grouping-header {
-      font-size: 270%;
-      color: #8ea7bf;
-      margin-bottom: 1em;
-    }
-    > .view-grouping-content {
-      @extend %widerbody;
-      > .item-list {
-        h3 {
-          font-size: 180%;
-          font-weight: normal;
-          text-transform: uppercase;
-          color: $theme_red;
-          margin-bottom: 1em;
-        }
-      }
-    }
-    .views-row {
-      margin-bottom: 20px;
-      font-size: 170%;
-      line-height: 1.25;
-      overflow: hidden;
-      .views-field-field-date {
-        float: left;
-        font-size: 120%;
-        margin: 0 20px 40px 0;
-      }
-      .views-field-title-field {
-        font-weight: bold;
-      }
-      .views-field-field-date-2 {
-        display: none;
-      }
-      a[data-action="add-to-calendar-open"] {
-        float: right;
-      }
-    }
-  }
-  &.view-campaign-agenda {
-    .view-filters {
-      .form-item-field-date-value-1-value-month,
-      .form-item-field-date-value-1-value-year {
-        display: none;
       }
     }
   }

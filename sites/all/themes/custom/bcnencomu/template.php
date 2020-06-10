@@ -135,14 +135,6 @@ function bcnencomu_preprocess_page(&$vars, $hook)
   $vars['is_format_ajax'] = bcnencomu_is_format('async');
   $vars['is_format_oasis'] = bcnencomu_is_format('oasis');
 
-  // home page
-  if ($vars['is_front']) {
-    // is there an agenda
-    if (isset($vars['page']['content_bottom']['views_highlighted_agenda-agenda_block'])) {
-      $vars['classes_array'][] = 'has-agenda';
-    }
-  }
-
   // Adding a class to #page in wireframe mode
   if (theme_get_setting('wireframe_mode')) {
     $vars['classes_array'][] = 'wireframe-mode';
@@ -579,22 +571,6 @@ function bcnencomu_preprocess_taxonomy_term(&$vars)
   // candidacies council district
   if ($vars['vid'] == 6) {
     $vars['list_uri'] = gh_get_node_path_alias(CANDIDACY_COUNCIL_NID);
-  }
-}
-
-/**
- * Preprocess theme function to print a single record from a row, with fields.
- */
-function bcnencomu_preprocess_views_view_fields(&$vars)
-{
-  switch ($vars['view']->name) {
-    case 'agenda': // calendar search view
-      // add to calendar button
-      $node_obj = $vars['row']->_field_data['nid']['entity'];
-      $date = bcnencomu_convert_datefield_to_dateobject($node_obj->field_date[LANGUAGE_NONE][0]);
-      $event_data = bcnencomu_prepare_event_data($node_obj, $date);
-      $vars['addtocalendar_button'] = bcnencomu_render_addtocalendar_button($event_data);
-      break;
   }
 }
 

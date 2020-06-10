@@ -42,6 +42,8 @@ var config = {
         prepareAllVIdeos();
       } else if ($(context).is('.view-event-calendar')){
         scrollCalendarToFirstEvent();
+      } else if ($(context).is('.view-agenda')){
+        prepareAgendaLayout();
       }
     }
   };
@@ -177,12 +179,12 @@ var config = {
     });
 
     // open event links as overlay
-    $('.view-display-id-agenda_page .views-row .views-field-title-field a, .view-display-id-agenda_block .views-row .views-field-title-field a, div.single-day div.weekview .views-field-title a, div.single-day div.weekview .views-field-field-date a, .view-calendar-agenda .views-row .views-field-title-field a').each(function(i){
+    $('.view-agenda .views-field-title-field a, div.single-day div.weekview .views-field-title a, div.single-day div.weekview .views-field-field-date a, .view-calendar-agenda .views-row .views-field-title-field a').each(function(i){
       prepareEventLink($(this));
     });
 
     // Calendar Search view
-    var $calendar_search = $('.view-agenda');
+    var $calendar_search = $('.view-display-id-agenda_page');
     if ($calendar_search.length){
       // scroll body to the event that has current date or is the next to come, or the last one
       var max_top = 0;
@@ -266,20 +268,8 @@ var config = {
       }
     }
 
-    // home agenda
-    var $home_agenda = $('.view-display-id-agenda_block');
-    if ($home_agenda.length){
-      var $rows = $home_agenda.find('.views-row');
-      $rows.each(function(){
-        // wrap date
-        $(this).wrapInner('<div class="content" />');
-        $(this).prepend('<div class="date-group" />');
-        $(this).find('.views-field-field-date, .views-field-field-date-1, .views-field-field-date-2').detach().appendTo($(this).find('.date-group'));
-
-        // map icon
-        $(this).find('.views-field-field-venue .field-content').prepend('<i class="fa fa-map-marker"></i>');
-      });
-    }
+    // agenda
+    prepareAgendaLayout();
 
     // home batalles: change last link
     $('.view-batalles-home .view-content .views-row.tid-684 .views-field-field-lead a').attr('href', '/' + config.LANGUAGE + '/batalla/ciutat-dels-barris');
@@ -363,6 +353,21 @@ var config = {
 
   function onWindowScroll(e){
     prepareScrollBehavior();
+  }
+
+  function prepareAgendaLayout(){
+    var $agenda = $('.view-agenda');
+    if ($agenda.length){
+      var $rows = $agenda.find('.views-row');
+      $rows.each(function(){
+        // wrap content in many columns
+        $(this).wrapInner('<div class="column column-info" />');
+        $(this).prepend('<div class="column column-date" />');
+        $(this).prepend('<div class="column column-title" />');
+        $(this).find('.views-field-title-field').detach().appendTo($(this).find('.column-title'));
+        $(this).find('.views-field-field-date, .views-field-field-date-1, [data-action="add-to-calendar-open"]').detach().appendTo($(this).find('.column-date'));
+      });
+    }
   }
 
   function prepareScrollBehavior(){
