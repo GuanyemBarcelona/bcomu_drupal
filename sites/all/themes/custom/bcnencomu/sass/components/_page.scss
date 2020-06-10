@@ -1950,13 +1950,7 @@ body.front {
 
 /* home highlighted agenda */
 #block-views-highlighted_agenda-agenda_block {
-  float: right;
-  width: 33.33%;
-  padding-left: 10px;
-  @media screen and (max-width: $mediumbig_screen_width) {
-    @include one-columnize;
-    max-width: 400px;
-  }
+
 }
 
 /* home posts */
