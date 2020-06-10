@@ -1932,6 +1932,11 @@ article.node {
   clear: both;
   padding-left: $page_horizontal_padding;
   padding-right: $page_horizontal_padding;
+
+  body.front & {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 /*** Home Content bottom ***/
