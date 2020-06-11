@@ -1,8 +1,11 @@
 /*********************
 * General
 **********************/
-body.node-type-video #admin-menu, body.is-oasis #admin-menu, #block-block-2 {
+body.node-type-video #admin-menu, body.is-oasis #admin-menu, body.is-oasis .slicknav_menu, #block-block-2 {
   display: none;
+}
+body.is-oasis.admin-menu.adminimal-menu:before {
+  content: none;
 }
 body.admin-menu.node-type-video {
   margin-top: 0 !important;
@@ -933,6 +936,16 @@ body.page-taxonomy-term #content-header h1,
     font-size: 320%;
   }
 }
+body.is-oasis article > header h1 {
+  font-size: 360%;
+  margin-bottom: 1em;
+  @media screen and (max-width: $mediumbig_screen_width) {
+    font-size: 360%;
+  }
+  @media screen and (max-width: $micro_screen_width) {
+    font-size: 280%;
+  }
+}
 #content-header {
   padding-top: 30px;
 }
@@ -998,8 +1011,14 @@ body.page-taxonomy-term #content-header h1,
 /* typical detail */
 article.node {
   padding: 30px 0;
+  body.is-oasis & {
+    @media screen and (max-width: 660px) {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
 
-  // body
+    // body
   .body, .field-type-text-long, .field-type-text-with-summary {
     // narrow tag elements
     p, ul, ol, h2, h3, h4, h5, h6 {
@@ -1555,28 +1574,25 @@ article.node {
   &.node-event {
     > .content {
       @extend %narrowbody;
-      @extend %clearfix;
     }
     .field {
-      margin: 0 0 .5em;
-      font-size: 170%;
-      line-height: 1.25;
+      margin-bottom: 30px;
+      font-size: 180%;
+      line-height: 1.33;
       p {
         margin: 0;
         font-size: 1em;
         line-height: inherit;
       }
-    }
 
-    .image {
-      float: right;
-      width: 50%;
-      padding-left: 20px;
-    }
+      &.field-name-field-date {
+        margin-bottom: 0;
+        font-weight: bold;
+      }
 
-    &.with-image .content-fields {
-      float: left;
-      width: 50%;
+      &.field-need-enroll {
+        color: $theme_red;
+      }
     }
   }
 
@@ -2181,7 +2197,7 @@ a[data-action="add-to-calendar-open"] {
   font-size: 140%;
   font-weight: normal;
   border-width: 1px;
-  padding: 4px;
+  padding: 10px;
   width: 170px;
 }
 .add-to-calendar-popup {

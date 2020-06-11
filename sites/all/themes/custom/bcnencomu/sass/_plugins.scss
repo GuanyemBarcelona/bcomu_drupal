@@ -4,10 +4,32 @@
 
 /* Fancybox */
 @import "../node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css";
-/* fancybox */
+.fancybox-bg {
+  background-color: $theme_red;
+}
+.fancybox-button, .fancybox-button:link, .fancybox-button:visited {
+  color: black;
+}
+.fancybox-button {
+  background: none;
+  padding: 0;
+  &:hover {
+    background: none;
+    color: black;
+  }
+}
+.fancybox-slide {
+  padding: 0;
+}
+.fancybox-content {
+  width: 660px!important;
+  height: 100%!important;
+  float: right;
+  @media screen and (max-width: 660px) {
+    width: 100%!important;
+  }
+}
 .fancybox-skin {
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
   border-radius: 0;
 }
 
