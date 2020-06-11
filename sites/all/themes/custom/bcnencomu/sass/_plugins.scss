@@ -141,7 +141,7 @@
 [data-social-network="instagram"]:before {
   content: "\e044";
 }
-[data-social-network="watsapp"]:before {
+[data-social-network="watsapp"]:before, [data-social-network="whatsapp"]:before {
   content: "\e099";
 }
 [data-social-network="telegram"]:before {
@@ -155,4 +155,7 @@
 }
 [data-social-network="mail"]:before {
   content: "\e050";
+}
+[data-social-network="tiktok"]:before {
+  content: "\e96b";
 }
