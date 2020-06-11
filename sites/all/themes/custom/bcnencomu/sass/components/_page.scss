@@ -835,6 +835,10 @@ body.maintenance-page {
 
 /* region content */
 .region-content {
+  body.front & {
+    padding-top: 30px;
+  }
+
   #page.with-sidebar & {
     @media screen and (min-width: $mobile_menu_min_width) {
       min-height: 620px;
