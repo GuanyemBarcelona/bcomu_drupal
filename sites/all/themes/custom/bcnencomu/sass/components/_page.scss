@@ -870,7 +870,10 @@ body.maintenance-page {
 #block-views-frontpage-block_1 {
   float: left;
   width: 33.33%;
-  @media screen and (max-width: $small_screen_width) {
+  @media screen and (max-width: $bigger_screen_width) {
+    width: 50%;
+  }
+  @media screen and (max-width: $medium_screen_width) {
     @include one-columnize;
   }
 }
@@ -880,7 +883,10 @@ body.maintenance-page {
   float: left;
   width: 33.33%;
   padding-left: 10px;
-  @media screen and (max-width: $small_screen_width) {
+  @media screen and (max-width: $bigger_screen_width) {
+    width: 50%;
+  }
+  @media screen and (max-width: $medium_screen_width) {
     @include one-columnize;
   }
 
