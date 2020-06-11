@@ -870,10 +870,12 @@ body.maintenance-page {
   }
 }
 
-// home posts
-#block-views-frontpage-block_1 {
+// Home 3 columns: Posts, Opinion, Banners
+#block-views-frontpage-block_1, #block-views-opinion-block_1 {
   float: left;
   width: 33.33%;
+  padding-left: 10px;
+  padding-right: 10px;
   @media screen and (max-width: $bigger_screen_width) {
     width: 50%;
   }
@@ -881,25 +883,41 @@ body.maintenance-page {
     @include one-columnize;
   }
 }
-
+// home posts
+#block-views-frontpage-block_1 {
+  padding-left: 0;
+}
 // home opinion
 #block-views-opinion-block_1 {
-  float: left;
-  width: 33.33%;
-  padding-left: 10px;
   @media screen and (max-width: $bigger_screen_width) {
-    width: 50%;
+    padding-right: 0;
   }
-  @media screen and (max-width: $medium_screen_width) {
-    @include one-columnize;
-  }
-
   .view-opinion {
     padding-top: 0;
     .views-row {
       @include same-height-home-teasers;
       width: 100%;
     }
+  }
+}
+// home banners
+#block-views-home_banners-block {
+  float: right;
+  width: 33.33%;
+  padding: 48px 0 0 10px;
+  @media screen and (max-width: $bigger_screen_width) {
+    float: none;
+    padding: 30px 0;
+    width: 100%;
+  }
+}
+.view-home-banners {
+  .item-list > ul {
+    text-align: center;
+  }
+  .views-row {
+    display: inline-block;
+    margin-bottom: 20px;
   }
 }
 
