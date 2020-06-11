@@ -2096,8 +2096,16 @@ form.search-form {
   }
   .views-row {
     height: 112px;
+    overflow: hidden;
     border-top: 1px solid black;
     display: flex;
+
+    @media screen and (max-width: $medium_screen_width) {
+      position: relative;
+      display: block;
+      height: 160px;
+      padding-left: 50%;
+    }
 
     &:hover {
       background-color: $theme_red;
@@ -2135,17 +2143,39 @@ form.search-form {
       flex-direction: column;
       justify-content: center;
 
+      @media screen and (max-width: $medium_screen_width) {
+        width: 100%;
+        height: auto;
+        padding: 10px 10px 0;
+      }
+
       &.column-title {
         width: 60%;
+        @media screen and (max-width: $medium_screen_width) {
+          width: 50%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          padding-right: 0;
+        }
       }
 
       .views-field {
         font-size: $base-font-size;
         margin-bottom: .2em;
+        @media screen and (max-width: $medium_screen_width) {
+          font-size: 120%;
+        }
 
         &.views-field-title-field {
           font-size: 220%;
           line-height: 1.3;
+          @media screen and (max-width: $medium_screen_width) {
+            font-size: 200%;
+          }
+          @media screen and (max-width: $micro_screen_width) {
+            font-size: 160%;
+          }
         }
 
         &.views-field-field-date {
