@@ -112,7 +112,9 @@ function bcnencomu_preprocess_html(&$vars)
   // if is async, print just the content, without anything else (pure data to use in async calls)
   $vars['is_format_ajax'] = bcnencomu_is_format('async');
   // if is oasis, print just the content and also styles (<head>) and scripts (useful for an overlay showing just the content but with styles)
-  $vars['is_format_oasis'] = bcnencomu_is_format('oasis');
+  $is_oasis = bcnencomu_is_format('oasis');
+  $vars['is_format_oasis'] = $is_oasis;
+  if ($is_oasis) $vars['classes_array'][] = 'is-oasis';
 }
 
 function bcnencomu_is_format($format)

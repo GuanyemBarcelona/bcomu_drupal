@@ -1,7 +1,7 @@
 /*********************
 * General
 **********************/
-body.node-type-video #admin-menu, #block-block-2 {
+body.node-type-video #admin-menu, body.is-oasis #admin-menu, #block-block-2 {
   display: none;
 }
 body.admin-menu.node-type-video {
