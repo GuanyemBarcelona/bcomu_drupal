@@ -11,29 +11,26 @@
   </header>
   <?php } ?>
   <div class="content">
-    <?php if (isset($content['field_image'])){ ?>
-      <div class="image">
-        <?php print render($content['field_image']); ?>
-      </div>
-    <?php } ?>
 
-    <div class="content-fields">
-      <?php print render($content['field_date']); ?>
+    <?php print render($content['field_date']); ?>
 
-      <div class="field field-hour-range field-label-inline clearfix">
-        <div class="field-items">
-          <div class="field-item even">
-            <?php print $hour_range; ?>
-          </div>
+    <div class="field field-hour-range field-label-inline clearfix">
+      <div class="field-items">
+        <div class="field-item even">
+          <?php print $hour_range; ?>
         </div>
       </div>
-
-      <?php print render($content); ?>
-
-      <?php if (isset($addtocalendar_button)){ ?>
-        <?php print $addtocalendar_button; ?>
-      <?php } ?>
     </div>
+
+    <?php if ($need_enroll){ ?>
+      <div class="field field-need-enroll"><?php print t("Cal inscripció"); ?></div>
+    <?php } ?>
+
+    <?php print render($content); ?>
+
+    <?php if (isset($addtocalendar_button)){ ?>
+      <?php print $addtocalendar_button; ?>
+    <?php } ?>
   </div>
   <?php } ?>
 </<?php print $tag; ?>> <!-- /node-->

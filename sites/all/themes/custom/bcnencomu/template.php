@@ -493,7 +493,7 @@ function bcnencomu_preprocess_node(&$vars)
         $hour_range = $hour_start;
         if (!empty($node_obj->field_hour_end)) {
           $hour_end = $node_obj->field_hour_end[LANGUAGE_NONE][0]['safe_value'];
-          $hour_range .= ' - ' . $hour_end;
+          $hour_range .= ' – ' . $hour_end;
         }
         $vars['hour_range'] = $hour_range;
 
@@ -501,6 +501,9 @@ function bcnencomu_preprocess_node(&$vars)
         if (isset($vars['content']['field_image'])) {
           $vars['classes_array'][] = 'with-image';
         }
+
+        // needs enrollment
+        $vars['need_enroll'] = $node_obj->field_need_enroll[LANGUAGE_NONE][0]['value'] === '1';
 
         // add to calendar button data
         $event_data = bcnencomu_prepare_event_data($node_obj, $date);
