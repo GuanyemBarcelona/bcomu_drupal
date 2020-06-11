@@ -108,12 +108,11 @@ function bcnencomu_config_settings_form_submit($form, &$form_state) {
  */
 function bcnencomu_config_get_social_types() {
   return array(
-    'telegram' => 'Telegram',
+    'instagram' => 'Instagram',
     'facebook' => 'Facebook',
     'twitter' => 'Twitter',
-    'youtube' => 'Youtube',
-    'tumblr' => 'Tumblr',
-    'flickr' => 'Flickr',
-    'instagram' => 'Instagram',
+    'tiktok' => 'TikTok',
+    'telegram' => 'Telegram',
+    'whatsapp' => 'Whatsapp',
   );
 }
