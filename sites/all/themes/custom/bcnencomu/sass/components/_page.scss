@@ -893,6 +893,7 @@ body.maintenance-page {
   .view-opinion {
     padding-top: 0;
     .views-row {
+      @include same-height-home-teasers;
       width: 100%;
     }
   }
@@ -1673,6 +1674,7 @@ article.node {
   &.view-frontpage {
     .view-content {
       .views-row {
+        @include same-height-home-teasers;
         width: 100%;
       }
     }

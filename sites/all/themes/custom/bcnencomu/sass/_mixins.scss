@@ -194,3 +194,13 @@
   height: (25px * $block_height);
   background: url("../img/sprite.png?" + $sprite_version) no-repeat $left $top;
 }
+
+// same height home teasers
+@mixin same-height-home-teasers {
+  height: 25vw;
+  max-height: 200px;
+  @media screen and (max-width: $medium_screen_width) {
+    height: auto;
+    max-height: none;
+  }
+}
