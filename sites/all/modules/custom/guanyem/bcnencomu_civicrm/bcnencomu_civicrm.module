@@ -99,23 +99,23 @@ function _send_contact_data($data = [], $form_id)
           $checkCurrentData['action'] = 'get';
           $checkCurrentData['id'] = $contactId;
 
-          if (!$isRendaBasicaForm) {
-            // getting Subscriptions
-            $checkCurrentData['return'] = ['custom_113'];
-            $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkCurrentData));
-            if (strtoupper($responseCheck->status_message) === 'OK') {
-              $currentData = json_decode($responseCheck->data);
-              if ($currentData->is_error == 0) {
-                if (isset($currentData->values->$contactId)) {
-                  $oldContactData = $currentData->values->$contactId;
-                }
-              } else {
-                $messages[] = ['text' => $currentData->error_message];
+          // getting current Subscriptions and Interests
+          $checkCurrentData['return'] = ['custom_113', 'custom_124'];
+          $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkCurrentData));
+          if (strtoupper($responseCheck->status_message) === 'OK') {
+            $currentData = json_decode($responseCheck->data);
+            if ($currentData->is_error == 0) {
+              if (isset($currentData->values->$contactId)) {
+                $oldContactData = $currentData->values->$contactId;
               }
             } else {
-              $messages[] = ['text' => 'There was some error checking the existence of some current contact data.'];
+              $messages[] = ['text' => $currentData->error_message];
             }
+          } else {
+            $messages[] = ['text' => 'There was some error checking the existence of some current contact data.'];
+          }
 
+          if (!$isRendaBasicaForm) {
             // check if district and neighbourhood are new
             if (isset($data['district'])) {
               $checkDistrictData = $postData;
@@ -357,17 +357,27 @@ function _send_contact_data($data = [], $form_id)
           }
         }
 
-        // interest
+        // interests
+        $currentInterests = [];
+        if (!empty($oldContactData->custom_124)) {
+          $currentInterests = $oldContactData->custom_124;
+        }
+        $newInterests = [];
         if (!$isRendaBasicaForm) {
           $params = drupal_get_query_parameters();
           if (isset($params['interes'])) {
             $interest = intval($params['interes']);
             if (is_int($interest)) {
-              $createData['custom_124'] = $interest;
+              $newInterests[] = $interest;
             }
           }
         } else {
-          $createData['custom_124'] = 11;
+          $newInterests[] = 11;
+        }
+        $finalInterests = array_merge($currentInterests, $newInterests);
+        $finalInterests = array_unique($finalInterests);
+        if (!empty($finalInterests)) {
+          $createData['custom_124'] = $finalInterests;
         }
 
         // if contact is not a duplicate or if its values/entities have changed, create them:
