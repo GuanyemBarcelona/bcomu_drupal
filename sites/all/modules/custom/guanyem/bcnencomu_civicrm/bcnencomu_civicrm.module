@@ -7,11 +7,12 @@ function bcnencomu_civicrm_form_alter(&$form, &$form_state, $form_id)
 {
   $config = variable_get('civicrm_form_ids');
 
-  if (!is_null($config) && isset($config['contacte_form']) && isset($config['participa_form']) && isset($config['butlletins_form'])) {
+  if (!is_null($config) && isset($config['contacte_form']) && isset($config['participa_form']) && isset($config['butlletins_form']) && isset($config['renda_basica_form'])) {
     switch ($form_id) {
       case $config['contacte_form']:
       case $config['participa_form']:
       case $config['butlletins_form']:
+      case $config['renda_basica_form']:
         $form['#submit'][] = 'bcnencomu_civicrm_form_submit';
         break;
     }
@@ -46,6 +47,9 @@ function _send_contact_data($data = [], $form_id)
   // Check config vars
   $apiConfig = variable_get('civicrm_api');
   $formIdsConfig = variable_get('civicrm_form_ids');
+
+  // is renda basica form (a simpler form)
+  $isRendaBasicaForm = ($form_id === $formIdsConfig['renda_basica_form']);
 
   if (!is_null($apiConfig) && !is_null($formIdsConfig)) {
     $postData = [
@@ -94,165 +98,168 @@ function _send_contact_data($data = [], $form_id)
           $checkCurrentData['entity'] = 'Contact';
           $checkCurrentData['action'] = 'get';
           $checkCurrentData['id'] = $contactId;
-          // getting Subscriptions
-          $checkCurrentData['return'] = ['custom_113'];
-          $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkCurrentData));
-          if (strtoupper($responseCheck->status_message) === 'OK') {
-            $currentData = json_decode($responseCheck->data);
-            if ($currentData->is_error == 0) {
-              if (isset($currentData->values->$contactId)) {
-                $oldContactData = $currentData->values->$contactId;
+
+          if (!$isRendaBasicaForm) {
+            // getting Subscriptions
+            $checkCurrentData['return'] = ['custom_113'];
+            $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkCurrentData));
+            if (strtoupper($responseCheck->status_message) === 'OK') {
+              $currentData = json_decode($responseCheck->data);
+              if ($currentData->is_error == 0) {
+                if (isset($currentData->values->$contactId)) {
+                  $oldContactData = $currentData->values->$contactId;
+                }
+              } else {
+                $messages[] = ['text' => $currentData->error_message];
               }
             } else {
-              $messages[] = ['text' => $currentData->error_message];
+              $messages[] = ['text' => 'There was some error checking the existence of some current contact data.'];
             }
-          } else {
-            $messages[] = ['text' => 'There was some error checking the existence of some current contact data.'];
-          }
 
-          // check if district and neighbourhood are new
-          if (isset($data['district'])) {
-            $checkDistrictData = $postData;
-            $checkDistrictData['entity'] = 'Address';
-            $checkDistrictData['action'] = 'get';
-            $checkDistrictData['contact_id'] = $contactId;
-            $checkDistrictData['is_primary'] = 1;
-            $checkDistrictData['return'] = ['custom_118', 'custom_119'];
-            $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkDistrictData));
-            if (strtoupper($responseCheck->status_message) === 'OK') {
-              $responseCheckData = json_decode($responseCheck->data);
-              if ($responseCheckData->is_error == 0) {
-                if (!$responseCheckData->values) {
-                  // if response has no values, this contact did not have a primary address yet
-                  $addressChanged = true;
-                } else {
-                  // this contact already had a primary address
-                  $oldAddress = reset($responseCheckData->values);
-                  if (!isset($oldAddress->custom_118)) {
-                    // but has no district
+            // check if district and neighbourhood are new
+            if (isset($data['district'])) {
+              $checkDistrictData = $postData;
+              $checkDistrictData['entity'] = 'Address';
+              $checkDistrictData['action'] = 'get';
+              $checkDistrictData['contact_id'] = $contactId;
+              $checkDistrictData['is_primary'] = 1;
+              $checkDistrictData['return'] = ['custom_118', 'custom_119'];
+              $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkDistrictData));
+              if (strtoupper($responseCheck->status_message) === 'OK') {
+                $responseCheckData = json_decode($responseCheck->data);
+                if ($responseCheckData->is_error == 0) {
+                  if (!$responseCheckData->values) {
+                    // if response has no values, this contact did not have a primary address yet
                     $addressChanged = true;
                   } else {
-                    if ($oldAddress->custom_118 != $data['district']) {
-                      // and the new one is different
+                    // this contact already had a primary address
+                    $oldAddress = reset($responseCheckData->values);
+                    if (!isset($oldAddress->custom_118)) {
+                      // but has no district
                       $addressChanged = true;
+                    } else {
+                      if ($oldAddress->custom_118 != $data['district']) {
+                        // and the new one is different
+                        $addressChanged = true;
+                      }
                     }
-                  }
-                  if (!isset($oldAddress->custom_119)) {
-                    // but has no neighbourhood
-                    $addressChanged = true;
-                  } else {
-                    for ($i = 1; $i <= $maxDistricts; $i++) {
-                      $neighbourhood_key = 'neighbourhood_' . $i;
-                      if (isset($data[$neighbourhood_key])) {
-                        if ($oldAddress->custom_119 != $data[$neighbourhood_key]) {
-                          // and the new one is different
-                          $addressChanged = true;
+                    if (!isset($oldAddress->custom_119)) {
+                      // but has no neighbourhood
+                      $addressChanged = true;
+                    } else {
+                      for ($i = 1; $i <= $maxDistricts; $i++) {
+                        $neighbourhood_key = 'neighbourhood_' . $i;
+                        if (isset($data[$neighbourhood_key])) {
+                          if ($oldAddress->custom_119 != $data[$neighbourhood_key]) {
+                            // and the new one is different
+                            $addressChanged = true;
+                          }
                         }
                       }
                     }
                   }
+                } else {
+                  $messages[] = ['text' => $responseCheckData->error_message];
                 }
               } else {
-                $messages[] = ['text' => $responseCheckData->error_message];
+                $messages[] = ['text' => 'There was some error checking the existence of the address.'];
               }
-            } else {
-              $messages[] = ['text' => 'There was some error checking the existence of the address.'];
             }
-          }
 
-          // check if phone is new
-          if (isset($data['phone'])) {
-            $checkPhoneData = $postData;
-            $checkPhoneData['entity'] = 'Phone';
-            $checkPhoneData['action'] = 'get';
-            $checkPhoneData['contact_id'] = $contactId;
-            $checkPhoneData['phone'] = _remove_whitespace($data['phone']);
-            $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkPhoneData));
+            // check if phone is new
+            if (isset($data['phone'])) {
+              $checkPhoneData = $postData;
+              $checkPhoneData['entity'] = 'Phone';
+              $checkPhoneData['action'] = 'get';
+              $checkPhoneData['contact_id'] = $contactId;
+              $checkPhoneData['phone'] = _remove_whitespace($data['phone']);
+              $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkPhoneData));
+              if (strtoupper($responseCheck->status_message) === 'OK') {
+                $responseCheckData = json_decode($responseCheck->data);
+                if ($responseCheckData->is_error == 0) {
+                  if (!$responseCheckData->values) {
+                    // if response has no values, this contact did not have a phone yet
+                    $phoneChanged = true;
+                  } else {
+                    // this contact already had a phone
+                    $oldPhone = reset($responseCheckData->values)->phone;
+                    $oldPhone = _remove_whitespace($oldPhone);
+                    if ($oldPhone != $checkPhoneData['phone']) {
+                      // and the new one is different
+                      $phoneChanged = true;
+                    }
+                  }
+                } else {
+                  $messages[] = ['text' => $responseCheckData->error_message];
+                }
+              } else {
+                $messages[] = ['text' => 'There was some error checking the existence of the phone.'];
+              }
+            }
+
+            // check if not yet Activista
+            $checkActivistaData = $postData;
+            $checkActivistaData['entity'] = 'Membership';
+            $checkActivistaData['action'] = 'get';
+            $checkActivistaData['contact_id'] = $contactId;
+            $checkActivistaData['membership_type_id'] = "Activista";
+            $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkActivistaData));
             if (strtoupper($responseCheck->status_message) === 'OK') {
               $responseCheckData = json_decode($responseCheck->data);
               if ($responseCheckData->is_error == 0) {
                 if (!$responseCheckData->values) {
-                  // if response has no values, this contact did not have a phone yet
-                  $phoneChanged = true;
-                } else {
-                  // this contact already had a phone
-                  $oldPhone = reset($responseCheckData->values)->phone;
-                  $oldPhone = _remove_whitespace($oldPhone);
-                  if ($oldPhone != $checkPhoneData['phone']) {
-                    // and the new one is different
-                    $phoneChanged = true;
-                  }
+                  // if response has no values, this contact is not yet Activista
+                  $activistaChanged = true;
                 }
               } else {
                 $messages[] = ['text' => $responseCheckData->error_message];
               }
             } else {
-              $messages[] = ['text' => 'There was some error checking the existence of the phone.'];
+              $messages[] = ['text' => 'There was some error checking if contact is Activista.'];
             }
-          }
 
-          // check if not yet Activista
-          $checkActivistaData = $postData;
-          $checkActivistaData['entity'] = 'Membership';
-          $checkActivistaData['action'] = 'get';
-          $checkActivistaData['contact_id'] = $contactId;
-          $checkActivistaData['membership_type_id'] = "Activista";
-          $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkActivistaData));
-          if (strtoupper($responseCheck->status_message) === 'OK') {
-            $responseCheckData = json_decode($responseCheck->data);
-            if ($responseCheckData->is_error == 0) {
-              if (!$responseCheckData->values) {
-                // if response has no values, this contact is not yet Activista
-                $activistaChanged = true;
+            // check if not yet Inscrit
+            $checkInscritData = $postData;
+            $checkInscritData['entity'] = 'Membership';
+            $checkInscritData['action'] = 'get';
+            $checkInscritData['contact_id'] = $contactId;
+            $checkInscritData['membership_type_id'] = "Inscrit";
+            $checkInscritData['status_id'] = ['IN' => ["Pending", "Current", "Verificat"]];
+            $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkInscritData));
+            if (strtoupper($responseCheck->status_message) === 'OK') {
+              $responseCheckData = json_decode($responseCheck->data);
+              if ($responseCheckData->is_error == 0) {
+                if (!$responseCheckData->values) {
+                  // if response has no values, this contact is not yet Inscrit
+                  $inscritChanged = true;
+                }
+              } else {
+                $messages[] = ['text' => $responseCheckData->error_message];
               }
             } else {
-              $messages[] = ['text' => $responseCheckData->error_message];
+              $messages[] = ['text' => 'There was some error checking if contact is Inscrit.'];
             }
-          } else {
-            $messages[] = ['text' => 'There was some error checking if contact is Activista.'];
-          }
 
-          // check if not yet Inscrit
-          $checkInscritData = $postData;
-          $checkInscritData['entity'] = 'Membership';
-          $checkInscritData['action'] = 'get';
-          $checkInscritData['contact_id'] = $contactId;
-          $checkInscritData['membership_type_id'] = "Inscrit";
-          $checkInscritData['status_id'] = ['IN' => ["Pending", "Current", "Verificat"]];
-          $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkInscritData));
-          if (strtoupper($responseCheck->status_message) === 'OK') {
-            $responseCheckData = json_decode($responseCheck->data);
-            if ($responseCheckData->is_error == 0) {
-              if (!$responseCheckData->values) {
-                // if response has no values, this contact is not yet Inscrit
-                $inscritChanged = true;
+            // check if not yet Seguidor
+            $checkSeguidorData = $postData;
+            $checkSeguidorData['entity'] = 'Membership';
+            $checkSeguidorData['action'] = 'get';
+            $checkSeguidorData['contact_id'] = $contactId;
+            $checkSeguidorData['membership_type_id'] = "Seguidor";
+            $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkSeguidorData));
+            if (strtoupper($responseCheck->status_message) === 'OK') {
+              $responseCheckData = json_decode($responseCheck->data);
+              if ($responseCheckData->is_error == 0) {
+                if (!$responseCheckData->values) {
+                  // if response has no values, this contact is not yet Seguidor
+                  $seguidorChanged = true;
+                }
+              } else {
+                $messages[] = ['text' => $responseCheckData->error_message];
               }
             } else {
-              $messages[] = ['text' => $responseCheckData->error_message];
+              $messages[] = ['text' => 'There was some error checking if contact is Seguidor.'];
             }
-          } else {
-            $messages[] = ['text' => 'There was some error checking if contact is Inscrit.'];
-          }
-
-          // check if not yet Seguidor
-          $checkSeguidorData = $postData;
-          $checkSeguidorData['entity'] = 'Membership';
-          $checkSeguidorData['action'] = 'get';
-          $checkSeguidorData['contact_id'] = $contactId;
-          $checkSeguidorData['membership_type_id'] = "Seguidor";
-          $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkSeguidorData));
-          if (strtoupper($responseCheck->status_message) === 'OK') {
-            $responseCheckData = json_decode($responseCheck->data);
-            if ($responseCheckData->is_error == 0) {
-              if (!$responseCheckData->values) {
-                // if response has no values, this contact is not yet Seguidor
-                $seguidorChanged = true;
-              }
-            } else {
-              $messages[] = ['text' => $responseCheckData->error_message];
-            }
-          } else {
-            $messages[] = ['text' => 'There was some error checking if contact is Seguidor.'];
           }
         }
 
@@ -278,6 +285,7 @@ function _send_contact_data($data = [], $form_id)
         $source = 'contacte web';
         if ($form_id === $formIdsConfig['participa_form']) $source = 'participa web';
         else if ($form_id === $formIdsConfig['butlletins_form']) $source = 'butlletins web';
+        else if ($isRendaBasicaForm) $source = 'renda basica web';
         $createData['source'] = $source;
 
         // Agree receive info checkbox
@@ -298,62 +306,68 @@ function _send_contact_data($data = [], $form_id)
           }
         }
 
-        // set newsletter subscriptions:
-        $currentSubscriptions = [];
-        if (!empty($oldContactData->custom_113)) {
-          $currentSubscriptions = $oldContactData->custom_113;
-        }
-        $newSubscriptions = [];
-        $languageIndex = array_search($language, $allowedLanguages);
-        if ($agreeReceiveInfo && !_subscribed_already_to_newsletter($currentSubscriptions)) {
-          if ($languageIndex !== false) {
-            $newSubscriptions[] = $languageIndex+1;
+        if (!$isRendaBasicaForm) {
+          // set newsletter subscriptions:
+          $currentSubscriptions = [];
+          if (!empty($oldContactData->custom_113)) {
+            $currentSubscriptions = $oldContactData->custom_113;
           }
-        }
-        // communication type checkboxes
-        if (isset($data['communication_type'])) {
-          if ($data['communication_type']['newsletter'] === 'newsletter' && !_subscribed_already_to_newsletter($currentSubscriptions)) {
+          $newSubscriptions = [];
+          $languageIndex = array_search($language, $allowedLanguages);
+          if ($agreeReceiveInfo && !_subscribed_already_to_newsletter($currentSubscriptions)) {
             if ($languageIndex !== false) {
-              $newSubscriptions[] = $languageIndex+1;
+              $newSubscriptions[] = $languageIndex + 1;
             }
           }
-          if ($data['communication_type']['press'] === 'press') {
-            $newSubscriptions[] = 3;
-          }
-        }
-        $finalSubscriptions = array_merge($currentSubscriptions, $newSubscriptions);
-        $finalSubscriptions = array_unique($finalSubscriptions);
-        if (!empty($finalSubscriptions)) {
-          $createData['custom_113'] = $finalSubscriptions;
-        }
-
-        // set district and neighbourhood
-        if (isset($data['district'])) {
-          if (!isset($contactId) || $addressChanged) {
-            $newAddress = [
-              'is_primary' => 1,
-              'location_type_id' => 'Inici',
-              'custom_118' => _remove_whitespace($data['district']),
-            ];
-
-            for ($i = 1; $i <= $maxDistricts; $i++) {
-              $neighbourhood_key = 'neighbourhood_' . $i;
-              if (isset($data[$neighbourhood_key])) {
-                $newAddress['custom_119'] = _remove_whitespace($data[$neighbourhood_key]);
+          // communication type checkboxes
+          if (isset($data['communication_type'])) {
+            if ($data['communication_type']['newsletter'] === 'newsletter' && !_subscribed_already_to_newsletter($currentSubscriptions)) {
+              if ($languageIndex !== false) {
+                $newSubscriptions[] = $languageIndex + 1;
               }
             }
+            if ($data['communication_type']['press'] === 'press') {
+              $newSubscriptions[] = 3;
+            }
+          }
+          $finalSubscriptions = array_merge($currentSubscriptions, $newSubscriptions);
+          $finalSubscriptions = array_unique($finalSubscriptions);
+          if (!empty($finalSubscriptions)) {
+            $createData['custom_113'] = $finalSubscriptions;
+          }
 
-            $createData['api.Address.create'] = $newAddress;
+          // set district and neighbourhood
+          if (isset($data['district'])) {
+            if (!isset($contactId) || $addressChanged) {
+              $newAddress = [
+                'is_primary' => 1,
+                'location_type_id' => 'Inici',
+                'custom_118' => _remove_whitespace($data['district']),
+              ];
+
+              for ($i = 1; $i <= $maxDistricts; $i++) {
+                $neighbourhood_key = 'neighbourhood_' . $i;
+                if (isset($data[$neighbourhood_key])) {
+                  $newAddress['custom_119'] = _remove_whitespace($data[$neighbourhood_key]);
+                }
+              }
+
+              $createData['api.Address.create'] = $newAddress;
+            }
           }
         }
 
         // interest
-        $params = drupal_get_query_parameters();
-        if (isset($params['interes'])) {
-          $interest = intval($params['interes']);
-          if (is_int($interest)) {
-            $createData['custom_124'] = $interest;
+        if (!$isRendaBasicaForm) {
+          $params = drupal_get_query_parameters();
+          if (isset($params['interes'])) {
+            $interest = intval($params['interes']);
+            if (is_int($interest)) {
+              $createData['custom_124'] = $interest;
+            }
           }
+        } else {
+          $createData['custom_124'] = 11;
         }
 
         // if contact is not a duplicate or if its values/entities have changed, create them:
@@ -383,7 +397,7 @@ function _send_contact_data($data = [], $form_id)
           }
         }
         // Seguidor membership
-        if ($form_id == $formIdsConfig['butlletins_form'] || ($form_id == $formIdsConfig['contacte_form'] && $agreeReceiveInfo)) {
+        if ($form_id == $formIdsConfig['butlletins_form'] || ($form_id == $formIdsConfig['contacte_form'] && $agreeReceiveInfo) || $isRendaBasicaForm) {
           if (!isset($contactId) || $seguidorChanged) {
             // only set Seguidor if not Activista nor Inscrit
             if (!isset($contactId) || ($activistaChanged && $inscritChanged)) {
