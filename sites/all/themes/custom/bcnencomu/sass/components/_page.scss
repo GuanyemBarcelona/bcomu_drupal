@@ -2649,6 +2649,15 @@ body.page-conselleres-2019, body.page-carrecs-interns {
   }
 }
 
+// add event form
+form.node-event-form {
+  .form-type-date-popup {
+    .description {
+      display: none;
+    }
+  }
+}
+
 /* search results */
 .search-results {
   @extend %narrowbody;
