@@ -147,6 +147,9 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
       foreach ($hidden_fields_for_all as $field_name) {
         $form[$field_name]['#access'] = false;
       }
+
+      // changed Published label
+      $form['options']['status']['#title'] = t("Publish the event in the calendar");
       break;
     case 'candidacy_person_node_form':
       // fields non visible and non editable to non admins
