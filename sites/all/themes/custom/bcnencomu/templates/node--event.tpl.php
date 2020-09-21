@@ -32,11 +32,24 @@
       </div>
     </div>
 
+    <div class="event-district-neighbourhood">
+      <?php print render($content['field_district']); ?>
+      <?php print render($content['field_neighbourhoods']); ?>
+    </div>
+
+    <?php print render($content['field_venue']); ?>
+
+    <?php print render($content['field_geolocation_link']); ?>
+
     <?php if ($need_enroll){ ?>
       <div class="field field-need-enroll"><?php print t("Cal inscripció"); ?></div>
     <?php } ?>
 
-    <?php print render($content); ?>
+    <?php print render($content['field_image']); ?>
+
+    <?php print render($content['field_enrollment_url']); ?>
+
+    <?php print render($content['body']); ?>
 
     <?php if (isset($addtocalendar_button)){ ?>
       <?php print $addtocalendar_button; ?>

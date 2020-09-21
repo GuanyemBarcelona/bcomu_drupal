@@ -1615,10 +1615,16 @@ article.node {
       margin-bottom: 30px;
       font-size: 180%;
       line-height: 1.33;
-      p {
+      > p {
         margin: 0;
         font-size: 1em;
         line-height: inherit;
+      }
+
+      &.field-type-text-with-summary {
+        p {
+          font-size: 1em;
+        }
       }
 
       &.field-name-field-date {
@@ -1626,8 +1632,39 @@ article.node {
         font-weight: bold;
       }
 
+      &.field-name-field-venue {
+        margin-bottom: 0;
+      }
+
+      &.field-name-field-geolocation-link {
+        a {
+          color: $theme_grey_light;
+        }
+      }
+
       &.field-need-enroll {
         color: $theme_red;
+      }
+
+      &.field-name-field-enrollment-url {
+        a {
+          @include buttonize;
+        }
+      }
+    }
+
+    .event-district-neighbourhood {
+      font-weight: bold;
+
+      .field-name-field-district + .field-name-field-neighbourhoods {
+        &:before {
+          content: ",";
+          margin-right: 6px;
+        }
+      }
+
+      div {
+        display: inline;
       }
     }
   }
