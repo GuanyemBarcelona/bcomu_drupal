@@ -136,7 +136,7 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
         unset($form['options']['#title']);
         $form['options']['promote']['#access'] = false;
         $form['options']['sticky']['#access'] = false;
-        $hidden_fields_for_non_admin = ['language', 'revision_information', 'author', 'field_event_type', 'field_space_bcomu', 'field_hour_end', 'field_image', 'field_campaign'];
+        $hidden_fields_for_non_admin = ['language', 'revision_information', 'author', 'field_event_type', 'field_space_bcomu', 'field_hour_end', 'field_image', 'field_campaign', 'field_verifications'];
         foreach ($hidden_fields_for_non_admin as $field_name) {
           $form[$field_name]['#access'] = false;
         }
