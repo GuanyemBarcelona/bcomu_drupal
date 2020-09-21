@@ -42,7 +42,15 @@
     <?php print render($content['field_geolocation_link']); ?>
 
     <?php if ($need_enroll){ ?>
-      <div class="field field-need-enroll"><?php print t("Cal inscripció"); ?></div>
+      <div class="field field-need-enroll">
+        <?php if (!empty($content['field_enrollment_url'])){ ?>
+        <a href="<?php print $content['field_enrollment_url'][0]['#element']['url'] ?>" target="_blank">
+        <?php } ?>
+          <?php print t("Cal inscripció"); ?>
+        <?php if (!empty($content['field_enrollment_url'])){ ?>
+        </a>
+        <?php } ?>
+      </div>
     <?php } ?>
 
     <?php print render($content['field_image']); ?>
