@@ -106,8 +106,21 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
       break;
     case 'event_node_form':
       global $user;
+
       // add form validation
       $form['#validate'][] = 'bcnencomu_add_event_form_validate';
+
+      // Not-online event related fields disabled if event is online
+      $offline_event_field_names = ['field_venue', 'field_geolocation_link', 'field_transport_tube', 'field_district', 'field_neighbourhoods'];
+      $offline_visible_condition = array(
+        'visible' => array(
+          ':input[name^="field_is_online['.LANGUAGE_NONE.']"]' => array('checked' => FALSE),
+        ),
+      );
+      foreach ($offline_event_field_names as $field_name) {
+        $form[$field_name]['#states'] = $offline_visible_condition;
+      }
+
       // disable additional_settings vertical tabs and hide some fields
       if (in_array('calendari', $user->roles)){
         $form['additional_settings']['#type'] = 'fieldset';
