@@ -136,9 +136,10 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
         unset($form['options']['#title']);
         $form['options']['promote']['#access'] = false;
         $form['options']['sticky']['#access'] = false;
-        $form['language']['#access'] = false;
-        $form['revision_information']['#access'] = false;
-        $form['author']['#access'] = false;
+        $hidden_fields = ['language', 'revision_information', 'author'];
+        foreach ($hidden_fields as $field_name) {
+          $form[$field_name]['#access'] = false;
+        }
       }
       break;
     case 'candidacy_person_node_form':
