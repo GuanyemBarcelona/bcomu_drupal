@@ -128,7 +128,7 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
         ),
       );
 
-      // disable additional_settings vertical tabs and hide some fields
+      // if role is calendari, disable additional_settings vertical tabs and hide some fields
       if (in_array('calendari', $user->roles)){
         $form['additional_settings']['#type'] = 'fieldset';
         $form['options']['#collapsible'] = false;
