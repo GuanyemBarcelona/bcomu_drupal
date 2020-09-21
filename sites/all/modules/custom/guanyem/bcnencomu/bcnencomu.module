@@ -121,6 +121,13 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
         $form[$field_name]['#states'] = $offline_visible_condition;
       }
 
+      // enrollment URL only appears if the event needs enrollment
+      $form['field_enrollment_url']['#states'] = array(
+        'visible' => array(
+          ':input[name^="field_need_enroll['.LANGUAGE_NONE.']"]' => array('checked' => TRUE),
+        ),
+      );
+
       // disable additional_settings vertical tabs and hide some fields
       if (in_array('calendari', $user->roles)){
         $form['additional_settings']['#type'] = 'fieldset';
