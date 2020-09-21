@@ -143,7 +143,7 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
       }
 
       // hide some fields for now
-      $hidden_fields_for_all = ['field_campaign'];
+      $hidden_fields_for_all = ['field_campaign', 'field_link'];
       foreach ($hidden_fields_for_all as $field_name) {
         $form[$field_name]['#access'] = false;
       }
