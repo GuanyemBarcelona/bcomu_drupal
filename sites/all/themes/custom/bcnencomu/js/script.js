@@ -44,6 +44,7 @@ var config = {
         scrollCalendarToFirstEvent();
       } else if ($(context).is('.view-agenda')){
         prepareAgendaLayout();
+        prepareAllEventLinks();
       }
     }
   };
@@ -179,9 +180,7 @@ var config = {
     });
 
     // open event links as overlay
-    $('.view-agenda .views-field-title-field a, div.single-day div.weekview .views-field-title a, div.single-day div.weekview .views-field-field-date a, .view-calendar-agenda .views-row .views-field-title-field a').each(function(i){
-      prepareEventLink($(this));
-    });
+    prepareAllEventLinks();
 
     // Calendar Search view
     var $calendar_search = $('.view-display-id-agenda_page');
@@ -441,6 +440,24 @@ var config = {
     }
   }
 
+  // prepare the event links to open as overlay
+  function prepareAllEventLinks(){
+    $('.view-agenda .views-field-title-field a, div.single-day div.weekview .views-field-title a, div.single-day div.weekview .views-field-field-date a, .view-calendar-agenda .views-row .views-field-title-field a').each(function(i){
+      prepareEventLink($(this));
+    });
+  }
+
+  function prepareEventLink($obj){
+    var href = $obj.attr('href');
+    $obj.attr('href', href + '?oasis=1');
+    $obj.fancybox(
+      {
+        'type': 'iframe',
+        'width': 500
+      }
+    );
+  }
+
 })(jQuery);
 
 // YouTube iframe Player API
@@ -604,16 +621,4 @@ function getTimeString(duration) {
 
 function onPlayerReady(e) {
   e.target.playVideo();
-}
-
-// prepare the event links to open as overlay
-function prepareEventLink($obj){
-  var href = $obj.attr('href');
-  $obj.attr('href', href + '?oasis=1');
-  $obj.fancybox(
-    {
-      'type': 'iframe',
-      'width': 500
-    }
-  );
 }
