@@ -141,6 +141,12 @@ function bcnencomu_form_alter(&$form, &$form_state, $form_id) {
           $form[$field_name]['#access'] = false;
         }
       }
+
+      // hide some fields for now
+      $hidden_fields_for_all = ['field_campaign'];
+      foreach ($hidden_fields_for_all as $field_name) {
+        $form[$field_name]['#access'] = false;
+      }
       break;
     case 'candidacy_person_node_form':
       // fields non visible and non editable to non admins
