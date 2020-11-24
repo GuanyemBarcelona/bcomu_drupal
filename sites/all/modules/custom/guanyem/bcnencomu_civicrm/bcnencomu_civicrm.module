@@ -383,30 +383,21 @@ function _send_contact_data($data = [], $form_id)
         }
 
         // if contact is not a duplicate or if its values/entities have changed, create them:
-        // participation type memberships
-        if (isset($data['participation_type'])) {
-          // if Activist option:
-          if ($data['participation_type']['activist'] === 'activist') {
-            // make Activista membership
-            if (!isset($contactId) || $activistaChanged) {
-              $createData['api.Membership.create'] = [
-                'membership_type_id' => "Activista",
-                'status_id' => "Interessat",
-                'is_override' => 1
-              ];
-            }
-          }
-          // if Activist or Member option:
-          if ($data['participation_type']['activist'] === 'activist' || $data['participation_type']['member'] === 'member') {
-            // make Inscrit membership
-            if (!isset($contactId) || $inscritChanged) {
-              $createData['api.Membership.create.2'] = [
-                'membership_type_id' => "Inscrit",
-                'status_id' => "Pending",
-                'is_override' => 1
-              ];
-            }
-          }
+        // make Activista Interessat membership
+        if (!isset($contactId) || $activistaChanged) {
+          $createData['api.Membership.create'] = [
+            'membership_type_id' => "Activista",
+            'status_id' => "Interessat",
+            'is_override' => 1
+          ];
+        }
+        // make Inscrit pendent membership
+        if (!isset($contactId) || $inscritChanged) {
+          $createData['api.Membership.create.2'] = [
+            'membership_type_id' => "Inscrit",
+            'status_id' => "Pending",
+            'is_override' => 1
+          ];
         }
         // Seguidor membership
         if ($form_id == $formIdsConfig['butlletins_form'] || ($form_id == $formIdsConfig['contacte_form'] && $agreeReceiveInfo) || $isRendaBasicaForm) {
