@@ -99,8 +99,8 @@ function _send_contact_data($data = [], $form_id)
           $checkCurrentData['action'] = 'get';
           $checkCurrentData['id'] = $contactId;
 
-          // getting current Subscriptions and Interests
-          $checkCurrentData['return'] = ['custom_113', 'custom_124'];
+          // getting current Subscriptions, Interests and Source
+          $checkCurrentData['return'] = ['custom_113', 'custom_124', 'contact_source'];
           $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkCurrentData));
           if (strtoupper($responseCheck->status_message) === 'OK') {
             $currentData = json_decode($responseCheck->data);
@@ -281,12 +281,14 @@ function _send_contact_data($data = [], $form_id)
           ];
         }
 
-        // Source
-        $source = 'contacte web';
-        if ($form_id === $formIdsConfig['participa_form']) $source = 'participa web';
-        else if ($form_id === $formIdsConfig['butlletins_form']) $source = 'butlletins web';
-        else if ($isRendaBasicaForm) $source = 'renda basica web';
-        $createData['source'] = $source;
+        // Source: Add the source ONLY if it was empty
+        if (empty($oldContactData->contact_source)) {
+          $source = 'contacte web';
+          if ($form_id === $formIdsConfig['participa_form']) $source = 'participa web';
+          else if ($form_id === $formIdsConfig['butlletins_form']) $source = 'butlletins web';
+          else if ($isRendaBasicaForm) $source = 'renda basica web';
+          $createData['source'] = $source;
+        }
 
         // Agree receive info checkbox
         if (isset($data['agree_receive_info'])) {
