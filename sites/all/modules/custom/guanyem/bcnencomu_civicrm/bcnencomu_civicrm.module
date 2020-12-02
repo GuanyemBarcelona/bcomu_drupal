@@ -80,7 +80,6 @@ function _send_contact_data($data = [], $form_id)
         $oldContactData = new stdClass();
 
         // flags for contact values that changed
-        $agreeReceiveInfo = true;
         $phoneChanged = false;
         $activistaChanged = false;
         $inscritChanged = false;
@@ -309,7 +308,7 @@ function _send_contact_data($data = [], $form_id)
           }
           $newSubscriptions = [];
           $languageIndex = array_search($language, $allowedLanguages);
-          if ($agreeReceiveInfo && !_subscribed_already_to_newsletter($currentSubscriptions)) {
+          if (!_subscribed_already_to_newsletter($currentSubscriptions)) {
             if ($languageIndex !== false) {
               $newSubscriptions[] = $languageIndex + 1;
             }
@@ -393,7 +392,7 @@ function _send_contact_data($data = [], $form_id)
           ];
         }
         // Seguidor membership
-        if ($form_id == $formIdsConfig['butlletins_form'] || ($form_id == $formIdsConfig['contacte_form'] && $agreeReceiveInfo) || $isRendaBasicaForm) {
+        if ($form_id == $formIdsConfig['butlletins_form'] || $form_id == $formIdsConfig['contacte_form'] || $isRendaBasicaForm) {
           if (!isset($contactId) || $seguidorChanged) {
             // only set Seguidor if not Activista nor Inscrit
             if (!isset($contactId) || ($activistaChanged && $inscritChanged)) {
@@ -405,6 +404,7 @@ function _send_contact_data($data = [], $form_id)
             }
           }
         }
+
         // phone
         if (isset($data['phone'])) {
           if (!isset($contactId) || $phoneChanged) {
@@ -441,19 +441,17 @@ function _send_contact_data($data = [], $form_id)
             $activityData['target_contact_id'] = $contactId;
 
             // Update Communication Preferences
-            if ($agreeReceiveInfo) {
-              $activityData['activity_type_id'] = "Update_Communication_Preferences";
-              $responseActivity = drupal_http_request($apiConfig['endpoint'], _get_post_options($activityData));
-              if (strtoupper($responseActivity->status_message) === 'OK') {
-                $responseActivityData = json_decode($responseActivity->data);
-                if ($responseActivityData->is_error == 0) {
-                  $messages[] = ['text' => 'Update_Communication_Preferences activity correctly created.', 'severity' => WATCHDOG_INFO];
-                } else {
-                  $messages[] = ['text' => $responseActivityData->error_message];
-                }
+            $activityData['activity_type_id'] = "Update_Communication_Preferences";
+            $responseActivity = drupal_http_request($apiConfig['endpoint'], _get_post_options($activityData));
+            if (strtoupper($responseActivity->status_message) === 'OK') {
+              $responseActivityData = json_decode($responseActivity->data);
+              if ($responseActivityData->is_error == 0) {
+                $messages[] = ['text' => 'Update_Communication_Preferences activity correctly created.', 'severity' => WATCHDOG_INFO];
               } else {
-                $messages[] = ['text' => 'There was some error creating the Update_Communication_Preferences activity.'];
+                $messages[] = ['text' => $responseActivityData->error_message];
               }
+            } else {
+              $messages[] = ['text' => 'There was some error creating the Update_Communication_Preferences activity.'];
             }
 
             // SLA Acceptance
