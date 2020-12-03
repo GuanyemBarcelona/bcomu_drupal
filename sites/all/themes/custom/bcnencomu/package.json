@@ -22,6 +22,6 @@
     "gulp-sourcemaps": "^2.6.4"
   },
   "scripts": {
-    "gulp": "gulp"
+    "watch": "gulp watch"
   }
 }
