@@ -311,6 +311,14 @@ button[data-ajax-call] {
   }
 }
 
+.form-radios {
+  display: flex;
+
+  .form-type-radio {
+    margin-right: 10px;
+  }
+}
+
 fieldset {
   border: none;
   padding: 0;
