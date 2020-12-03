@@ -2,6 +2,7 @@
     "name": "barcelonaencomu/bcomu_drupal",
     "version": "3.0.1",
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "repositories": {
         "drupal": {
             "type": "composer",
