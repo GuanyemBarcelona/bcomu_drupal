@@ -7,12 +7,19 @@ function bcnencomu_civicrm_form_alter(&$form, &$form_state, $form_id)
 {
   $config = variable_get('civicrm_form_ids');
 
-  if (!is_null($config) && isset($config['contacte_form']) && isset($config['participa_form']) && isset($config['butlletins_form']) && isset($config['renda_basica_form'])) {
+  if (!is_null($config) && isset($config['contacte_form']) 
+      && isset($config['participa_form']) 
+      && isset($config['butlletins_form']) 
+      && isset($config['renda_basica_form']) 
+      && isset($config['sorteig_llibres_form'])
+      && isset($config['sorteig_llibres_small_form'])) {
     switch ($form_id) {
       case $config['contacte_form']:
       case $config['participa_form']:
       case $config['butlletins_form']:
       case $config['renda_basica_form']:
+      case $config['sorteig_llibres_form']:
+      case $config['sorteig_llibres_small_form']:
         $form['#submit'][] = 'bcnencomu_civicrm_form_submit';
         break;
     }
@@ -51,6 +58,11 @@ function _send_contact_data($data = [], $form_id)
   // is renda basica form (a simpler form)
   $isRendaBasicaForm = ($form_id === $formIdsConfig['renda_basica_form']);
 
+  // is sorteig llibres form
+  $isSorteigLlibresForm = ($form_id === $formIdsConfig['sorteig_llibres_form']);
+  // is sorteig llibres small form
+  $isSorteigLlibresSmallForm = ($form_id === $formIdsConfig['sorteig_llibres_small_form']);
+
   if (!is_null($apiConfig) && !is_null($formIdsConfig)) {
     $postData = [
       'version' => 3,
@@ -63,11 +75,20 @@ function _send_contact_data($data = [], $form_id)
     $checkData = $postData;
     $checkData['entity'] = 'Contact';
     $checkData['action'] = 'duplicatecheck';
-    $checkData['dedupe_rule_id'] = 4;
-    $checkData['match'] = [
-      'contact_type' => 'Individual',
-      'email' => $data['email'],
-    ];
+    if (!$isSorteigLlibresForm) {
+      $checkData['dedupe_rule_id'] = 4;
+      $checkData['match'] = [
+        'contact_type' => 'Individual',
+        'email' => $data['email'],
+      ];
+    } else {
+      $checkData['dedupe_rule_id'] = 18;
+      $checkData['match'] = [
+        'contact_type' => 'Individual',
+        'email' => $data['email'],
+        'custom_13' => $data['document_num'],
+      ];
+    }
 
     $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkData));
 
@@ -80,6 +101,7 @@ function _send_contact_data($data = [], $form_id)
         $oldContactData = new stdClass();
 
         // flags for contact values that changed
+        $emailChanged = false;
         $phoneChanged = false;
         $activistaChanged = false;
         $inscritChanged = false;
@@ -98,8 +120,17 @@ function _send_contact_data($data = [], $form_id)
           $checkCurrentData['action'] = 'get';
           $checkCurrentData['id'] = $contactId;
 
-          // getting current Subscriptions, Interests and Source
-          $checkCurrentData['return'] = ['custom_113', 'custom_124', 'contact_source'];
+          // getting extra data from current contact
+          $checkCurrentData['return'] = ['custom_113', 'custom_124', 'contact_source']; // Subscriptions, Interests and Source
+          if ($isSorteigLlibresForm) {
+            $checkCurrentData['return'][] = 'birth_date'; // birth date
+            $checkCurrentData['return'][] = 'custom_157'; // document type
+            $checkCurrentData['return'][] = 'custom_13'; // fiscal ID
+            $checkCurrentData['return'][] = 'custom_158'; // lives on house rent
+            $checkCurrentData['return'][] = 'custom_159'; // has children
+            $checkCurrentData['return'][] = 'gender_id'; // gender
+          }
+
           $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkCurrentData));
           if (strtoupper($responseCheck->status_message) === 'OK') {
             $currentData = json_decode($responseCheck->data);
@@ -114,43 +145,59 @@ function _send_contact_data($data = [], $form_id)
             $messages[] = ['text' => 'There was some error checking the existence of some current contact data.'];
           }
 
-          if (!$isRendaBasicaForm) {
-            // check if district and neighbourhood are new
+          if (!$isRendaBasicaForm && !$isSorteigLlibresSmallForm) {
+            // check if address of type Altres is new
             if (isset($data['district'])) {
               $checkDistrictData = $postData;
               $checkDistrictData['entity'] = 'Address';
               $checkDistrictData['action'] = 'get';
               $checkDistrictData['contact_id'] = $contactId;
-              $checkDistrictData['is_primary'] = 1;
-              $checkDistrictData['return'] = ['custom_118', 'custom_119'];
+              $checkDistrictData['location_type_id'] = 'Altres';
+              $checkDistrictData['return'] = ['custom_118', 'custom_119']; // District, Neighbourhood
+              if ($isSorteigLlibresForm) {
+                $checkDistrictData['return'][] = 'street_address';
+                $checkDistrictData['return'][] = 'supplemental_address_1';
+                $checkDistrictData['return'][] = 'postal_code';
+              }
               $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkDistrictData));
               if (strtoupper($responseCheck->status_message) === 'OK') {
                 $responseCheckData = json_decode($responseCheck->data);
                 if ($responseCheckData->is_error == 0) {
                   if (!$responseCheckData->values) {
-                    // if response has no values, this contact did not have a primary address yet
+                    // if response has no values, this contact did not have this type of address yet
                     $addressChanged = true;
                   } else {
-                    // this contact already had a primary address
+                    // this contact already had this type of address
                     $oldAddress = reset($responseCheckData->values);
-                    if (!isset($oldAddress->custom_118)) {
-                      // but has no district
+                    // what about the street line 1:
+                    if (!isset($oldAddress->street_address)) { // had no data before
                       $addressChanged = true;
                     } else {
-                      if ($oldAddress->custom_118 != $data['district']) {
-                        // and the new one is different
+                      if ($oldAddress->street_address != $data['street_line']) { // the new one is different
                         $addressChanged = true;
                       }
                     }
-                    if (!isset($oldAddress->custom_119)) {
-                      // but has no neighbourhood
+                    // what about the street line 2:
+                    if (isset($oldAddress->supplemental_address_1)) { // had data before
+                      if ($oldAddress->supplemental_address_1 != $data['street_line2']) { // the new one is different
+                        $addressChanged = true;
+                      }
+                    }
+                    // what about the district:
+                    if (!isset($oldAddress->custom_118)) { // had no data before
+                      // but has no district
                       $addressChanged = true;
                     } else {
+                      if ($oldAddress->custom_118 != $data['district']) { // the new one is different
+                        $addressChanged = true;
+                      }
+                    }
+                    // what about the neighbourhood:
+                    if (isset($oldAddress->custom_119)) { // had data before
                       for ($i = 1; $i <= $maxDistricts; $i++) {
                         $neighbourhood_key = 'neighbourhood_' . $i;
                         if (isset($data[$neighbourhood_key])) {
-                          if ($oldAddress->custom_119 != $data[$neighbourhood_key]) {
-                            // and the new one is different
+                          if ($oldAddress->custom_119 != $data[$neighbourhood_key]) { // the new one is different
                             $addressChanged = true;
                           }
                         }
@@ -162,6 +209,39 @@ function _send_contact_data($data = [], $form_id)
                 }
               } else {
                 $messages[] = ['text' => 'There was some error checking the existence of the address.'];
+              }
+            }
+
+            if ($isSorteigLlibresForm) {
+              // check if email is new
+              if (isset($data['email'])) {
+                $checkEmailData = $postData;
+                $checkEmailData['entity'] = 'Email';
+                $checkEmailData['action'] = 'get';
+                $checkEmailData['contact_id'] = $contactId;
+                $checkEmailData['email'] = _remove_whitespace($data['email']);
+                $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkEmailData));
+                if (strtoupper($responseCheck->status_message) === 'OK') {
+                  $responseCheckData = json_decode($responseCheck->data);
+                  if ($responseCheckData->is_error == 0) {
+                    if (!$responseCheckData->values) {
+                      // if response has no values, this contact did not have an email yet
+                      $emailChanged = true;
+                    } else {
+                      // this contact already had an email
+                      $oldEmail = reset($responseCheckData->values)->email;
+                      $oldEmail = _remove_whitespace($oldEmail);
+                      if ($oldEmail != $checkEmailData['email']) {
+                        // and the new one is different
+                        $emailChanged = true;
+                      }
+                    }
+                  } else {
+                    $messages[] = ['text' => $responseCheckData->error_message];
+                  }
+                } else {
+                  $messages[] = ['text' => 'There was some error checking the existence of the e-mail.'];
+                }
               }
             }
 
@@ -196,68 +276,70 @@ function _send_contact_data($data = [], $form_id)
               }
             }
 
-            // check if not yet Activista
-            $checkActivistaData = $postData;
-            $checkActivistaData['entity'] = 'Membership';
-            $checkActivistaData['action'] = 'get';
-            $checkActivistaData['contact_id'] = $contactId;
-            $checkActivistaData['membership_type_id'] = "Activista";
-            $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkActivistaData));
-            if (strtoupper($responseCheck->status_message) === 'OK') {
-              $responseCheckData = json_decode($responseCheck->data);
-              if ($responseCheckData->is_error == 0) {
-                if (!$responseCheckData->values) {
-                  // if response has no values, this contact is not yet Activista
-                  $activistaChanged = true;
+            if (!$isSorteigLlibresForm && !$isSorteigLlibresSmallForm) {
+              // check if not yet Activista
+              $checkActivistaData = $postData;
+              $checkActivistaData['entity'] = 'Membership';
+              $checkActivistaData['action'] = 'get';
+              $checkActivistaData['contact_id'] = $contactId;
+              $checkActivistaData['membership_type_id'] = "Activista";
+              $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkActivistaData));
+              if (strtoupper($responseCheck->status_message) === 'OK') {
+                $responseCheckData = json_decode($responseCheck->data);
+                if ($responseCheckData->is_error == 0) {
+                  if (!$responseCheckData->values) {
+                    // if response has no values, this contact is not yet Activista
+                    $activistaChanged = true;
+                  }
+                } else {
+                  $messages[] = ['text' => $responseCheckData->error_message];
                 }
               } else {
-                $messages[] = ['text' => $responseCheckData->error_message];
+                $messages[] = ['text' => 'There was some error checking if contact is Activista.'];
               }
-            } else {
-              $messages[] = ['text' => 'There was some error checking if contact is Activista.'];
-            }
 
-            // check if not yet Inscrit
-            $checkInscritData = $postData;
-            $checkInscritData['entity'] = 'Membership';
-            $checkInscritData['action'] = 'get';
-            $checkInscritData['contact_id'] = $contactId;
-            $checkInscritData['membership_type_id'] = "Inscrit";
-            $checkInscritData['status_id'] = ['IN' => ["Pending", "Current", "Verificat"]];
-            $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkInscritData));
-            if (strtoupper($responseCheck->status_message) === 'OK') {
-              $responseCheckData = json_decode($responseCheck->data);
-              if ($responseCheckData->is_error == 0) {
-                if (!$responseCheckData->values) {
-                  // if response has no values, this contact is not yet Inscrit
-                  $inscritChanged = true;
+              // check if not yet Inscrit
+              $checkInscritData = $postData;
+              $checkInscritData['entity'] = 'Membership';
+              $checkInscritData['action'] = 'get';
+              $checkInscritData['contact_id'] = $contactId;
+              $checkInscritData['membership_type_id'] = "Inscrit";
+              $checkInscritData['status_id'] = ['IN' => ["Pending", "Current", "Verificat"]];
+              $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkInscritData));
+              if (strtoupper($responseCheck->status_message) === 'OK') {
+                $responseCheckData = json_decode($responseCheck->data);
+                if ($responseCheckData->is_error == 0) {
+                  if (!$responseCheckData->values) {
+                    // if response has no values, this contact is not yet Inscrit
+                    $inscritChanged = true;
+                  }
+                } else {
+                  $messages[] = ['text' => $responseCheckData->error_message];
                 }
               } else {
-                $messages[] = ['text' => $responseCheckData->error_message];
+                $messages[] = ['text' => 'There was some error checking if contact is Inscrit.'];
               }
-            } else {
-              $messages[] = ['text' => 'There was some error checking if contact is Inscrit.'];
-            }
 
-            // check if not yet Seguidor
-            $checkSeguidorData = $postData;
-            $checkSeguidorData['entity'] = 'Membership';
-            $checkSeguidorData['action'] = 'get';
-            $checkSeguidorData['contact_id'] = $contactId;
-            $checkSeguidorData['membership_type_id'] = "Seguidor";
-            $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkSeguidorData));
-            if (strtoupper($responseCheck->status_message) === 'OK') {
-              $responseCheckData = json_decode($responseCheck->data);
-              if ($responseCheckData->is_error == 0) {
-                if (!$responseCheckData->values) {
-                  // if response has no values, this contact is not yet Seguidor
-                  $seguidorChanged = true;
+              // check if not yet Seguidor
+              $checkSeguidorData = $postData;
+              $checkSeguidorData['entity'] = 'Membership';
+              $checkSeguidorData['action'] = 'get';
+              $checkSeguidorData['contact_id'] = $contactId;
+              $checkSeguidorData['membership_type_id'] = "Seguidor";
+              $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkSeguidorData));
+              if (strtoupper($responseCheck->status_message) === 'OK') {
+                $responseCheckData = json_decode($responseCheck->data);
+                if ($responseCheckData->is_error == 0) {
+                  if (!$responseCheckData->values) {
+                    // if response has no values, this contact is not yet Seguidor
+                    $seguidorChanged = true;
+                  }
+                } else {
+                  $messages[] = ['text' => $responseCheckData->error_message];
                 }
               } else {
-                $messages[] = ['text' => $responseCheckData->error_message];
+                $messages[] = ['text' => 'There was some error checking if contact is Seguidor.'];
               }
-            } else {
-              $messages[] = ['text' => 'There was some error checking if contact is Seguidor.'];
             }
           }
         }
@@ -267,17 +349,12 @@ function _send_contact_data($data = [], $form_id)
         $createData['entity'] = 'Contact';
         $createData['action'] = 'create';
         $createData['contact_type'] = 'Individual';
-        if (isset($contactId)) {
-          // contact already existed
+
+        if (isset($contactId)) { // contact already existed
           $createData['id'] = $contactId;
-        } else {
-          // contact did not exist, creating as new
+        } else { // contact did not exist
           $createData['first_name'] = $data['firstname'];
           $createData['last_name'] = $data['lastname'];
-          $createData['api.Email.create'] = [
-            'is_primary' => 1,
-            'email' => $data['email'],
-          ];
         }
 
         // Source: Add the source ONLY if it was empty
@@ -286,7 +363,16 @@ function _send_contact_data($data = [], $form_id)
           if ($form_id === $formIdsConfig['participa_form']) $source = 'participa web';
           else if ($form_id === $formIdsConfig['butlletins_form']) $source = 'butlletins web';
           else if ($isRendaBasicaForm) $source = 'renda basica web';
+          else if ($isSorteigLlibresForm) $source = 'sorteig llibres mail';
+          else if ($isSorteigLlibresSmallForm) $source = 'sorteig llibres whatsapp';
           $createData['source'] = $source;
+        }
+
+        // Tags: add new tag for the form's related campaign
+        if ($isSorteigLlibresForm || $isSorteigLlibresSmallForm) {
+          $createData['api.EntityTag.create'] = [
+            'tag_id' => 93
+          ];
         }
 
         // set preferred language
@@ -330,12 +416,11 @@ function _send_contact_data($data = [], $form_id)
             $createData['custom_113'] = $finalSubscriptions;
           }
 
-          // set district and neighbourhood
+          // set address data of type Altres
           if (isset($data['district'])) {
             if (!isset($contactId) || $addressChanged) {
               $newAddress = [
-                'is_primary' => 1,
-                'location_type_id' => 'Inici',
+                'location_type_id' => 'Altres',
                 'custom_118' => _remove_whitespace($data['district']),
               ];
 
@@ -344,6 +429,12 @@ function _send_contact_data($data = [], $form_id)
                 if (isset($data[$neighbourhood_key])) {
                   $newAddress['custom_119'] = _remove_whitespace($data[$neighbourhood_key]);
                 }
+              }
+
+              if ($isSorteigLlibresForm) {
+                $newAddress['street_address'] = $data['street_line'];
+                $newAddress['supplemental_address_1'] = $data['street_line2'];
+                $newAddress['postal_code'] = $data['postalcode'];
               }
 
               $createData['api.Address.create'] = $newAddress;
@@ -357,45 +448,56 @@ function _send_contact_data($data = [], $form_id)
           $currentInterests = $oldContactData->custom_124;
         }
         $newInterests = [];
-        if (!$isRendaBasicaForm) {
-          $params = drupal_get_query_parameters();
-          if (isset($params['interes'])) {
-            $interest = intval($params['interes']);
-            if (is_int($interest)) {
-              $newInterests[] = $interest;
+        if (!$isSorteigLlibresForm) {
+          if (!$isRendaBasicaForm) {
+            $params = drupal_get_query_parameters();
+            if (isset($params['interes'])) {
+              $interest = intval($params['interes']);
+              if (is_int($interest)) {
+                $newInterests[] = $interest;
+              }
             }
+          } else {
+            $newInterests[] = 11;
           }
         } else {
-          $newInterests[] = 11;
+          if (isset($data['interests'])) {
+            foreach ($data['interests'] as $key => $interest) {
+              if (!empty($interest)) $newInterests[] = $key;
+            } 
+          }
         }
+        
         $finalInterests = array_merge($currentInterests, $newInterests);
         $finalInterests = array_unique($finalInterests);
         if (!empty($finalInterests)) {
           $createData['custom_124'] = $finalInterests;
         }
 
-        // if contact is not a duplicate or if its values/entities have changed, create them:
-        // make Activista Interessat membership
-        if (!isset($contactId) || $activistaChanged) {
-          $createData['api.Membership.create'] = [
-            'membership_type_id' => "Activista",
-            'status_id' => "Interessat",
-            'is_override' => 1
-          ];
-        }
-        // make Inscrit pendent membership
-        if (!isset($contactId) || $inscritChanged) {
-          $createData['api.Membership.create.2'] = [
-            'membership_type_id' => "Inscrit",
-            'status_id' => "Pending",
-            'is_override' => 1
-          ];
+        // memberships:
+        if (!$isSorteigLlibresForm) {
+          // if contact is not a duplicate or if its values/entities have changed, create them:
+          // make Activista Interessat membership
+          if (!isset($contactId) || $activistaChanged) {
+            $createData['api.Membership.create'] = [
+              'membership_type_id' => "Activista",
+              'status_id' => "Interessat",
+              'is_override' => 1
+            ];
+          }
+          // make Inscrit pendent membership
+          if (!isset($contactId) || $inscritChanged) {
+            $createData['api.Membership.create.2'] = [
+              'membership_type_id' => "Inscrit",
+              'status_id' => "Pending",
+              'is_override' => 1
+            ];
+          }
         }
         // Seguidor membership
-        if ($form_id == $formIdsConfig['butlletins_form'] || $form_id == $formIdsConfig['contacte_form'] || $isRendaBasicaForm) {
-          if (!isset($contactId) || $seguidorChanged) {
-            // only set Seguidor if not Activista nor Inscrit
-            if (!isset($contactId) || ($activistaChanged && $inscritChanged)) {
+        if (!isset($contactId) || $seguidorChanged) {
+          if ($form_id !== $formIdsConfig['participa_form']) {
+            if (!isset($contactId) || ($activistaChanged && $inscritChanged)) { // only set Seguidor if not Activista nor Inscrit
               $createData['api.Membership.create.3'] = [
                 'membership_type_id' => "Seguidor",
                 'status_id' => "Verificat",
@@ -405,6 +507,14 @@ function _send_contact_data($data = [], $form_id)
           }
         }
 
+        // email: create email if new contact or if isSorteigLlibresForm and email changed
+        if (!isset($contactId) || ($isSorteigLlibresForm && $emailChanged)) {
+          $createData['api.Email.create'] = [
+            'is_primary' => 1,
+            'email' => $data['email'],
+          ];
+        }
+
         // phone
         if (isset($data['phone'])) {
           if (!isset($contactId) || $phoneChanged) {
@@ -412,6 +522,48 @@ function _send_contact_data($data = [], $form_id)
               'is_primary' => 1,
               'phone' => _remove_whitespace($data['phone']),
             ];
+          }
+        }
+
+        // document type
+        if (isset($data['document_type'])) {
+          if (empty($oldContactData->custom_157)) {
+            $createData['custom_157'] = _remove_whitespace($data['document_type']);
+          }
+        }
+        
+        // fiscal ID
+        if (isset($data['document_num'])) {
+          if (empty($oldContactData->custom_13)) {
+            $createData['custom_13'] = _remove_whitespace($data['document_num']);
+          }
+        }
+
+        // birth date
+        if (isset($data['birthdate'])) {
+          if (empty($oldContactData->birth_date)) {
+            $createData['birth_date'] = $data['birthdate']['year'] . '-' . $data['birthdate']['month'] . '-' . $data['birthdate']['day'];
+          }
+        }
+
+        // lives on house rent
+        if (isset($data['house_rent'])) {
+          if (empty($oldContactData->custom_158)) {
+            $createData['custom_158'] = _remove_whitespace($data['house_rent']);
+          }
+        }
+
+        // has children
+        if (isset($data['have_children'])) {
+          if (empty($oldContactData->custom_159)) {
+            $createData['custom_159'] = _remove_whitespace($data['have_children']);
+          }
+        }
+
+        // gender
+        if (isset($data['gender'])) {
+          if (empty($oldContactData->gender_id)) {
+            $createData['gender_id'] = _remove_whitespace($data['gender']);
           }
         }
 
