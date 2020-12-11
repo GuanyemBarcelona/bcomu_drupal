@@ -475,7 +475,7 @@ function _send_contact_data($data = [], $form_id)
         }
 
         // memberships:
-        if (!$isSorteigLlibresForm) {
+        if (!$isSorteigLlibresForm && !$isSorteigLlibresSmallForm) {
           // if contact is not a duplicate or if its values/entities have changed, create them:
           // make Activista Interessat membership
           if (!isset($contactId) || $activistaChanged) {
