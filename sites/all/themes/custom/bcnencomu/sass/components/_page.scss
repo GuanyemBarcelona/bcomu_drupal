@@ -1905,12 +1905,19 @@ article.node {
 }
 .view-opinion-by-author {
   padding-top: 0;
+  .view-content {
+    > .item-list {
+      > ul {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        @media screen and (max-width: $big_screen_width) {
+          display: block;
+        }
+      }
+    }
+  }
+
   .views-row {
     padding-left: 0;
-    width: 49%;
-    @media screen and (max-width: $big_screen_width) {
-      width: 100%;
-    }
 
     .views-field-field-opinion-publish-date {
       top: 14px;
