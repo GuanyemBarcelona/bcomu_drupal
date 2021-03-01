@@ -1140,7 +1140,7 @@ article.node {
     iframe {
       @extend %widerbody;
       margin-bottom: 30px;
-      #page.calendar-page & {
+      #page.calendar-page &, .tableauPlaceholder & {
         max-width: none;
       }
     }
