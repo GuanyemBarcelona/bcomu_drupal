@@ -1140,9 +1140,12 @@ article.node {
     iframe {
       @extend %widerbody;
       margin-bottom: 30px;
-      #page.calendar-page &, .tableauPlaceholder & {
+      #page.calendar-page & {
         max-width: none;
       }
+    }
+    .tableauPlaceholder iframe {
+      max-width: none;
     }
 
     li {
