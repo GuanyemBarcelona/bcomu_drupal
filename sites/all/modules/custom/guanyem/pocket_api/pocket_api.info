@@ -1,5 +1,0 @@
-name = Barcelona en comú: Pocket API
-description = Custom API for the Pocket integration
-core = 7.x
-package = Guanyem
-dependencies[] = gh
