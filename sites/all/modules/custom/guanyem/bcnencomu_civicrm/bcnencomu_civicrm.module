@@ -368,8 +368,9 @@ function _send_contact_data($data = [], $form_id)
           if ($form_id === $formIdsConfig['participa_form']) $source = 'participa web';
           else if ($form_id === $formIdsConfig['butlletins_form']) $source = 'butlletins web';
           else if ($isRendaBasicaForm) $source = 'renda basica web';
-          else if ($isSorteigLlibresForm) $source = 'sorteig llibres mail';
+          else if ($isSorteigLlibresForm) $source = 'sorteig llibres 2021';
           else if ($isSorteigLlibresSmallForm) $source = 'sorteig llibres whatsapp';
+          else if ($isConcursRelatJoveForm) $source = 'concurs relat jove';
           $createData['source'] = $source;
         }
 
