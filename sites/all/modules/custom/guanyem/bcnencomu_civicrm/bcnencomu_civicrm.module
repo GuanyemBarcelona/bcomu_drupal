@@ -134,6 +134,8 @@ function _send_contact_data($data = [], $form_id)
             $checkCurrentData['return'][] = 'custom_158'; // lives on house rent
             $checkCurrentData['return'][] = 'custom_159'; // has children
             $checkCurrentData['return'][] = 'gender_id'; // gender
+            $checkCurrentData['return'][] = 'custom_187'; // employment
+            $checkCurrentData['return'][] = 'custom_188'; // education
           }
 
           $responseCheck = drupal_http_request($apiConfig['endpoint'], _get_post_options($checkCurrentData));
@@ -570,6 +572,20 @@ function _send_contact_data($data = [], $form_id)
         if (isset($data['gender'])) {
           if (empty($oldContactData->gender_id)) {
             $createData['gender_id'] = _remove_whitespace($data['gender']);
+          }
+        }
+
+        // employment
+        if (isset($data['employment'])) {
+          if (empty($oldContactData->custom_187)) {
+            $createData['custom_187'] = _remove_whitespace($data['employment']);
+          }
+        }
+
+        // education
+        if (isset($data['education'])) {
+          if (empty($oldContactData->custom_188)) {
+            $createData['custom_188'] = _remove_whitespace($data['education']);
           }
         }
 
