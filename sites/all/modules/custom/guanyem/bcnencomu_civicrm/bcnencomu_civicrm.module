@@ -382,6 +382,11 @@ function _send_contact_data($data = [], $form_id)
             'tag_id' => 93
           ];
         }
+        if ($isConcursRelatJoveForm) {
+          $createData['api.EntityTag.create'] = [
+            'tag_id' => 97
+          ];
+        }
 
         // set preferred language
         $language = 'ca';
