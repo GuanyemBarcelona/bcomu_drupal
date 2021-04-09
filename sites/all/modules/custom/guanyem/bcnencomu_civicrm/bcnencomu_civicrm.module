@@ -12,7 +12,8 @@ function bcnencomu_civicrm_form_alter(&$form, &$form_state, $form_id)
       && isset($config['butlletins_form']) 
       && isset($config['renda_basica_form']) 
       && isset($config['sorteig_llibres_form'])
-      && isset($config['sorteig_llibres_small_form'])) {
+      && isset($config['sorteig_llibres_small_form'])
+      && isset($config['relats_espai_jove_form'])) {
     switch ($form_id) {
       case $config['contacte_form']:
       case $config['participa_form']:
@@ -20,6 +21,7 @@ function bcnencomu_civicrm_form_alter(&$form, &$form_state, $form_id)
       case $config['renda_basica_form']:
       case $config['sorteig_llibres_form']:
       case $config['sorteig_llibres_small_form']:
+      case $config['relats_espai_jove_form']:
         $form['#submit'][] = 'bcnencomu_civicrm_form_submit';
         break;
     }
@@ -62,6 +64,9 @@ function _send_contact_data($data = [], $form_id)
   $isSorteigLlibresForm = ($form_id === $formIdsConfig['sorteig_llibres_form']);
   // is sorteig llibres small form
   $isSorteigLlibresSmallForm = ($form_id === $formIdsConfig['sorteig_llibres_small_form']);
+  
+  // is concurs relat jove Sant Jordi 
+  $isConcursRelatJoveForm = ($form_id === $formIdsConfig['relats_espai_jove_form']);
 
   if (!is_null($apiConfig) && !is_null($formIdsConfig)) {
     $postData = [
@@ -75,7 +80,7 @@ function _send_contact_data($data = [], $form_id)
     $checkData = $postData;
     $checkData['entity'] = 'Contact';
     $checkData['action'] = 'duplicatecheck';
-    if (!$isSorteigLlibresForm) {
+    if (!$isSorteigLlibresForm && !$isConcursRelatJoveForm) {
       $checkData['dedupe_rule_id'] = 4;
       $checkData['match'] = [
         'contact_type' => 'Individual',
