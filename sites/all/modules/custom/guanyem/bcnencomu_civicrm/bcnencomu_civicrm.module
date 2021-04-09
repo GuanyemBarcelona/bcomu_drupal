@@ -163,7 +163,7 @@ function _send_contact_data($data = [], $form_id)
               $checkDistrictData['contact_id'] = $contactId;
               $checkDistrictData['location_type_id'] = 'Altres';
               $checkDistrictData['return'] = ['custom_118', 'custom_119']; // District, Neighbourhood
-              if ($isSorteigLlibresForm) {
+              if ($isSorteigLlibresForm || $isConcursRelatJoveForm) {
                 $checkDistrictData['return'][] = 'street_address';
                 $checkDistrictData['return'][] = 'supplemental_address_1';
                 $checkDistrictData['return'][] = 'postal_code';
@@ -221,7 +221,7 @@ function _send_contact_data($data = [], $form_id)
               }
             }
 
-            if ($isSorteigLlibresForm) {
+            if ($isSorteigLlibresForm || $isConcursRelatJoveForm) {
               // check if email is new
               if (isset($data['email'])) {
                 $checkEmailData = $postData;
@@ -285,7 +285,7 @@ function _send_contact_data($data = [], $form_id)
               }
             }
 
-            if (!$isSorteigLlibresForm && !$isSorteigLlibresSmallForm) {
+            if (!$isSorteigLlibresForm && !$isSorteigLlibresSmallForm && !$isConcursRelatJoveForm) {
               // check if not yet Activista
               $checkActivistaData = $postData;
               $checkActivistaData['entity'] = 'Membership';
@@ -446,7 +446,7 @@ function _send_contact_data($data = [], $form_id)
                 }
               }
 
-              if ($isSorteigLlibresForm) {
+              if ($isSorteigLlibresForm || $isConcursRelatJoveForm) {
                 $newAddress['street_address'] = $data['street_line'];
                 $newAddress['supplemental_address_1'] = $data['street_line2'];
                 $newAddress['postal_code'] = $data['postalcode'];
@@ -490,7 +490,7 @@ function _send_contact_data($data = [], $form_id)
         }
 
         // memberships:
-        if (!$isSorteigLlibresForm && !$isSorteigLlibresSmallForm) {
+        if (!$isSorteigLlibresForm && !$isSorteigLlibresSmallForm && !$isConcursRelatJoveForm) {
           // if contact is not a duplicate or if its values/entities have changed, create them:
           // make Activista Interessat membership
           if (!isset($contactId) || $activistaChanged) {
@@ -522,8 +522,8 @@ function _send_contact_data($data = [], $form_id)
           }
         }
 
-        // email: create email if new contact or if isSorteigLlibresForm and email changed
-        if (!isset($contactId) || ($isSorteigLlibresForm && $emailChanged)) {
+        // email: create email if new contact or if isSorteigLlibresForm/isConcursRelatJoveForm and email changed
+        if (!isset($contactId) || (($isSorteigLlibresForm || $isConcursRelatJoveForm) && $emailChanged)) {
           $createData['api.Email.create'] = [
             'is_primary' => 1,
             'email' => $data['email'],
