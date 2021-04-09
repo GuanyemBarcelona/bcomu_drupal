@@ -127,10 +127,12 @@ function _send_contact_data($data = [], $form_id)
 
           // getting extra data from current contact
           $checkCurrentData['return'] = ['custom_113', 'custom_124', 'contact_source']; // Subscriptions, Interests and Source
-          if ($isSorteigLlibresForm) {
+          if ($isSorteigLlibresForm || $isConcursRelatJoveForm) {
             $checkCurrentData['return'][] = 'birth_date'; // birth date
             $checkCurrentData['return'][] = 'custom_157'; // document type
             $checkCurrentData['return'][] = 'custom_13'; // fiscal ID
+          }
+          if ($isSorteigLlibresForm) {  
             $checkCurrentData['return'][] = 'custom_158'; // lives on house rent
             $checkCurrentData['return'][] = 'custom_159'; // has children
             $checkCurrentData['return'][] = 'gender_id'; // gender
