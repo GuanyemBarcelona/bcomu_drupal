@@ -65,7 +65,7 @@ function _send_contact_data($data = [], $form_id)
   // is sorteig llibres small form
   $isSorteigLlibresSmallForm = ($form_id === $formIdsConfig['sorteig_llibres_small_form']);
   
-  // is concurs relat jove 
+  // is concurs relat jove form
   $isConcursRelatJoveForm = ($form_id === $formIdsConfig['relats_espai_jove_form']);
 
   if (!is_null($apiConfig) && !is_null($formIdsConfig)) {
