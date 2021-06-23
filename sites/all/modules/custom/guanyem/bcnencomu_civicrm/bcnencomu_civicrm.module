@@ -14,7 +14,8 @@ function bcnencomu_civicrm_form_alter(&$form, &$form_state, $form_id)
       && isset($config['sorteig_llibres_form'])
       && isset($config['sorteig_llibres_small_form'])
       && isset($config['relats_espai_jove_form'])
-      && isset($config['espai_jove_form'])) {
+      && isset($config['espai_jove_form'])
+      && isset($config['cor_rebel_form'])) {
     switch ($form_id) {
       case $config['contacte_form']:
       case $config['participa_form']:
@@ -24,6 +25,7 @@ function bcnencomu_civicrm_form_alter(&$form, &$form_state, $form_id)
       case $config['sorteig_llibres_small_form']:
       case $config['relats_espai_jove_form']:
       case $config['espai_jove_form']:
+      case $config['cor_rebel_form']:  
         $form['#submit'][] = 'bcnencomu_civicrm_form_submit';
         break;
     }
@@ -72,6 +74,9 @@ function _send_contact_data($data = [], $form_id)
 
   // is espai jove form
   $isEspaiJoveForm = ($form_id === $formIdsConfig['espai_jove_form']);
+
+  // is cor rebel form
+  $isCorRebelForm = ($form_id === $formIdsConfig['cor_rebel_form']);
 
   if (!is_null($apiConfig) && !is_null($formIdsConfig)) {
     $postData = [
@@ -381,6 +386,7 @@ function _send_contact_data($data = [], $form_id)
           else if ($isSorteigLlibresSmallForm) $source = 'sorteig llibres whatsapp';
           else if ($isConcursRelatJoveForm) $source = 'concurs relat jove';
           else if ($isEspaiJoveForm) $source = 'espai jove web';
+          else if ($isCorRebelForm) $source = 'cor rebel web';
           $createData['source'] = $source;
         }
 
@@ -398,6 +404,11 @@ function _send_contact_data($data = [], $form_id)
         if ($isEspaiJoveForm) {
           $createData['api.EntityTag.create'] = [
             'tag_id' => 102
+          ];
+        }
+        if ($isCorRebelForm) {
+          $createData['api.EntityTag.create'] = [
+            'tag_id' => 104
           ];
         }
 
